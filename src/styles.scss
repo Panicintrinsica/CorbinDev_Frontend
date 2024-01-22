@@ -1,4 +1,5 @@
-@import "material";
+@import "styles/material";
+@import "styles/article";
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons+Sharp';
 @import url('https://fonts.googleapis.com/css2?family=Questrial&family=Red+Hat+Display:wght@400;500&display=swap');
 
@@ -206,7 +207,7 @@ span.label {
   flex-grow: 1;
 }
 
-@import "src/styles/article";
+
 
 .control-panel {
   .title {
@@ -413,5 +414,5 @@ ul ul{
   }
 }
 
-@import "ngx-smart-modal/ngx-smart-modal";
+//@import "ngx-smart-modal/ngx-smart-modal";
 @import "styles/overrides";
