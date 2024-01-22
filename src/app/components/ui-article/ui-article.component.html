@@ -4,36 +4,33 @@
     <div class="category {{data.category | lowercase }}">{{data.category | lowercase }}</div>
   </header>
 
-  <div *ngIf="isStub" class="content" [innerHTML]="data.shortContent | markdown"></div>
-  <div *ngIf="!isStub" class="content" [innerHTML]="data.fullContent | markdown"></div>
+  <div class="content" [innerHTML]="isStub ? data.shortContent : data.fullContent  | markdown"></div>
 
-  <footer class="stub" *ngIf="isStub">
-    <span class="time">{{ data.updatedAt | date : 'shortDate' }}</span>
-    <div class="pusher"></div>
-    <button mat-button routerLink="/article/{{data.slug}}">Read More</button>
-  </footer>
-
-  <footer *ngIf="!isStub" class="full">
-    <div class="tag-container pusher">
-      <span class="label">Tags: </span>
-      <div class="article tag" *ngFor="let tag of data.tags">{{tag}}</div>
-    </div>
-    <div class="timestamp">
-
-      <div *ngIf="(data.createdAt === data.updatedAt); else updated">
-        <span class="label">Posted: </span>
-        <span class="time">{{ data.createdAt | date : 'short'  }}</span>
+  <footer [ngClass]="isStub ? 'stub' : 'full' ">
+    @if (isStub) {
+      <span class="time fill">{{ data.updatedAt | date : 'shortDate' }}</span>
+      <button mat-button routerLink="/article/{{data.slug}}">Read More</button>
+    } @else {
+      <div class="tag-container fill">
+        <span class="label">Tags: </span>
+        <div class="article tag" *ngFor="let tag of data.tags">{{tag}}</div>
       </div>
 
-      <ng-template #updated>
-        <span class="label">Posted: </span>
-        <span class="time">{{ data.updatedAt | date : 'short'  }}</span>
-      </ng-template>
+      <div class="timestamp">
+        <div *ngIf="(data.createdAt === data.updatedAt); else updated">
+          <span class="label">Posted: </span>
+          <span class="time">{{ data.createdAt | date : 'short'  }}</span>
+        </div>
 
-    </div>
-    <address>
-      <span class="label">Author: </span>
-      <a rel="author" routerLink="/bio" class="author">{{data.author}}</a>
-    </address>
+        <ng-template #updated>
+          <span class="label">Posted: </span>
+          <span class="time">{{ data.updatedAt | date : 'short'  }}</span>
+        </ng-template>
+      </div>
+      <address>
+        <span class="label">Author: </span>
+        <a rel="author" routerLink="/bio" class="author">{{data.author}}</a>
+      </address>
+    }
   </footer>
 </article>

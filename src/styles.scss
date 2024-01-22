@@ -313,6 +313,9 @@ span.label {
   padding: 0.5rem 0;
 }
 
+.fill {
+  flex-grow: 1;
+}
 
 .flex-row {
   display: flex;
@@ -321,9 +324,7 @@ span.label {
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.2);
   }
 
-  .fill {
-    flex-grow: 1;
-  }
+
 
   &.bottom-padded {
     padding-bottom: 0.5rem;

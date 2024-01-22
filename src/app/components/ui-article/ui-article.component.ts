@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {MatButton} from "@angular/material/button";
-import {DatePipe, LowerCasePipe} from "@angular/common";
+import {DatePipe, LowerCasePipe, NgClass} from "@angular/common";
 import {MarkdownPipe} from "ngx-markdown";
 import {Article} from "../../models/article.model";
 
@@ -13,7 +13,8 @@ import {Article} from "../../models/article.model";
     MatButton,
     LowerCasePipe,
     DatePipe,
-    MarkdownPipe
+    MarkdownPipe,
+    NgClass
   ],
   templateUrl: './ui-article.component.html',
   styleUrl: './ui-article.component.scss'
