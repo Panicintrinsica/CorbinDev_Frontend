@@ -1,0 +1,10 @@
+<section class="article page">
+  <div class="flex-row bottom-padded">
+    <button mat-stroked-button routerLink="/">Back</button>
+  </div>
+
+  @if (article$ | async; as article ) {
+    <ui-article [data]="article"></ui-article>
+  }
+
+</section>
