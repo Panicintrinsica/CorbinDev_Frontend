@@ -1,11 +1,11 @@
 <article class="project-card">
   <div class="image">
-    <img src="assets/projects/{{project.photo}}.png"
+    <img ngSrc="assets/projects/{{project.photo}}.png"
          width="320"
          height="180"
          loading="lazy"
          decoding="async"
-    >
+     alt="Logo or photo of the project in question. Very fancy. Worth much moneies">
   </div>
 
   <div class="title-line">
@@ -16,8 +16,12 @@
   <div class="content" [innerHTML]="project.shortDescription"></div>
 
   <div class="action-line">
-    <a *ngIf="project.hasLink" mat-raised-button target="_blank" href="{{project.url}}">Visit</a>
-    <button *ngIf="project.hasDetails"  mat-raised-button color="primary" routerLink="/project/{{project.slug}}">Details</button>
+    @if (project.hasLink) {
+      <a mat-raised-button target="_blank" href="{{project.url}}">Visit</a>
+    }
+    @if (project.hasDetails) {
+      <button mat-raised-button color="primary" routerLink="/project/{{project.slug}}">Details</button>
+    }
   </div>
 
 </article>

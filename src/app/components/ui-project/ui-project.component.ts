@@ -1,15 +1,23 @@
 import {Component, Input} from '@angular/core';
-import {Project} from "../../../../../corbin.dev - OLD AND BROKEN/src/app/models/project.model";
+import {MatAnchor, MatButton} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
+import {DatePipe, NgOptimizedImage} from "@angular/common";
+import {Project} from "../../models/project.model";
 
 @Component({
   selector: 'ui-project',
   standalone: true,
-  imports: [],
+  imports: [
+    MatAnchor,
+    MatButton,
+    RouterLink,
+    NgOptimizedImage,
+    DatePipe
+  ],
   templateUrl: './ui-project.component.html',
   styleUrl: './ui-project.component.scss'
 })
 export class UiProjectComponent {
-
   @Input() project: Project = {
     _id: "",
     category: "",
