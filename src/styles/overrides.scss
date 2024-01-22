@@ -1,0 +1,89 @@
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--body-lowlight);
+}
+
+.mat-mdc-form-field, .mat-mdc-floating-label {
+  font-family: var(--bodyFont);
+}
+
+// Override the default text color for buttons.
+.mat-mdc-raised-button.mat-primary {
+  --mdc-protected-button-label-text-color: #fff;
+}
+
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: var(--secondary);
+}
+
+// Fixes background color on home page.
+.mat-drawer-content {
+  background: var(--background-color);
+}
+
+.ng-trigger-routeAnimations {
+  flex-grow: 1;
+}
+
+.mat-expansion-panel-header-title {
+  color: white;
+  font-size: 1.2rem;
+  font-family: var(--headerFont);
+}
+
+.mat-expansion-panel {
+  background-color: var(--body);
+  color: white;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: var(--body-highlight) var(--body-highlight) var(--body-lowlight) var(--body-lowlight);
+}
+
+.cdk-overlay-pane {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  max-height: 75vh;
+}
+
+
+// Smart Modal Overrides
+.nsm-dialog, .nsm-dialog-btn-close {
+  color: var(--bodyFont-color)
+}
+
+.nsm-dialog {
+  max-width: 80vw;
+}
+
+.mdc-dialog__surface {
+  background-color: var(--body) !important;
+}
+
+.nsm-content, .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: var(--body);
+}
+
+.nsm-body {
+  display: flex;
+  flex-direction: column;
+
+  textarea {
+    min-height: 100px;
+  }
+}
+
+
+
+// Fix first paragraph spacing on the Resume Builder
+.intro > p:nth-child(1) {
+  margin-top: 0;
+}
+
+
+@media print {
+
+  .noprint {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+}

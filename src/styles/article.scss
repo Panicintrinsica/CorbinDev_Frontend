@@ -1,0 +1,35 @@
+article > header > .category {
+  align-self: center;
+  font: var(--headerFont);
+  font-variant: small-caps;
+  font-weight: 600;
+  padding: .2rem .6rem;
+  border: 2px solid var(--body-lowlight);
+  border-radius: 5px;
+  font-size: 1rem;
+  background: var(--body);
+
+  &.announcement {
+    color: hsl(0, 100%, 75%);
+    background: hsl(0, 100%, 10%);
+    border-color: hsl(0, 100%, 20%);
+  }
+
+  &.news {
+    color: hsl(80, 75%, 50%);
+    background: hsl(80, 100%, 10%);
+    border-color: hsl(80, 100%, 20%);
+  }
+
+  &.tutorial {
+    color: hsl(180, 75%, 50%);
+    background: hsl(180, 100%, 10%);
+    border-color: hsl(180, 100%, 20%);
+  }
+
+  &.featured {
+    color: white;
+    background: var(--tag-highlight);
+    border-color: var(--tag-highlight-border);
+  }
+}

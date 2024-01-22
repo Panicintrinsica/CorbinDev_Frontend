@@ -1,0 +1,98 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$corbin-blue: (
+  50 : #e0f3ff,
+  100 : #b3e2ff,
+  200 : #80cfff,
+  300 : #4dbcff,
+  400 : #26adff,
+  500 : #009fff,
+  600 : #0097ff,
+  700 : #008dff,
+  800 : #0083ff,
+  900 : #0072ff,
+  A100 : #ffffff,
+  A200 : #f2f7ff,
+  A400 : #bfd8ff,
+  A700 : #a6c8ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+$corbin-teal: (
+  50 : #eef6f7,
+  100 : #d6e9ea,
+  200 : #badbdd,
+  300 : #9ecdcf,
+  400 : #8ac2c4,
+  500 : #75b7ba,
+  600 : #6db0b3,
+  700 : #62a7ab,
+  800 : #589fa3,
+  900 : #459094,
+  A100 : #ecfeff,
+  A200 : #b9fcff,
+  A400 : #86f9ff,
+  A700 : #6df8ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+//
+$corbin-typography: mat.define-typography-config(
+  $headline-1: mat.define-typography-level(64px, $font-family: 'Red Hat Display'),
+  $headline-2: mat.define-typography-level(48px, $font-family: 'Red Hat Display'),
+  $headline-3: mat.define-typography-level(32px, $font-family: 'Red Hat Display'),
+  $headline-4: mat.define-typography-level(28px, $font-family: 'Red Hat Display'),
+  $headline-5: mat.define-typography-level(24px, $font-family: 'Red Hat Display'),
+  $headline-6: mat.define-typography-level(20px, $font-family: 'Red Hat Display'),
+  $subtitle-1: mat.define-typography-level(18px, $font-family: 'Red Hat Display'),
+  $subtitle-2: mat.define-typography-level(16px, $font-family: 'Red Hat Display'),
+  $body-1: mat.define-typography-level(16px, 18px,$font-family: 'Red Hat Display'),
+  $body-2: mat.define-typography-level(16px, 0px, $font-family: 'Red Hat Display'),
+  $button: mat.define-typography-level(16px, 16px, 600, $font-family: 'Questrial', $letter-spacing: 1px),
+);
+
+
+$primary: mat.define-palette($corbin-blue, 500, 400, 300);
+$accent: mat.define-palette($corbin-teal, 300, A200, A100, A400);
+
+$corbin-dark: mat.define-dark-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+  ),
+  typography: $corbin-typography,
+  density: 0,
+));
+
+@include mat.all-component-themes($corbin-dark);

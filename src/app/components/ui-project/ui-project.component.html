@@ -1,0 +1,25 @@
+<article class="project-card">
+  <div class="image">
+    <img src="assets/projects/{{project.photo}}.png"
+         width="320"
+         height="180"
+         loading="lazy"
+         decoding="async"
+    >
+  </div>
+
+  <div class="title-line">
+    <div class="title">{{ project.name }}</div>
+    <div class="date">{{ project.endDate | date:"MMM YYYY"}}</div>
+  </div>
+
+  <div class="content" [innerHTML]="project.shortDescription"></div>
+
+  <div class="action-line">
+    <a *ngIf="project.hasLink" mat-raised-button target="_blank" href="{{project.url}}">Visit</a>
+    <button *ngIf="project.hasDetails"  mat-raised-button color="primary" routerLink="/project/{{project.slug}}">Details</button>
+  </div>
+
+</article>
+
+

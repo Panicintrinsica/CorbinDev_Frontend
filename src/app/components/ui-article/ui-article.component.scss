@@ -1,0 +1,13 @@
+footer.full {
+  @media only screen and (max-width: 620px) {
+    flex-direction: column-reverse;
+  }
+}
+
+footer {
+  align-items: center;
+}
+
+footer.stub > .time {
+  opacity: 33%;
+}
