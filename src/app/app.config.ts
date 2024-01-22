@@ -11,6 +11,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(),
     provideMarkdown(),
+    provideAnimations(),
     provideRouter(routes),
     provideClientHydration(),
     provideAnimations()
