@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {MatButton} from "@angular/material/button";
-import {DatePipe, LowerCasePipe, NgClass} from "@angular/common";
-import {MarkdownPipe} from "ngx-markdown";
+import {DatePipe, JsonPipe, LowerCasePipe, NgClass} from "@angular/common";
+import {MarkdownComponent, MarkdownPipe} from "ngx-markdown";
 import {Article} from "../../models/article.model";
 
 @Component({
@@ -14,7 +14,9 @@ import {Article} from "../../models/article.model";
     LowerCasePipe,
     DatePipe,
     MarkdownPipe,
-    NgClass
+    NgClass,
+    JsonPipe,
+    MarkdownComponent
   ],
   templateUrl: './ui-article.component.html',
   styleUrl: './ui-article.component.scss'
@@ -32,4 +34,5 @@ export class UiArticleComponent {
   };
 
   @Input() isStub: boolean = false;
+
 }
