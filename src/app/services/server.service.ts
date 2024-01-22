@@ -6,12 +6,13 @@ import {Profile} from "../models/profile.model";
 import {Skill} from "../models/skill.model";
 import {Project, ProjectStub} from "../models/project.model";
 import {Education} from "../models/education.model";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServerService {
-  private API = environment.apiURL
+  private API = environment.API
 
   constructor(private http: HttpClient) {}
 
