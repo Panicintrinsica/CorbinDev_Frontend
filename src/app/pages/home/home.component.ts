@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AsyncPipe, NgClass} from "@angular/common";
+import {AsyncPipe, NgClass, NgIf} from "@angular/common";
 import {UiArticleComponent} from "../../components/ui-article/ui-article.component";
 import {map, Observable} from "rxjs";
 import {ServerService} from "../../services/server.service";
@@ -11,7 +11,8 @@ import {Article} from "../../models/article.model";
   imports: [
     NgClass,
     UiArticleComponent,
-    AsyncPipe
+    AsyncPipe,
+    NgIf
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

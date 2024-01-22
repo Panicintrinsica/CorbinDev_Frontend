@@ -15,20 +15,20 @@
 
   </section>
 
-  <div class="pager">
-    <div class="pager-item" [ngClass]="{'disabled': currentPage == 1}" (click)="firstPage()"> << </div>
-    <div class="pager-item" [ngClass]="{'disabled': currentPage == 1}" (click)="prevPage('')"> < </div>
+<!--  <div class="pager">-->
+<!--    <div class="pager-item" [ngClass]="{'disabled': currentPage == 1}" (click)="firstPage()"> << </div>-->
+<!--    <div class="pager-item" [ngClass]="{'disabled': currentPage == 1}" (click)="prevPage('')"> < </div>-->
 
-    <div class="pager-item" *ngIf="currentPage > 2" (click)="pageSelect(currentPage - 2)"> {{ currentPage - 2 }} </div>
-    <div class="pager-item" *ngIf="currentPage > 1" (click)="pageSelect(currentPage - 1)"> {{ currentPage - 1 }} </div>
+<!--    <div class="pager-item" *ngIf="currentPage > 2" (click)="pageSelect(currentPage - 2)"> {{ currentPage - 2 }} </div>-->
+<!--    <div class="pager-item" *ngIf="currentPage > 1" (click)="pageSelect(currentPage - 1)"> {{ currentPage - 1 }} </div>-->
 
-    <div class="pager-item active"> {{ currentPage }} </div>
+<!--    <div class="pager-item active"> {{ currentPage }} </div>-->
 
-    <div class="pager-item" *ngIf="currentPage < pages" (click)="pageSelect(currentPage + 1 )"> {{ currentPage + 1 }} </div>
-    <div class="pager-item" *ngIf="(currentPage + 2) < pages" (click)="pageSelect(currentPage + 2 )"> {{ currentPage + 2 }} </div>
+<!--    <div class="pager-item" *ngIf="currentPage < pages" (click)="pageSelect(currentPage + 1 )"> {{ currentPage + 1 }} </div>-->
+<!--    <div class="pager-item" *ngIf="(currentPage + 2) < pages" (click)="pageSelect(currentPage + 2 )"> {{ currentPage + 2 }} </div>-->
 
-    <div class="pager-item" [ngClass]="{'disabled': currentPage == pages}" (click)="nextPage()"> > </div>
-    <div class="pager-item" [ngClass]="{'disabled': currentPage == pages}" (click)="lastPage()"> >> </div>
-  </div>
+<!--    <div class="pager-item" [ngClass]="{'disabled': currentPage == pages}" (click)="nextPage()"> > </div>-->
+<!--    <div class="pager-item" [ngClass]="{'disabled': currentPage == pages}" (click)="lastPage()"> >> </div>-->
+<!--  </div>-->
 
 </div>
