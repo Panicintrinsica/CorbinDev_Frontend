@@ -1,1 +1,60 @@
-<p>biography works!</p>
+<div class="page">
+
+  <div class="flex column gap-small">
+
+    @if (profile$ | async; as profile) {
+      <div class="profile segment">
+        <!--    <div class="photo">-->
+        <!--    </div>-->
+        <div class="content">
+          <div class="name">{{profile.name}} <span class="pronouns">({{profile.pronouns}})</span></div>
+          <div class="content" [innerHTML]="profile.longDescription" markdown></div>
+        </div>
+      </div>
+    }
+
+    @if (skills$ | async; as skills) {
+      <div class="segment">
+        <header>
+          <h2 class="title">Skills</h2>
+        </header>
+        <div class="content">
+          <div class="tag-container">
+            @for (skill of skills; track skill){
+              <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" (click)="viewSkill(skill._id)">{{skill.name}}</div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (education$ | async; as education) {
+      <div class="segment">
+        <header>
+          <h2 class="title">Education</h2>
+        </header>
+        <div class="content">
+
+          @for(institute of education; track institute) {
+            <div class="education-entry">
+              <div class="title-line">
+                <div class="name">{{ institute.name }}</div>
+                <div class="gpa">GPA: {{ institute.gpa }}/{{ institute.gpaMax }}</div>
+                <div class="pusher"></div>
+                <div class="dates">{{ institute.isCurrent ? 'Est. Grad: ' : institute.startMonth + '.' + institute.startYear + ' - ' }}{{ institute.endMonth + '.' + institute.endYear }}</div>
+              </div>
+              <div class="content">
+                {{institute.degree | titlecase}}, {{institute.major}}
+              </div>
+            </div>
+          }
+
+
+        </div>
+      </div>
+    }
+
+
+
+  </div>
+</div>

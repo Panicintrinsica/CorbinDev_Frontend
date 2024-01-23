@@ -20,10 +20,6 @@ export class ServerService {
     return this.http.get<Article>(`${this.API}/articles/${slug}`)
   }
 
-  getArticles(): Observable<Article[]>{
-    return this.http.get<Article[]>(`${this.API}/articles`)
-  }
-
   getArticlePageCount(): Observable<number>{
     return this.http.get<number>(`${this.API}/articles/count`)
   }
@@ -36,12 +32,16 @@ export class ServerService {
     return this.http.get<Profile>(`${this.API}/profile`)
   }
 
-  getSkill(id: string): Observable<Skill>{
+  getSkillByID(id: string): Observable<Skill>{
     return this.http.get<Skill>(`${this.API}/skills/${id}`)
   }
 
-  getSkillsByName(): Observable<Skill[]>{
+  getDisplayedSkills(): Observable<Skill[]>{
     return this.http.get<Skill[]>(`${this.API}/skills`)
+  }
+
+  getAllSkills(): Observable<Skill[]>{
+    return this.http.get<Skill[]>(`${this.API}/skills/all`)
   }
 
   getSkillsByLevel(): Observable<Skill[]>{
@@ -63,4 +63,5 @@ export class ServerService {
   getEducation(): Observable<Education[]>{
     return this.http.get<Education[]>(`${this.API}/education`)
   }
+
 }

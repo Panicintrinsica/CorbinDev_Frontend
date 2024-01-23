@@ -16,7 +16,9 @@
 
         <div class="date">
           {{project.startDate | date: 'd.M.yy'}}
-          <span *ngIf="project.startDate && project.endDate">to</span>
+          @if (project.startDate && project.endDate) {
+            <span>to</span>
+          }
           {{project.endDate | date: 'd.M.yy'}}
         </div>
       </header>

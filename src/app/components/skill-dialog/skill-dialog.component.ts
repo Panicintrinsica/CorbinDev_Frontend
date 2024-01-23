@@ -32,7 +32,7 @@ export class SkillDialogComponent {
   ) {}
 
   ngOnInit() {
-    this.skill$ = this.server.getSkill(this.data)
+    this.skill$ = this.server.getSkillByID(this.data)
     this.projects$ = this.server.getProjectsBySkill(this.data)
   }
 

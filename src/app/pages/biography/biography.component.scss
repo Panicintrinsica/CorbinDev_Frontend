@@ -1,0 +1,82 @@
+.page {
+
+}
+
+.profile.segment {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: min-content;
+  gap: 1rem 1rem;
+  grid-template-areas:
+    "content";
+
+  @media only screen and (max-width: 999px)  {
+    grid-template-columns: 100%;
+    grid-template-rows: min-content;
+    grid-template-areas:
+    "content"
+  }
+
+
+  .photo {
+    grid-area: photo;
+  }
+
+  .content {
+    grid-area: content;
+  }
+
+  .name {
+    font-size: 2rem;
+    font-family: var(--headerFont);
+  }
+
+  .profile-picture {
+    width: 300px;
+  }
+}
+
+span.pronouns {
+  opacity: 50%;
+}
+
+.skill-list {
+  display: flex;
+  gap: 0.5rem;
+
+  .skill-tag {
+    border-radius: 1rem;
+    background-color: var(--tag);
+    padding: 0.25rem .5rem;
+  }
+}
+
+.education-entry {
+  background-color: hsla(0, 0%, 0%, 20%);
+  padding: 1rem;
+
+  .title-line {
+    display: flex;
+    gap: 0.2rem 1rem;
+    flex-wrap: wrap;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
+    border-bottom: 1px solid hsla(0, 0%, 100%, 25%);
+    align-items: baseline;
+
+    .name  {
+      font-family: var(--headerFont);
+      color: var(--secondary);
+      font-size: 1.30rem;
+      flex-grow: 1;
+    }
+
+    .gpa, .dates {
+      font-family: var(--font_ui);
+    }
+
+
+  }
+
+
+}
