@@ -1,0 +1,66 @@
+<article class="segment skill-details" *ngIf="skill$ | async as skill">
+  <header>
+    <h1 class="title pusher">{{skill.name}}</h1>
+    <div *ngIf="skill.highlight" class="category featured">Featured Skill</div>
+  </header>
+
+
+  <div class="content">
+
+    <div class="skill-data flex divided">
+      <div class="cell">
+        <div class="label">Acquired:</div>
+        <div class="data">{{skill.learned}}</div>
+      </div>
+
+      @if (skill.experience){
+        <div class="cell">
+          <div class="label">Active Experience:</div>
+          <div class="data">{{skill.experience}} Years</div>
+        </div>
+      }
+
+      <div class="cell">
+        <div class="label">Used:</div>
+        <div class="data">{{skill.frequency}}</div>
+      </div>
+    </div>
+
+
+    <h4>Self-Assessment</h4>
+    <div class="flex row gap-small">
+      <div class="cell pusher"><progress max="100" [value]="skill.level"></progress></div>
+      <div class="cell skill">
+        {{skill.level}} <span class="divider">/</span> 100
+      </div>
+    </div>
+
+    <ng-container *ngIf="skill.notes">
+      <h4>Notes</h4>
+      <div class="notes" [innerHTML]="skill.notes" markdown></div>
+    </ng-container>
+
+
+      <div class="projects-list flex column gap-small">
+        <h4>Projects</h4>
+        @for (project of projects$ | async; track project.name) {
+          <div class="project flex row {{project.category}}" (click)="goToProject(project)">
+            <div class="name pusher">{{project.name}}</div>
+            <div class="button"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
+          </div>
+        } @empty {
+          No demonstrable projects :(
+        }
+      </div>
+
+
+
+
+    <ng-container *ngIf="projects$ | async as projects">
+
+
+    </ng-container>
+
+  </div>
+
+</article>

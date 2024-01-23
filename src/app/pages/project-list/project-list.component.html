@@ -1,1 +1,27 @@
-<p>project-list works!</p>
+<div class="page" *ngIf="project$ | async as projects">
+  <mat-tab-group color="accent" mat-align-tabs="center" animationDuration="0ms">
+    <mat-tab label="Professional" *ngIf="professional.length">
+      <div class="project-list">
+        <ui-project *ngFor="let project of professional" [project]="project"></ui-project>
+      </div>
+    </mat-tab>
+    <mat-tab label="Personal" *ngIf="personal.length">
+      <div class="project-list">
+        @defer (on idle) {
+          <ui-project *ngFor="let project of personal" [project]="project"></ui-project>
+        } @placeholder () {
+          <div class="loader">Fetching...</div>
+        }
+      </div>
+    </mat-tab>
+    <mat-tab label="Open Source" *ngIf="openSource.length">
+      <div class="project-list">
+        @defer (on idle) {
+          <ui-project *ngFor="let project of openSource" [project]="project"></ui-project>
+        } @placeholder () {
+          <div class="loader">Fetching...</div>
+        }
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

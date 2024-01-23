@@ -1,3 +1,9 @@
+.article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 article > header > .category {
   align-self: center;
   font: var(--headerFont);

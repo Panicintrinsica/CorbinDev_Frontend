@@ -1,1 +1,50 @@
-<p>project works!</p>
+
+<div class="page">
+
+  <div class="flex-row bottom-padded">
+    <button mat-stroked-button routerLink="/projects">Back</button>
+    <div class="fill"></div>
+    @if (project?.hasLink) {
+      <a mat-stroked-button color="primary" [href]="project?.url" target="_blank">Visit</a>
+    }
+  </div>
+
+  @if (project){
+    <article class="segment">
+      <header class="{{project.category}}">
+        <h1 class="title pusher">{{project.name}}</h1>
+
+        <div class="date">
+          {{project.startDate | date: 'd.M.yy'}}
+          <span *ngIf="project.startDate && project.endDate">to</span>
+          {{project.endDate | date: 'd.M.yy'}}
+        </div>
+      </header>
+
+      <div class="content">
+        <div [innerHTML]="project.longDescription" markdown></div>
+        <h4>Project Features</h4>
+        <div [innerHTML]="project.features" markdown></div>
+
+        <h4>Skills</h4>
+        <div class="tag-container cutout">
+          @for (skill of project.skills; track skill) {
+            <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" (click)="viewSkill(skill._id)">{{skill.name}}</div>
+          }
+        </div>
+      </div>
+
+    </article>
+
+  } @else {
+    <div class="segment">
+      <h1>Whoops</h1>
+      <p>There does not seem to be a project by this name or url</p>
+    </div>
+  }
+
+
+
+
+
+</div>
