@@ -122,6 +122,7 @@ h1, h2, h3, h4, h5, h6 {
   background: -webkit-linear-gradient(#ffffff, #a8a8a8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
 }
 
 gui-project-card {
@@ -182,6 +183,7 @@ span.label {
   header {
     padding: .33rem .5rem;
     display: flex;
+    gap: 1rem;
     background: var(--body-highlight);
     align-items: baseline;
 
@@ -216,6 +218,33 @@ span.label {
     padding: 2mm 2mm 0 2mm;
   }
 }
+
+
+input[type="search"] {
+  width: 400px;
+  padding: 6px 10px;
+  margin: 8px 0;
+  color: white;
+  box-sizing: border-box;
+  border: 2px solid #3a3a3a;
+  border-radius: 4px;
+  background-color: #2d2d2d;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+/* On mouse-over, add a deeper shadow */
+input[type="search"]:hover {
+  box-shadow: 0 0 10px 0 rgba(0, 208, 255, 0.2);
+}
+
+/* When the input receives focus, change border color, add a blue box shadow */
+input[type="search"]:focus {
+  border: 2px solid #007BFF;
+  box-shadow: 0 0 8px 0 #007BFF;
+  outline: none;
+}
+
 
 .tag-container {
   display: flex;
@@ -333,11 +362,10 @@ span.label {
 }
 
 ul{
+  list-style: none;
   padding-left: 1rem;
   margin-top: 0;
-  font-size: 1rem;
   font-weight: 600;
-  color: #d6f2ff;
   margin-bottom: 0.5rem;
 }
 
@@ -346,6 +374,29 @@ ul ul{
   font-size: 0.9rem;
   font-weight: 400;
   color: var(--bodyFont-color);
+}
+
+li::before {
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+ul > li::before  {
+  content: "■";
+  color: var(--primary);
+}
+
+ul > ul > li::before,
+ul > li > ul > li::before {
+  content: "□";
+  color: var(--secondary);
+}
+
+ul > ul > ul > li::before,
+ul > li > ul > li > ul > li::before{
+  content: "-";
+  color: var(--accent);
 }
 
 .checklist {
@@ -414,5 +465,6 @@ ul ul{
   }
 }
 
+@import "styles/cv";
 //@import "ngx-smart-modal/ngx-smart-modal";
 @import "styles/overrides";

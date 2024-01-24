@@ -13,20 +13,8 @@
       </div>
     }
 
-    @if (skills$ | async; as skills) {
-      <div class="segment">
-        <header>
-          <h2 class="title">Skills</h2>
-        </header>
-        <div class="content">
-          <div class="tag-container">
-            @for (skill of skills; track skill){
-              <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" (click)="viewSkill(skill._id)">{{skill.name}}</div>
-            }
-          </div>
-        </div>
-      </div>
-    }
+
+    <ui-skill-list></ui-skill-list>
 
     @if (education$ | async; as education) {
       <div class="segment">

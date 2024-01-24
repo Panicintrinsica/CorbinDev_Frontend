@@ -1,12 +1,13 @@
 <article class="project-card">
   <div class="image">
     @if (project.photo){
-      <img ngSrc="assets/projects/{{project.photo}}.png"
+      <img ngSrc="assets/projects/thumbnails/{{project.photo}}.png"
+           class="project-thumbnail"
            width="320"
            height="180"
            loading="lazy"
            decoding="async"
-           alt="Logo or photo of the project in question. Very fancy. Worth much moneies">
+           alt="Logo or photo of the project">
     }
   </div>
 

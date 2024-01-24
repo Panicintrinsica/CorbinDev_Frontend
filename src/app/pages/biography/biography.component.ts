@@ -4,6 +4,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {SkillDialogComponent} from "../../components/skill-dialog/skill-dialog.component";
 import {MarkdownComponent} from "ngx-markdown";
 import {AsyncPipe, NgClass, TitleCasePipe} from "@angular/common";
+import {MatSlideToggle} from "@angular/material/slide-toggle";
+import {FormsModule} from "@angular/forms";
+import {Skill} from "../../models/skill.model";
+import {SkillListComponent} from "../../components/skill-list/skill-list.component";
 
 @Component({
   selector: 'app-biography',
@@ -12,20 +16,23 @@ import {AsyncPipe, NgClass, TitleCasePipe} from "@angular/common";
     MarkdownComponent,
     AsyncPipe,
     NgClass,
-    TitleCasePipe
+    TitleCasePipe,
+    MatSlideToggle,
+    FormsModule,
+    SkillListComponent
   ],
   templateUrl: './biography.component.html',
   styleUrl: './biography.component.scss'
 })
 export class BiographyComponent {
   profile$ = this.server.getProfile()
-  skills$ = this.server.getDisplayedSkills()
+
   education$ = this.server.getEducation()
 
-  constructor(private server: ServerService, public dialog: MatDialog) {
+
+  constructor(private server: ServerService) {
+
   }
 
-  viewSkill(id: string) {
-    this.dialog.open(SkillDialogComponent, { data: id, autoFocus: false, width: '100%', maxWidth: '600px'});
-  }
+
 }

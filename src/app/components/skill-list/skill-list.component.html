@@ -1,0 +1,43 @@
+<div class="segment">
+  <header>
+    <h2 class="title">Skills</h2>
+    <div class="fill"></div>
+    <mat-slide-toggle [(ngModel)]="sortSkills">Sort</mat-slide-toggle>
+    <input type="search" placeholder="Search Skills" [(ngModel)]="searchInput">
+  </header>
+  <div class="content">
+
+    @if (sortSkills) {
+      <div class="skillCategoryLabel">Languages</div>
+      <div class="tag-container">
+        @for (skill of languages | skillSearch:searchInput; track skill){
+          <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" (click)="viewSkill(skill._id)">{{skill.name}}</div>
+        }
+      </div>
+      <div class="skillCategoryLabel">Infrastructure</div>
+      <div class="tag-container">
+        @for (skill of infrastructure | skillSearch:searchInput; track skill){
+          <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" (click)="viewSkill(skill._id)">{{skill.name}}</div>
+        }
+      </div>
+      <div class="skillCategoryLabel">Technology</div>
+      <div class="tag-container">
+        @for (skill of technology | skillSearch:searchInput; track skill){
+          <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" (click)="viewSkill(skill._id)">{{skill.name}}</div>
+        }
+      </div>
+      <div class="skillCategoryLabel">Other</div>
+      <div class="tag-container">
+        @for (skill of other | skillSearch:searchInput; track skill){
+          <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" (click)="viewSkill(skill._id)">{{skill.name}}</div>
+        }
+      </div>
+    } @else {
+      <div class="tag-container">
+        @for (skill of skills | skillSearch:searchInput; track skill){
+          <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" (click)="viewSkill(skill._id)">{{skill.name}}</div>
+        }
+      </div>
+    }
+  </div>
+</div>

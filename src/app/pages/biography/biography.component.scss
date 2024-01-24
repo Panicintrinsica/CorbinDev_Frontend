@@ -40,16 +40,7 @@ span.pronouns {
   opacity: 50%;
 }
 
-.skill-list {
-  display: flex;
-  gap: 0.5rem;
 
-  .skill-tag {
-    border-radius: 1rem;
-    background-color: var(--tag);
-    padding: 0.25rem .5rem;
-  }
-}
 
 .education-entry {
   background-color: hsla(0, 0%, 0%, 20%);
