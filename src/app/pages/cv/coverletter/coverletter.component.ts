@@ -5,6 +5,7 @@ import {Profile} from "../../../models/profile.model";
 import {NgClass} from "@angular/common";
 import {MarkdownComponent} from "ngx-markdown";
 import {CoverletterPipe} from "../../../pipes/coverletter.pipe";
+import {ServerService} from "../../../services/server.service";
 
 @Component({
   selector: 'app-coverletter',
@@ -24,13 +25,13 @@ export class CoverletterComponent implements OnDestroy {
 
   profile$: Subscription;
   profile: Profile = <Profile>{};
+
   coverLetterText = 'text';
 
-  constructor(private cvs: CvService) {
+  constructor(private cvs: CvService, private server: ServerService) {
     this.config$ = cvs.getConfig().subscribe({
       next: value => {
         this.config = value
-        console.log(value)
       },
       error: err => {
         this.config = cvs.defaultConfig
@@ -38,21 +39,14 @@ export class CoverletterComponent implements OnDestroy {
       }
     });
 
-    this.profile$ = cvs.getProfile().subscribe({
-      next: value => {
-        this.profile = value
-        console.log(value)
-      },
-      error: err => {
-        this.config = cvs.defaultConfig
-      }
-    });
+    this.profile$ = cvs.profile$.subscribe({
+      next: value => value ? this.profile = value : {}
+    })
   }
 
   ngOnDestroy() {
     this.config$.unsubscribe();
     this.profile$.unsubscribe();
   }
-
 
 }

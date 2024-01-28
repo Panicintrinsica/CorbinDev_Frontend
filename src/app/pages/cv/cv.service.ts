@@ -1,5 +1,5 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {BehaviorSubject, Observable, Subject, Subscription} from "rxjs";
+import {BehaviorSubject, Observable, Subject, Subscription, tap} from "rxjs";
 import {Profile} from "../../models/profile.model";
 import {ServerService} from "../../services/server.service";
 import {Skill} from "../../models/skill.model";
@@ -8,7 +8,7 @@ import {Education} from "../../models/education.model";
 @Injectable({
   providedIn: 'root'
 })
-export class CvService implements OnDestroy {
+export class CvService {
 
   public defaultConfig: cvConfig = {
     showAwards: false,
@@ -42,56 +42,50 @@ export class CvService implements OnDestroy {
     theme: "dark"
   };
 
+  private profileSubject$ = new BehaviorSubject<Profile | null>(null);
+  public profile$ = this.profileSubject$.asObservable();
 
-  theme: BehaviorSubject<string> = new BehaviorSubject<string>('dark')
+  private educationSubject$ = new BehaviorSubject<Education[] | null>(null);
+  public education$ = this.educationSubject$.asObservable();
 
-  profile!: Subject<Profile>
-  skills!: Subject<Skill[]>
-  education!: Subject<Education[]>
-  config = new BehaviorSubject<cvConfig>(this.defaultConfig)
+  private skillsSubject$ = new BehaviorSubject<Skill[] | null>(null);
+  public skills$ = this.skillsSubject$.asObservable();
 
-  profile$: Subscription;
-  skill$: Subscription;
-  education$: Subscription;
+  theme$: BehaviorSubject<string> = new BehaviorSubject<string>('dark')
+  config$ = new BehaviorSubject<cvConfig>(this.defaultConfig);
 
   constructor(private server: ServerService) {
-    this.profile$ = server.getProfile().subscribe({
-      next: value => {
-        this.profile.next(value)
-      },
-      error: err => console.error(err)
-    });
-    this.skill$ = server.getAllSkills().subscribe({
-      next: value => this.skills.next(value),
-      error: err => console.error(err)
-    });
-    this.education$ = server.getEducation().subscribe({
-      next: value => this.education.next(value),
-      error: err => console.error(err)
-    })
+    this.loadProfile();
+    this.loadEducation();
+    this.loadSkills();
   }
 
   getConfig(){
-    return this.config.asObservable();
+    return this.config$.asObservable();
   }
 
-  getSkills(): Observable<Skill[]> {
-      return this.skills.asObservable();
+  getTheme(){
+    return this.theme$.asObservable();
   }
 
-  getEducation(): Observable<Education[]> {
-      return this.education.asObservable();
+  loadProfile() {
+    this.server.getProfile().pipe(
+      tap(result => this.profileSubject$.next(result))
+    ).subscribe();
   }
 
-  getProfile(): Observable<Profile> {
-      return this.profile.asObservable();
+  loadEducation() {
+    this.server.getEducation().pipe(
+      tap(result => this.educationSubject$.next(result))
+    ).subscribe();
   }
 
-  ngOnDestroy() {
-    this.profile$.unsubscribe()
-    this.skill$.unsubscribe();
-    this.education$.unsubscribe();
+  loadSkills() {
+    this.server.getAllSkills().pipe(
+      tap(result => this.skillsSubject$.next(result))
+    ).subscribe();
   }
+
 
 }
 
