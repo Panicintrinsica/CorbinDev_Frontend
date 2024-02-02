@@ -1,190 +1,257 @@
-<!--<main *ngIf="profile$ | async as profile" class="resumePage printable" [attr.data-theme]="theme">-->
-<!--  <section class="sidebar">-->
-<!--    <section class="profile" *ngIf="showHeader">-->
-<!--      <div class="profile-photo" *ngIf="showPhoto">-->
-<!--        <img src="assets/profile/avatar_roundable.png" alt="">-->
-<!--      </div>-->
-<!--      <div class="name">{{profile.name}}</div>-->
-<!--      <div class="subline">Software Engineer ({{profile.pronouns}})</div>-->
-<!--    </section>-->
-
-<!--    <div class="sidebar-group" *ngIf="showInfo">-->
-<!--      <div class="textBanner">Info</div>-->
-<!--      <section class="info">-->
-<!--        <div class="info-entry">-->
-<!--          <div class="label">Citizenship:</div>-->
-<!--          <div class="data">U.S</div>-->
-<!--        </div>-->
-<!--        <div class="info-entry">-->
-<!--          <div class="label">Location:</div>-->
-<!--          <div class="data">{{profile.location}}</div>-->
-<!--        </div>-->
-<!--        <div class="info-entry">-->
-<!--          <div class="label">Languages:</div>-->
-<!--          <div class="data">English</div>-->
-<!--        </div>-->
-<!--      </section>-->
-<!--    </div>-->
-
-<!--    <div class="sidebar-group" *ngIf="showContacts">-->
-<!--      <div class="textBanner">Contacts</div>-->
-<!--      <section class="contacts">-->
-<!--        <div class="item" *ngIf="showEmail">-->
-<!--          <mat-icon>email</mat-icon>-->
-<!--          <a href="mailto:{{profile.email}}">{{profile.email}}</a>-->
-<!--        </div>-->
-<!--        <div class="item" *ngIf="showPhone">-->
-<!--          <mat-icon>phone</mat-icon>-->
-<!--          <a href="tel:360-499-3845">{{ showEvilPhone ? '(360) 499-EVIL' : '(360) 499-3845' }}</a>-->
-<!--        </div>-->
-<!--        <div class="item" *ngIf="showWebsite">-->
-<!--          <mat-icon>website</mat-icon>-->
-<!--          <a href="https://corbin.dev">Corbin.dev</a>-->
-<!--        </div>-->
-<!--        <div class="item" *ngIf="showLinkedIn">-->
-<!--          <i class="fa-brands fa-linkedin"></i>-->
-<!--          <a href="https://www.linkedin.com/in/emryscorbin/">EmrysCorbin</a>-->
-<!--        </div>-->
-<!--        <div class="item" *ngIf="showGithub">-->
-<!--          <i class="fa-brands fa-github"></i>-->
-<!--          <a href="https://github.com/Panicintrinsica">Panicintrinsica</a>-->
-<!--        </div>-->
-<!--        <div class="item" *ngIf="showTwitter">-->
-<!--          <i class="fa-brands fa-twitter"></i>-->
-<!--          <a href="https://twitter.com/emrysCorbin">&#64;EmrysCorbin</a>-->
-<!--        </div>-->
-<!--        <div class="item" *ngIf="showMastodon">-->
-<!--          <i class="fa-brands fa-mastodon"></i>-->
-<!--          <a href="https://mastodon.social/@emrysCorbin">&#64;emrysCorbin&#64;mastodon.social</a>-->
-<!--        </div>-->
-<!--        <div class="item" *ngIf="showTwitch">-->
-<!--          <i class="fa-brands fa-twitch"></i>-->
-<!--          <a href="https://www.twitch.tv/panicintrinsica/">Panicintrinsica</a>-->
-<!--        </div>-->
-<!--      </section>-->
-<!--    </div>-->
-
-<!--    <div class="sidebar-group" *ngIf="showSkills">-->
-<!--      <div class="textBanner">Skills-->
-<!--        <div class="pusher"></div>-->
-<!--        <button mat-button color="primary">Edit</button>-->
-<!--      </div>-->
-
-<!--      <section class="skills" *ngIf="skills$ | async as skills">-->
-<!--        <div class="skill-list">-->
-<!--          <div class="skill" *ngFor="let skill of skillList">-->
-<!--            <progress *ngIf="showProgress" max="100" [value]="skill.level"></progress>-->
-<!--            <div class="name">{{skill.name}}</div>-->
-<!--            <div *ngIf="!showProgress" class="skillLevel">-->
-<!--              <span *ngIf="skill.level < 20">Basic</span>-->
-<!--              <span *ngIf="skill.level >= 20 && skill.level < 40">Moderate</span>-->
-<!--              <span *ngIf="skill.level >= 40 && skill.level < 60">Intermediate</span>-->
-<!--              <span *ngIf="skill.level >= 60 && skill.level < 80">Advanced</span>-->
-<!--              <span *ngIf="skill.level >= 80 && skill.level < 100">Expert</span>-->
-<!--              <span *ngIf="skill.level >= 100">Master</span>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </section>-->
-<!--    </div>-->
-
-<!--    <div class="sidebar-group" *ngIf="showLearning">-->
-<!--      <div class="textBanner">Learning</div>-->
-<!--      <section class="learning">-->
-<!--        <ul class="skill-list">-->
-<!--          <li class="new-skill {{skillDecor}}" [attr.data-index]="i" *ngFor="let skill of newSkills; let i = index">{{skill}}</li>-->
-<!--        </ul>-->
-<!--      </section>-->
-<!--    </div>-->
+<main class="resumePage printable" [attr.data-theme]="config.theme">
 
 
-<!--  </section>-->
-<!--  <section class="content">-->
+  <section class="sidebar">
 
-<!--    <markdown class="intro" *ngIf="showIntro" [innerHTML]="profile.shortDescription">-->
-<!--    </markdown>-->
+    @if (config.showHeader) {
+      <section class="profile">
+        @if (config.showPhoto) {
+          <div class="profile-photo">
+            <img src="assets/profile/avatar_roundable.png" alt="">
+          </div>
+        }
+        <div class="name">{{profile.name}}</div>
+        <div class="subline">Software Engineer ({{profile.pronouns}})</div>
+      </section>
+    }
 
-<!--    <div class="section-wrapper" *ngIf="showObjective">-->
-<!--      <div class="subsection">-->
-<!--        <div class="textBanner">-->
-<!--          Objective-->
-<!--          <div class="pusher"></div>-->
-<!--          <button mat-button color="primary">Edit</button>-->
-<!--        </div>-->
-<!--        <div class="info-block">-->
-<!--          <div class="entry">-->
-<!--            <p>{{objectiveText}}</p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div></div>-->
+    @if (config.showInfo) {
+      <div class="sidebar-group">
+        <div class="textBanner">Info</div>
+        <section class="info">
+          <div class="info-entry">
+            <div class="label">Citizenship:</div>
+            <div class="data">U.S</div>
+          </div>
+          <div class="info-entry">
+            <div class="label">Location:</div>
+            <div class="data">{{profile.location}}</div>
+          </div>
+          <div class="info-entry">
+            <div class="label">Languages:</div>
+            <div class="data">English</div>
+          </div>
+        </section>
+      </div>
+    }
 
-<!--    <div class="section-wrapper" *ngIf="showProjects" >-->
-<!--      <div class="subsection">-->
-<!--        <div class="textBanner">Projects-->
-<!--          <div class="fill"></div>-->
-<!--          <button mat-button color="primary">Edit</button>-->
+    @if (config.showContacts){
+      <div class="sidebar-group">
+        <div class="textBanner">Contacts</div>
+        <section class="contacts">
+          @if (true){
+            <div class="item" *ngIf="config.showEmail">
+              <mat-icon>email</mat-icon>
+              <a href="mailto:{{profile.email}}">{{profile.email}}</a>
+            </div>
+          }
+          @if (true){
+            <div class="item" *ngIf="config.showPhone">
+              <mat-icon>phone</mat-icon>
+              <a href="tel:360-499-3845">{{ config.showEvilPhone ? '(360) 499-EVIL' : '(360) 499-3845' }}</a>
+            </div>
+          }
+          @if (true){
+            <div class="item" *ngIf="config.showURL">
+              <mat-icon>website</mat-icon>
+              <a href="https://corbin.dev">Corbin.dev</a>
+            </div>
+          }
+          @if (true){
+            <div class="item" *ngIf="config.showLinkedIn">
+              <i class="fa-brands fa-linkedin"></i>
+              <a href="https://www.linkedin.com/in/emryscorbin/">EmrysCorbin</a>
+            </div>
+          }
+          @if (true){
+            <div class="item" *ngIf="config.showGithub">
+              <i class="fa-brands fa-github"></i>
+              <a href="https://github.com/Panicintrinsica">Panicintrinsica</a>
+            </div>
+          }
+          @if (true){
+            <div class="item" *ngIf="config.showMastodon">
+              <i class="fa-brands fa-mastodon"></i>
+              <a href="https://mastodon.social/@emrysCorbin">&#64;emrysCorbin&#64;mastodon.social</a>
+            </div>
+          }
+          @if (true){
+            <div class="item" *ngIf="config.showTwitch">
+              <i class="fa-brands fa-twitch"></i>
+              <a href="https://www.twitch.tv/panicintrinsica/">Panicintrinsica</a>
+            </div>
+          }
+        </section>
+      </div>
+    }
 
-<!--        </div>-->
-<!--        <div class="info-block" cdkDropList (cdkDropListDropped)="projectDrop($event)">-->
-<!--          <div class="project entry" *ngFor="let project of displayedProjectList" cdkDrag cdkDragPreviewContainer="parent">-->
-<!--            <div class="title-row draggable" cdkDragHandle>-->
-<!--              <div class="name">{{project.name}}</div>-->
-<!--              <div class="title">{{project.title}}</div>-->
-<!--              <div class="dates">-->
-<!--                <ng-container *ngIf="diffYear(project.startDate, project.endDate)">-->
-<!--                  {{project.startDate | date:"MMM. yyyy" }}-->
-<!--                </ng-container>-->
-<!--                <ng-container *ngIf="!diffYear(project.startDate, project.endDate)">-->
-<!--                  {{project.startDate | date:"MMM." }}-->
-<!--                </ng-container>-->
-<!--                <span class="dateDivider" *ngIf="project.startDate && project.endDate"> - </span>-->
-<!--                {{project.endDate | date:"MMM. yyyy" }}-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="content" [innerHTML]="project.shortDescription">-->
-<!--            </div>-->
-<!--            <p class="content" *ngIf="project.name == 'CV Builder'">Used to generate this very document!</p>-->
-<!--            <div class="meta">-->
+    @if (config.showSkills){
+      <div class="sidebar-group">
+        <div class="textBanner">Skills
+          <div class="pusher"></div>
+          <button mat-button color="primary">Edit</button>
+        </div>
 
-<!--              <div class="item stack">-->
-<!--                <ng-container *ngIf="project.hasLink">-->
-<!--                  <span class="label">Link: </span>-->
-<!--                  <a [href]="project.url">{{project.url}}</a>-->
-<!--                  <span class="wide divider">|</span>-->
-<!--                </ng-container>-->
-<!--                <span class="label">Skills: </span>-->
-<!--                <span class="line-item" *ngFor="let skill of project.skills">{{skill.name}}</span>-->
-<!--              </div>-->
+        <section class="skills">
+          <div class="skill-list">
+            @for (skill of skills; track skill) {
+              <div class="skill">
+                @if (config.showProgress) {
+                  <progress max="100" [value]="skill.level"></progress>
+                }
+                <div class="name">{{skill.name}}</div>
+                @if (!config.showProgress) {
+                  <div class="skillLevel">
+                    @if (skill.level < 20) {
+                      <span>Basic</span>
+                    }
+                    @if (skill.level >= 20 && skill.level < 40) {
+                      <span>Moderate</span>
+                    }
+                    @if (skill.level >= 40 && skill.level < 60) {
+                      <span>Intermediate</span>
+                    }
+                    @if (skill.level >= 60 && skill.level < 80) {
+                      <span>Advanced</span>
+                    }
+                    @if (skill.level >= 80 && skill.level < 100) {
+                      <span>Expert</span>
+                    }
+                    @if (skill.level >= 100) {
+                      <span>Master</span>
+                    }
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </section>
+      </div>
+    }
 
 
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div></div>-->
+    @if (config.showLearning){
+      <div class="sidebar-group">
+        <div class="textBanner">Learning</div>
+        <section class="learning">
+          <ul class="skill-list">
+<!--            <li class="new-skill {{config.skillDecor}}" [attr.data-index]="i" *ngFor="let skill of newSkills; let i = index">{{skill}}</li>-->
+          </ul>
+        </section>
+      </div>
+    }
 
-<!--    <div class="section-wrapper" *ngIf="showEducation">-->
-<!--      <div class="subsection" *ngIf="education$ | async as education">-->
-<!--        <div class="textBanner">Education</div>-->
-<!--        <div class="info-block" *ngFor="let institute of education">-->
-<!--          <div class="entry">-->
-<!--            <div class="title-row">-->
-<!--              <div class="name">{{ institute.name }}</div>-->
-<!--              <div class="gpa" *ngIf="showGPA">GPA: {{ institute.gpa }} / {{ institute.gpaMax }}</div>-->
-<!--              <div class="dates">Est. Grad: {{ institute.endMonth }}.{{ institute.endYear }}</div>-->
-<!--            </div>-->
-<!--            <div class="edu-fields">-->
-<!--              <span class="text">Springfield, MO</span>-->
-<!--              <span class="divider"> | </span>-->
-<!--              <span class="text">{{ institute.degree | titlecase }}</span>-->
-<!--              <span class="divider"> | </span>-->
-<!--              <span class="text">{{ institute.major }}</span>-->
-<!--            </div>-->
+  </section>
+  <section class="content">
+    @if (config.showIntro){
+      <markdown class="intro" [innerHTML]="profile.shortDescription"></markdown>
+    }
 
-<!--            &lt;!&ndash;            <div class="content" [innerHTML]="institute.details"></div>&ndash;&gt;-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    @if (config.showObjective){
+      <div class="section-wrapper">
+        <div class="subsection">
+          <div class="textBanner">
+            Objective
+            <div class="pusher"></div>
+            <button mat-button color="primary">Edit</button>
+          </div>
+          <div class="info-block">
+            <div class="entry">
+              <!--TODO: Fix Objective Block-->
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (config.showProjects){
+      <div class="section-wrapper">
+        <div class="subsection">
+          <div class="textBanner">Projects
+            <div class="fill"></div>
+            <button mat-button color="primary">Edit</button>
+
+          </div>
+          <div class="info-block" cdkDropList (cdkDropListDropped)="projectDrop($event)">
+            @for (project of displayedProjects; track project){
+              <div class="project entry" cdkDrag cdkDragPreviewContainer="parent">
+                <div class="title-row draggable" cdkDragHandle>
+                  <div class="name">{{project.name}}</div>
+                  <div class="title">{{project.title}}</div>
+                  <div class="dates">
+                    @if (diffYear(project.startDate, project.endDate)) {
+                      {{project.startDate | date:"MMM. yyyy" }}
+                    } @else {
+                      {{project.startDate | date:"MMM." }}
+                    }
+                    @if(project.startDate && project.endDate){
+                      <span class="dateDivider"> - </span>
+                    }
+                    {{project.endDate | date:"MMM. yyyy" }}
+                  </div>
+                </div>
+                <div class="content" [innerHTML]="project.shortDescription">
+                </div>
+                <div class="meta">
+                  <div class="item stack">
+                    @if (project.hasLink) {
+                      <span class="label">Link: </span>
+                      <a [href]="project.url">{{project.url}}</a>
+                      <span class="wide divider">|</span>
+                    }
+                    <span class="label">Skills: </span>
+                    @for (usedSkill of project.skills; track usedSkill) {
+                      <span class="line-item" >{{usedSkill.name}}</span>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+
+          </div>
+        </div>
+      </div>
+    }
+
+
+    @if (config.showEducation){
+      <div class="section-wrapper">
+
+        <div class="subsection">
+          <div class="textBanner">Education</div>
+
+          @for (institute of education; track institute){
+            <div class="info-block">
+              <div class="entry">
+                <div class="title-row">
+                  <div class="name">{{ institute.name }}</div>
+                  @if(config.showGPA){
+                    <div class="gpa">GPA: {{ institute.gpa }} / {{ institute.gpaMax }}</div>
+                  }
+                  <div class="dates">Est. Grad: {{ institute.endMonth }}.{{ institute.endYear }}</div>
+                </div>
+                <div class="edu-fields">
+                  <span class="text">Springfield, MO</span>
+                  <span class="divider"> | </span>
+                  <span class="text">{{ institute.degree | titlecase }}</span>
+                  <span class="divider"> | </span>
+                  <span class="text">{{ institute.major }}</span>
+                </div>
+
+                <!--            <div class="content" [innerHTML]="institute.details"></div>-->
+              </div>
+            </div>
+          }
+
+
+        </div>
+      </div>
+    }
+
+
+
+
+
 
 <!--    <div class="subsection" *ngIf="showCerts">-->
 <!--      <div class="textBanner">Certifications</div>-->
@@ -194,5 +261,5 @@
 <!--      <div class="textBanner">Awards</div>-->
 <!--    </div>-->
 
-<!--  </section>-->
-<!--</main>-->
+  </section>
+</main>
