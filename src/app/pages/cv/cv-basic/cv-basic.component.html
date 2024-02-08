@@ -1,29 +1,51 @@
-<!--  <main *ngIf="profile$ | async as profile" class="resumePage-single printable" [attr.data-theme]="theme">-->
+<!--  <main *ngIf="profile$ | async as profile" class="resumePage-single printable" [attr.data-theme]="config.theme">-->
 <!--    <section class="content">-->
-<!--      <section *ngIf="showHeader" class="profile simple" [ngClass]="{ 'banner': showBanner }">-->
-<!--        <img *ngIf="showBanner" class="bannerDecor" src="assets/stripesAlt.svg">-->
+<!--      <section *ngIf="config.showHeader" class="profile simple" [ngClass]="{ 'banner': config.showBanner }">-->
+
+<!--        @if (config.showBanner) {-->
+<!--          <img class="bannerDecor" src="assets/stripesAlt.svg">-->
+<!--        }-->
+
 <!--        <div class="name">{{profile.name}}</div>-->
 <!--        <div class="subline">Software Engineer ({{profile.pronouns}})</div>-->
 <!--      </section>-->
 
-<!--      <section class="contacts simple" *ngIf="showContacts">-->
-<!--        <div class="item" *ngIf="showEmail">-->
-<!--          <div class="simple label" >Email: </div>-->
-<!--          <a href="mailto:{{profile.email}}">{{profile.email}}</a>-->
-<!--        </div>-->
-<!--        <div class="item"*ngIf="showPhone">-->
-<!--          <div class="simple label" >Phone: </div>-->
-<!--          <a href="tel:360-499-3845">{{ showEvilPhone ? '(360) 499-EVIL' : '(360) 499-3845' }}</a>-->
-<!--        </div>-->
-<!--        <div class="item" *ngIf="showWebsite">-->
-<!--          <div class="simple label" >Website: </div>-->
-<!--          <a href="https://corbin.dev">https://corbin.dev</a>-->
-<!--        </div>-->
-<!--        <div class="item" *ngIf="showLinkedIn">-->
-<!--          <div class="simple label" >LinkedIn: </div>-->
-<!--          <a href="https://www.linkedin.com/in/emryscorbin/">EmrysCorbin</a>-->
-<!--        </div>-->
-<!--      </section>-->
+<!--      @if (config.showContacts) {-->
+<!--        <section class="contacts simple">-->
+<!--          @if (config.showEmail) {-->
+<!--            <div class="item">-->
+<!--              <div class="simple label" >Email: </div>-->
+<!--              <a href="mailto:{{profile.email}}">{{profile.email}}</a>-->
+<!--            </div>-->
+<!--          }-->
+
+<!--          @if (config.showPhone) {-->
+<!--            <div class="item">-->
+<!--              <div class="simple label" >Phone: </div>-->
+<!--              <a href="tel:360-499-3845">{{ config.showEvilPhone ? '(360) 499-EVIL' : '(360) 499-3845' }}</a>-->
+<!--            </div>-->
+<!--          }-->
+
+<!--          @if (config.showURL) {-->
+<!--            <div class="item">-->
+<!--              <div class="simple label" >Website: </div>-->
+<!--              <a href="https://corbin.dev">https://corbin.dev</a>-->
+<!--            </div>-->
+<!--          }-->
+
+<!--          @if (config.showLinkedIn) {-->
+<!--            <div class="item">-->
+<!--              <div class="simple label" >LinkedIn: </div>-->
+<!--              <a href="https://www.linkedin.com/in/emryscorbin/">EmrysCorbin</a>-->
+<!--            </div>-->
+<!--          }-->
+<!--        </section>-->
+<!--      }-->
+
+<!--      @if (config.showIntro){-->
+
+<!--      }-->
+
 
 <!--      <section *ngIf="showIntro" class="intro simple">-->
 <!--        <markdown [innerHTML]="profile.shortDescription"></markdown>-->

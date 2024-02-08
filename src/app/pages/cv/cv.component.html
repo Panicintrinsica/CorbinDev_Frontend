@@ -4,128 +4,137 @@
 
   <aside class="controls noprint">
 
-    <div class="flex segment control-panel">
-      <div class="title">Theming</div>
-      <mat-form-field appearance="fill" subscriptSizing="dynamic">
-        <mat-label>Theme</mat-label>
-        <select matNativeControl [(ngModel)]="theme">
-          <option selected value="dark">Dark</option>
-          <option selected value="discord">Discord</option>
-          <option selected value="bland">Business Boy</option>
-          <option selected value="winter">Frosty</option>
-          <option selected value="terminal">Codebase</option>
-        </select>
-      </mat-form-field>
-      <button mat-raised-button routerLink="modern">Curriculum Vitae</button>
-      <button mat-raised-button routerLink="basic">Résumé</button>
-      <button mat-raised-button routerLink="./">Cover Letter</button>
-      <button mat-raised-button color="accent" *ngIf="CoverLetter">Edit Cover Letter</button>
+    <form [formGroup]="configForm">
+      <div class="flex segment control-panel">
+        <div class="title">Theming</div>
+        <mat-form-field appearance="fill" subscriptSizing="dynamic">
+          <mat-label>Theme</mat-label>
+          <select matNativeControl formControlName="theme">
+            <option selected value="dark">Dark</option>
+            <option selected value="discord">Discord</option>
+            <option selected value="bland">Business Boy</option>
+            <option selected value="winter">Frosty</option>
+            <option selected value="terminal">Codebase</option>
+          </select>
+        </mat-form-field>
+        <button mat-raised-button routerLink="modern">Curriculum Vitae</button>
+        <button mat-raised-button routerLink="basic">Résumé</button>
+        <button mat-raised-button routerLink="./">Cover Letter</button>
+        <button mat-raised-button color="accent" *ngIf="CoverLetter">Edit Cover Letter</button>
 
-    </div>
-
-    <div class="flex segment control-panel" *ngIf="!CoverLetter">
-      <div class="title">Options</div>
-      <mat-form-field appearance="fill" subscriptSizing="dynamic">
-        <mat-label>List Style</mat-label>
-        <select matNativeControl [(ngModel)]="skillDecor">
-          <option selected value="none">Chevron</option>
-          <option selected value="bullets">Bullet Point</option>
-          <option selected value="triangles">Triangles</option>
-          <ng-container *ngIf="!SimpleLayout">
-            <option selected value="numbers">Numbers</option>
-            <option selected value="js">JS/TS</option>
-            <option selected value="cpp">C++</option>
-          </ng-container>
-
-        </select>
-      </mat-form-field>
-
-      <div class="checklist" *ngIf="SimpleLayout">
-        <mat-checkbox color="primary" [(ngModel)]="showSkillsDetails">Skill Details</mat-checkbox>
       </div>
 
-      <div class="checklist" *ngIf="!SimpleLayout">
-        <mat-checkbox color="primary" [(ngModel)]="showLearning">Show Learning</mat-checkbox>
-        <mat-checkbox color="primary" [(ngModel)]="showProgress">Use Skill Bars</mat-checkbox>
+      <div class="flex segment control-panel" *ngIf="!CoverLetter">
+        <div class="title">Options</div>
+        <mat-form-field appearance="fill" subscriptSizing="dynamic">
+          <mat-label>List Style</mat-label>
+          <select matNativeControl formControlName="skillDecor">
+            <option selected value="none">Chevron</option>
+            <option selected value="bullets">Bullet Point</option>
+            <option selected value="triangles">Triangles</option>
+            <ng-container *ngIf="!SimpleLayout">
+              <option selected value="numbers">Numbers</option>
+              <option selected value="js">JS/TS</option>
+              <option selected value="cpp">C++</option>
+            </ng-container>
+
+          </select>
+        </mat-form-field>
+
+        <div class="checklist" *ngIf="SimpleLayout">
+          <mat-checkbox color="primary" formControlName="showSkillsDetails">Skill Details</mat-checkbox>
+        </div>
+
+        <div class="checklist" *ngIf="!SimpleLayout">
+          <mat-checkbox color="primary" formControlName="showLearning">Show Learning</mat-checkbox>
+          <mat-checkbox color="primary" formControlName="showProgress">Use Skill Bars</mat-checkbox>
+        </div>
       </div>
-    </div>
 
-    <mat-accordion>
+      <mat-accordion>
 
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Sections
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="checklist">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Sections
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="checklist">
 
-          <mat-checkbox color="primary" [(ngModel)]="showHeader">Header</mat-checkbox>
-          <mat-checkbox class="indent" color="primary" *ngIf="showHeader && SimpleLayout" [(ngModel)]="showBanner">Banner</mat-checkbox>
-          <mat-checkbox color="primary" [(ngModel)]="showContacts">Contacts</mat-checkbox>
+            <mat-checkbox color="primary" formControlName="showHeader">Header</mat-checkbox>
 
-          <ng-container *ngIf="!CoverLetter">
-            <mat-checkbox color="primary" [(ngModel)]="showIntro">Intro</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showPhoto" *ngIf="!SimpleLayout">Photo</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showInfo" *ngIf="!SimpleLayout">Info</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showSkills">Skills</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showSkillsDetails">Skill Details</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showObjective">Objective</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showProjects">Projects</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showEducation">Education</mat-checkbox>
-            <mat-checkbox class="indent" *ngIf="showEducation" color="primary" [(ngModel)]="showGPA">GPA</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showCerts">Certs</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showAwards">Awards</mat-checkbox>
-          </ng-container>
+            @if (config.showHeader) {
+              <mat-checkbox class="indent" color="primary" formControlName="showBanner">Banner</mat-checkbox>
+            }
 
-          <ng-container *ngIf="CoverLetter">
-            <mat-checkbox color="primary" [(ngModel)]="showSalutation">Salutation</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showValediction">Valediction</mat-checkbox>
-          </ng-container>
-
-        </div>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Contacts
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="checklist">
-          <mat-checkbox color="primary" [(ngModel)]="showEmail">Email</mat-checkbox>
-          <mat-checkbox color="primary" [(ngModel)]="showPhone">Phone</mat-checkbox>
-          <mat-checkbox class="indent" color="primary" *ngIf="showPhone" [(ngModel)]="showEvilPhone">Evil Phone</mat-checkbox>
-          <mat-checkbox color="primary" [(ngModel)]="showWebsite">Website</mat-checkbox>
-          <mat-checkbox color="primary" [(ngModel)]="showLinkedIn">LinkedIn</mat-checkbox>
-
-          <ng-container *ngIf="!CoverLetter && !SimpleLayout">
-            <mat-checkbox color="primary" [(ngModel)]="showGithub">GitHub</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showTwitter">Twitter</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showMastodon">Mastodon</mat-checkbox>
-            <mat-checkbox color="primary" [(ngModel)]="showTwitch">Twitch</mat-checkbox>
-          </ng-container>
+            <mat-checkbox color="primary" formControlName="showContacts">Contacts</mat-checkbox>
 
 
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
+            @if (!CoverLetter) {
+              <mat-checkbox color="primary" formControlName="showIntro">Intro</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showPhoto" *ngIf="!SimpleLayout">Photo</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showInfo" *ngIf="!SimpleLayout">Info</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showSkills">Skills</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showDetails">Skill Details</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showObjective">Objective</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showProjects">Projects</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showEducation">Education</mat-checkbox>
+              @if (config.showEducation) {
+                <mat-checkbox class="indent" color="primary" formControlName="showGPA">GPA</mat-checkbox>
+              }
+              <mat-checkbox color="primary" formControlName="showCerts">Certs</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showAwards">Awards</mat-checkbox>
+            } @else {
+              <mat-checkbox color="primary" formControlName="showSalutation">Salutation</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showValediction">Valediction</mat-checkbox>
+            }
 
-    <mat-accordion>
 
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Controls
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+          </div>
+        </mat-expansion-panel>
 
-        <button mat-stroked-button (click)="resetProjects()">Reset Projects</button>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Contacts
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="checklist">
+            <mat-checkbox color="primary" formControlName="showEmail">Email</mat-checkbox>
+            <mat-checkbox color="primary" formControlName="showPhone">Phone</mat-checkbox>
+            <mat-checkbox class="indent" color="primary" *ngIf="showPhone" formControlName="showEvilPhone">Evil Phone</mat-checkbox>
+            <mat-checkbox color="primary" formControlName="showURL">Website</mat-checkbox>
+            <mat-checkbox color="primary" formControlName="showLinkedIn">LinkedIn</mat-checkbox>
 
-      </mat-expansion-panel>
-    </mat-accordion>
+            @if (!CoverLetter && !SimpleLayout) {
+              <mat-checkbox color="primary" formControlName="showGithub">GitHub</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showMastodon">Mastodon</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showYoutube">YouTube</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showTwitch">Twitch</mat-checkbox>
+            }
 
-    <button mat-raised-button (click)="printPage()">Print</button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Controls
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <button mat-stroked-button (click)="resetProjects()">Reset Projects</button>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <button mat-raised-button (click)="printPage()">Print</button>
+    </form>
+
+
   </aside>
 </div>
 

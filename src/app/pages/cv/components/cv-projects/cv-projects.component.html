@@ -1,0 +1,46 @@
+<div class="section-wrapper">
+  <div class="subsection">
+    <div class="textBanner">Projects
+      <div class="fill"></div>
+      <button mat-button color="primary">Edit</button>
+
+    </div>
+    <div class="info-block" cdkDropList (cdkDropListDropped)="projectDrop($event)">
+      @for (project of displayedProjects; track project){
+        <div class="project entry" cdkDrag cdkDragPreviewContainer="parent">
+          <div class="title-row draggable" cdkDragHandle>
+            <div class="name">{{project.name}}</div>
+            <div class="title">{{project.title}}</div>
+            <div class="dates">
+              @if (diffYear(project.startDate, project.endDate)) {
+                {{project.startDate | date:"MMM. yyyy" }}
+              } @else {
+                {{project.startDate | date:"MMM." }}
+              }
+              @if(project.startDate && project.endDate){
+                <span class="dateDivider"> - </span>
+              }
+              {{project.endDate | date:"MMM. yyyy" }}
+            </div>
+          </div>
+          <div class="content" [innerHTML]="project.shortDescription">
+          </div>
+          <div class="meta">
+            <div class="item stack">
+              @if (project.hasLink) {
+                <span class="label">Link: </span>
+                <a [href]="project.url">{{project.url}}</a>
+                <span class="wide divider">|</span>
+              }
+              <span class="label">Skills: </span>
+              @for (usedSkill of project.skills; track usedSkill) {
+                <span class="line-item" >{{usedSkill.name}}</span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</div>

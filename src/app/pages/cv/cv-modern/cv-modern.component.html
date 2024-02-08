@@ -39,44 +39,44 @@
       <div class="sidebar-group">
         <div class="textBanner">Contacts</div>
         <section class="contacts">
-          @if (true){
-            <div class="item" *ngIf="config.showEmail">
+          @if (config.showEmail){
+            <div class="item">
               <mat-icon>email</mat-icon>
               <a href="mailto:{{profile.email}}">{{profile.email}}</a>
             </div>
           }
-          @if (true){
-            <div class="item" *ngIf="config.showPhone">
+          @if (config.showPhone){
+            <div class="item">
               <mat-icon>phone</mat-icon>
               <a href="tel:360-499-3845">{{ config.showEvilPhone ? '(360) 499-EVIL' : '(360) 499-3845' }}</a>
             </div>
           }
-          @if (true){
-            <div class="item" *ngIf="config.showURL">
+          @if (config.showURL){
+            <div class="item">
               <mat-icon>website</mat-icon>
               <a href="https://corbin.dev">Corbin.dev</a>
             </div>
           }
-          @if (true){
-            <div class="item" *ngIf="config.showLinkedIn">
+          @if (config.showLinkedIn){
+            <div class="item">
               <i class="fa-brands fa-linkedin"></i>
               <a href="https://www.linkedin.com/in/emryscorbin/">EmrysCorbin</a>
             </div>
           }
-          @if (true){
-            <div class="item" *ngIf="config.showGithub">
+          @if (config.showGithub){
+            <div class="item">
               <i class="fa-brands fa-github"></i>
               <a href="https://github.com/Panicintrinsica">Panicintrinsica</a>
             </div>
           }
-          @if (true){
-            <div class="item" *ngIf="config.showMastodon">
+          @if (config.showMastodon){
+            <div class="item">
               <i class="fa-brands fa-mastodon"></i>
               <a href="https://mastodon.social/@emrysCorbin">&#64;emrysCorbin&#64;mastodon.social</a>
             </div>
           }
-          @if (true){
-            <div class="item" *ngIf="config.showTwitch">
+          @if (config.showTwitch){
+            <div class="item">
               <i class="fa-brands fa-twitch"></i>
               <a href="https://www.twitch.tv/panicintrinsica/">Panicintrinsica</a>
             </div>
@@ -164,53 +164,8 @@
       </div>
     }
 
-    @if (config.showProjects){
-      <div class="section-wrapper">
-        <div class="subsection">
-          <div class="textBanner">Projects
-            <div class="fill"></div>
-            <button mat-button color="primary">Edit</button>
-
-          </div>
-          <div class="info-block" cdkDropList (cdkDropListDropped)="projectDrop($event)">
-            @for (project of displayedProjects; track project){
-              <div class="project entry" cdkDrag cdkDragPreviewContainer="parent">
-                <div class="title-row draggable" cdkDragHandle>
-                  <div class="name">{{project.name}}</div>
-                  <div class="title">{{project.title}}</div>
-                  <div class="dates">
-                    @if (diffYear(project.startDate, project.endDate)) {
-                      {{project.startDate | date:"MMM. yyyy" }}
-                    } @else {
-                      {{project.startDate | date:"MMM." }}
-                    }
-                    @if(project.startDate && project.endDate){
-                      <span class="dateDivider"> - </span>
-                    }
-                    {{project.endDate | date:"MMM. yyyy" }}
-                  </div>
-                </div>
-                <div class="content" [innerHTML]="project.shortDescription">
-                </div>
-                <div class="meta">
-                  <div class="item stack">
-                    @if (project.hasLink) {
-                      <span class="label">Link: </span>
-                      <a [href]="project.url">{{project.url}}</a>
-                      <span class="wide divider">|</span>
-                    }
-                    <span class="label">Skills: </span>
-                    @for (usedSkill of project.skills; track usedSkill) {
-                      <span class="line-item" >{{usedSkill.name}}</span>
-                    }
-                  </div>
-                </div>
-              </div>
-            }
-
-          </div>
-        </div>
-      </div>
+    @if (true){
+      <cv-projects></cv-projects>
     }
 
 
@@ -247,11 +202,6 @@
         </div>
       </div>
     }
-
-
-
-
-
 
 <!--    <div class="subsection" *ngIf="showCerts">-->
 <!--      <div class="textBanner">Certifications</div>-->

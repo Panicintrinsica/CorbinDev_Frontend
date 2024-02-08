@@ -30,7 +30,7 @@ export class CvService {
     showPhone: true,
     showPhoto: false,
     showProgress: false,
-    showProjects: false,
+    showProjects: true,
     showSkillDetails: false,
     showSkills: false,
     showTwitch: false,
@@ -60,7 +60,14 @@ export class CvService {
     this.loadSkills();
   }
 
+
+
   getConfig(){
+    const localConfig = localStorage.getItem("cv_config")
+
+    if (localConfig) {
+      this.config$.next(JSON.parse(localConfig))
+    }
     return this.config$.asObservable();
   }
 
@@ -87,9 +94,15 @@ export class CvService {
   }
 
 
+  updateConfig(config: cvConfig) {
+    this.config$.next(config);
+    localStorage.setItem('cv_config', JSON.stringify(config))
+    console.log(config)
+  }
 }
 
 export interface cvConfig {
+  [index: string]: any
   theme: string;
   skillDecor: string;
   showBanner: boolean;

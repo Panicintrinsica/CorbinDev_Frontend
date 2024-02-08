@@ -11,6 +11,7 @@ import {CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray} from 
 import {DatePipe, TitleCasePipe} from "@angular/common";
 import {Project} from "../../../models/project.model";
 import {Education} from "../../../models/education.model";
+import {CvProjectsComponent} from "../components/cv-projects/cv-projects.component";
 
 @Component({
   selector: 'app-cv-modern',
@@ -23,7 +24,8 @@ import {Education} from "../../../models/education.model";
     CdkDrag,
     CdkDragHandle,
     DatePipe,
-    TitleCasePipe
+    TitleCasePipe,
+    CvProjectsComponent
   ],
   templateUrl: './cv-modern.component.html',
   styleUrl: './cv-modern.component.scss'
@@ -43,8 +45,6 @@ export class CvModernComponent implements OnDestroy {
   profile: Profile = <Profile>{};
 
   coverLetterText = 'text';
-
-  displayedProjects: Project[] = []
 
   constructor(private cvs: CvService, private server: ServerService) {
     this.config$ = cvs.getConfig().subscribe({
@@ -73,21 +73,6 @@ export class CvModernComponent implements OnDestroy {
   ngOnDestroy() {
     this.config$.unsubscribe();
     this.profile$.unsubscribe();
-  }
-
-  diffYear(startDate: number, endDate: number) {
-    const start = new Date(startDate).getFullYear();
-    const end = new Date(endDate).getFullYear();
-    return start != end
-  }
-
-  projectDrop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.displayedProjects, event.previousIndex, event.currentIndex);
-    this.saveProjectList();
-  }
-
-  saveProjectList(){
-    localStorage.setItem('CurrentProjectList', JSON.stringify(this.displayedProjects))
   }
 
 
