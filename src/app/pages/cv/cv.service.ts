@@ -14,27 +14,27 @@ export class CvService {
     showAwards: false,
     showBanner: true,
     showCerts: false,
-    showContacts: false,
-    showEducation: false,
+    showContacts: true,
+    showEducation: true,
     showEmail: true,
-    showEvilPhone: false,
+    showEvilPhone: true,
     showGPA: false,
     showGithub: false,
     showHeader: true,
-    showInfo: false,
-    showIntro: false,
+    showInfo: true,
+    showIntro: true,
     showLearning: false,
-    showLinkedIn: false,
+    showLinkedIn: true,
     showMastodon: false,
-    showObjective: false,
+    showObjective: true,
     showPhone: true,
     showPhoto: false,
-    showProgress: false,
+    showProgress: true,
     showProjects: true,
-    showSkillDetails: false,
-    showSkills: false,
+    showSkillDetails: true,
+    showSkills: true,
     showTwitch: false,
-    showURL: false,
+    showURL: true,
     showYoutube: false,
     showSalutation: true,
     showValediction: true,
@@ -61,13 +61,7 @@ export class CvService {
   }
 
 
-
   getConfig(){
-    const localConfig = localStorage.getItem("cv_config")
-
-    if (localConfig) {
-      this.config$.next(JSON.parse(localConfig))
-    }
     return this.config$.asObservable();
   }
 
@@ -89,15 +83,15 @@ export class CvService {
 
   loadSkills() {
     this.server.getAllSkills().pipe(
-      tap(result => this.skillsSubject$.next(result))
+      tap(result => {
+        this.skillsSubject$.next(result)
+      })
     ).subscribe();
   }
 
 
   updateConfig(config: cvConfig) {
     this.config$.next(config);
-    localStorage.setItem('cv_config', JSON.stringify(config))
-    console.log(config)
   }
 }
 

@@ -59,19 +59,19 @@ import {cvConfig, CvService} from "./cv.service";
 })
 export class CvComponent implements OnDestroy {
 
-
   displayedProjectList: Project[] = [];
-
-  blockChanges = true
 
   // Styles
   theme = 'dark';
   SimpleLayout: boolean = false;
   CoverLetter = true;
 
+  configLoaded = false;
+
   showPhone = false;
 
   config$: Subscription;
+  configChange$!: Subscription;
   config: cvConfig = <cvConfig>{};
 
   configForm: FormGroup = this.fb.group({
@@ -106,6 +106,7 @@ export class CvComponent implements OnDestroy {
     showValediction: [true]
   });
 
+
   constructor(
     private server: ServerService,
     private fb: FormBuilder,
@@ -114,30 +115,32 @@ export class CvComponent implements OnDestroy {
     this.config$ = cvs.getConfig().subscribe({
       next: value => {
         this.config = value
-        this.configForm.patchValue(value)
+
+        if (!this.configLoaded){
+          this.configForm.patchValue(value)
+          this.configLoaded = true
+        }
       },
       error: err => {
         this.config = cvs.defaultConfig
         console.log(err)
       }
     });
-
-    this.configForm.valueChanges.pipe(
-      // debounceTime adds a small delay to prevent the method from being called too frequently
-      debounceTime(500),
-      // only react when the form values are valid (i.e. all form validation checks pass)
-      filter(() => this.configForm.valid && !this.blockChanges)
-    ).subscribe(formValues => {
-      // Handle your form submission logic here.
-      // `formValues` is an object that holds the current values of the form.
-      console.log(formValues);
-      this.updateForm();
-    });
-
   }
 
   ngOnInit(): void {
 
+    this.configChange$ = this.configForm.valueChanges.subscribe(selectedValue => {
+      // Ensure it isn't triggered by programmatic changes
+      if (this.configForm.dirty) {
+        this.onSubmit();
+      }
+    });
+
+  }
+
+  onSubmit() {
+    this.cvs.updateConfig(this.configForm.value);
   }
 
   resetProjects(){
@@ -150,12 +153,6 @@ export class CvComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.config$.unsubscribe();
-  }
-
-  private updateForm() {
-    console.log("Updating Form Config...")
-    this.blockChanges = false
-    this.cvs.updateConfig(this.config);
-    this.blockChanges = true
+    this.configChange$.unsubscribe();
   }
 }

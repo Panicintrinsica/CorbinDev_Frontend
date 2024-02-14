@@ -41,7 +41,7 @@ export class ServerService {
   }
 
   getAllSkills(): Observable<Skill[]>{
-    return this.http.get<Skill[]>(`${this.API}/skills/all`)
+    return this.http.get<Skill[]>(`${this.API}/skills`)
   }
 
   getSkillsByLevel(): Observable<Skill[]>{

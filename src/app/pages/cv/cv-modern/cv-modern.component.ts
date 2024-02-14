@@ -36,10 +36,10 @@ export class CvModernComponent implements OnDestroy {
   config: cvConfig = <cvConfig>{};
 
   skills$: Subscription;
-  skills: Skill[] = <Skill[]>{};
+  skills: Skill[] = <Skill[]>[];
 
   education$: Subscription;
-  education: Education[] = <Education[]>{};
+  education: Education[] = <Education[]>[];
 
   profile$: Subscription;
   profile: Profile = <Profile>{};
@@ -58,15 +58,15 @@ export class CvModernComponent implements OnDestroy {
     });
 
     this.profile$ = cvs.profile$.subscribe({
-      next: value => value ? this.profile = value : {}
+      next: value => value ? this.profile = value : []
     })
 
     this.skills$ = cvs.skills$.subscribe({
-      next: value => value ? this.skills = value : {}
+      next: value => value ? this.skills = value : []
     });
 
     this.education$ = cvs.education$.subscribe({
-      next: value => value ? this.education = value : {}
+      next: value => value ? this.education = value : []
     });
   }
 
@@ -74,6 +74,5 @@ export class CvModernComponent implements OnDestroy {
     this.config$.unsubscribe();
     this.profile$.unsubscribe();
   }
-
 
 }

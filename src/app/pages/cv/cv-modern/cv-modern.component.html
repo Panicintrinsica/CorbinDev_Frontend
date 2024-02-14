@@ -94,7 +94,7 @@
 
         <section class="skills">
           <div class="skill-list">
-            @for (skill of skills; track skill) {
+            @for (skill of skills; track skill._id) {
               <div class="skill">
                 @if (config.showProgress) {
                   <progress max="100" [value]="skill.level"></progress>
