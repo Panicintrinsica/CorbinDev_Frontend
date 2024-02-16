@@ -32,20 +32,20 @@
             <option selected value="none">Chevron</option>
             <option selected value="bullets">Bullet Point</option>
             <option selected value="triangles">Triangles</option>
-            <ng-container *ngIf="!SimpleLayout">
+
               <option selected value="numbers">Numbers</option>
               <option selected value="js">JS/TS</option>
               <option selected value="cpp">C++</option>
-            </ng-container>
+
 
           </select>
         </mat-form-field>
 
-        <div class="checklist" *ngIf="SimpleLayout">
+        <div class="checklist">
           <mat-checkbox color="primary" formControlName="showSkillsDetails">Skill Details</mat-checkbox>
         </div>
 
-        <div class="checklist" *ngIf="!SimpleLayout">
+        <div class="checklist">
           <mat-checkbox color="primary" formControlName="showLearning">Show Learning</mat-checkbox>
           <mat-checkbox color="primary" formControlName="showProgress">Use Skill Bars</mat-checkbox>
         </div>
@@ -70,12 +70,12 @@
             <mat-checkbox color="primary" formControlName="showContacts">Contacts</mat-checkbox>
 
 
-            @if (!CoverLetter) {
+            @if (true) {
               <mat-checkbox color="primary" formControlName="showIntro">Intro</mat-checkbox>
               <mat-checkbox color="primary" formControlName="showPhoto" *ngIf="!SimpleLayout">Photo</mat-checkbox>
               <mat-checkbox color="primary" formControlName="showInfo" *ngIf="!SimpleLayout">Info</mat-checkbox>
               <mat-checkbox color="primary" formControlName="showSkills">Skills</mat-checkbox>
-              <mat-checkbox color="primary" formControlName="showDetails">Skill Details</mat-checkbox>
+<!--              <mat-checkbox color="primary" formControlName="showDetails">Skill Details</mat-checkbox>-->
               <mat-checkbox color="primary" formControlName="showObjective">Objective</mat-checkbox>
               <mat-checkbox color="primary" formControlName="showProjects">Projects</mat-checkbox>
               <mat-checkbox color="primary" formControlName="showEducation">Education</mat-checkbox>
@@ -102,11 +102,11 @@
           <div class="checklist">
             <mat-checkbox color="primary" formControlName="showEmail">Email</mat-checkbox>
             <mat-checkbox color="primary" formControlName="showPhone">Phone</mat-checkbox>
-            <mat-checkbox class="indent" color="primary" *ngIf="showPhone" formControlName="showEvilPhone">Evil Phone</mat-checkbox>
+            <mat-checkbox class="indent" color="primary" *ngIf="config.showPhone" formControlName="showEvilPhone">Evil Phone</mat-checkbox>
             <mat-checkbox color="primary" formControlName="showURL">Website</mat-checkbox>
             <mat-checkbox color="primary" formControlName="showLinkedIn">LinkedIn</mat-checkbox>
 
-            @if (!CoverLetter && !SimpleLayout) {
+            @if (true) {
               <mat-checkbox color="primary" formControlName="showGithub">GitHub</mat-checkbox>
               <mat-checkbox color="primary" formControlName="showMastodon">Mastodon</mat-checkbox>
               <mat-checkbox color="primary" formControlName="showYoutube">YouTube</mat-checkbox>
