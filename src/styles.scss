@@ -39,49 +39,45 @@
 
   --page-margins: 3rem 5vw;
 
-  // Angular Brand Colors
-  --bright-blue: oklch(51.01% 0.274 263.83);
-  --electric-violet: oklch(53.18% 0.28 296.97);
-  --french-violet: oklch(47.66% 0.246 305.88);
-  --vivid-pink: oklch(69.02% 0.277 332.77);
-  --hot-red: oklch(61.42% 0.238 15.34);
-  --orange-red: oklch(63.32% 0.24 31.68);
-
-  // Corbin Brand Colors
-  --sky-blue: oklch(0.767 0.151 228.872);
+  --electric-blue: oklch(0.767 0.151 228.872);
+  --sky-blue: oklch(0.62 0.208 255.803);
   --corbin-blue: oklch(0.615 0.211 256.099);
-  --dark-red: oklch(0.451 0.185 29.234);
-
+  --neon-violet: oklch(0.593 0.266 300.584);
+  --deep-violet: oklch(0.502 0.216 315.988);
+  --angry-pink: oklch(0.673 0.259 328.781);
+  --applesin: oklch(0.638 0.224 34.326);
+  --violent-red: oklch(0.612 0.242 22.206);
+  --blood-red: oklch(0.451 0.185 29.234);
 
   --red-to-pink-gradient: linear-gradient(
       66deg,
-      var(--orange-red) 0%,
-      var(--vivid-pink) 100%
+      var(--applesin) 0%,
+      var(--angry-pink) 100%
   );
 
   --violet-to-blue-gradient: linear-gradient(
       33deg,
-      var(--electric-violet) 20%,
+      var(--neon-violet) 20%,
       var(--corbin-blue) 80%
   );
 
   --blue-to-pink-gradient: linear-gradient(
       66deg,
       var(--corbin-blue) 20%,
-      var(--vivid-pink) 80%
+      var(--angry-pink) 80%
   );
 
   --full-horizontal-gradient: linear-gradient(
       -90deg,
-      var(--sky-blue) 0%,
+      var(--electric-blue) 0%,
       var(--corbin-blue) 12.5%,
-      var(--bright-blue) 25%,
-      var(--electric-violet) 37.5%,
-      var(--french-violet) 50%,
-      var(--vivid-pink) 62.5%,
-      var(--hot-red) 75%,
-      var(--orange-red) 87.5%,
-      var(--dark-red) 100%
+      var(--sky-blue) 25%,
+      var(--neon-violet) 37.5%,
+      var(--deep-violet) 50%,
+      var(--angry-pink) 62.5%,
+      var(--violent-red) 75%,
+      var(--applesin) 87.5%,
+      var(--blood-red) 100%
   );
 }
 

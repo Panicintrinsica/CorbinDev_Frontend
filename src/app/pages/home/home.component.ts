@@ -53,7 +53,9 @@ export class HomeComponent {
     { img: "java", alt: "jana", link: "https://www.oracle.com/java/" },
     { img: "kotlin", alt: "Kotlin", link: "https://kotlinlang.org/" },
     { img: "c-sharp", alt: "C#", link: "https://learn.microsoft.com/en-us/dotnet/csharp/" },
+    { img: "cpp", alt: "C++", link: "https://isocpp.org/" },
     { img: "android", alt: "Android", link: "https://developer.android.com/studio" },
+    { img: "unreal", alt: "Unreal Engine", link: "https://www.unrealengine.com" },
   ]
 
 
