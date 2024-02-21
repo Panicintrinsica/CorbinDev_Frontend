@@ -1,29 +1,21 @@
 import { Component } from '@angular/core';
-import {AsyncPipe, NgClass, NgIf} from "@angular/common";
+import {AsyncPipe} from "@angular/common";
 import {UiArticleComponent} from "../../components/ui-article/ui-article.component";
 import {map, Observable} from "rxjs";
-import {ServerService} from "../../services/server.service";
 import {Article} from "../../models/article.model";
-import {HomeKeyartComponent} from "./home-keyart/home-keyart.component";
-import {HomeFeatureComponent} from "./home-feature/home-feature.component";
-import {UiSpinnerComponent} from "../../components/ui-spinner/ui-spinner.component";
+import {ServerService} from "../../services/server.service";
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-blog',
   standalone: true,
-  imports: [
-    NgClass,
-    UiArticleComponent,
-    AsyncPipe,
-    NgIf,
-    HomeKeyartComponent,
-    HomeFeatureComponent,
-    UiSpinnerComponent
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+    imports: [
+        AsyncPipe,
+        UiArticleComponent
+    ],
+  templateUrl: './blog.component.html',
+  styleUrl: './blog.component.scss'
 })
-export class HomeComponent {
+export class BlogComponent {
   article$: Observable<Article[]>
   page$: Observable<Number | void>
 

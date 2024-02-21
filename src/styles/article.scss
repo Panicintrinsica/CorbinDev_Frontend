@@ -6,9 +6,12 @@
 
 article > header > .category {
   align-self: center;
-  font: var(--headerFont);
+  font-family: var(--headerFont);
   font-variant: small-caps;
-  font-weight: 600;
+  font-weight: 500;
+  font-style: normal;
+  font-optical-sizing: auto;
+
   padding: .2rem .6rem;
   border: 2px solid var(--body-lowlight);
   border-radius: 5px;

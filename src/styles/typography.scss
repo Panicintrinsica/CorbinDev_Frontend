@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Finlandica:ital,wght@0,400..700;1,400..700&display=swap');
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons+Sharp';
+
+@font-face {
+  font-family: 'SwedenSans';
+  src: url('../assets/fonts/SwedenSansRegular.woff2') format('woff2');
+  font-weight: 400; /* Regular weight is often 500 */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SwedenSans';
+  src: url('../assets/fonts/SwedenSansSemiBold.woff2') format('woff2');
+  font-weight: 600; /* Semi-Bold weight is often 600 */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SwedenSans';
+  src: url('../assets/fonts/SwedenSansBold.woff2') format('woff2');
+  font-weight: bold; /* Bold is equivalent to 700 */
+  font-style: normal;
+}
+
+:root {
+  --bodyFont: "SwedenSans", sans-serif;
+  --headerFont: "Afacad", sans-serif;
+  --uiFont: "Finlandica", monospaced;
+  --bodyFont-color: hsl(0, 100%, 100%);
+}
+
+html, body {
+  font-family: var(--bodyFont);
+  color: var(--bodyFont-color);
+  font-size: 18px;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+p {
+  font-family: var(--bodyFont);
+  font-size: 1rem;
+  line-height: 1.2rem;
+}
+
+mark {
+  background-color: hsla(210, 30%, 35%, 0.5);
+  color: hsl(0, 0%, 100%);
+  padding: 0.5rem;
+  border: 1px solid hsl(195, 40%, 60%);
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6, .title, .menu-header {
+  font-family: var(--headerFont);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  background: -webkit-linear-gradient(
+      hsl(0, 0%, 100%),
+      hsl(0, 0%, 66%)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+
+  &.red {
+    background: var(--red-to-pink-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &.blue {
+    background: var(--violet-to-blue-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &.pink {
+    background: var(--blue-to-pink-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+
+h1 { font-size: 3rem }
+h2 { font-size: 2.5rem }
+h3 { font-size: 2rem }
+h4 { font-size: 1.5rem }
+
+a, a:visited, a:hover, a:active {
+  color: var(--linkColor);
+  text-decoration-color: var(--primary);
+}
+
+span.label {
+  font-family: var(--headerFont);
+  color: var(--secondary)
+}

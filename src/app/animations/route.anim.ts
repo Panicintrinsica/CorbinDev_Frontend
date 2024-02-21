@@ -67,13 +67,22 @@ const CrossFade = [
 
 export const slideInAnimation =
   trigger('routeAnimations', [
+
+    transition('cv => *', SlideRight),
+    transition('* => cv', SlideLeft),
+
     transition('Projects <=> Project', CrossFade),
     transition('Home <=> Article', CrossFade),
+    transition('Projects => Blog', SlideLeft),
 
     transition('* => Home', SlideLeft),
     transition('Home => *', SlideRight),
+
+    transition('Blog => *', SlideRight),
+
     transition('Bio => *', SlideLeft),
     transition('* => Bio', SlideRight),
+
   ]);
 
 

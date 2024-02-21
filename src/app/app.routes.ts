@@ -8,6 +8,7 @@ import {CvComponent} from "./pages/cv/cv.component";
 import {CoverletterComponent} from "./pages/cv/coverletter/coverletter.component";
 import {CvModernComponent} from "./pages/cv/cv-modern/cv-modern.component";
 import {CvBasicComponent} from "./pages/cv/cv-basic/cv-basic.component";
+import {BlogComponent} from "./pages/blog/blog.component";
 
 export const routes: Routes = [
 
@@ -15,6 +16,11 @@ export const routes: Routes = [
     path: '',
     component: HomeComponent,
     data: { animation: 'Home' }
+  },
+  {
+    path: 'blog',
+    component: BlogComponent,
+    data: { animation: 'Blog' }
   },
   {
     path: 'page/:id',

@@ -1,3 +1,24 @@
+$border-size: 2px;
+
+.siteNav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: $border-size solid transparent;
+  box-shadow: 0 2px 10px 10px rgba(0, 0, 0, 0.33);
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -$border-size; /* This should match the border thickness */
+    left: 0;
+    width: 100vw;
+    height: $border-size; /* This should match the border thickness */
+    background: var(--full-horizontal-gradient);
+  }
+}
+
+
 .site-header {
   padding-right: 1rem;
 }
@@ -5,8 +26,15 @@
 .banner-decor {
   height: 100%;
   margin-left: -2.6rem;
-  opacity: 0.75;
+  opacity: 1;
+  filter: invert(10%);
+
+  @media only screen and (max-width: 480px) {
+    display: none;
+  }
 }
+
+
 
 .logo {
   height: 80%;
@@ -16,9 +44,31 @@
   filter: invert(1);
   transition: opacity 400ms;
   cursor: pointer;
+
+  @media only screen and (max-width: 480px) {
+    margin-left: 0;
+  }
 }
 
 .logo:hover {
   opacity: 0.8;
   transition: opacity 400ms;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow:
+      0 -50px 10px 0px pink,
+      0 50px 10px 0px blue;
+  }
+  50% {
+    box-shadow:
+      0 -50% 10px 0px pink,
+      0 50% 10px 0px blue;
+  }
+  100% {
+    box-shadow:
+      0 -50% 10px 0px pink,
+      0 50% 10px 0px blue;
+  }
 }

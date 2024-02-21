@@ -1,4 +1,5 @@
 footer {
+  margin-top: 20px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -24,8 +25,15 @@ footer {
 
 .copyright {
   text-align: center;
-  font-family: Arial, sans-serif;
-  color: hsla(0, 0%, 100%, 0.3);
+  color: hsla(0, 0%, 100%);
   font-size: .8rem;
   padding: .3rem 0;
+  opacity: 0.3;
+}
+
+.video-credit {
+  text-align: center;
+  font-size: .75rem;
+  padding: .3rem 0;
+  opacity: 0.3;
 }

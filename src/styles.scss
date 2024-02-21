@@ -1,15 +1,10 @@
 @import "styles/material";
+@import "styles/cv";
 @import "styles/article";
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons+Sharp';
-@import url('https://fonts.googleapis.com/css2?family=Questrial&family=Red+Hat+Display:wght@400;500&display=swap');
+@import "styles/typography";
 @import "assets/fa/css/all.min.css";
 
 :root {
-  --bodyFont: "Red Hat Display", sans-serif;
-  --headerFont: "Questrial", sans-serif;
-
-  --bodyFont-color: hsl(0,100%,100%);
-
   --background-color: #151515;
 
   --tag: hsla(200, 10%, 30%, 1);
@@ -43,6 +38,51 @@
   --darker-25: rgba(0, 0, 0, 0.25);
 
   --page-margins: 3rem 5vw;
+
+  // Angular Brand Colors
+  --bright-blue: oklch(51.01% 0.274 263.83);
+  --electric-violet: oklch(53.18% 0.28 296.97);
+  --french-violet: oklch(47.66% 0.246 305.88);
+  --vivid-pink: oklch(69.02% 0.277 332.77);
+  --hot-red: oklch(61.42% 0.238 15.34);
+  --orange-red: oklch(63.32% 0.24 31.68);
+
+  // Corbin Brand Colors
+  --sky-blue: oklch(0.767 0.151 228.872);
+  --corbin-blue: oklch(0.615 0.211 256.099);
+  --dark-red: oklch(0.451 0.185 29.234);
+
+
+  --red-to-pink-gradient: linear-gradient(
+      66deg,
+      var(--orange-red) 0%,
+      var(--vivid-pink) 100%
+  );
+
+  --violet-to-blue-gradient: linear-gradient(
+      33deg,
+      var(--electric-violet) 20%,
+      var(--corbin-blue) 80%
+  );
+
+  --blue-to-pink-gradient: linear-gradient(
+      66deg,
+      var(--corbin-blue) 20%,
+      var(--vivid-pink) 80%
+  );
+
+  --full-horizontal-gradient: linear-gradient(
+      90deg,
+      var(--sky-blue) 0%,
+      var(--corbin-blue) 12.5%,
+      var(--bright-blue) 25%,
+      var(--electric-violet) 37.5%,
+      var(--french-violet) 50%,
+      var(--vivid-pink) 62.5%,
+      var(--hot-red) 75%,
+      var(--orange-red) 87.5%,
+      var(--dark-red) 100%
+  );
 }
 
 
@@ -51,13 +91,7 @@ hr.lighter {
   width: 100%;
 }
 
-mark {
-  background-color: rgba(62, 86, 115, 0.6);
-  color: #ffffff;
-  padding: 0.5rem;
-  border: 1px solid #6ba7bd;
-  display: block;
-}
+
 
 body.scroll-lock {
   overflow: hidden;
@@ -68,9 +102,6 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: var(--bodyFont);
-  color: var(--bodyFont-color);
-  font-size: 18px;
 }
 
 .page {
@@ -110,22 +141,6 @@ html, body {
 }
 
 
-h1 { font-size: 2rem }
-h2 { font-size: 1.5rem }
-h3 { font-size: 1.4rem }
-h4 { font-size: 1.3rem }
-
-h1, h2, h3, h4, h5, h6, .title, .menu-header {
-  font-family: var(--headerFont);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  background: -webkit-linear-gradient(#ffffff, #a8a8a8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 0.5rem;
-}
-
 gui-project-card {
   overflow: hidden;
 }
@@ -149,15 +164,7 @@ address {
   font-style: unset;
 }
 
-a, a:visited, a:hover, a:active {
-  color: var(--linkColor);
-  text-decoration-color: var(--primary);
-}
 
-span.label {
-  font-family: var(--headerFont);
-  color: var(--secondary)
-}
 
 .segment, {
   background-color: var(--body);
@@ -253,6 +260,7 @@ input[type="search"]:focus {
   gap: 0.5rem;
   align-items: center;
   font-family: var(--headerFont);
+
 
   &.cutout {
     background: #111;
@@ -466,6 +474,6 @@ ul > li > ul > li > ul > li::before{
   }
 }
 
-@import "styles/cv";
+
 //@import "ngx-smart-modal/ngx-smart-modal";
 @import "styles/overrides";

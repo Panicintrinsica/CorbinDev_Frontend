@@ -69,17 +69,17 @@ $corbin-teal: (
 
 //
 $corbin-typography: mat.define-typography-config(
-  $headline-1: mat.define-typography-level(64px, $font-family: 'Red Hat Display'),
-  $headline-2: mat.define-typography-level(48px, $font-family: 'Red Hat Display'),
-  $headline-3: mat.define-typography-level(32px, $font-family: 'Red Hat Display'),
-  $headline-4: mat.define-typography-level(28px, $font-family: 'Red Hat Display'),
-  $headline-5: mat.define-typography-level(24px, $font-family: 'Red Hat Display'),
-  $headline-6: mat.define-typography-level(20px, $font-family: 'Red Hat Display'),
-  $subtitle-1: mat.define-typography-level(18px, $font-family: 'Red Hat Display'),
-  $subtitle-2: mat.define-typography-level(16px, $font-family: 'Red Hat Display'),
-  $body-1: mat.define-typography-level(16px, 18px,$font-family: 'Red Hat Display'),
-  $body-2: mat.define-typography-level(16px, 0px, $font-family: 'Red Hat Display'),
-  $button: mat.define-typography-level(16px, 16px, 600, $font-family: 'Questrial', $letter-spacing: 1px),
+  $headline-1: mat.define-typography-level(64px, $font-family: 'Afaced'),
+  $headline-2: mat.define-typography-level(48px, $font-family: 'Afaced'),
+  $headline-3: mat.define-typography-level(32px, $font-family: 'Afaced'),
+  $headline-4: mat.define-typography-level(28px, $font-family: 'Afaced'),
+  $headline-5: mat.define-typography-level(24px, $font-family: 'Afaced'),
+  $headline-6: mat.define-typography-level(20px, $font-family: 'Afaced'),
+  $subtitle-1: mat.define-typography-level(18px, $font-family: 'Afaced'),
+  $subtitle-2: mat.define-typography-level(16px, $font-family: 'Afaced'),
+  $body-1: mat.define-typography-level(16px, 18px,$font-family: 'Afaced'),
+  $body-2: mat.define-typography-level(16px, 0px, $font-family: 'Afaced'),
+  $button: mat.define-typography-level(16px, 16px, 600, $font-family: 'Finlandica', $letter-spacing: 1px),
 );
 
 

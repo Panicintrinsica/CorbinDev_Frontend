@@ -6,6 +6,7 @@
   font-family: var(--bodyFont);
 }
 
+
 // Override the default text color for buttons.
 .mat-mdc-raised-button.mat-primary {
   --mdc-protected-button-label-text-color: #fff;
@@ -87,3 +88,9 @@
   }
 
 }
+
+
+.mat-mdc-button {
+  font-family: var(--bodyFont);
+}
+
