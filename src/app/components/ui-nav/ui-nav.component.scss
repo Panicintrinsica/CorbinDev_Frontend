@@ -19,6 +19,23 @@ $border-size: 2px;
 }
 
 
+.menu-button {
+  display: none;
+}
+
+@media only screen and (max-width: 420px) {
+  .menu-button {
+    display: inline;
+  }
+
+  .nav-button {
+    display: none;
+  }
+}
+
+
+
+
 .site-header {
   padding-right: 1rem;
 }
@@ -53,22 +70,4 @@ $border-size: 2px;
 .logo:hover {
   opacity: 0.8;
   transition: opacity 400ms;
-}
-
-@keyframes glow {
-  0% {
-    box-shadow:
-      0 -50px 10px 0px pink,
-      0 50px 10px 0px blue;
-  }
-  50% {
-    box-shadow:
-      0 -50% 10px 0px pink,
-      0 50% 10px 0px blue;
-  }
-  100% {
-    box-shadow:
-      0 -50% 10px 0px pink,
-      0 50% 10px 0px blue;
-  }
 }

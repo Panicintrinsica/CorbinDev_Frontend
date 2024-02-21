@@ -72,7 +72,7 @@ export const slideInAnimation =
     transition('* => cv', SlideLeft),
 
     transition('Projects <=> Project', CrossFade),
-    transition('Home <=> Article', CrossFade),
+    transition('Blog <=> Article', CrossFade),
     transition('Projects => Blog', SlideLeft),
 
     transition('* => Home', SlideLeft),

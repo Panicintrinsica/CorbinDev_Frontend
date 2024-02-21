@@ -77,8 +77,8 @@ $corbin-typography: mat.define-typography-config(
   $headline-6: mat.define-typography-level(20px, $font-family: 'Afaced'),
   $subtitle-1: mat.define-typography-level(18px, $font-family: 'Afaced'),
   $subtitle-2: mat.define-typography-level(16px, $font-family: 'Afaced'),
-  $body-1: mat.define-typography-level(16px, 18px,$font-family: 'Afaced'),
-  $body-2: mat.define-typography-level(16px, 0px, $font-family: 'Afaced'),
+  $body-1: mat.define-typography-level(16px, 18px,$font-family: 'SwedenSans'),
+  $body-2: mat.define-typography-level(16px, 0px, $font-family: 'SwedenSans'),
   $button: mat.define-typography-level(16px, 16px, 600, $font-family: 'Finlandica', $letter-spacing: 1px),
 );
 

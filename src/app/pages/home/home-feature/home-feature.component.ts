@@ -20,4 +20,11 @@ export class HomeFeatureComponent {
   @Input() color = "";
   @Input() isAlternate = false;
   @Input() route = ""
+  @Input() stack: featuredStackItem[] = [];
+}
+
+export interface featuredStackItem {
+  img: string
+  alt: string
+  link?: string
 }

@@ -5,9 +5,11 @@
   color="red"
   image="https://placekitten.com/g/320/180"
   [isAlternate]="false"
+  [stack]="frontendFeatures"
 >
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam architecto aspernatur consequuntur corporis cum, distinctio dolorem eligendi error ipsa ipsam nemo nisi perferendis quis rerum ullam unde voluptatibus voluptatum.
+  With over five years of experience with Angular and other frameworks including WinForms and .Net. If you need client or employee facing applications, I've got you covered.
 </app-home-feature>
+
 
 @defer (on immediate)  {
   <app-home-feature
@@ -15,13 +17,16 @@
     content=""
     color="blue"
     image="https://placekitten.com/g/320/180"
-    [isAlternate]="true">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate incidunt minus molestiae odit officiis omnis provident quo reiciendis rerum. A alias assumenda, commodi natus nulla rem repudiandae sapiente veritatis voluptatem.
+    [isAlternate]="true"
+    [stack]="backendFeatures"
+  >
+    Rare is the application that doesn't need to rely on external data, and if you require a new RESTful system, have complex business logic that needs to processed, or need to interface with third-party APIs, I have the skills to get the job done security and efficiently.
   </app-home-feature>
 
 } @placeholder {
   <ui-spinner />
 }
+
 
 @defer (on immediate) {
   <app-home-feature
@@ -30,8 +35,9 @@
     color="pink"
     image="https://placekitten.com/g/320/180"
     [isAlternate]="false"
+    [stack]="otherFeatures"
   >
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa enim, id ipsam magnam neque numquam quas repellendus sint soluta voluptatibus? Doloribus nulla, numquam obcaecati quisquam quos reiciendis repudiandae sint sit.
+    I can write more than simple CRUD applications, and if your project relies on need a more nuanced approach, I can write anything from modular video game logic to highly specialized tools. And if I <i>don't</i> know how to do it, then I can absolutely find out how.
   </app-home-feature>
 } @placeholder {
   <div class="placeholder"></div>

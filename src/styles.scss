@@ -72,7 +72,7 @@
   );
 
   --full-horizontal-gradient: linear-gradient(
-      90deg,
+      -90deg,
       var(--sky-blue) 0%,
       var(--corbin-blue) 12.5%,
       var(--bright-blue) 25%,
@@ -239,6 +239,7 @@ input[type="search"] {
   background-color: #2d2d2d;
   font-size: 14px;
   transition: 0.2s;
+  font-family: var(--bodyFont);
 }
 
 /* On mouse-over, add a deeper shadow */

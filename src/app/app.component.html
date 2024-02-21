@@ -4,6 +4,8 @@
   <router-outlet></router-outlet>
 </div>
 
-@defer {
+@defer (on viewport) {
   <ui-footer></ui-footer>
+} @placeholder () {
+  <span>loading</span>
 }

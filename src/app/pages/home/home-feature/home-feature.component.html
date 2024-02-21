@@ -1,38 +1,39 @@
 <div class="feature-segment">
-  <div class="feature-title" [ngClass]="{'right': isAlternate}">
-    <h1 [class]="color" >{{ header }}</h1>
+  <div class="feature-title" [ngClass]="{'alt': isAlternate}">
+    <h1 [class]="color">{{ header }}</h1>
   </div>
 
-  <div class="row">
+  <div class="grid-container" [ngClass]="{'alt': isAlternate}">
 
-    @if (isAlternate) {
-      <div class="image cell">
-        <img [ngSrc]="image" alt="" [width]="360" [height]="180" priority>
-      </div>
-    }
 
-    <div class="cell" [ngClass]="{'right': isAlternate}">
-      <div class="content">
-        <ng-content></ng-content>
-      </div>
+    <div class="content" [ngClass]="{'alt': isAlternate}">
+      <ng-content></ng-content>
 
-      @if(route) {
+      @if (route) {
         <div class="featured-button {{color}}" [routerLink]="route">
           More
         </div>
       }
+    </div>
 
+    <div class="image">
+        <img [ngSrc]="image" alt="" fill priority>
 
     </div>
 
+    <div class="stack">
+      @for (item of stack; track item) {
+        <a [href]="item.link" target="_blank">
+          <img ngSrc="../assets/brands/{{item.img}}.svg" alt="{{item.alt}}" width="64" height="64">
+        </a>
+      }
+    </div>
 
-    @if (!isAlternate) {
-      <div class="image cell">
-        <img [ngSrc]="image" alt="" [width]="360" [height]="180" priority>
-      </div>
-    }
 
 
 
   </div>
+
+
 </div>
+

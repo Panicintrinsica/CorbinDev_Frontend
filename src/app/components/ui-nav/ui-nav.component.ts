@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import {MatToolbar} from "@angular/material/toolbar";
 import {RouterLink} from "@angular/router";
-import {MatButton} from "@angular/material/button";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'ui-nav',
@@ -9,7 +11,12 @@ import {MatButton} from "@angular/material/button";
   imports: [
     MatToolbar,
     RouterLink,
-    MatButton
+    MatButton,
+    MatMenuTrigger,
+    MatMenu,
+    MatMenuItem,
+    MatIconButton,
+    MatIcon
   ],
   templateUrl: './ui-nav.component.html',
   styleUrl: './ui-nav.component.scss'
