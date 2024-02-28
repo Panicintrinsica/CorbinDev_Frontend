@@ -4,7 +4,7 @@
 
     @if (article$ | async; as articles) {
 
-      @for (article of articles; track article) {
+      @for (article of articles.records; track article) {
         <ui-article [isStub]="true" [data]="article"></ui-article>
       }
 

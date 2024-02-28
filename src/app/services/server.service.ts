@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {Article} from "../models/article.model";
+import {Article, ArticlePage} from "../models/article.model";
 import {Profile} from "../models/profile.model";
 import {Skill} from "../models/skill.model";
 import {Project, ProjectStub} from "../models/project.model";
@@ -20,12 +20,12 @@ export class ServerService {
     return this.http.get<Article>(`${this.API}/articles/${slug}`)
   }
 
-  getArticlePageCount(): Observable<number>{
-    return this.http.get<number>(`${this.API}/articles/count`)
+  getArticlePage(): Observable<ArticlePage>{
+    return this.http.get<ArticlePage>(`${this.API}/articles`)
   }
 
-  getArticlePage(page: number): Observable<Article[]>{
-    return this.http.get<Article[]>(`${this.API}/articles/page/${page}`)
+  getArticlePageCount(): Observable<number>{
+    return this.http.get<number>(`${this.API}/articles/count`)
   }
 
   getProfile(): Observable<Profile>{
@@ -48,6 +48,10 @@ export class ServerService {
     return this.http.get<Skill[]>(`${this.API}/skills/byLevel`)
   }
 
+  getSkillByName(name: string): Observable<Skill>{
+    return this.http.get<Skill>(`${this.API}/skills/byName/${name}`)
+  }
+
   getProjects(): Observable<Project[]>{
     return this.http.get<Project[]>(`${this.API}/projects`)
   }
@@ -57,7 +61,7 @@ export class ServerService {
   }
 
   getProjectBySlug(slug: string): Observable<Project>{
-    return this.http.get<Project>(`${this.API}/projects/bySlug/${slug}`)
+    return this.http.get<Project>(`${this.API}/projects/${slug}`)
   }
 
   getEducation(): Observable<Education[]>{

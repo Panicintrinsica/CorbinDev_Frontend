@@ -1,57 +1,59 @@
 <article class="segment skill-details" *ngIf="skill$ | async as skill">
   <header>
-    <h1 class="title pusher">{{skill.name}}</h1>
-    <div *ngIf="skill.highlight" class="category featured">Featured Skill</div>
+    <h2 class="title pusher">{{skill.name}}</h2>
+    <div *ngIf="skill.isFeatured" class="category featured">Featured Skill</div>
   </header>
 
 
   <div class="content">
 
+    <div class="flex progress row">
+      <div class="cell pusher"><progress max="100" [value]="skill.level"></progress></div>
+    </div>
+
+
     <div class="skill-data flex divided">
+
       <div class="cell">
-        <div class="label">Acquired:</div>
-        <div class="data">{{skill.learned}}</div>
+        <div class="label">Proficiency:</div>
+        <div class="data">{{skill.level | levelToName }}</div>
       </div>
 
-      @if (skill.experience){
+      @if (skill.learned){
         <div class="cell">
-          <div class="label">Active Experience:</div>
-          <div class="data">{{skill.experience}} Years</div>
+          <div class="label">Acquired:</div>
+          <div class="data">{{skill.learned | date : 'yyyy' }}</div>
         </div>
       }
 
-      <div class="cell">
-        <div class="label">Used:</div>
-        <div class="data">{{skill.frequency}}</div>
-      </div>
+      @if (skill.years){
+        <div class="cell">
+          <div class="label">Active Experience:</div>
+          <div class="data">{{skill.years}} Years</div>
+        </div>
+      }
     </div>
 
-
-    <h4>Self-Assessment</h4>
-    <div class="flex row gap-small">
-      <div class="cell pusher"><progress max="100" [value]="skill.level"></progress></div>
-      <div class="cell skill">
-        {{skill.level}} <span class="divider">/</span> 100
-      </div>
-    </div>
-
-    <ng-container *ngIf="skill.notes">
-      <h4>Notes</h4>
+    @if (skill.notes){
       <div class="notes" [innerHTML]="skill.notes" markdown></div>
-    </ng-container>
+    }
 
-
+    <h4 class="no-margin">Projects</h4>
       <div class="projects-list flex column gap-small">
-        <h4>Projects</h4>
+
         @for (project of projects$ | async; track project.name) {
-          <div class="project flex row {{project.category}}" (click)="goToProject(project)">
+          <div class="project flex row {{project.group}}" (click)="goToProject(project)">
             <div class="name pusher">{{project.name}}</div>
             <div class="button"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
           </div>
         } @empty {
-          No demonstrable projects :(
+          <ui-spinner
+            [timeout]="2000"
+            message="No Related Projects"
+          ></ui-spinner>
         }
       </div>
+
 
 
 

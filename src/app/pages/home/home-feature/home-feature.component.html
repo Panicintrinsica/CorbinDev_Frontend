@@ -16,15 +16,16 @@
       }
     </div>
 
-    <div class="image">
+    @if (image) {
+      <div class="image">
         <img [ngSrc]="image" alt="" fill priority>
-
-    </div>
+      </div>
+    }
 
     <div class="stack">
       @for (item of stack; track item) {
         <a [href]="item.link" target="_blank">
-          <img ngSrc="../assets/brands/{{item.img}}.svg" alt="{{item.alt}}" width="64" height="64">
+          <img class="skillLogo" ngSrc="../assets/brands/{{item.img}}.svg" height="48" width="48" alt="{{item.alt}}">
         </a>
       }
     </div>

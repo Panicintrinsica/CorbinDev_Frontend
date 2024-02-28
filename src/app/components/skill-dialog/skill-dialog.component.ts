@@ -5,8 +5,10 @@ import {Skill} from "../../models/skill.model";
 import {ProjectStub} from "../../models/project.model";
 import {ServerService} from "../../services/server.service";
 import {Router} from "@angular/router";
-import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
+import {AsyncPipe, DatePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {MarkdownComponent} from "ngx-markdown";
+import {NamedSkillLevel} from "../../pipes/skill-named-level.pipe";
+import {UiSpinnerComponent} from "../ui-spinner/ui-spinner.component";
 
 @Component({
   selector: 'ui-skill-dialog',
@@ -15,7 +17,11 @@ import {MarkdownComponent} from "ngx-markdown";
     AsyncPipe,
     NgIf,
     MarkdownComponent,
-    NgForOf
+    NgForOf,
+    NgOptimizedImage,
+    DatePipe,
+    NamedSkillLevel,
+    UiSpinnerComponent
   ],
   templateUrl: './skill-dialog.component.html',
   styleUrl: './skill-dialog.component.scss'
@@ -25,14 +31,15 @@ export class SkillDialogComponent {
   projects$: Observable<ProjectStub[]> | undefined
 
   constructor
-  (@Inject(MAT_DIALOG_DATA) public data: string,
+  (@Inject(MAT_DIALOG_DATA)
+   public data: string,
    public server: ServerService,
    private router: Router,
    private dialogRef: MatDialogRef<SkillDialogComponent>
   ) {}
 
   ngOnInit() {
-    this.skill$ = this.server.getSkillByID(this.data)
+    this.skill$ = this.server.getSkillByName(this.data)
     this.projects$ = this.server.getProjectsBySkill(this.data)
   }
 

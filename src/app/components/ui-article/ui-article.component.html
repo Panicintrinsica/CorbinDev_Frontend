@@ -4,11 +4,11 @@
     <div class="category {{data.category | lowercase }}">{{data.category | lowercase }}</div>
   </header>
 
-  <div class="content" markdown [innerHTML]="isStub ? data.shortContent : data.fullContent"></div>
+  <div class="content" markdown [innerHTML]="fullText"></div>
 
   <footer [ngClass]="isStub ? 'stub' : 'full' ">
     @if (isStub) {
-      <span class="time fill">{{ data.updatedAt | date : 'shortDate' }}</span>
+      <span class="time fill">{{ data.xata?.updatedAt | date : 'shortDate' }}</span>
       <button mat-button routerLink="/article/{{data.slug}}">Read More</button>
     } @else {
       <div class="tag-container fill">
@@ -21,18 +21,18 @@
 
       <div class="timestamp">
 
-        @if (data.createdAt === data.updatedAt) {
+        @if (data.xata?.createdAt === data.xata?.updatedAt) {
           <span class="label">Posted: </span>
-          <span class="time">{{ data.createdAt | date : 'short'  }}</span>
+          <span class="time">{{ data.xata?.createdAt | date : 'short'  }}</span>
         } @else {
           <span class="label">Posted: </span>
-          <span class="time">{{ data.updatedAt | date : 'short'  }}</span>
+          <span class="time">{{ data.xata?.updatedAt | date : 'short'  }}</span>
         }
 
       </div>
       <address>
         <span class="label">Author: </span>
-        <a rel="author" routerLink="/bio" class="author">{{data.author}}</a>
+        <a rel="author" routerLink="/bio" class="author">Emrys Corbin</a>
       </address>
     }
   </footer>

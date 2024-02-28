@@ -4,34 +4,32 @@
   <div class="flex-row bottom-padded">
     <button mat-stroked-button routerLink="/projects">Back</button>
     <div class="fill"></div>
-    @if (project?.hasLink) {
-      <a mat-stroked-button color="primary" [href]="project?.url" target="_blank">Visit</a>
+    @if (project?.showLink) {
+      <a mat-stroked-button color="primary" [href]="project?.link" target="_blank">Visit</a>
     }
   </div>
 
   @if (project){
     <article class="segment">
-      <header class="{{project.category}}">
+      <header class="{{project.group}}">
         <h1 class="title pusher">{{project.name}}</h1>
 
         <div class="date">
-          {{project.startDate | date: 'd.M.yy'}}
-          @if (project.startDate && project.endDate) {
+          {{project.started | date: 'd.M.yy'}}
+          @if (project.started && project.ended) {
             <span>to</span>
           }
-          {{project.endDate | date: 'd.M.yy'}}
+          {{project.ended | date: 'd.M.yy'}}
         </div>
       </header>
 
       <div class="content">
         <div [innerHTML]="project.longDescription" markdown></div>
-        <h4>Project Features</h4>
-        <div [innerHTML]="project.features" markdown></div>
 
         <h4>Skills</h4>
         <div class="tag-container cutout">
           @for (skill of project.skills; track skill) {
-            <div class="skill tag" [ngClass]="{'highlight': skill.highlight}" (click)="viewSkill(skill._id)">{{skill.name}}</div>
+            <div class="skill tag" (click)="viewSkill(skill)">{{skill}}</div>
           }
         </div>
       </div>

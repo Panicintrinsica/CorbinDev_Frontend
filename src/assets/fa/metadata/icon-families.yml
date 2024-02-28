@@ -2924,7 +2924,7 @@ asterisk:
       - Asterisk
       - Heavy Asterisk
       - annotation
-      - details
+      - details.ts
       - reference
       - required
       - star
@@ -10729,7 +10729,7 @@ circle-info:
   label: Circle Info
   search:
     terms:
-      - details
+      - details.ts
       - help
       - information
       - more
@@ -27472,7 +27472,7 @@ info:
   label: Info
   search:
     terms:
-      - details
+      - details.ts
       - help
       - information
       - more

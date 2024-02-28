@@ -100,7 +100,7 @@
 
         <section class="skills">
           <div class="skill-list">
-            @for (skill of skills; track skill._id) {
+            @for (skill of skills; track skill.id) {
               <div class="skill">
                 @if (config.showProgress) {
                   <progress max="100" [value]="skill.level"></progress>
@@ -108,24 +108,7 @@
                 <div class="name">{{skill.name}}</div>
                 @if (!config.showProgress) {
                   <div class="skillLevel">
-                    @if (skill.level < 20) {
-                      <span>Basic</span>
-                    }
-                    @if (skill.level >= 20 && skill.level < 40) {
-                      <span>Moderate</span>
-                    }
-                    @if (skill.level >= 40 && skill.level < 60) {
-                      <span>Intermediate</span>
-                    }
-                    @if (skill.level >= 60 && skill.level < 80) {
-                      <span>Advanced</span>
-                    }
-                    @if (skill.level >= 80 && skill.level < 100) {
-                      <span>Expert</span>
-                    }
-                    @if (skill.level >= 100) {
-                      <span>Master</span>
-                    }
+                    {{skill.level | levelToName }}
                   </div>
                 }
               </div>
@@ -199,7 +182,7 @@
                   <span class="text">{{ institute.major }}</span>
                 </div>
 
-                <!--            <div class="content" [innerHTML]="institute.details"></div>-->
+                <!--            <div class="content" [innerHTML]="institute.details.ts"></div>-->
               </div>
             </div>
           }

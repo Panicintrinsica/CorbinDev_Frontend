@@ -3,7 +3,7 @@ import {MatButton} from "@angular/material/button";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {UiArticleComponent} from "../../components/ui-article/ui-article.component";
 import {AsyncPipe} from "@angular/common";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {Article} from "../../models/article.model";
 import {ServerService} from "../../services/server.service";
 
@@ -28,9 +28,13 @@ export class ArticleComponent {
       const slug = params.get('slug')
 
       if(slug){
-        this.article$ = server.getArticle(slug)
-      }
+        this.article$ = server.getArticle(slug).pipe(tap(article => {
+          if(article){
+            console.log(article)
+          }
+        }))
 
+      }
     });
 
 

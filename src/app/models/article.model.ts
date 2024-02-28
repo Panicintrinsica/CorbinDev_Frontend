@@ -1,25 +1,25 @@
 export interface Article {
+  id: string;
+  slug: string;
   title: string;
-  shortContent: string;
-  fullContent: string;
-  category: string;
+  aboveFold: string;
+  content: string;
   tags: string[];
-  slug: string;
-  isPublished: boolean;
-  author: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
-export interface ArticleStub {
-  title: string;
-  shortContent: string;
   category: string;
-  slug: string;
-  isPublished: boolean;
+  xata: {
+    createdAt: string;
+    updatedAt: string;
+    version: number;
+  }
 }
 
 export interface ArticlePage {
-  Articles: ArticleStub[];
-  count: string;
+  meta: {
+    page: {
+      cursor: string;
+      more: boolean;
+      size: number;
+    }
+  }
+  records: Partial<Article>[];
 }

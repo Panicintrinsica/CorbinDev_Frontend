@@ -1,0 +1,14 @@
+header {
+  &.personal {
+    background: var(--personal-gradient);
+  }
+
+  &.professional {
+    background: var(--professional-gradient);
+  }
+
+  &.openSource {
+    background: var(--openSource-gradient);
+  }
+
+}

@@ -1,15 +1,22 @@
+@if (showSpinner) {
+  <div class="center">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+}
 
-
-<div class="center">
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-  <div class="wave"></div>
-</div>
-
+@if (showText) {
+  <div class="center">
+    <span class="timeoutMsg">
+      {{message}}
+    </span>
+  </div>
+}

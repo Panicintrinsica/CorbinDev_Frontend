@@ -1,29 +1,37 @@
 export interface Project {
-  _id: string,
+  id: string,
   name: string,
   shortDescription: string,
   longDescription: string,
-  company: string,
-  title: string,
-  type: string,
-  startDate: number,
-  endDate: number,
-  skills: [{
+  client: string,
+  role: string,
+  started: number,
+  ended: number,
+  skills: string[],
+  link: string,
+  thumbnail: {
     name: string,
-    highlight?: boolean,
-    _id: string
-  }],
-  features: string,
-  stack: string,
-  url: string,
-  photo: string,
-  slug: string,
-  category: string
-  hasLink: boolean,
-  hasDetails: boolean,
+    mediaType: string,
+    enablePublicUrl: boolean,
+    singedUrlTimeout: number,
+    uploadUrlTimeout: number,
+    size: number,
+    version: number,
+    url: string,
+  },
+  category: string,
+  group: string,
+  showLink: boolean,
   isCurrent: boolean,
-  cvDisplay?: boolean,
-  published: boolean,
+  hasNotes: boolean,
+  isFeatured: boolean,
+  isPublic: boolean,
+  slug: string,
+  xata: {
+    createdAt: string,
+    updatedAt: string,
+    version: number,
+  }
 }
 
 export interface ProjectStub {
@@ -31,6 +39,6 @@ export interface ProjectStub {
   name: string,
   startDate: number,
   endDate: number,
-  category: string,
+  group: string,
   slug: string,
 }

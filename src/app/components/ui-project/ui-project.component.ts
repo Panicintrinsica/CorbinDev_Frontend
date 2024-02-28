@@ -19,26 +19,35 @@ import {Project} from "../../models/project.model";
 })
 export class UiProjectComponent {
   @Input() project: Project = {
-    _id: "",
+    group: "",
+    isFeatured: false,
+    isPublic: false,
+    link: "",
+    role: "",
+    thumbnail: {
+      enablePublicUrl: false,
+      mediaType: "",
+      name: "",
+      singedUrlTimeout: 0,
+      size: 0,
+      uploadUrlTimeout: 0,
+      url: "",
+      version: 0
+    },
+    xata: {createdAt: "", updatedAt: "", version: 0},
+    id: "",
     category: "",
-    company: "",
-    endDate: 0,
-    features: "",
-    hasDetails: false,
-    hasLink: false,
+    client: "",
+    started: 0,
+    ended: 0,
+    hasNotes: false,
+    showLink: false,
     isCurrent: false,
     longDescription: "",
     name: "",
-    photo: "",
     shortDescription: "",
-    skills: [{name: "", _id: ""}],
-    stack: "",
-    startDate: 0,
-    slug: "",
-    title: "",
-    type: "",
-    url: "",
-    published: false,
+    skills: [],
+    slug: ""
   }
 
 

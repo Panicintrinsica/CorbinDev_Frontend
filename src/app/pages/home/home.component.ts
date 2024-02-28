@@ -24,11 +24,6 @@ import {UiSpinnerComponent} from "../../components/ui-spinner/ui-spinner.compone
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  article$: Observable<Article[]>
-  page$: Observable<Number | void>
-
-  pages: number = 0;
-  currentPage: number = 1;
 
   frontendFeatures: featuredStackItem[] = [
     { img: "html", alt: "HTML", link: "https://www.w3.org/TR/2011/WD-html5-20110405/" },
@@ -58,48 +53,11 @@ export class HomeComponent {
     { img: "unreal", alt: "Unreal Engine", link: "https://www.unrealengine.com" },
   ]
 
+  constructor() {
 
-  constructor(private server: ServerService) {
-
-    this.page$ = server.getArticlePageCount()
-      .pipe(
-        map(count => {
-          this.pages = Math.ceil(count / 5)
-        } )
-      )
-
-    this.article$ = server.getArticlePage(1)
   }
 
   ngOnInit(): void {
   }
 
-  pageSelect(page: number) {
-    this.article$ = this.server.getArticlePage(page)
-    this.currentPage = page;
-  }
-
-  firstPage() {
-    if (this.currentPage == 1) return
-    this.article$ = this.server.getArticlePage(1)
-    this.currentPage = 1;
-  }
-
-  prevPage(s: string) {
-    if (this.currentPage == 1) return
-    this.article$ = this.server.getArticlePage(this.currentPage - 1)
-    this.currentPage--
-  }
-
-  nextPage() {
-    if (this.currentPage == this.pages) return
-    this.article$ = this.server.getArticlePage(this.currentPage + 1)
-    this.currentPage++
-  }
-
-  lastPage() {
-    if (this.currentPage == this.pages) return
-    this.article$ = this.server.getArticlePage(this.pages)
-    this.currentPage = this.pages;
-  }
 }

@@ -43,6 +43,26 @@ main[data-theme="dark"] {
   --sidebarColor: #252525;
 }
 
+main[data-theme="angular"] {
+  --bodyColor: hsl(210, 100%, 95%);
+  --linkColor: #ffffff;
+  --priamryColor: #aacef2;
+  --accentColor: #8f73e6;
+  --profileColor: #2a3540;
+  --onProfileColor: hsl(210, 100%, 95%);
+  --photoFrame: #2a3540;
+
+  --shadeing_low: rgba(0, 0, 0, 0.20);
+  --shadeing_high: rgba(255, 255, 255, 0.20);
+
+  --progressLeft: #0058ff;
+  --progressRight: #00c4ff;
+  --progressGlow: hsla(210, 100%, 50%, 33%);
+
+  --pageColor: #292933;
+  --sidebarColor: #252525;
+}
+
 main[data-theme="discord"] {
   --bodyColor: #f1f8ff;
   --linkColor: #ffffff;

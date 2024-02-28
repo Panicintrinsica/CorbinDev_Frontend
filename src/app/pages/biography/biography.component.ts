@@ -29,7 +29,6 @@ export class BiographyComponent {
 
   education$ = this.server.getEducation()
 
-
   constructor(private server: ServerService) {
 
   }

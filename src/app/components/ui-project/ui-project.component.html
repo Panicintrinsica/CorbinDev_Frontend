@@ -1,7 +1,7 @@
 <article class="project-card">
   <div class="image">
-    @if (project.photo){
-      <img ngSrc="assets/projects/thumbnails/{{project.photo}}.png"
+    @if (project.thumbnail){
+      <img [ngSrc]="project.thumbnail.url"
            class="project-thumbnail"
            width="320"
            height="180"
@@ -13,16 +13,16 @@
 
   <div class="title-line">
     <div class="title">{{ project.name }}</div>
-    <div class="date">{{ project.endDate | date:"MMM YYYY"}}</div>
+    <div class="date">{{ project.ended | date:"MMM YYYY"}}</div>
   </div>
 
   <div class="content" [innerHTML]="project.shortDescription"></div>
 
   <div class="action-line">
-    @if (project.hasLink) {
-      <a mat-raised-button target="_blank" href="{{project.url}}">Visit</a>
+    @if (project.showLink) {
+      <a mat-raised-button target="_blank" href="{{project.link}}">Visit</a>
     }
-    @if (project.hasDetails) {
+    @if (project.hasNotes) {
       <button mat-raised-button color="primary" routerLink="/project/{{project.slug}}">Details</button>
     }
   </div>

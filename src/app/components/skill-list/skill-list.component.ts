@@ -31,9 +31,9 @@ export class SkillListComponent {
   skills: Skill[] = [];
 
   // Filtered Arrays
-  technology: Skill[] = [];
-  languages: Skill[] = [];
-  infrastructure: Skill[] = [];
+  frontend: Skill[] = [];
+  backend: Skill[] = [];
+  general: Skill[] = [];
   other: Skill[] = [];
   searchInput: string = "";
 
@@ -43,15 +43,15 @@ export class SkillListComponent {
       this.skills = skills;
 
       skills.forEach(item => {
-        switch(item.category) {
-          case 'Technology':
-            this.technology.push(item);
+        switch(item.group) {
+          case 'frontend':
+            this.frontend.push(item);
             break;
-          case 'Language':
-            this.languages.push(item);
+          case 'backend':
+            this.backend.push(item);
             break;
-          case 'Infrastructure':
-            this.infrastructure.push(item);
+          case 'general':
+            this.general.push(item);
             break;
           default:
             this.other.push(item);

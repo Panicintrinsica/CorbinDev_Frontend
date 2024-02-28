@@ -46,9 +46,8 @@ export class ProjectListComponent {
     }))
   }
 
-
 }
 
 function filterProjects(array: Project[], filter: string){
-  return array.filter((x => x.category === filter))
+  return array.filter((x => x.group === filter))
 }

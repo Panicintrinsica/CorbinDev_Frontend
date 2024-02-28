@@ -5,6 +5,9 @@ import {DatePipe, JsonPipe, LowerCasePipe, NgClass} from "@angular/common";
 import {MarkdownComponent, MarkdownPipe} from "ngx-markdown";
 import {Article} from "../../models/article.model";
 
+interface onInit {
+}
+
 @Component({
   selector: 'ui-article',
   standalone: true,
@@ -21,18 +24,32 @@ import {Article} from "../../models/article.model";
   templateUrl: './ui-article.component.html',
   styleUrl: './ui-article.component.scss'
 })
-export class UiArticleComponent {
-  @Input() data: Article = {
-    author: "",
-    category: "",
-    fullContent: "",
-    isPublished: false,
-    shortContent: "",
+export class UiArticleComponent implements onInit {
+  @Input() data: Partial<Article> = {
+    id: "",
     slug: "",
+    title: "",
+    aboveFold: "",
+    content: "",
+    category: "",
     tags: [],
-    title: ""
+    xata: {
+      createdAt: "",
+      updatedAt: "",
+      version: 0
+    }
   };
 
   @Input() isStub: boolean = false;
+
+  fullText: string | undefined = "";
+
+  ngOnInit(): void {
+    if(this.data.content){
+      this.fullText = this.data.aboveFold + "\n\n" + this.data.content;
+    } else {
+      this.fullText = this.data.aboveFold
+    }
+  }
 
 }

@@ -12,21 +12,23 @@ import {DatePipe, TitleCasePipe} from "@angular/common";
 import {Project} from "../../../models/project.model";
 import {Education} from "../../../models/education.model";
 import {CvProjectsComponent} from "../components/cv-projects/cv-projects.component";
+import {NamedSkillLevel} from "../../../pipes/skill-named-level.pipe";
 
 @Component({
   selector: 'app-cv-modern',
   standalone: true,
-  imports: [
-    MatIcon,
-    MatButton,
-    MarkdownComponent,
-    CdkDropList,
-    CdkDrag,
-    CdkDragHandle,
-    DatePipe,
-    TitleCasePipe,
-    CvProjectsComponent
-  ],
+    imports: [
+        MatIcon,
+        MatButton,
+        MarkdownComponent,
+        CdkDropList,
+        CdkDrag,
+        CdkDragHandle,
+        DatePipe,
+        TitleCasePipe,
+        CvProjectsComponent,
+        NamedSkillLevel
+    ],
   templateUrl: './cv-modern.component.html',
   styleUrl: './cv-modern.component.scss'
 })
