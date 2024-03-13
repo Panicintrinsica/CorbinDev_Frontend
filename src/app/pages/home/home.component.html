@@ -7,7 +7,9 @@
   [isAlternate]="false"
   [stack]="frontendFeatures"
 >
-  With over five years of experience with Angular and other frameworks including WinForms and .Net. If you need client or employee facing applications, I've got you covered.
+  @if (content$ | async; as content) {
+    {{ getContentBody(content, 'landingOne') }}
+  }
 </app-home-feature>
 
 @defer (on immediate)  {
@@ -19,13 +21,14 @@
     [isAlternate]="true"
     [stack]="backendFeatures"
   >
-    Rare is the application that does not need to rely on external data. When you require a new RESTful system, have complex business logic that needs to be processed, or need to interface with third-party APIs, I have the skills to get the job done securely and efficiently.
+    @if (content$ | async; as content) {
+      {{ getContentBody(content, 'landingTwo') }}
+    }
   </app-home-feature>
 
 } @placeholder {
   <ui-spinner />
 }
-
 @defer (on immediate) {
   <app-home-feature
     header="Everything Development"
@@ -35,8 +38,9 @@
     [isAlternate]="false"
     [stack]="otherFeatures"
   >
-    I can write more than simple CRUD applications, and if your project needs lower-level work, I can do anything from modular video game logic to highly specialized tools. And if I <i>don't</i> know how to do it, then I can find out how. I'll even learn x86 Assembly if I have too.
-    <br><br>In fairness, I'd learn Assembly just for the fun of it at this point.
+    @if (content$ | async; as content) {
+      {{ getContentBody(content, 'landingThree') }}
+    }
   </app-home-feature>
 } @placeholder {
   <div class="placeholder"></div>

@@ -7,6 +7,8 @@ import {Article} from "../../models/article.model";
 import {HomeKeyartComponent} from "./home-keyart/home-keyart.component";
 import {featuredStackItem, HomeFeatureComponent} from "./home-feature/home-feature.component";
 import {UiSpinnerComponent} from "../../components/ui-spinner/ui-spinner.component";
+import {ContentBlock} from "../../models/content.model";
+import {getContentBody} from "../../utilities";
 
 @Component({
   selector: 'app-home',
@@ -24,6 +26,7 @@ import {UiSpinnerComponent} from "../../components/ui-spinner/ui-spinner.compone
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  content$: Observable<ContentBlock[]>;
 
   frontendFeatures: featuredStackItem[] = [
     { img: "html", alt: "HTML", link: "https://www.w3.org/TR/2011/WD-html5-20110405/" },
@@ -32,7 +35,6 @@ export class HomeComponent {
     { img: "angular", alt: "Angular", link: "https://angular.dev" },
     { img: "electron", alt: "Electron.js", link: "https://www.electronjs.org/" },
   ]
-
   backendFeatures: featuredStackItem[] = [
     { img: "node-js", alt: "Node.js", link: "https://nodejs.org/en" },
     { img: "mongodb", alt: "MongoDB", link: "https://www.mongodb.com/" },
@@ -42,7 +44,6 @@ export class HomeComponent {
     { img: "redis", alt: "Redis", link: "https://redis.io/" },
     { img: "dragonfly", alt: "DragonflyDB", link: "https://www.dragonflydb.io/" },
   ]
-
   otherFeatures: featuredStackItem[] = [
     { img: "typescript", alt: "TypeScript", link: "https://www.typescriptlang.org/" },
     { img: "java", alt: "jana", link: "https://www.oracle.com/java/" },
@@ -53,11 +54,12 @@ export class HomeComponent {
     { img: "unreal", alt: "Unreal Engine", link: "https://www.unrealengine.com" },
   ]
 
-  constructor() {
-
+  constructor(server: ServerService) {
+    this.content$ = server.getContentGroup("landing")
   }
 
   ngOnInit(): void {
   }
 
+  protected readonly getContentBody = getContentBody;
 }

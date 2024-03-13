@@ -7,6 +7,8 @@ import {Skill} from "../models/skill.model";
 import {Project, ProjectStub} from "../models/project.model";
 import {Education} from "../models/education.model";
 import {environment} from "../../environments/environment";
+import { Detail } from '../models/detail.model';
+import {ContentBlock} from "../models/content.model";
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +34,28 @@ export class ServerService {
     return this.http.get<Profile>(`${this.API}/profile`)
   }
 
+  getAllDetails(): Observable<Detail[]>{
+    return this.http.get<Detail[]>(`${this.API}/details`)
+  }
+
+  getProfileDetails(): Observable<Detail[]>{
+    return this.http.get<Detail[]>(`${this.API}/details/profile`)
+  }
+
+  getContactDetails(): Observable<Detail[]>{
+    return this.http.get<Detail[]>(`${this.API}/details/contact`)
+  }
+
   getSkillByID(id: string): Observable<Skill>{
     return this.http.get<Skill>(`${this.API}/skills/${id}`)
+  }
+
+  getContentBlock(selector: string): Observable<ContentBlock>{
+    return this.http.get<ContentBlock>(`${this.API}/content/${selector}`)
+  }
+
+  getContentGroup(selector: string): Observable<ContentBlock[]>{
+    return this.http.get<ContentBlock[]>(`${this.API}/content/group/${selector}`)
   }
 
   getDisplayedSkills(): Observable<Skill[]>{
