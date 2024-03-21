@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Article, ArticlePage} from "../models/article.model";
-import {Profile} from "../models/profile.model";
 import {Skill} from "../models/skill.model";
 import {Project, ProjectStub} from "../models/project.model";
 import {Education} from "../models/education.model";
@@ -30,16 +29,16 @@ export class ServerService {
     return this.http.get<number>(`${this.API}/articles/count`)
   }
 
-  getProfile(): Observable<Profile>{
-    return this.http.get<Profile>(`${this.API}/profile`)
-  }
-
   getAllDetails(): Observable<Detail[]>{
     return this.http.get<Detail[]>(`${this.API}/details`)
   }
 
   getProfileDetails(): Observable<Detail[]>{
     return this.http.get<Detail[]>(`${this.API}/details/profile`)
+  }
+
+  getDetailsByType(type: string): Observable<Detail[]>{
+    return this.http.get<Detail[]>(`${this.API}/details/${type}`)
   }
 
   getContactDetails(): Observable<Detail[]>{
@@ -87,7 +86,7 @@ export class ServerService {
   }
 
   getEducation(): Observable<Education[]>{
-    return this.http.get<Education[]>(`${this.API}/education`)
+    return this.http.get<Education[]>(`${this.API}/schools`)
   }
 
 }

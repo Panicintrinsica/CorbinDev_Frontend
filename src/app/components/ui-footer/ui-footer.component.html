@@ -1,29 +1,20 @@
 
-  <footer [ngClass]="{'hidden': loading}">
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/emryscorbin/" target="_blank">
-        <img src="././assets/social-icons/linkedin.svg" alt="LinkedIn">
-      </a>
-      <a href="https://github.com/Panicintrinsica" target="_blank">
-        <img src="././assets/social-icons/github.svg" alt="Github">
-      </a>
-      <a rel="me" href="https://mastodon.social/@emrysCorbin" target="_blank">
-        <img src="././assets/social-icons/mastodon.svg" alt="mastodon">
-      </a>
-      <a href="https://pixelfed.social/@emrysCorbin" target="_blank">
-        <img src="././assets/social-icons/pixelfed.svg" alt="PixelFed">
-      </a>
-    </div>
-    <div class="copyright">
-      Copyright © Emrys Corbin {{ year }}
-    </div>
+<footer [ngClass]="{'hidden': loading}" class="noprint">
+  <div class="social-links">
+    <a class="uicon linkedin-footer" href="https://www.linkedin.com/in/emryscorbin/" target="_blank"></a>
+    <a class="uicon github-footer" href="https://github.com/Panicintrinsica" target="_blank"></a>
+    <a class="uicon mastodon-footer" rel="me" href="https://mastodon.social/@emrysCorbin" target="_blank"></a>
+    <a class="uicon pixelfed-footer" href="https://pixelfed.social/@emrysCorbin" target="_blank"></a>
+  </div>
+  <div class="copyright">
+    Copyright © Emrys Corbin {{ year }}
+  </div>
 
-    @if(isHomePage){
-      <div class="video-credit">
-        Keyart Video by <a href="https://pixabay.com/users/project-unknown-22383616/?utm_source=link-attribution&utm_medium=referral&utm_campaign=video&utm_content=123737">Mohamad Rafizan</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=video&utm_content=123737">Pixabay</a>
-      </div>
-    }
-
-  </footer>
+  @if(isHomePage){
+    <div class="video-credit">
+      Keyart Video by <a href="https://pixabay.com/users/project-unknown-22383616/?utm_source=link-attribution&utm_medium=referral&utm_campaign=video&utm_content=123737">Mohamad Rafizan</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=video&utm_content=123737">Pixabay</a>
+    </div>
+  }
+</footer>
 
 

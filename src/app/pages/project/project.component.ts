@@ -34,7 +34,6 @@ export class ProjectComponent implements OnDestroy {
         this.projectSub = server.getProjectBySlug(slug).subscribe({
           next: value => {
             this.project = value
-            console.log(value)
           },
           error: err => console.error(err)
         })

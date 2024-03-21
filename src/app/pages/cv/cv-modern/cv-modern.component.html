@@ -1,204 +1,233 @@
 <main class="resumePage printable" [attr.data-theme]="config.theme">
 
+  @if (details$ | async; as details) {
+    <section class="sidebar">
 
-  <section class="sidebar">
-
-    @if (config.showHeader) {
-      <section class="profile">
-        @if (config.showPhoto) {
-          <div class="profile-photo">
-            <img src="assets/profile/avatar_roundable.png" alt="">
+      @if (config.showHeader) {
+        <section class="profile">
+          @if (config.showPhoto) {
+            <div class="profile-photo">
+              <img src="assets/profile/avatar_roundable.png" alt="">
+            </div>
+          }
+          <div class="name">
+            {{ getDetail(details, "firstName", "content") }}
+            {{ getDetail(details, "lastName", "content") }}
           </div>
-        }
-        <div class="name">{{profile.name}}</div>
-        <div class="subline">Software Engineer ({{profile.pronouns}})</div>
-      </section>
-    }
-
-    @if (config.showInfo) {
-      <div class="sidebar-group">
-        <div class="textBanner">Info</div>
-        <section class="info">
-          <div class="info-entry">
-            <div class="label">Citizenship:</div>
-            <div class="data">U.S</div>
-          </div>
-          <div class="info-entry">
-            <div class="label">Location:</div>
-            <div class="data">{{profile.location}}</div>
-          </div>
-          <div class="info-entry">
-            <div class="label">Languages:</div>
-            <div class="data">English</div>
+          <div class="subline">
+            {{ getDetail(details, "title", "content") }}
+            ({{ getDetail(details, "pronouns", "content") }})
           </div>
         </section>
-      </div>
-    }
+      }
 
-    @if (config.showContacts){
-      <div class="sidebar-group">
-        <div class="textBanner">Contacts</div>
-        <section class="contacts">
-          @if (config.showEmail){
-            <div class="item">
-              <mat-icon>email</mat-icon>
-              <a href="mailto:{{profile.email}}">{{profile.email}}</a>
+      @if (config.showInfo) {
+        <div class="sidebar-group">
+          <div class="textBanner">Info</div>
+          <section class="info">
+            <div class="info-entry">
+              <div class="label">Citizenship:</div>
+              <div class="data">{{ getDetail(details, "citizenship", "content") }}</div>
             </div>
-          }
-          @if (config.showPhone){
-            <div class="item">
-              <mat-icon>phone</mat-icon>
-              <a href="tel:360-499-3845">{{ config.showEvilPhone ? '(360) 499-EVIL' : '(360) 499-3845' }}</a>
+            <div class="info-entry">
+              <div class="label">Location:</div>
+              <div class="data">{{ getDetail(details, "location", "content") }}</div>
             </div>
-          }
-          @if (config.showURL){
-            <div class="item">
-              <mat-icon>website</mat-icon>
-              <a href="https://corbin.dev">Corbin.dev</a>
+            <div class="info-entry">
+              <div class="label">Languages:</div>
+              <div class="data">{{ getDetail(details, "languages", "content") }}</div>
             </div>
-          }
-          @if (config.showLinkedIn){
-            <div class="item">
-              <i class="fa-brands fa-linkedin"></i>
-              <a href="https://www.linkedin.com/in/emryscorbin/">EmrysCorbin</a>
-            </div>
-          }
-          @if (config.showGithub){
-            <div class="item">
-              <i class="fa-brands fa-github"></i>
-              <a href="https://github.com/Panicintrinsica">Panicintrinsica</a>
-            </div>
-          }
-          @if (true){
-            <div class="item">
-              <img src="assets/social-icons/bluesky.svg" class="contractIcon" alt="">
-              <a href="https://bsky.app/profile/emryscorbin.bsky.social">&#64;emryscorbin.bsky.social</a>
-            </div>
-          }
-          @if (config.showMastodon){
-            <div class="item">
-              <i class="fa-brands fa-mastodon"></i>
-              <a href="https://mastodon.social/@emrysCorbin">&#64;emrysCorbin&#64;mastodon.social</a>
-            </div>
-          }
-          @if (config.showTwitch){
-            <div class="item">
-              <i class="fa-brands fa-twitch"></i>
-              <a href="https://www.twitch.tv/panicintrinsica/">Panicintrinsica</a>
-            </div>
-          }
-        </section>
-      </div>
-    }
-
-    @if (config.showSkills){
-      <div class="sidebar-group">
-        <div class="textBanner">Skills
-          <div class="pusher"></div>
-          <button mat-button color="primary">Edit</button>
+          </section>
         </div>
+      }
 
-        <section class="skills">
-          <div class="skill-list">
-            @for (skill of skills; track skill.id) {
-              <div class="skill">
-                @if (config.showProgress) {
-                  <progress max="100" [value]="skill.level"></progress>
-                }
-                <div class="name">{{skill.name}}</div>
-                @if (!config.showProgress) {
-                  <div class="skillLevel">
-                    {{skill.level | levelToName }}
-                  </div>
-                }
+      @if (config.showContacts){
+        <div class="sidebar-group">
+          <div class="textBanner">Contacts</div>
+          <section class="contacts">
+            @if (config.showEmail){
+              <div class="item">
+                <div class="uicon {{ getDetail(details, 'email', 'icon') }}"></div>
+                <a href="{{getDetail(details, 'email', 'link') }}">{{ getDetail(details, 'email', 'content') }}</a>
               </div>
             }
-          </div>
-        </section>
-      </div>
-    }
+            @if (config.showPhone){
+              <div class="item">
+                <div class="uicon {{ getDetail(details, 'phone', 'icon') }}"></div>
+                <a href="{{ getDetail(details, 'phone', 'link') }}">{{ config.showEvilPhone ? '(360) 499-EVIL' : getDetail(details, 'phone', 'content') }}</a>
+              </div>
+            }
+            @if (config.showURL){
+              <div class="item">
+                <div class="uicon {{ getDetail(details, 'website', 'icon') }}"></div>
+                <a href="{{ getDetail(details, 'website', 'link') }}">{{ getDetail(details, 'website', 'content') }}</a>
+              </div>
+            }
+            @if (config.showLinkedIn){
+              <div class="item">
+                <div class="uicon {{ getDetail(details, 'LinkedIn', 'icon') }}"></div>
+                <a href="{{ getDetail(details, 'LinkedIn', 'link') }}">{{ getDetail(details, 'LinkedIn', 'content') }}</a>
+              </div>
+            }
+            @if (config.showGithub){
+              <div class="item">
+                <div class="uicon {{ getDetail(details, 'github', 'icon') }}"></div>
+                <a href="{{ getDetail(details, 'github', 'link') }}">{{ getDetail(details, 'github', 'content') }}</a>
+              </div>
+            }
+            @if (config.showMastodon){
+              <div class="item">
+                <div class="uicon {{ getDetail(details, 'Mastodon', 'icon') }}"></div>
+                <a href="{{ getDetail(details, 'Mastodon', 'link') }}">{{ getDetail(details, 'Mastodon', 'content') }}</a>
+              </div>
+            }
+            @if (config.showTwitch){
+              <div class="item">
+                <div class="uicon {{ getDetail(details, 'Twitch', 'icon') }}"></div>
+                <a href="{{ getDetail(details, 'Twitch', 'link') }}">{{ getDetail(details, 'Twitch', 'content') }}</a>
+              </div>
+            }
+            @if (config.showYoutube){
+              <div class="item">
+                <div class="uicon {{ getDetail(details, 'YouTube', 'icon') }}"></div>
+                <a href="{{ getDetail(details, 'YouTube', 'link') }}">{{ getDetail(details, 'YouTube', 'content') }}</a>
+              </div>
+            }
+            @if (true){
+              <div class="item">
+                <div class="uicon {{ getDetail(details, 'Instagram', 'icon') }}"></div>
+                <a href="{{ getDetail(details, 'Instagram', 'link') }}">{{ getDetail(details, 'Instagram', 'content') }}</a>
+              </div>
+            }
+            @if (true){
+              <div class="item">
+                <div class="uicon {{ getDetail(details, 'pixelfed', 'icon') }}"></div>
+                <a href="{{ getDetail(details, 'pixelfed', 'link') }}">{{ getDetail(details, 'pixelfed', 'content') }}</a>
+              </div>
+            }
+            @if (true){
+              <div class="item">
+                <div class="uicon {{ getDetail(details, 'bsky', 'icon') }}"></div>
+                <a href="{{ getDetail(details, 'bsky', 'link') }}">{{ getDetail(details, 'bsky', 'content') }}</a>
+              </div>
+            }
+          </section>
+        </div>
+      }
 
-
-    @if (config.showLearning){
-      <div class="sidebar-group">
-        <div class="textBanner">Learning</div>
-        <section class="learning">
-          <ul class="skill-list">
-<!--            <li class="new-skill {{config.skillDecor}}" [attr.data-index]="i" *ngFor="let skill of newSkills; let i = index">{{skill}}</li>-->
-          </ul>
-        </section>
-      </div>
-    }
-
-  </section>
-  <section class="content">
-    @if (config.showIntro){
-      <markdown class="intro" [innerHTML]="profile.shortDescription"></markdown>
-    }
-
-    @if (config.showObjective){
-      <div class="section-wrapper">
-        <div class="subsection">
-          <div class="textBanner">
-            Objective
+      @if (config.showSkills){
+        <div class="sidebar-group">
+          <div class="textBanner">Skills
             <div class="pusher"></div>
             <button mat-button color="primary">Edit</button>
           </div>
-          <div class="info-block">
-            <div class="entry">
-              <!--TODO: Fix Objective Block-->
+
+          <section class="skills">
+            <div class="skill-list">
+              @for (skill of skills; track skill.id) {
+                <div class="skill">
+                  @if (config.showProgress) {
+                    <progress max="100" [value]="skill.level"></progress>
+                  }
+                  <div class="name">{{skill.name}}</div>
+                  @if (!config.showProgress) {
+                    <div class="skillLevel">
+                      {{skill.level | levelToName }}
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          </section>
+        </div>
+      }
+
+
+      @if (config.showLearning){
+        <div class="sidebar-group">
+          <div class="textBanner">Learning</div>
+          <section class="learning">
+            <ul class="skill-list">
+              <!--            <li class="new-skill {{config.skillDecor}}" [attr.data-index]="i" *ngFor="let skill of newSkills; let i = index">{{skill}}</li>-->
+            </ul>
+          </section>
+        </div>
+      }
+
+    </section>
+  }
+
+  @if (content$ | async; as content) {
+    <section class="content">
+      @if (config.showIntro){
+        <markdown class="intro" [innerHTML]="getContentBody(content, 'cvIntro')"></markdown>
+      }
+
+      @if (config.showObjective){
+        <div class="section-wrapper">
+          <div class="subsection">
+            <div class="textBanner">
+              Objective
+              <div class="pusher"></div>
+              <button mat-button color="primary">Edit</button>
+            </div>
+            <div class="info-block">
+              <div class="entry">
+                <!--TODO: Fix Objective Block-->
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    }
+      }
 
-    @if (true){
-      <cv-projects></cv-projects>
-    }
+      @if (true){
+        <cv-projects></cv-projects>
+      }
 
 
-    @if (config.showEducation){
-      <div class="section-wrapper">
+      @if (config.showEducation){
+        <div class="section-wrapper">
 
-        <div class="subsection">
-          <div class="textBanner">Education</div>
+          <div class="subsection">
+            <div class="textBanner">Education</div>
 
-          @for (institute of education; track institute){
-            <div class="info-block">
-              <div class="entry">
-                <div class="title-row">
-                  <div class="name">{{ institute.name }}</div>
-                  @if(config.showGPA){
-                    <div class="gpa">GPA: {{ institute.gpa }} / {{ institute.gpaMax }}</div>
-                  }
-                  <div class="dates">Est. Grad: {{ institute.endMonth }}.{{ institute.endYear }}</div>
+            @for (institute of education; track institute){
+              <div class="info-block">
+                <div class="entry">
+                  <div class="title-row">
+                    <div class="name">{{ institute.name }}</div>
+                    @if(config.showGPA){
+                      <div class="gpa">GPA: {{ institute.gpa }} / {{ institute.gpaMax }}</div>
+                    }
+                    <div class="dates">{{ institute.start | date : 'MMM yy'  }} - {{ institute.end | date : 'MMM yy'  }}</div>
+                  </div>
+                  <div class="edu-fields">
+                    <span class="text">Springfield, MO</span>
+                    <span class="divider"> | </span>
+                    <span class="text">{{ institute.degree | titlecase }}</span>
+                    <span class="divider"> | </span>
+                    <span class="text">{{ institute.major | titlecase }}</span>
+                  </div>
+
+                  <!--                            <div class="content" [innerHTML]="institute.notes"></div>-->
                 </div>
-                <div class="edu-fields">
-                  <span class="text">Springfield, MO</span>
-                  <span class="divider"> | </span>
-                  <span class="text">{{ institute.degree | titlecase }}</span>
-                  <span class="divider"> | </span>
-                  <span class="text">{{ institute.major }}</span>
-                </div>
-
-                <!--            <div class="content" [innerHTML]="institute.details.ts"></div>-->
               </div>
-            </div>
-          }
+            }
 
 
+          </div>
         </div>
-      </div>
-    }
+      }
 
-<!--    <div class="subsection" *ngIf="showCerts">-->
-<!--      <div class="textBanner">Certifications</div>-->
-<!--    </div>-->
+      <!--    <div class="subsection" *ngIf="showCerts">-->
+      <!--      <div class="textBanner">Certifications</div>-->
+      <!--    </div>-->
 
-<!--    <div class="subsection" *ngIf="showAwards">-->
-<!--      <div class="textBanner">Awards</div>-->
-<!--    </div>-->
+      <!--    <div class="subsection" *ngIf="showAwards">-->
+      <!--      <div class="textBanner">Awards</div>-->
+      <!--    </div>-->
 
-  </section>
+    </section>
+  }
+
 </main>

@@ -2,14 +2,14 @@ export interface Education {
   name: string,
   gpa: number,
   gpaMax: number,
-  startYear: number,
-  startMonth: number,
-  endMonth: number,
-  endYear: number,
+  start: Date,
+  end: Date,
   degree: string,
   major: string,
   minor: string,
   honors: string,
-  details: string,
-  isCurrent: boolean
+  notes: string,
+  isCurrent: boolean,
+  isPublic: boolean,
+  logo: string
 }

@@ -1,12 +1,11 @@
 import {Component, OnDestroy} from '@angular/core';
-import {debounceTime, filter, Observable, Subscription, tap} from "rxjs";
-import {Profile} from "../../models/profile.model";
+import {Subscription} from "rxjs";
+
 import {Project} from "../../models/project.model";
-import {Education} from "../../models/education.model";
-import {Skill} from "../../models/skill.model";
+
 import {ServerService} from "../../services/server.service";
-import {FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CdkDrag, CdkDragHandle, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";

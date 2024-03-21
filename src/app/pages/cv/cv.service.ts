@@ -4,6 +4,7 @@ import {Profile} from "../../models/profile.model";
 import {ServerService} from "../../services/server.service";
 import {Skill} from "../../models/skill.model";
 import {Education} from "../../models/education.model";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class CvService {
   public defaultConfig: cvConfig = {
     showAwards: false,
     showBanner: true,
+    showBannerDecor: true,
     showCerts: false,
     showContacts: true,
     showEducation: true,
@@ -54,12 +56,10 @@ export class CvService {
   theme$: BehaviorSubject<string> = new BehaviorSubject<string>('dark')
   config$ = new BehaviorSubject<cvConfig>(this.defaultConfig);
 
-  constructor(private server: ServerService) {
-    this.loadProfile();
+  constructor(private server: ServerService, private http: HttpClient) {
     this.loadEducation();
     this.loadSkills();
   }
-
 
   getConfig(){
     return this.config$.asObservable();
@@ -67,12 +67,6 @@ export class CvService {
 
   getTheme(){
     return this.theme$.asObservable();
-  }
-
-  loadProfile() {
-    this.server.getProfile().pipe(
-      tap(result => this.profileSubject$.next(result))
-    ).subscribe();
   }
 
   loadEducation() {
@@ -89,6 +83,9 @@ export class CvService {
     ).subscribe();
   }
 
+  getDefaultCover(): Observable<string> {
+    return this.http.get('assets/yourfile.md', {responseType: 'text'});
+  }
 
   updateConfig(config: cvConfig) {
     this.config$.next(config);
@@ -100,6 +97,7 @@ export interface cvConfig {
   theme: string;
   skillDecor: string;
   showBanner: boolean;
+  showBannerDecor: boolean;
   showSkillDetails: boolean;
   showHeader: boolean;
   showIntro: boolean;

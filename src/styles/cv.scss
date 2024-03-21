@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Fira+Sans&family=Fira+Sans+Condensed&family=Iceberg&family=Parisienne&display=swap');
 
-
-
 .page-container {
   margin: 1rem auto;
   max-width: 1000px;
@@ -411,7 +409,6 @@ section.info {
   }
 }
 
-
 .meta .label {
   font-weight: 500;
 }
@@ -467,18 +464,14 @@ section.learning {
   }
 }
 
-.intro, {
+.intro {
 
   &.simple {
     font-size: 1.1em;
   }
 
   p {
-    margin: 0;
-  }
-
-  p + p {
-    margin: 2mm 0 0 0;
+    font-size: 12pt;
   }
 }
 
@@ -511,25 +504,27 @@ section.learning {
   .skill-list {
     display: flex;
     flex-direction: column;
-    gap: 1mm;
-    padding: 2mm;
+    gap: 1mm 0;
+    margin: 2mm 0 0 2mm;
 
     &.simple {
-      margin-left: 0.25in;
-      font-size: 1.1em;
-      height: 110px;
-      flex-wrap: wrap;
-      padding: 2mm 0 0 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      grid-auto-flow: column;
+      overflow: hidden;
+      font-size: 12pt;
+      gap: 2mm 3mm;
+      margin: 2mm;
 
       .name {
         font-weight: 600;
-        flex-grow: 0;
+        flex-grow: 1;
       }
 
       .skill {
-        align-items: first baseline;
-        flex: 0 1 1.2em;
-        gap: 1mm;
+        box-sizing: border-box;
+
         &::before {
           opacity: 0.33;
         }

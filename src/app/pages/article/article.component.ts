@@ -29,9 +29,7 @@ export class ArticleComponent {
 
       if(slug){
         this.article$ = server.getArticle(slug).pipe(tap(article => {
-          if(article){
-            console.log(article)
-          }
+
         }))
 
       }

@@ -8,7 +8,7 @@ import {SkillListComponent} from "../../components/skill-list/skill-list.compone
 import {Detail} from '../../models/detail.model';
 import {Observable, Subscription} from "rxjs";
 import {ContentBlock} from "../../models/content.model";
-import {getContentBody} from "../../utilities";
+import {getContentBody, getDetail} from "../../utilities";
 
 @Component({
   selector: 'app-biography',
@@ -27,34 +27,16 @@ import {getContentBody} from "../../utilities";
 })
 export class BiographyComponent {
 
+  content$: Observable<ContentBlock[]>;
+
   details: any = {};
-
-  protected content$: Observable<ContentBlock[]>;
-
-  firstName = "";
-  lastName = "";
-  location = "";
-  pronouns = "";
-  bio = "";
+  details$: Observable<Detail[]>;
 
   constructor(private server: ServerService) {
-
     this.content$ = server.getContentGroup("bio")
-
-    this.server.getAllDetails().subscribe(
-      (details) => {
-        this.firstName = details.filter((detail: Detail) => detail.label === "firstName")[0].content;
-        this.lastName = details.filter((detail: Detail) => detail.label === "lastName")[0].content;
-        this.location = details.filter((detail: Detail) => detail.label === "location")[0].content;
-        this.pronouns = details.filter((detail: Detail) => detail.label === "pronouns")[0].content;
-        this.bio = details.filter((detail: Detail) => detail.label === "bio")[0].content;
-      }
-    )
-
-
-
-
+    this.details$ = server.getAllDetails()
   }
 
   protected readonly getContentBody = getContentBody;
+  protected readonly getDetail = getDetail;
 }

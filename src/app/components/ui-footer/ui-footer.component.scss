@@ -31,6 +31,16 @@ footer {
   }
 }
 
+.social-links > .uicon {
+  font-size: 3rem;
+  opacity: 0.5;
+  transition: opacity 500ms;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .copyright {
   text-align: center;
   color: hsla(0, 0%, 100%);

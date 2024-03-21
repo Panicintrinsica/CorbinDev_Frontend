@@ -2,15 +2,21 @@
 
   <div class="flex column gap-small">
 
-    @if (details) {
+    @if (details$ | async; as details) {
       <div class="profile segment">
         <!--    <div class="photo">-->
         <!--    </div>-->
         <div class="content">
-          <div class="name"> {{ firstName }} {{ lastName }} <span class="pronouns">({{pronouns}})</span></div>
+          <div class="name">
+            {{ getDetail(details, "firstName", "content") }}
+            {{ getDetail(details, "lastName", "content") }}
+            <span class="pronouns">
+              ({{getDetail(details, "pronouns", "content")}})
+            </span>
+          </div>
 
           @if (content$ | async; as content) {
-            <div class="content" [innerHTML]="getContentBody(content, 'bioMain')" markdown></div>
+            <markdown class="content" [data]="getContentBody(content, 'bioMain')" markdown></markdown>
           }
         </div>
       </div>

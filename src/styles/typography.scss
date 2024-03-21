@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Finlandica:ital,wght@0,400..700;1,400..700&display=swap');
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons+Sharp';
 
 @font-face {
   font-family: 'SwedenSans';
@@ -19,6 +17,13 @@
   font-family: 'SwedenSans';
   src: url('../assets/fonts/SwedenSansBold.woff2') format('woff2');
   font-weight: bold; /* Bold is equivalent to 700 */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'uicons';
+  src: url('../assets/fonts/uicons.woff2') format('woff2');
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -98,3 +103,71 @@ span.label {
   font-family: var(--headerFont);
   color: var(--secondary)
 }
+
+.uicon:before, {
+  font-family: "uicons";
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  text-decoration: none !important;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.uicon.phone:before { content: '\e800'; } /* '' */
+.uicon.email:before { content: '\e801'; } /* '' */
+.uicon.location:before { content: '\e802'; } /* '' */
+.uicon.link:before { content: '\e803'; } /* '' */
+.uicon.home:before { content: '\e804'; } /* '' */
+.uicon.right-open:before { content: '\e805'; } /* '' */
+.uicon.left-open:before { content: '\e806'; } /* '' */
+.uicon.up-open:before { content: '\e807'; } /* '' */
+.uicon.down-open:before { content: '\e808'; } /* '' */
+.uicon.menu-outline:before { content: '\e809'; } /* '' */
+
+.uicon.quote:before { content: '\e80a'; } /* '' */
+.uicon.clock:before { content: '\e80b'; } /* '' */
+.uicon.calendar:before { content: '\e80c'; } /* '' */
+.uicon.bsky:before { content: '\e80e'; } /* '' */
+.uicon.pixelfed:before { content: '\e80f'; } /* '' */
+.uicon.mastodon:before { content: '\e80d'; } /* '' */
+.uicon.twitter:before { content: '\e815'; } /* '' */
+.uicon.github:before { content: '\f09b'; } /* '' */
+.uicon.linkedin:before { content: '\f0e1'; } /* '' */
+.uicon.youtube:before { content: '\f16a'; } /* '' */
+.uicon.instagram:before { content: '\f16d'; } /* '' */
+.uicon.sliders:before { content: '\f1de'; } /* '' */
+.uicon.twitch:before { content: '\f1e8'; } /* '' */
+
+.uicon.linkedin-footer:before { content: '\e812'; } /* '' */
+.uicon.github-footer:before { content: '\e810'; } /* '' */
+.uicon.pixelfed-footer:before { content: '\e814'; } /* '' */
+.uicon.mastodon-footer:before { content: '\e813'; } /* '' */
+.uicon.instagram-footer:before { content: '\e811'; } /* '' */
+
+

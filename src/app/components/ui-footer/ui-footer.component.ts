@@ -21,7 +21,6 @@ export class UiFooterComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router) {
     this.isHomePage = this.router.url === '/';
-    console.log(this.router.url)
   }
 
   ngOnInit() {
@@ -31,7 +30,6 @@ export class UiFooterComponent implements OnInit, OnDestroy {
 
       switch (true) {
         case event instanceof NavigationStart: {
-          console.log('starting')
           this.loading = true;
           break;
         }
