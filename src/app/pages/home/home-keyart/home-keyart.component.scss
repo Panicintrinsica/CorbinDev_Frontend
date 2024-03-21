@@ -14,6 +14,14 @@
   overflow: hidden;
   user-select: none;
 
+  video::-webkit-media-controls {
+    display: none !important;
+  }
+
+  video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+  }
+
   &:after {
     content: "";
     position: absolute;
@@ -29,15 +37,18 @@
 
   .keyart-content {
     position: absolute;
-    width: 90vw;
+    width: 100vw;
     top: 33%;
     left: 50%;
     transform: translate(-50%, -33%);
     max-width: 1200px;
+    overflow: hidden;    // Add this line
+
   }
 
   .nameplate {
-    text-shadow: 0 0 4px black;
+    position: relative;
+    width: 100%;
   }
 
 

@@ -15,18 +15,24 @@
         <h1 class="title pusher">{{project.name}}</h1>
 
         <div class="date">
-          {{project.started | date: 'd.M.yy'}}
-          @if (project.started && project.ended) {
-            <span>to</span>
+
+          @if(project.isCurrent) {
+            Current
+          } @else {
+            {{project.started | date: 'dd.MM.yy'}}
+            @if (project.started && project.ended) {
+              <span> to </span>
+            }
+            {{project.ended | date: 'dd.MM.yy'}}
           }
-          {{project.ended | date: 'd.M.yy'}}
+
         </div>
       </header>
 
       <div class="content">
         <div [innerHTML]="project.longDescription" markdown></div>
 
-        <h4>Skills</h4>
+        <h4>Skills & Technology</h4>
         <div class="tag-container cutout">
           @for (skill of project.skills; track skill) {
             <div class="skill tag" (click)="viewSkill(skill)">{{skill}}</div>
