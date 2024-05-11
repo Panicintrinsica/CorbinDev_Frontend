@@ -8,8 +8,23 @@ import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
   styleUrl: './home-keyart.component.scss'
 })
 export class HomeKeyartComponent implements AfterViewInit {
-  @ViewChild('videoElement') videoElement!: ElementRef;
-  ngAfterViewInit() {
-    this.videoElement.nativeElement.play();
+
+  ngAfterViewInit(){
+    this.ensureVideoPlays()
+  }
+
+  private ensureVideoPlays(): void{
+    const video = document.querySelector("video");
+
+    if(!video) return;
+
+    const promise = video.play();
+    if(promise !== undefined){
+      promise.then(() => {
+      }).catch(error => {
+        video.muted = true;
+        video.play();
+      });
+    }
   }
 }
