@@ -63,6 +63,10 @@
   background-color: var(--body);
 }
 
+.cdk-overlay-pane {
+  box-shadow: none;
+}
+
 .nsm-body {
   display: flex;
   flex-direction: column;
@@ -73,27 +77,21 @@
 }
 
 
-
 // Fix first paragraph spacing on the Resume Builder
 .intro > p:nth-child(1) {
   margin-top: 0;
 }
 
-
 @media print {
-
   .noprint {
     display: none !important;
     visibility: hidden !important;
   }
-
 }
-
 
 .mat-mdc-button {
   font-family: var(--bodyFont);
 }
-
 
 /* width */
 ::-webkit-scrollbar {

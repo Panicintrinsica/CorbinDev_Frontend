@@ -20,6 +20,7 @@ export class BlogComponent {
 
   constructor(private server: ServerService) {
     this.article$ = server.getArticlePage()
+    console.log(this.article$)
   }
 
   ngOnInit(): void {

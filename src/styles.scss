@@ -1,10 +1,14 @@
+@use '@angular/material' as mat;
+@use 'styles/m3-theme';
+
 @import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Finlandica:ital,wght@0,400..700;1,400..700&display=swap');
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons+Sharp';
 
-@import "styles/material";
 @import "styles/cv";
 @import "styles/article";
 @import "styles/typography";
+
+@include mat.core();
 
 :root {
   --background-color: #000;
@@ -473,6 +477,10 @@ ul > li > ul > li > ul > li::before{
   }
 }
 
+html {
+  // Apply the light theme by default
+  @include mat.all-component-themes(m3-theme.$dark-theme);
+}
 
 //@import "ngx-smart-modal/ngx-smart-modal";
 @import "styles/overrides";
