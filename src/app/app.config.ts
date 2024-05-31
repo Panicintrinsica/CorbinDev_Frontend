@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideHttpClient, withFetch} from "@angular/common/http";
+import { provideHttpClient, withFetch } from "@angular/common/http";
 import { provideMarkdown} from "ngx-markdown";
 
 

@@ -4,7 +4,7 @@ import {Profile} from "../../models/profile.model";
 import {ServerService} from "../../services/server.service";
 import {Skill} from "../../models/skill.model";
 import {Education} from "../../models/education.model";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
