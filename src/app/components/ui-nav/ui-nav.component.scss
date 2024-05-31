@@ -12,7 +12,7 @@ $border-size: 2px;
     position: absolute;
     bottom: -$border-size; /* This should match the border thickness */
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: $border-size; /* This should match the border thickness */
     background: var(--full-horizontal-gradient);
   }
