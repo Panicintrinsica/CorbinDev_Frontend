@@ -3,9 +3,15 @@
 
   <div class="flex-row bottom-padded">
     <button mat-stroked-button routerLink="/projects">Back</button>
+
+    <button mat-raised-button>Basic</button>
+    <button mat-raised-button color="primary">Primary</button>
+    <button mat-raised-button color="accent">Accent</button>
+    <button mat-raised-button color="warn">Warn</button>
+
     <div class="fill"></div>
     @if (project?.showLink) {
-      <a mat-stroked-button color="primary" [href]="project?.link" target="_blank">Visit</a>
+      <a mat-stroked-button color="warn" [href]="project?.link" target="_blank">Visit</a>
     }
   </div>
 
