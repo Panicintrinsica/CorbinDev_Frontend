@@ -3,17 +3,6 @@
 
 @include mat.core();
 
-//
-//$frontend-theme: mat.define-theme((
-//  color: (
-//    theme-type: dark,
-//    primary: mat.$violet-palette,
-//    tertiary: mat.$blue-palette,
-//  ),
-//  density: (
-//    scale: 0,
-//  )
-//));
 
 
 @import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Finlandica:ital,wght@0,400..700;1,400..700&display=swap');
@@ -21,6 +10,7 @@
 
 @import "styles/cv";
 @import "styles/article";
+@import "styles/project";
 @import "styles/typography";
 
 
@@ -42,8 +32,9 @@
   --tag-highlight-border-hover: hsla(245, 25%, 60%, 1);
 
   --personal-gradient: linear-gradient(315deg, rgb(31, 53, 61) 0%, rgb(30, 30, 30) 50%);
-  --professional-gradient: linear-gradient(315deg, rgb(61, 26, 26) 0%, rgb(30, 30, 30) 50%);
+  --professional-gradient: linear-gradient(315deg, rgb(38, 26, 61) 0%, rgb(30, 30, 30) 50%);
   --openSource-gradient: linear-gradient(315deg, rgb(23, 66, 21) 0%, rgb(30, 30, 30) 50%);
+  --university-gradient: linear-gradient(315deg, rgb(66, 21, 21) 0%, rgb(30, 30, 30) 50%);
 
   --primary-light: hsl(203, 100%, 75%);
   --primary: #009fff;
@@ -498,6 +489,3 @@ ul > li > ul > li > ul > li::before{
 
 //@import "ngx-smart-modal/ngx-smart-modal";
 @import "styles/overrides";
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

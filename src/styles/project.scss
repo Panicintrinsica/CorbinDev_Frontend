@@ -1,0 +1,28 @@
+.project-segment > header {
+  &.personal {
+    background: var(--personal-gradient);
+  }
+
+  &.professional {
+    background: var(--professional-gradient);
+  }
+
+  &.openSource {
+    background: var(--openSource-gradient);
+  }
+
+  &.university {
+    background: var(--university-gradient);
+  }
+
+  .group {
+    font-family: var(--uiFont);
+    opacity: 0.33;
+  }
+}
+
+.project-type-tag {
+  background: #001b3f;
+  padding: 6px;
+  border-radius: 4px;
+}

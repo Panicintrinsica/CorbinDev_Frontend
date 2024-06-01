@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import {MatAnchor, MatButton} from "@angular/material/button";
-import {ActivatedRoute, RouterLink} from "@angular/router";
-import {AsyncPipe, DatePipe, NgClass, NgForOf, NgIf} from "@angular/common";
+import {RouterLink} from "@angular/router";
+import {AsyncPipe, DatePipe, NgClass, NgForOf, NgIf, TitleCasePipe} from "@angular/common";
 import {MarkdownComponent} from "ngx-markdown";
 import {Observable, tap} from "rxjs";
 import {Project} from "../../models/project.model";
 import {ServerService} from "../../services/server.service";
 import {MatDialog} from "@angular/material/dialog";
-import {SkillDialogComponent} from "../../components/skill-dialog/skill-dialog.component";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
-import {UiProjectComponent} from "../../components/ui-project/ui-project.component";
+import {UiProjectCardComponent} from "../../components/ui-project-card/ui-project-card.component";
+import {MatChipListbox, MatChipOption} from "@angular/material/chips";
 
 @Component({
   selector: 'app-project-list',
@@ -24,9 +24,12 @@ import {UiProjectComponent} from "../../components/ui-project/ui-project.compone
     AsyncPipe,
     MatTabGroup,
     MatTab,
-    UiProjectComponent,
+    UiProjectCardComponent,
     NgForOf,
-    NgIf
+    NgIf,
+    MatChipListbox,
+    MatChipOption,
+    TitleCasePipe
   ],
   templateUrl: './project-list.component.html',
   styleUrl: './project-list.component.scss'
@@ -34,20 +37,64 @@ import {UiProjectComponent} from "../../components/ui-project/ui-project.compone
 export class ProjectListComponent {
   project$: Observable<Project[]>
 
-  professional: Project[] = []
-  personal: Project[] = []
-  openSource: Project[] = []
+  resultSet: Project[] = []
+  filteredProjects: Project[] = []
+
+  categoryOptions = ['web','desktop','mobile','multi','game']
+  groupOptions = ['personal','professional','university','open source']
+
+  selectedCategories = new Set<string>();
+  selectedGroups = new Set<string>();
 
   constructor(public dialog: MatDialog, private server: ServerService) {
     this.project$ = this.server.getProjects().pipe(tap((result) => {
-      this.professional = filterProjects(result, 'professional')
-      this.personal = filterProjects(result, 'personal')
-      this.openSource = filterProjects(result, 'openSource')
+      this.resultSet = result
+      this.filteredProjects = result
     }))
   }
 
+  selectCategories(filterKey: string) {
+    if (this.selectedCategories.has(filterKey)) {
+      this.selectedCategories.delete(filterKey);
+    } else {
+      this.selectedCategories.add(filterKey);
+    }
+    this.updateList()
+  }
+
+  selectGroups(filterKey: string) {
+    if (this.selectedGroups.has(filterKey)) {
+      this.selectedGroups.delete(filterKey);
+    } else {
+      this.selectedGroups.add(filterKey);
+    }
+    this.updateList()
+  }
+
+
+  updateList(){
+    let newResults: Project[] = this.resultSet
+
+    if (this.selectedCategories.size != 0) {
+      newResults = this.filterByCategory(newResults, Array.from(this.selectedCategories.keys()));
+    }
+
+    if (this.selectedGroups.size != 0) {
+      newResults = this.filterByGroup(newResults, Array.from(this.selectedGroups.keys()));
+    }
+
+    console.log(newResults)
+
+    this.filteredProjects = newResults
+  }
+
+  filterByCategory(array: Project[], selectedFilters: string[]){
+    return array.filter(project => selectedFilters.includes(project.category));
+  }
+
+  filterByGroup(array: Project[], selectedFilters: string[]){
+    return array.filter(project => selectedFilters.includes(project.group));
+  }
 }
 
-function filterProjects(array: Project[], filter: string){
-  return array.filter((x => x.group === filter))
-}
+

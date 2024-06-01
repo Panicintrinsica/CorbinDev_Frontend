@@ -1,23 +1,24 @@
 import {Component, Input} from '@angular/core';
 import {MatAnchor, MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
-import {DatePipe, NgOptimizedImage} from "@angular/common";
+import {DatePipe, NgOptimizedImage, TitleCasePipe} from "@angular/common";
 import {Project} from "../../models/project.model";
 
 @Component({
-  selector: 'ui-project',
+  selector: 'ui-project-card',
   standalone: true,
   imports: [
     MatAnchor,
     MatButton,
     RouterLink,
     NgOptimizedImage,
-    DatePipe
+    DatePipe,
+    TitleCasePipe
   ],
-  templateUrl: './ui-project.component.html',
-  styleUrl: './ui-project.component.scss'
+  templateUrl: './ui-project-card.component.html',
+  styleUrl: './ui-project-card.component.scss'
 })
-export class UiProjectComponent {
+export class UiProjectCardComponent {
   @Input() project: Project = {
     group: "",
     isFeatured: false,
@@ -49,6 +50,4 @@ export class UiProjectComponent {
     skills: [],
     slug: ""
   }
-
-
 }

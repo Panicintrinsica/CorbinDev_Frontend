@@ -18,6 +18,45 @@ article > header > .category {
   font-size: 1rem;
   background: var(--body);
 
+  // Project Types
+  &.game {
+    color: hsl(160, 100%, 75%);
+    background: hsl(160, 100%, 10%);
+    border-color: hsl(160, 100%, 20%);
+  }
+
+
+  &.web {
+    color: hsl(200, 100%, 75%);
+    background: hsl(200, 100%, 10%);
+    border-color: hsl(200, 100%, 20%);
+  }
+
+  &.mobile {
+    color: hsl(240, 100%, 75%);
+    background: hsl(240, 100%, 10%);
+    border-color: hsl(240, 100%, 20%);
+  }
+
+  &.desktop {
+    color: hsl(280, 100%, 75%);
+    background: hsl(280, 100%, 10%);
+    border-color: hsl(280, 100%, 20%);
+  }
+
+  &.multi {
+    color: hsl(320, 100%, 75%);
+    background: hsl(320, 100%, 10%);
+    border-color: hsl(320, 100%, 20%);
+  }
+
+  &.server {
+    color: hsl(360, 100%, 75%);
+    background: hsl(360, 100%, 10%);
+    border-color: hsl(360, 100%, 20%);
+  }
+
+  // Blog Article Types
   &.announcement {
     color: hsl(0, 100%, 75%);
     background: hsl(0, 100%, 10%);

@@ -3,12 +3,6 @@
 
   <div class="flex-row bottom-padded">
     <button mat-stroked-button routerLink="/projects">Back</button>
-
-    <button mat-raised-button>Basic</button>
-    <button mat-raised-button color="primary">Primary</button>
-    <button mat-raised-button color="accent">Accent</button>
-    <button mat-raised-button color="warn">Warn</button>
-
     <div class="fill"></div>
     @if (project?.showLink) {
       <a mat-stroked-button color="warn" [href]="project?.link" target="_blank">Visit</a>
@@ -16,7 +10,7 @@
   </div>
 
   @if (project){
-    <article class="segment">
+    <article class="segment project-segment">
       <header class="{{project.group}}">
         <h1 class="title pusher">{{project.name}}</h1>
 
