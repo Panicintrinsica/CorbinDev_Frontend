@@ -1,45 +1,54 @@
 <div class="page">
 
-  <div class="project-toolbar">
-   <div class="flex row">
-        <div class="label">Category: </div>
-        <mat-chip-listbox multiple>
-          @for (option of categoryOptions; track option){
-            <mat-chip-option
-              id="{{option}}"
-              (selectionChange)="selectCategories(option)"
-            >{{option | titlecase}}
-            </mat-chip-option>
-          }
-        </mat-chip-listbox>
-      </div>
-
-    <div class="flex row">
-      <div class="label">Client: </div>
-      <mat-chip-listbox multiple>
-        @for (option of groupOptions; track option){
-          <mat-chip-option
-            id="{{option}}"
-            (selectionChange)="selectGroups(option)"
-          >{{option | titlecase}}
-          </mat-chip-option>
-        }
-      </mat-chip-listbox>
+  <div class="project-container">
+    <div class="toolbar">
+      <h2 class="fill">Project Gallery</h2>
+      <input class="search" type="search" placeholder="Search" [(ngModel)]="searchString" (input)="updateList()">
     </div>
-
-
-
-
-
-  </div>
-
-  <div class="project-list" *ngIf="project$ | async as projects">
-
-    @for (project of filteredProjects; track project.name) {
-      <ui-project-card [project]="project"></ui-project-card>
-    } @empty {
-      No Matches
-    }
+    <div class="sidebar">
+      <div class="sidebar-segment">
+        <div class="sidebar-segment-heading">
+          <span class="heading">Categories</span>
+        </div>
+        <div class="content">
+          <mat-chip-listbox #categoryList class="mat-mdc-chip-set-stacked " multiple>
+            @for (option of categoryOptions; track option){
+              <mat-chip-option
+                id="{{option}}"
+                (selectionChange)="selectCategories(option)"
+              >{{option | titlecase}}
+              </mat-chip-option>
+            }
+          </mat-chip-listbox>
+        </div>
+      </div>
+      <div class="sidebar-segment">
+        <div class="sidebar-segment-heading">
+          <span class="heading">Group</span>
+        </div>
+        <div class="content">
+          <mat-chip-listbox #groupList class="mat-mdc-chip-set-stacked" multiple>
+            @for (option of groupOptions; track option){
+              <mat-chip-option
+                id="{{option}}"
+                (selectionChange)="selectGroups(option)"
+              >{{option | titlecase}}
+              </mat-chip-option>
+            }
+          </mat-chip-listbox>
+        </div>
+      </div>
+    </div>
+    <div class="project-list" *ngIf="project$ | async as projects">
+      @for (project of filteredProjects; track project.name) {
+        <ui-project-card [project]="project"></ui-project-card>
+      } @empty {
+        <div class="no-matches">
+          <p>No matches with these filters</p>
+          <button mat-raised-button (click)="resetFilters()">Reset Filters</button>
+        </div>
+      }
+    </div>
 
   </div>
 

@@ -16,8 +16,12 @@
   }
 
   .group {
-    font-family: var(--uiFont);
+    font-family: var(--uiFont), serif;
     opacity: 0.33;
+    @media screen and (max-width: 640px) {
+      display: none;
+    }
+
   }
 }
 

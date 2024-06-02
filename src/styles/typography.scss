@@ -28,9 +28,9 @@
 }
 
 :root {
-  --bodyFont: "SwedenSans", sans-serif;
-  --headerFont: "Afacad", sans-serif;
-  --uiFont: "Finlandica", monospaced;
+  --bodyFont: "SwedenSans";
+  --headerFont: "Afacad";
+  --uiFont: "Finlandica";
   --bodyFont-color: hsl(0, 100%, 100%);
 }
 
@@ -57,10 +57,10 @@ mark {
 }
 
 h1, h2, h3, h4, h5, h6, .title, .menu-header {
-  font-family: var(--headerFont);
+  font-family: var(--headerFont), serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .heading {
   background: -webkit-linear-gradient(
       hsl(0, 0%, 100%),
       hsl(0, 0%, 66%)

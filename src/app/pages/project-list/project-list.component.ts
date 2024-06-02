@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {MatAnchor, MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 import {AsyncPipe, DatePipe, NgClass, NgForOf, NgIf, TitleCasePipe} from "@angular/common";
@@ -10,6 +10,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {UiProjectCardComponent} from "../../components/ui-project-card/ui-project-card.component";
 import {MatChipListbox, MatChipOption} from "@angular/material/chips";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-project-list',
@@ -29,12 +30,16 @@ import {MatChipListbox, MatChipOption} from "@angular/material/chips";
     NgIf,
     MatChipListbox,
     MatChipOption,
-    TitleCasePipe
+    TitleCasePipe,
+    FormsModule
   ],
   templateUrl: './project-list.component.html',
   styleUrl: './project-list.component.scss'
 })
 export class ProjectListComponent {
+  @ViewChild('categoryList') categoryList!: MatChipListbox;
+  @ViewChild('groupList') groupList!: MatChipListbox;
+
   project$: Observable<Project[]>
 
   resultSet: Project[] = []
@@ -45,6 +50,7 @@ export class ProjectListComponent {
 
   selectedCategories = new Set<string>();
   selectedGroups = new Set<string>();
+  searchString: string = "";
 
   constructor(public dialog: MatDialog, private server: ServerService) {
     this.project$ = this.server.getProjects().pipe(tap((result) => {
@@ -71,7 +77,6 @@ export class ProjectListComponent {
     this.updateList()
   }
 
-
   updateList(){
     let newResults: Project[] = this.resultSet
 
@@ -83,9 +88,18 @@ export class ProjectListComponent {
       newResults = this.filterByGroup(newResults, Array.from(this.selectedGroups.keys()));
     }
 
-    console.log(newResults)
+    if (this.searchString.length > 3) {
+      newResults = this.filterByName(newResults, this.searchString);
+    }
 
     this.filteredProjects = newResults
+  }
+
+  filterByName(array: Project[], searchString: string){
+    searchString = searchString.toLowerCase();
+    return array.filter(project =>
+      (project.name.toLowerCase().includes(searchString) ||
+        project.shortDescription.toLowerCase().includes(searchString)));
   }
 
   filterByCategory(array: Project[], selectedFilters: string[]){
@@ -94,6 +108,13 @@ export class ProjectListComponent {
 
   filterByGroup(array: Project[], selectedFilters: string[]){
     return array.filter(project => selectedFilters.includes(project.group));
+  }
+
+  resetFilters(){
+    this.categoryList._chips.forEach(chip => { chip.deselect(); })
+    this.groupList._chips.forEach(chip => { chip.deselect(); })
+    this.searchString = ""
+    this.updateList()
   }
 }
 
