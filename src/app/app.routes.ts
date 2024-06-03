@@ -36,7 +36,7 @@ export const routes: Routes = [
   { path: 'projects', component: ProjectListComponent, data: { animation: 'Projects' }},
   { path: 'project/:slug', component: ProjectComponent, data: { animation: 'Project' }},
 
-  { path: 'admin-login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
 
   { path: 'admin', component: AdminRootComponent,
     children: [

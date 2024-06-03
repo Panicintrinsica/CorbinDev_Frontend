@@ -8,6 +8,7 @@ import {SkillDialogComponent} from "../../components/skill-dialog/skill-dialog.c
 import {MatAnchor, MatButton} from "@angular/material/button";
 import {DatePipe, NgClass} from "@angular/common";
 import {MarkdownComponent} from "ngx-markdown";
+import {GoBackDirective} from "../../directives/go-back.directive";
 
 @Component({
   selector: 'app-project',
@@ -18,7 +19,8 @@ import {MarkdownComponent} from "ngx-markdown";
     MatAnchor,
     NgClass,
     MarkdownComponent,
-    DatePipe
+    DatePipe,
+    GoBackDirective
   ],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'

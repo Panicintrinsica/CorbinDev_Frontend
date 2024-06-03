@@ -25,3 +25,8 @@ export interface Skill {
     version: number;
   }
 }
+
+export interface BasicSkill {
+  id: string,
+  name: string
+}

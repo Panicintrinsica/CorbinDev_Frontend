@@ -1,13 +1,11 @@
-import {Component, Inject} from '@angular/core';
-import {Skill} from "../../../../../corbin.dev - OLD AND BROKEN/src/app/models/skill.model";
-import {ProjectStub} from "../../../../../corbin.dev - OLD AND BROKEN/src/app/models/project.model";
-import {ServerService} from "../../../../../corbin.dev - OLD AND BROKEN/src/app/services/server.service";
+import {Component, Inject, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Router} from "@angular/router";
-import {
-  GuiSkillsDialogComponent
-} from "../../../../../corbin.dev - OLD AND BROKEN/src/app/components/gui-skill-dialog/gui-skill-dialog.component";
+import {ServerService} from "../../services/server.service";
+import {Skill} from "../../models/skill.model";
+import {ProjectStub} from "../../models/project.model";
+import {SkillDialogComponent} from "../skill-dialog/skill-dialog.component";
 
 @Component({
   selector: 'ui-skill',
@@ -16,7 +14,7 @@ import {
   templateUrl: './ui-skill.component.html',
   styleUrl: './ui-skill.component.scss'
 })
-export class UiSkillComponent {
+export class UiSkillComponent implements OnInit {
   skill$: Observable<Skill> | undefined
   projects$: Observable<ProjectStub[]> | undefined
 
@@ -24,7 +22,7 @@ export class UiSkillComponent {
   (@Inject(MAT_DIALOG_DATA) public data: string,
    public server: ServerService,
    private router: Router,
-   private dialogRef: MatDialogRef<GuiSkillsDialogComponent>
+   private dialogRef: MatDialogRef<SkillDialogComponent>
   ) {}
 
   ngOnInit() {

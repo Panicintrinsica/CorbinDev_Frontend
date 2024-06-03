@@ -42,7 +42,8 @@ export class ServerService {
   }
 
   getSkillByID(id: string): Observable<Skill>{
-    return this.http.get<Skill>(`${this.API}/skills/${id}`)
+    let encodedID = encodeURIComponent(id);
+    return this.http.get<Skill>(`${this.API}/skills/${encodedID}`)
   }
 
   getContentBlock(selector: string): Observable<ContentBlock>{

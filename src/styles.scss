@@ -4,7 +4,7 @@
 @include mat.core();
 
 
-
+@import "@ng-select/ng-select/themes/material.theme.css";
 @import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Finlandica:ital,wght@0,400..700;1,400..700&display=swap');
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons+Sharp';
 
@@ -12,6 +12,8 @@
 @import "styles/article";
 @import "styles/project";
 @import "styles/typography";
+@import "styles/forms";
+
 
 
 
@@ -198,7 +200,7 @@ address {
     flex-direction: column;
   };
 
-  header {
+  header, .header {
     padding: .33rem .5rem;
     display: flex;
     gap: 1rem;
@@ -238,7 +240,7 @@ address {
 }
 
 
-input[type="search"] {
+input {
   width: 400px;
   padding: 6px 10px;
   margin: 8px 0;
@@ -253,12 +255,12 @@ input[type="search"] {
 }
 
 /* On mouse-over, add a deeper shadow */
-input[type="search"]:hover {
+input:hover {
   box-shadow: 0 0 10px 0 rgba(0, 208, 255, 0.2);
 }
 
 /* When the input receives focus, change border color, add a blue box shadow */
-input[type="search"]:focus {
+input:focus {
   border: 2px solid #007BFF;
   box-shadow: 0 0 8px 0 #007BFF;
   outline: none;

@@ -1,1 +1,111 @@
 <p>admin-projects-editor works!</p>
+
+
+
+  <div class="segment">
+    <form>
+    <div class="header">
+      <h3 class="title">Project</h3>
+    </div>
+
+    <div class="body content-editor">
+
+      <div class="flex-row">
+        <mat-form-field class="fill">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="" value="">
+        </mat-form-field>
+
+        <mat-form-field class="fill">
+          <mat-label>URL Slug</mat-label>
+          <input matInput placeholder="" value="">
+        </mat-form-field>
+
+        <mat-form-field class="fill">
+          <mat-label>Start Date</mat-label>
+          <input matInput [matDatepicker]="startingPicker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="startingPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startingPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="fill">
+          <mat-label>End Date</mat-label>
+          <input matInput [matDatepicker]="endingPicker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="endingPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endingPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="flex-row">
+        <mat-form-field class="fill">
+          <mat-label>Client</mat-label>
+          <input matInput placeholder="" value="">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <input matInput placeholder="" value="">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Category</mat-label>
+          <mat-select>
+            @for (type of ProjectType; track type.id) {
+              <mat-option [value]="type.id">{{type.label}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Group</mat-label>
+          <mat-select>
+            @for (group of ProjectGroups; track group.id) {
+              <mat-option [value]="group.id">{{group.label}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="flex-row">
+        <mat-form-field class="fill">
+          <mat-label>URL</mat-label>
+          <input matInput placeholder="" value="">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Short Description</mat-label>
+        <textarea matInput placeholder="A simple project that proves the existance of dark matter."></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Full Description</mat-label>
+        <textarea matInput placeholder="A simple project that proves the existance of dark matter."></textarea>
+      </mat-form-field>
+
+      <div class="flex-row">
+        <mat-checkbox>Featured</mat-checkbox>
+        <mat-checkbox>Published</mat-checkbox>
+        <mat-checkbox>Show Notes</mat-checkbox>
+        <mat-checkbox>Show URL</mat-checkbox>
+      </div>
+
+      <ng-select
+        [items]="skillList | async"
+        bindLabel="name"
+        [multiple]="true"
+      >
+      </ng-select>
+
+    </div>
+
+      <div class="footer">
+      <button type="button" mat-raised-button color="primary">Submit</button>
+    </div>
+
+
+    </form>
+  </div>
+

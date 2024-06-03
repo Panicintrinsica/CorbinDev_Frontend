@@ -7,6 +7,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withFetch } from "@angular/common/http";
 import { provideMarkdown} from "ngx-markdown";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {provideNativeDateAdapter} from "@angular/material/core";
 
 
 export const appConfig: ApplicationConfig = {
@@ -15,7 +16,8 @@ export const appConfig: ApplicationConfig = {
     provideMarkdown(),
     provideAnimations(),
     provideRouter(routes),
-    provideAnimations(), provideAnimationsAsync(),
-
+    provideAnimations(),
+    provideAnimationsAsync(),
+    provideNativeDateAdapter()
 ]
 };

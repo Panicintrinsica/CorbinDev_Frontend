@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {UiArticleComponent} from "../../components/ui-article/ui-article.component";
-import {AsyncPipe} from "@angular/common";
-import {Observable, tap} from "rxjs";
+import {AsyncPipe, Location} from "@angular/common";
+import {Observable } from "rxjs";
 import {Article} from "../../models/article.model";
-import {ServerService} from "../../services/server.service";
+import {BlogService} from "../../services/blog.service";
+import {GoBackDirective} from "../../directives/go-back.directive";
 
 @Component({
   selector: 'app-article',
@@ -14,7 +15,8 @@ import {ServerService} from "../../services/server.service";
     MatButton,
     RouterLink,
     UiArticleComponent,
-    AsyncPipe
+    AsyncPipe,
+    GoBackDirective
   ],
   templateUrl: './article.component.html',
   styleUrl: './article.component.scss'
@@ -22,19 +24,14 @@ import {ServerService} from "../../services/server.service";
 export class ArticleComponent {
   article$: Observable<Article> | undefined
 
-  constructor(server: ServerService, route: ActivatedRoute) {
+  constructor(bs: BlogService, route: ActivatedRoute, private location: Location) {
 
     route.paramMap.subscribe(params => {
       const slug = params.get('slug')
 
       if(slug){
-        this.article$ = server.getArticle(slug).pipe(tap(article => {
-
-        }))
-
+        this.article$ = bs.getArticle(slug)
       }
     });
-
-
   }
 }

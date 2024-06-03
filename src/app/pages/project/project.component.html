@@ -2,7 +2,7 @@
 <div class="page">
 
   <div class="flex-row bottom-padded">
-    <button mat-stroked-button routerLink="/projects">Back</button>
+    <button mat-stroked-button uiGoBack>Back</button>
     <div class="fill"></div>
     @if (project?.showLink) {
       <a mat-stroked-button color="warn" [href]="project?.link" target="_blank">Visit</a>
