@@ -18,6 +18,7 @@ import {AdminProjectsIndexComponent} from "./pages/admin/admin-projects-index/ad
 import {AdminSkillsIndexComponent} from "./pages/admin/admin-skills-index/admin-skills-index.component";
 import {AdminSkillsEditorComponent} from "./pages/admin/admin-skills-editor/admin-skills-editor.component";
 import {LoginComponent} from "./pages/auth/login/login.component";
+import {AuthGuard} from "./guards/auth-guard.guard";
 
 export const routes: Routes = [
 
@@ -38,7 +39,7 @@ export const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
 
-  { path: 'admin', component: AdminRootComponent,
+  { path: 'admin', component: AdminRootComponent, canActivate: [AuthGuard],
     children: [
       { path: '',  component: AdminDashboardComponent },
       { path: 'profile',  component: AdminProfileComponent },

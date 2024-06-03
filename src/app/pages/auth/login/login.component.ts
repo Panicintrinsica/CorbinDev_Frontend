@@ -22,15 +22,11 @@ export class LoginComponent {
 
   login(){
     console.log(this.username);
+    this.authService.login(this.username, this.password)
+  }
 
-    this.authService.login(this.username, this.password).subscribe({
-      next: (result) => {
-        console.log(result)},
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {}
-    })
+  isValidTest(){
+    console.log(this.authService.isTokenExpired());
   }
 
 }
