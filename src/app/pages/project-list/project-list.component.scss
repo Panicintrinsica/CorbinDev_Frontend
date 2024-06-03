@@ -78,21 +78,7 @@ h4 { margin-bottom: 0.5rem }
   gap: 0.5rem
 }
 
-.sidebar-segment {
-  background: var(--body);
-  border-radius: 8px;
 
-  .sidebar-segment-heading {
-    background: var(--body-lowlight);
-    border-radius: 8px 8px 0 0;
-    padding: 6px;
-    font-size: var(--headerFont);
-  }
-
-  .content {
-    padding: 6px;
-  }
-}
 
 @media screen and (max-width: 640px) {
   .mat-mdc-chip-set-stacked .mat-mdc-chip{

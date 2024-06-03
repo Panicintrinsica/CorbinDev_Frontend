@@ -14,9 +14,6 @@
 @import "styles/typography";
 @import "styles/forms";
 
-
-
-
 :root {
   //@include mat.all-component-themes($frontend-theme);
   @include mat.all-component-themes(m3-theme.$dark-theme);
@@ -97,6 +94,7 @@
       var(--blood-red) 100%
   );
 }
+
 
 
 hr.lighter {
@@ -222,6 +220,22 @@ address {
 
   .content {
     padding: .75rem;
+  }
+}
+
+.sidebar-segment {
+  background: var(--body);
+  border-radius: 8px;
+
+  .sidebar-segment-heading {
+    background: var(--body-lowlight);
+    border-radius: 8px 8px 0 0;
+    padding: 6px;
+    font-size: var(--headerFont);
+  }
+
+  .content {
+    padding: 6px;
   }
 }
 
@@ -484,3 +498,4 @@ ul > li > ul > li > ul > li::before{
 
 //@import "ngx-smart-modal/ngx-smart-modal";
 @import "styles/overrides";
+@include mat.color-variants-backwards-compatibility(m3-theme.$dark-theme);

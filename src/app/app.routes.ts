@@ -19,6 +19,7 @@ import {AdminSkillsIndexComponent} from "./pages/admin/admin-skills-index/admin-
 import {AdminSkillsEditorComponent} from "./pages/admin/admin-skills-editor/admin-skills-editor.component";
 import {LoginComponent} from "./pages/auth/login/login.component";
 import {AuthGuard} from "./guards/auth-guard.guard";
+import {AdminArticleIndexComponent} from "./pages/admin/admin-article-index/admin-article-index.component";
 
 export const routes: Routes = [
 
@@ -44,7 +45,7 @@ export const routes: Routes = [
       { path: '',  component: AdminDashboardComponent },
       { path: 'profile',  component: AdminProfileComponent },
 
-      { path: 'articles',  component: AdminDashboardComponent },
+      { path: 'articles',  component: AdminArticleIndexComponent },
       { path: 'articles/new',  component: AdminArticleEditorComponent },
       { path: 'articles/edit/:id',  component: AdminArticleEditorComponent },
 
