@@ -21,12 +21,11 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   login(){
-    console.log(this.username);
     this.authService.login(this.username, this.password)
   }
 
   isValidTest(){
-    console.log(this.authService.isTokenExpired());
+
   }
 
 }

@@ -1,0 +1,46 @@
+.segment, {
+  background-color: var(--body);
+  color: white;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.50);
+  transition: box-shadow 750ms;
+
+  &.padded {
+    padding: .33rem .5rem;
+  }
+
+  &.glow:hover {
+    box-shadow: 0 0 6px hsla(240, 100%, 50%, 40%);
+    transition: box-shadow 100ms;
+  }
+
+  &.flex {
+    display: flex;
+    flex-direction: column;
+  };
+
+  .segment-header {
+    padding: .33rem .5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: var(--body-highlight);
+    align-items: center;
+
+    .title {
+      margin: unset;
+    }
+  };
+
+  .segment-footer {
+    display: flex;
+    background: var(--body-lowlight);
+    padding: .33rem .5rem;
+    gap: .33rem;
+  };
+
+  .content {
+    padding: .75rem;
+  }
+}

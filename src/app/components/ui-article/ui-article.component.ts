@@ -4,6 +4,7 @@ import {MatButton} from "@angular/material/button";
 import {DatePipe, JsonPipe, LowerCasePipe, NgClass} from "@angular/common";
 import {MarkdownComponent, MarkdownPipe} from "ngx-markdown";
 import {Article} from "../../models/article.model";
+import {TagComponent} from "../tag/tag.component";
 
 interface onInit {
 }
@@ -19,7 +20,8 @@ interface onInit {
     MarkdownPipe,
     NgClass,
     JsonPipe,
-    MarkdownComponent
+    MarkdownComponent,
+    TagComponent
   ],
   templateUrl: './ui-article.component.html',
   styleUrl: './ui-article.component.scss'
@@ -43,6 +45,7 @@ export class UiArticleComponent implements onInit {
   @Input() isStub: boolean = false;
 
   fullText: string | undefined = "";
+  @Input() displayStyle: ArticleDisplayStyle = ArticleDisplayStyle.Simple;
 
   ngOnInit(): void {
     if(this.data.content){
@@ -52,4 +55,9 @@ export class UiArticleComponent implements onInit {
     }
   }
 
+}
+
+export enum ArticleDisplayStyle {
+  'Simple' = 'simple',
+  'Card' = 'card'
 }

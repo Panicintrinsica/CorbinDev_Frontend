@@ -1,15 +1,13 @@
 <div class="page">
 
   <section class="content article-list">
-
     @if (articles$ | async; as articles) {
 
       @for (article of articles.records; track article.id) {
-        <ui-article [isStub]="true" [data]="article"></ui-article>
+        <ui-article [isStub]="true" [data]="article" [displayStyle]="ArticleDisplayStyle.Card"></ui-article>
       }
           }
   </section>
-
 
   <div class="pager">
     <div class="pager-item" (click)="lastPage()" [ngClass]="{'disabled': isFirstPage}">Back</div>

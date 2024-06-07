@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {MatAnchor, MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 import {DatePipe, NgOptimizedImage, TitleCasePipe} from "@angular/common";
-import {Project} from "../../models/project.model";
+import {Project} from "../../../../models/project.model";
 
 @Component({
   selector: 'ui-project-card',

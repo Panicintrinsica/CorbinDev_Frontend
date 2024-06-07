@@ -11,31 +11,31 @@
       <div class="skillCategoryLabel">Frontend</div>
       <div class="tag-container">
         @for (skill of frontend | skillSearch:searchInput; track skill){
-          <div class="skill tag" [ngClass]="{'highlight': skill.isFeatured}" (click)="viewSkill(skill.name)">{{skill.name}}</div>
+          <div class="skill tag" [ngClass]="{'highlight': skill.isFeatured}" (click)="viewSkill(skill.id)">{{skill.name}}</div>
         }
       </div>
       <div class="skillCategoryLabel">Backend</div>
       <div class="tag-container">
         @for (skill of backend | skillSearch:searchInput; track skill){
-          <div class="skill tag" [ngClass]="{'highlight': skill.isFeatured}" (click)="viewSkill(skill.name)">{{skill.name}}</div>
+          <div class="skill tag" [ngClass]="{'highlight': skill.isFeatured}" (click)="viewSkill(skill.id)">{{skill.name}}</div>
         }
       </div>
       <div class="skillCategoryLabel">General</div>
       <div class="tag-container">
         @for (skill of general | skillSearch:searchInput; track skill){
-          <div class="skill tag" [ngClass]="{'highlight': skill.isFeatured}" (click)="viewSkill(skill.name)">{{skill.name}}</div>
+          <div class="skill tag" [ngClass]="{'highlight': skill.isFeatured}" (click)="viewSkill(skill.id)">{{skill.name}}</div>
         }
       </div>
       <div class="skillCategoryLabel">Other</div>
       <div class="tag-container">
         @for (skill of other | skillSearch:searchInput; track skill){
-          <div class="skill tag" [ngClass]="{'highlight': skill.isFeatured}" (click)="viewSkill(skill.name)">{{skill.name}}</div>
+          <div class="skill tag" [ngClass]="{'highlight': skill.isFeatured}" (click)="viewSkill(skill.id)">{{skill.name}}</div>
         }
       </div>
     } @else {
       <div class="tag-container">
         @for (skill of skills | skillSearch:searchInput; track skill){
-          <div class="skill tag" [ngClass]="{'highlight': skill.isFeatured}" (click)="viewSkill(skill.name)">{{skill.name}}</div>
+          <div class="skill tag" [ngClass]="{'highlight': skill.isFeatured}" (click)="viewSkill(skill.id)">{{skill.name}}</div>
         }
       </div>
     }

@@ -41,7 +41,6 @@ export class CoverletterComponent implements OnDestroy {
       },
       error: err => {
         this.config = cvs.defaultConfig
-        console.log(err)
       }
     });
     this.content$ = server.getContentGroup("cv")

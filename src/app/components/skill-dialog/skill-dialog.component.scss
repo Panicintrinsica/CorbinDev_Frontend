@@ -1,3 +1,7 @@
+:host {
+  transition: opacity 2s;
+}
+
 .skill {
   display: flex;
   gap: .2rem;
@@ -8,13 +12,16 @@
   }
 }
 
+.skill-details {
+
+}
+
 a {
   overflow: hidden;
 }
 
 .content {
   padding: 1.25rem;
-  overflow: scroll;
   max-height: 90vh;
 }
 
@@ -104,12 +111,12 @@ progress[value]::-moz-progress-bar {
 }
 
 
-.projects-list {
+.projects-list-box {
   padding: 0.5rem;
   background: var(--darker-25);
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.50);
-  max-height: 200px;
-  overflow: scroll;
+  height: 8rem;
+  overflow: auto;
 }
 
 h4 {
@@ -136,8 +143,8 @@ h4 {
     background: var(--openSource-gradient);
   }
 
-  &.university {
-    background: var(--university-gradient);
+  &.educational {
+    background: var(--educational-gradient);
   }
 
   &:hover {

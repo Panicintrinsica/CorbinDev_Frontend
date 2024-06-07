@@ -1,83 +1,74 @@
 .article-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 }
 
-article > header > .category {
-  align-self: center;
-  font-family: var(--headerFont);
-  font-variant: small-caps;
-  font-weight: 500;
-  font-style: normal;
-  font-optical-sizing: auto;
+article.blog {
+  header.blog-header {
+    .title {
+      font-size: 2.5rem;
+    }
+  }
 
-  padding: .2rem .6rem;
-  border: 2px solid var(--body-lowlight);
-  border-radius: 5px;
-  font-size: 1rem;
+  section.blog-meta {
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+  }
+
+  .blog-category {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .blog-label {
+    margin-right: .5rem;
+  }
+
+  section.blog-body {
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+
+  footer.blog-footer {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+article.card {
+  --card-border-radius: 12px;
+
   background: var(--body);
 
-  // Project Types
-  &.game {
-    color: hsl(160, 100%, 75%);
-    background: hsl(160, 100%, 10%);
-    border-color: hsl(160, 100%, 20%);
+  border-radius: var(--card-border-radius);
+
+  header {
+    background: var(--body-highlight);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+
+    .title {
+      padding: 0 6px;
+    }
   }
 
-
-  &.web {
-    color: hsl(200, 100%, 75%);
-    background: hsl(200, 100%, 10%);
-    border-color: hsl(200, 100%, 20%);
+  section[class*="-meta"] {
+    margin: 0;
+    padding: 12px 12px 0 12px;
   }
 
-  &.mobile {
-    color: hsl(240, 100%, 75%);
-    background: hsl(240, 100%, 10%);
-    border-color: hsl(240, 100%, 20%);
+  section[class*="-body"] {
+    padding: 0 12px;
   }
 
-  &.desktop {
-    color: hsl(280, 100%, 75%);
-    background: hsl(280, 100%, 10%);
-    border-color: hsl(280, 100%, 20%);
-  }
-
-  &.multi {
-    color: hsl(320, 100%, 75%);
-    background: hsl(320, 100%, 10%);
-    border-color: hsl(320, 100%, 20%);
-  }
-
-  &.server {
-    color: hsl(360, 100%, 75%);
-    background: hsl(360, 100%, 10%);
-    border-color: hsl(360, 100%, 20%);
-  }
-
-  // Blog Article Types
-  &.announcement {
-    color: hsl(0, 100%, 75%);
-    background: hsl(0, 100%, 10%);
-    border-color: hsl(0, 100%, 20%);
-  }
-
-  &.news {
-    color: hsl(80, 75%, 50%);
-    background: hsl(80, 100%, 10%);
-    border-color: hsl(80, 100%, 20%);
-  }
-
-  &.tutorial {
-    color: hsl(180, 75%, 50%);
-    background: hsl(180, 100%, 10%);
-    border-color: hsl(180, 100%, 20%);
-  }
-
-  &.featured {
-    color: white;
-    background: var(--tag-highlight);
-    border-color: var(--tag-highlight-border);
+  footer {
+    background: var(--body-lowlight);
+    padding: 6px;
+    border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
   }
 }

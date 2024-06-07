@@ -1,3 +1,5 @@
+import {XataMeta} from "./xata.model";
+
 export interface Skill {
   id: string;
   name: string;
@@ -19,14 +21,16 @@ export interface Skill {
   isFeatured: boolean;
   group: string;
   link: string;
-  xata: {
-    createdAt: string;
-    updatedAt: string;
-    version: number;
-  }
+  xata: XataMeta
 }
 
 export interface BasicSkill {
   id: string,
   name: string
+}
+
+export interface SkillLink {
+  id: string;
+  name: string;
+  isFeatured: true;
 }

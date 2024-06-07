@@ -19,11 +19,11 @@
           @if(project.isCurrent) {
             Current
           } @else {
-            {{project.started | date: 'dd.MM.yy'}}
+            {{project.started | date: 'MMM yyyy'}}
             @if (project.started && project.ended) {
-              <span> to </span>
+              <span> - </span>
             }
-            {{project.ended | date: 'dd.MM.yy'}}
+            {{project.ended | date: 'MMM yyyy'}}
           }
 
         </div>
@@ -33,10 +33,15 @@
         <div [innerHTML]="project.longDescription" markdown></div>
 
         <h4>Skills & Technology</h4>
-        <div class="tag-container cutout">
-          @for (skill of project.skills; track skill) {
-            <div class="skill tag" (click)="viewSkill(skill)">{{skill}}</div>
+        <div class="cutout">
+          @if(skills$ | async; as skills){
+            <div class="tag-container" [@FadeInList]="skills.length">
+              @for (skill of skills; track skill.id) {
+                <div class="skill tag" (click)="viewSkill(skill.id)">{{skill.name}}</div>
+              }
+            </div>
           }
+
         </div>
       </div>
 
@@ -48,9 +53,5 @@
       <p>There does not seem to be a project by this name or url</p>
     </div>
   }
-
-
-
-
 
 </div>

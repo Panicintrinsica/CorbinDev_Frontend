@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {UiArticleComponent} from "../../components/ui-article/ui-article.component";
+import {UiArticleComponent} from "../../../../components/ui-article/ui-article.component";
 import {AsyncPipe, Location} from "@angular/common";
 import {Observable } from "rxjs";
-import {Article} from "../../models/article.model";
-import {BlogService} from "../../services/blog.service";
-import {GoBackDirective} from "../../directives/go-back.directive";
+import {Article} from "../../../../models/article.model";
+import {BlogService} from "../../../../services/blog.service";
+import {GoBackDirective} from "../../../../directives/go-back.directive";
 
 @Component({
   selector: 'app-article',

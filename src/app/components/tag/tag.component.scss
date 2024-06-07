@@ -1,0 +1,116 @@
+:host {
+  background: var(--body);
+  border: 2px solid var(--body-lowlight);
+  border-radius: 5px;
+  padding: .2rem .6rem;
+
+  font-family: var(--headerFont), serif;
+  font-variant: small-caps;
+  font-size: 1rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  // Project Types
+  &.game {
+    color: hsl(160, 100%, 75%);
+    background: hsl(160, 100%, 10%);
+    border-color: hsl(160, 100%, 20%);
+  }
+
+  &.web {
+    color: hsl(200, 100%, 75%);
+    background: hsl(200, 100%, 10%);
+    border-color: hsl(200, 100%, 20%);
+  }
+
+  &.mobile {
+    color: hsl(240, 100%, 75%);
+    background: hsl(240, 100%, 10%);
+    border-color: hsl(240, 100%, 20%);
+  }
+
+  &.desktop {
+    color: hsl(280, 100%, 75%);
+    background: hsl(280, 100%, 10%);
+    border-color: hsl(280, 100%, 20%);
+  }
+
+  &.multi {
+    color: hsl(320, 100%, 75%);
+    background: hsl(320, 100%, 10%);
+    border-color: hsl(320, 100%, 20%);
+  }
+
+  &.server {
+    color: hsl(360, 100%, 75%);
+    background: hsl(360, 100%, 10%);
+    border-color: hsl(360, 100%, 20%);
+  }
+
+  // Blog Article Types
+  &.announcement {
+    color: hsl(0, 100%, 75%);
+    background: hsl(0, 100%, 10%);
+    border-color: hsl(0, 100%, 20%);
+  }
+
+  &.news {
+    color: hsl(80, 75%, 50%);
+    background: hsl(80, 100%, 10%);
+    border-color: hsl(80, 100%, 20%);
+  }
+
+  &.tutorial {
+    color: hsl(180, 75%, 50%);
+    background: hsl(180, 100%, 10%);
+    border-color: hsl(180, 100%, 20%);
+  }
+
+  &.featured {
+    color: white;
+    background: var(--tag-highlight);
+    border-color: var(--tag-highlight-border);
+  }
+
+  &.blog {
+    background-color: var(--tag);
+    border-color: var(--tag-border);
+
+    &:hover {
+      background-color: var(--tag-hover);
+      border-color: var(--tag-border-hover);
+    }
+
+    &.highlight {
+      background-color: var(--tag-highlight);
+      border-color: var(--tag-highlight-border);
+
+      &:hover {
+        background-color: var(--tag-highlight-hover);
+        border-color: var(--tag-highlight-border-hover);
+      }
+    }
+  }
+
+  &.skill {
+    background-color: var(--tag);
+    border-color: var(--tag-border);
+
+    &:hover {
+      background-color: var(--tag-hover);
+      border-color: var(--tag-border-hover);
+    }
+
+    &.highlight {
+      background-color: var(--tag-highlight);
+      border-color: var(--tag-highlight-border);
+
+      &:hover {
+        background-color: var(--tag-highlight-hover);
+        border-color: var(--tag-highlight-border-hover);
+      }
+    }
+  }
+
+}

@@ -1,39 +1,47 @@
-<article class="segment">
-  <header>
-    <h2 class="title pusher">{{data.title}}</h2>
-    <div class="category {{data.category | lowercase }}">{{data.category | lowercase }}</div>
+<article class="blog {{displayStyle}}">
+
+  <header class="blog-header">
+    <div class="title gradient-text">{{data.title}}</div>
+
+    @if (false) {
+        <img class="article-image" src="assets/debug/article-header.png" alt="">
+    }
+
   </header>
 
-  <div class="content" markdown [innerHTML]="fullText"></div>
-
-  <footer [ngClass]="isStub ? 'stub' : 'full' ">
-    @if (isStub) {
-      <span class="time fill">{{ data.xata?.updatedAt | date : 'shortDate' }}</span>
-      <button mat-button routerLink="/article/{{data.slug}}">Read More</button>
-    } @else {
-      <div class="tag-container fill">
-        <span class="label">Tags: </span>
+  <section class="blog-meta">
+      <div class="tag-container">
+        <ui-tag [type]="data.category" [text]="data.category"></ui-tag>
         @for (tag of data.tags; track tag){
-          <div class="article tag" >{{tag}}</div>
+          <ui-tag type="blog" [text]="tag"></ui-tag>
         }
-
       </div>
+      <div class="pusher"></div>
+      <div class="time">{{ data.xata?.createdAt | date : 'shortDate' }}</div>
+  </section>
 
-      <div class="timestamp">
+  <section class="blog-body" markdown [innerHTML]="fullText"></section>
 
-        @if (data.xata?.createdAt === data.xata?.updatedAt) {
-          <span class="label">Posted: </span>
-          <span class="time">{{ data.xata?.createdAt | date : 'short'  }}</span>
-        } @else {
-          <span class="label">Posted: </span>
-          <span class="time">{{ data.xata?.updatedAt | date : 'short'  }}</span>
-        }
-
-      </div>
-      <address>
-        <span class="label">Author: </span>
-        <a rel="author" routerLink="/bio" class="author">Emrys Corbin</a>
-      </address>
-    }
+  <footer class="blog-footer" [ngClass]="isStub ? 'stub' : 'full' ">
+      @if (isStub) {
+        <div class="pusher"></div>
+        <button mat-button routerLink="/article/{{data.slug}}">Read More</button>
+      } @else {
+        <div class="timestamp">
+          @if (data.xata?.createdAt === data.xata?.updatedAt) {
+            <span class="label">Posted: </span>
+            <span class="time">{{ data.xata?.createdAt | date : 'short'  }}</span>
+          } @else {
+            <span class="label">Posted: </span>
+            <span class="time">{{ data.xata?.updatedAt | date : 'short'  }}</span>
+          }
+        </div>
+        <address>
+          <span class="label">Author: </span>
+          <a rel="author" routerLink="/bio" class="author">Emrys Corbin</a>
+        </address>
+      }
   </footer>
+
+
 </article>

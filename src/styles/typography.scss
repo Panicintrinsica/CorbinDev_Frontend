@@ -2,14 +2,14 @@
 @font-face {
   font-family: 'SwedenSans';
   src: url('../assets/fonts/SwedenSansRegular.woff2') format('woff2');
-  font-weight: 400; /* Regular weight is often 500 */
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'SwedenSans';
   src: url('../assets/fonts/SwedenSansSemiBold.woff2') format('woff2');
-  font-weight: 600; /* Semi-Bold weight is often 600 */
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -44,8 +44,6 @@ html, body {
 
 p {
   font-family: var(--bodyFont);
-  font-size: 1rem;
-  line-height: 1.2rem;
 }
 
 mark {
@@ -58,9 +56,15 @@ mark {
 
 h1, h2, h3, h4, h5, h6, .title, .menu-header {
   font-family: var(--headerFont), serif;
+  font-weight: 1000;
 }
 
-h1, h2, h3, h4, h5, h6, .heading {
+h1 { font-size: 3rem }
+h2 { font-size: 2.5rem }
+h3 { font-size: 2rem }
+h4 { font-size: 1.5rem }
+
+.gradient-text {
   background: -webkit-linear-gradient(
       hsl(0, 0%, 100%),
       hsl(0, 0%, 66%)
@@ -88,11 +92,6 @@ h1, h2, h3, h4, h5, h6, .heading {
   }
 }
 
-
-h1 { font-size: 3rem }
-h2 { font-size: 2.5rem }
-h3 { font-size: 2rem }
-h4 { font-size: 1.5rem }
 
 a, a:visited, a:hover, a:active {
   color: var(--linkColor);

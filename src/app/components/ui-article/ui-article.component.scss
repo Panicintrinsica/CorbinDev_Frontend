@@ -11,3 +11,14 @@ footer {
 footer.stub > .time {
   opacity: 33%;
 }
+
+.article-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.article-content {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  padding: 0 2rem;
+}

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AsyncPipe, NgClass} from "@angular/common";
-import {UiArticleComponent} from "../../components/ui-article/ui-article.component";
+import {ArticleDisplayStyle, UiArticleComponent} from "../../components/ui-article/ui-article.component";
 import {ArticlePage} from "../../models/article.model";
 import {BlogService} from "../../services/blog.service";
 import {Observable, Subject, Subscription} from "rxjs";
@@ -74,4 +74,5 @@ export class BlogComponent implements OnInit, OnDestroy {
  }
 
 
+  protected readonly ArticleDisplayStyle = ArticleDisplayStyle;
 }

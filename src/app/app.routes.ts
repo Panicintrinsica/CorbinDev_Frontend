@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
 import {HomeComponent} from "./pages/home/home.component";
-import {ArticleComponent} from "./pages/article/article.component";
-import {BiographyComponent} from "./pages/biography/biography.component";
-import {ProjectListComponent} from "./pages/project-list/project-list.component";
-import {ProjectComponent} from "./pages/project/project.component";
+import {ArticleComponent} from "./routes/blog/components/article/article.component";
+import {BiographyComponent} from "./routes/biography/biography.component";
+import {ProjectListPageComponent} from "./routes/projects/project-list-page/project-list-page.component";
+import {ProjectPageComponent} from "./routes/projects/project-page/project-page.component";
 import {CvComponent} from "./pages/cv/cv.component";
 import {CoverletterComponent} from "./pages/cv/coverletter/coverletter.component";
 import {CvModernComponent} from "./pages/cv/cv-modern/cv-modern.component";
 import {CvBasicComponent} from "./pages/cv/cv-basic/cv-basic.component";
-import {BlogComponent} from "./pages/blog/blog.component";
+import {BlogComponent} from "./routes/blog/blog.component";
 import {AdminDashboardComponent} from "./pages/admin/admin-dashboard/admin-dashboard.component";
 import {AdminRootComponent} from "./pages/admin/admin-root/admin-root.component";
 import {AdminProfileComponent} from "./pages/admin/admin-profile/admin-profile.component";
@@ -35,8 +35,8 @@ export const routes: Routes = [
       { path: 'basic',  component: CvBasicComponent }
     ]
   },
-  { path: 'projects', component: ProjectListComponent, data: { animation: 'Projects' }},
-  { path: 'project/:slug', component: ProjectComponent, data: { animation: 'Project' }},
+  { path: 'projects', component: ProjectListPageComponent, data: { animation: 'Projects' }},
+  { path: 'project/:slug', component: ProjectPageComponent, data: { animation: 'Project' }},
 
   { path: 'login', component: LoginComponent },
 

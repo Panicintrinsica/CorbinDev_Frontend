@@ -42,3 +42,10 @@ export interface ProjectStub {
   group: string,
   slug: string,
 }
+
+export interface ProjectLink {
+  id: string
+  name: string,
+  group: string,
+  slug: string
+}

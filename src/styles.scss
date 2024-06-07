@@ -8,11 +8,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Finlandica:ital,wght@0,400..700;1,400..700&display=swap');
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons+Sharp';
 
-@import "styles/cv";
-@import "styles/article";
-@import "styles/project";
 @import "styles/typography";
 @import "styles/forms";
+@import "styles/cv";
+@import "styles/tags";
+@import "styles/segment";
+@import "styles/article";
+@import "styles/project";
 
 :root {
   //@include mat.all-component-themes($frontend-theme);
@@ -33,7 +35,7 @@
   --personal-gradient: linear-gradient(315deg, rgb(31, 53, 61) 0%, rgb(30, 30, 30) 50%);
   --professional-gradient: linear-gradient(315deg, rgb(38, 26, 61) 0%, rgb(30, 30, 30) 50%);
   --openSource-gradient: linear-gradient(315deg, rgb(23, 66, 21) 0%, rgb(30, 30, 30) 50%);
-  --university-gradient: linear-gradient(315deg, rgb(66, 21, 21) 0%, rgb(30, 30, 30) 50%);
+  --educational-gradient: linear-gradient(315deg, rgb(69, 49, 51) 0%, rgb(30, 30, 30) 50%);
 
   --primary-light: hsl(203, 100%, 75%);
   --primary: #009fff;
@@ -41,7 +43,7 @@
   --accent: hsl(181, 100%, 50%);
   --linkColor: #ffffff;
 
-  // Segment
+  // General
   --body-highlight: hsl(210, 5%, 20%);
   --body: hsl(210, 5%, 17.5%);
   --body-lowlight: hsl(210, 5%, 15%);
@@ -96,13 +98,10 @@
 }
 
 
-
 hr.lighter {
   border-color: var(--lighter-10);
   width: 100%;
 }
-
-
 
 body.scroll-lock {
   overflow: hidden;
@@ -114,7 +113,6 @@ html, body {
   margin: 0;
   padding: 0;
 }
-
 
 .page {
   max-width: 800px;
@@ -168,6 +166,14 @@ app-projects, app-root, app-cv {
   padding: 0;
 }
 
+.hidden {
+  opacity: 0 !important;
+}
+
+.visible {
+  opacity: 1 !important;
+}
+
 .no-margin {
   margin: 0;
 }
@@ -176,52 +182,6 @@ address {
   font-style: unset;
 }
 
-.segment, {
-  background-color: var(--body);
-  color: white;
-  border-radius: 6px;
-  border: 1px solid transparent;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.50);
-  transition: box-shadow 750ms;
-
-  &.padded {
-    padding: .33rem .5rem;
-  }
-
-  &.glow:hover {
-    box-shadow: 0 0 6px hsla(240, 100%, 50%, 40%);
-    transition: box-shadow 100ms;
-  }
-
-  &.flex {
-    display: flex;
-    flex-direction: column;
-  };
-
-  header, .header {
-    padding: .33rem .5rem;
-    display: flex;
-    gap: 1rem;
-    background: var(--body-highlight);
-    align-items: center;
-
-    .title {
-      margin: unset;
-      flex-grow: 1;
-    }
-  };
-
-  footer {
-    display: flex;
-    background: var(--body-lowlight);
-    padding: .33rem .5rem;
-    gap: .33rem;
-  };
-
-  .content {
-    padding: .75rem;
-  }
-}
 
 .sidebar-segment {
   background: var(--body);
@@ -280,83 +240,22 @@ input:focus {
   outline: none;
 }
 
+.cutout {
+  background: #111;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border-top: 2px solid var(--body-lowlight);
+  border-left: 2px solid var(--body-lowlight);
+  border-right: 1px solid var(--body-highlight);
+  border-bottom: 1px solid var(--body-lowlight);
+}
+
 
 .tag-container {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
-  font-family: var(--headerFont);
-
-
-  &.cutout {
-    background: #111;
-    padding: 0.5rem;
-    box-sizing: border-box;
-    border-top: 2px solid var(--body-lowlight);
-    border-left: 2px solid var(--body-lowlight);
-    border-right: 1px solid var(--body-highlight);
-    border-bottom: 1px solid var(--body-lowlight);
-  }
-
-  &.named:before {
-    content: "Tags: ";
-  }
-
-  .tag {
-    border-radius: 6px;
-    padding: 2px 10px;
-    border: 1px solid;
-    cursor: pointer;
-    font-variant: small-caps;
-
-
-    &.article {
-      background-color: var(--tag);
-      border-color: var(--tag-border);
-
-      &:hover {
-        background-color: var(--tag-hover);
-        border-color: var(--tag-border-hover);
-      }
-
-      &.highlight {
-        background-color: var(--tag-highlight);
-        border-color: var(--tag-highlight-border);
-
-        &:hover {
-          background-color: var(--tag-highlight-hover);
-          border-color: var(--tag-highlight-border-hover);
-        }
-      }
-    }
-
-
-    &.skill {
-      background-color: var(--tag);
-      border-color: var(--tag-border);
-
-      &:hover {
-        background-color: var(--tag-hover);
-        border-color: var(--tag-border-hover);
-      }
-
-      &.highlight {
-        background-color: var(--tag-highlight);
-        border-color: var(--tag-highlight-border);
-
-        &:hover {
-          background-color: var(--tag-highlight-hover);
-          border-color: var(--tag-highlight-border-hover);
-        }
-      }
-    }
-
-    &[data-type='news'] {
-      background-color: hsla(200, 50%, 50%, 50%);
-      border-color: hsla(220, 80%, 80%, 80%);
-    }
-  }
 }
 
 .link-menu {

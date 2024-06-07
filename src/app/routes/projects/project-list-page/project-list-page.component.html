@@ -12,11 +12,11 @@
         </div>
         <div class="content">
           <mat-chip-listbox #categoryList class="mat-mdc-chip-set-stacked " multiple>
-            @for (option of categoryOptions; track option){
+            @for (option of categoryOptions; track option.id){
               <mat-chip-option
-                id="{{option}}"
-                (selectionChange)="selectCategories(option)"
-              >{{option | titlecase}}
+                id="{{option.id}}"
+                (selectionChange)="selectCategories(option.id)"
+              >{{option.label}}
               </mat-chip-option>
             }
           </mat-chip-listbox>
@@ -28,11 +28,11 @@
         </div>
         <div class="content">
           <mat-chip-listbox #groupList class="mat-mdc-chip-set-stacked" multiple>
-            @for (option of groupOptions; track option){
+            @for (option of groupOptions; track option.id){
               <mat-chip-option
-                id="{{option}}"
-                (selectionChange)="selectGroups(option)"
-              >{{option | titlecase}}
+                id="{{option.id}}"
+                (selectionChange)="selectGroups(option.id)"
+              >{{option.label}}
               </mat-chip-option>
             }
           </mat-chip-listbox>

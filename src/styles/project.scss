@@ -11,8 +11,8 @@
     background: var(--openSource-gradient);
   }
 
-  &.university {
-    background: var(--university-gradient);
+  &.educational {
+    background: var(--educational-gradient);
   }
 
   .group {
@@ -24,6 +24,11 @@
 
   }
 }
+
+.projects-list {
+
+}
+
 
 .project-type-tag {
   background: #001b3f;

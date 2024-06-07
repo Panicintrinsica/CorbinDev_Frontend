@@ -4,13 +4,14 @@ import {RouterLink} from "@angular/router";
 import {AsyncPipe, DatePipe, NgClass, NgForOf, NgIf, TitleCasePipe} from "@angular/common";
 import {MarkdownComponent} from "ngx-markdown";
 import {Observable, tap} from "rxjs";
-import {Project} from "../../models/project.model";
-import {ServerService} from "../../services/server.service";
+import {Project} from "../../../models/project.model";
+import {ServerService} from "../../../services/server.service";
 import {MatDialog} from "@angular/material/dialog";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
-import {UiProjectCardComponent} from "../../components/ui-project-card/ui-project-card.component";
+import {UiProjectCardComponent} from "../components/ui-project-card/ui-project-card.component";
 import {MatChipListbox, MatChipOption} from "@angular/material/chips";
 import {FormsModule} from "@angular/forms";
+import {ProjectGroups, ProjectTypes} from "../../../constants/project.consts";
 
 @Component({
   selector: 'app-project-list',
@@ -33,10 +34,10 @@ import {FormsModule} from "@angular/forms";
     TitleCasePipe,
     FormsModule
   ],
-  templateUrl: './project-list.component.html',
-  styleUrl: './project-list.component.scss'
+  templateUrl: './project-list-page.component.html',
+  styleUrl: './project-list-page.component.scss'
 })
-export class ProjectListComponent {
+export class ProjectListPageComponent {
   @ViewChild('categoryList') categoryList!: MatChipListbox;
   @ViewChild('groupList') groupList!: MatChipListbox;
 
@@ -45,8 +46,8 @@ export class ProjectListComponent {
   resultSet: Project[] = []
   filteredProjects: Project[] = []
 
-  categoryOptions = ['web','desktop','mobile','multi','game']
-  groupOptions = ['personal','professional','university','open source']
+  categoryOptions = ProjectTypes
+  groupOptions = ProjectGroups
 
   selectedCategories = new Set<string>();
   selectedGroups = new Set<string>();
