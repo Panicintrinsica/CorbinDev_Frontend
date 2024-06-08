@@ -8,6 +8,7 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {FormsModule} from "@angular/forms";
 import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
 import {SkillSearchPipe} from "../../pipes/skill-search.pipe";
+import {TagComponent} from "../tag/tag.component";
 
 @Component({
   selector: 'ui-skill-list',
@@ -19,7 +20,8 @@ import {SkillSearchPipe} from "../../pipes/skill-search.pipe";
     MatInput,
     MatLabel,
     MatFormField,
-    SkillSearchPipe
+    SkillSearchPipe,
+    TagComponent
   ],
   templateUrl: './skill-list.component.html',
   styleUrl: './skill-list.component.scss'

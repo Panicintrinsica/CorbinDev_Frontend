@@ -34,14 +34,11 @@ article.card {
     background: var(--body-highlight);
     display: flex;
     margin: 0;
+    padding: 0 6px;
     border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
 
     &.blog-header {
       flex-direction: column;
-    }
-
-    .title {
-      padding: 0 6px;
     }
   }
 
@@ -142,6 +139,24 @@ article.project {
   section.project-body {
     padding-top: 6px;
     padding-bottom: 6px;
+  }
+
+}
+
+article.skills {
+
+  header.skills-header {
+    align-items: center;
+    gap: 0.5rem;
+
+    .title {
+      flex-grow: 1;
+      font-size: 2rem;
+    }
+  }
+
+  section.skills-body {
+    padding: 12px;
   }
 
 }
