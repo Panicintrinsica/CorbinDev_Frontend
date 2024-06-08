@@ -32,6 +32,9 @@
   --headerFont: "Afacad";
   --uiFont: "Finlandica";
   --bodyFont-color: hsl(0, 100%, 100%);
+  --sizeSmall: 1rem;
+  --sizeNormal: 1.2rem;
+  --sizeLarge: 1.4rem;
 }
 
 html, body {
@@ -91,6 +94,12 @@ h4 { font-size: 1.5rem }
 
   &.pink {
     background: var(--blue-to-pink-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &.primary {
+    background: var(--primary-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

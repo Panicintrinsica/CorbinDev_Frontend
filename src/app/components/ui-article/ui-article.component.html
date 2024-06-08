@@ -14,8 +14,6 @@
           <ui-tag type="blog" [text]="tag"></ui-tag>
         }
       </div>
-      <div class="pusher"></div>
-      <div class="time">{{ data.xata?.createdAt | date : 'shortDate' }}</div>
   </section>
 
   <section class="blog-body">
@@ -24,11 +22,17 @@
 
   <footer class="blog-footer">
     @if (isStub) {
+      <div class="time">{{ data.xata?.createdAt | date : 'shortDate' }}</div>
       <div class="pusher"></div>
       <button mat-button routerLink="/article/{{data.slug}}">Read More</button>
     } @else {
 
       <div class="meta-row">
+        <div class="meta-item">
+          <div class="meta-label">Posted:</div>
+          <div class="meta-data">{{ data.xata?.createdAt | date : 'short'  }}</div>
+        </div>
+
         @if (data.xata?.createdAt != data.xata?.updatedAt) {
           <div class="meta-item">
             <div class="meta-label">Update:</div>

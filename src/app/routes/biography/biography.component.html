@@ -1,25 +1,31 @@
 <div class="page">
 
-  <div class="flex column gap-small">
+  <main class="flex column gap-small">
 
     @if (details$ | async; as details) {
-      <div class="profile segment">
-        <!--    <div class="photo">-->
-        <!--    </div>-->
-        <div class="content">
-          <div class="name">
+
+      <article class="biography">
+        <header class="biography-header">
+          <div class="primary gradient-text bio-name">
             {{ getDetail(details, "firstName", "content") }}
             {{ getDetail(details, "lastName", "content") }}
-            <span class="pronouns">
-              ({{getDetail(details, "pronouns", "content")}})
-            </span>
           </div>
+          <div class="bio-pronouns">
+              ({{getDetail(details, "pronouns", "content")}})
+          </div>
+        </header>
 
+        <section class="biography-body">
           @if (content$ | async; as content) {
-            <markdown class="content" [data]="getContentBody(content, 'bioMain')" markdown></markdown>
+            <markdown [data]="getContentBody(content, 'bioMain')" markdown></markdown>
           }
-        </div>
-      </div>
+        </section>
+
+      </article>
+
+
+
+
     }
 
     <ui-skill-list></ui-skill-list>
@@ -50,5 +56,5 @@
 <!--      </div>-->
 <!--    }-->
 
-  </div>
+  </main>
 </div>

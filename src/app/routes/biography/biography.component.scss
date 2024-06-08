@@ -26,24 +26,36 @@
     grid-area: content;
   }
 
-  .name {
-    font-size: 3rem;
-    font-weight: 700;
-    font-family: var(--headerFont);
-
-  }
-
   .profile-picture {
     width: 300px;
   }
 }
 
-span.pronouns {
-  opacity: 50%;
-  color: white;
+article.biography {
+
+  header.biography-header {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    .bio-name {
+      font-size: 3rem;
+      font-weight: 1000;
+      margin: 0;
+    }
+
+    .bio-pronouns {
+      font-size: 2rem;
+      opacity: 0.33;
+    }
+  }
+
+  section.biography-body {
+    font-size: var(--sizeNormal);
+    line-height: 1.5;
+  }
+
 }
-
-
 
 .education-entry {
   background-color: hsla(0, 0%, 0%, 20%);

@@ -6,6 +6,7 @@
 
 article .meta-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 
   .meta-item {
@@ -49,7 +50,7 @@ article.blog {
   }
 
   section.blog-body {
-    font-size: 1.3rem;
+    font-size: var(--sizeNormal);
     line-height: 1.5;
   }
 
@@ -65,6 +66,7 @@ article.project {
     display: flex;
     align-items: center;
     padding: .33rem .5rem;
+    gap: .5rem;
 
     .title {
       font-size: 1.75rem;
@@ -107,8 +109,8 @@ article.project {
 }
 
 article.skills {
-
   header.skills-header {
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
 

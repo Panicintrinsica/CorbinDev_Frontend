@@ -15,19 +15,13 @@ footer {
 
 .social-links {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 1rem;
 
-  a {
-
-    img {
-      height: 3rem;
-      width: 3rem;
-    }
-
-    &:not(:first-of-type) {
-      padding-left: 1rem;
-    }
-
+  img {
+    height: 3rem;
+    width: 3rem;
   }
 }
 

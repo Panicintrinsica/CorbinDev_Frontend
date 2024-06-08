@@ -66,6 +66,13 @@
   --violent-red: oklch(0.612 0.242 22.206);
   --blood-red: oklch(0.451 0.185 29.234);
 
+  --primary-gradient: linear-gradient(
+      66deg,
+      var(--electric-blue) 0%,
+      var(--corbin-blue) 100%
+  );
+
+
   --red-to-pink-gradient: linear-gradient(
       66deg,
       var(--applesin) 0%,
@@ -216,7 +223,7 @@ address {
 
 
 input {
-  width: 400px;
+  width: 100%;
   padding: 6px 10px;
   margin: 8px 0;
   color: white;
