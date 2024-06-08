@@ -1,0 +1,57 @@
+<article class="blog {{displayStyle}}">
+
+  <header class="blog-header">
+    <h2 class="text-gradient">{{data.title}}</h2>
+    @if (false) {
+        <img class="article-image" src="../../../../../assets/debug/article-header.png" alt="">
+    }
+  </header>
+
+  <section class="blog-meta">
+      <div class="tag-container">
+        <ui-tag [text]="data.category" [type]="data.category"></ui-tag>
+        @for (tag of data.tags; track tag){
+          <ui-tag type="blog" [text]="tag"></ui-tag>
+        }
+      </div>
+  </section>
+
+  <section class="blog-body">
+    <markdown [data]="fullText" class="blog-article text"></markdown>
+  </section>
+
+  <footer class="blog-footer">
+    @if (isStub) {
+      <div class="time">{{ data.xata?.createdAt | date : 'shortDate' }}</div>
+      <div class="pusher"></div>
+      <button mat-button routerLink="/article/{{data.slug}}">Read More</button>
+    } @else {
+
+      <div class="meta-row">
+        <div class="meta-item">
+          <div class="meta-label">Posted:</div>
+          <div class="meta-data">{{ data.xata?.createdAt | date : 'short'  }}</div>
+        </div>
+
+        @if (data.xata?.createdAt != data.xata?.updatedAt) {
+          <div class="meta-item">
+            <div class="meta-label">Update:</div>
+            <div class="meta-data">{{ data.xata?.updatedAt | date : 'short'  }}</div>
+          </div>
+        }
+
+        <div class="meta-item">
+          <div class="meta-label">Author:</div>
+          <div class="meta-data">
+            <address>
+              <a rel="author" routerLink="/bio" class="author">Emrys Corbin</a>
+            </address>
+          </div>
+        </div>
+
+      </div>
+    }
+  </footer>
+
+
+</article>

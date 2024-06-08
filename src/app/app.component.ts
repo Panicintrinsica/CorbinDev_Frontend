@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ChildrenOutletContexts, RouterOutlet} from '@angular/router';
-import {UiNavComponent} from "./components/ui-nav/ui-nav.component";
-import {UiFooterComponent} from "./components/ui-footer/ui-footer.component";
+import {UiNavComponent} from "./modules/ui/ui-nav/ui-nav.component";
+import {UiFooterComponent} from "./modules/ui/ui-footer/ui-footer.component";
 import {slideInAnimation} from "./animations/route.anim";
 
 @Component({
