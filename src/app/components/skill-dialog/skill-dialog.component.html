@@ -1,10 +1,13 @@
-<article class="segment skill-details" *ngIf="skill$ | async as skill">
-  <header>
-    <h2 class="title pusher">{{skill.name}}</h2>
-    <div *ngIf="skill.isFeatured" class="category featured">Featured Skill</div>
+<article class="skill-dialog card" *ngIf="skill$ | async as skill">
+  <header class="skill-dialog-header">
+    <div class="title gradient-text fill">{{skill.name}}</div>
+
+    <ui-tag text="Featured Skill" type="skill highlight"  ></ui-tag>
+
+    <div *ngIf="skill.isFeatured" class="category featured"></div>
   </header>
 
-  <div class="content">
+  <section class="skill-dialog-body">
     <div class="flex progress row">
       <div class="cell pusher"><progress max="100" [value]="skill.level"></progress></div>
     </div>
@@ -34,7 +37,7 @@
       <div class="notes" [innerHTML]="skill.notes" markdown></div>
     }
 
-    <h4 class="no-margin">Projects</h4>
+    <div class="title skill-dialog-subheader ">Projects</div>
     <div class="projects-list-box">
       @if (projects$ | async; as projects) {
         <div class="projects-list flex column gap-small" [@FadeInList]="projects.length">
@@ -53,7 +56,6 @@
       }
     </div>
 
-
-  </div>
+  </section>
 
 </article>

@@ -13,6 +13,7 @@ import {SkillService} from "../../services/skill.service";
 import {ProjectService} from "../../services/project.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ProjectListAnim} from "../../animations/list.anim";
+import {TagComponent} from "../tag/tag.component";
 
 @Component({
   selector: 'ui-skill-dialog',
@@ -28,6 +29,7 @@ import {ProjectListAnim} from "../../animations/list.anim";
     NamedSkillLevel,
     UiSpinnerComponent,
     NgClass,
+    TagComponent,
   ],
   templateUrl: './skill-dialog.component.html',
   styleUrl: './skill-dialog.component.scss'

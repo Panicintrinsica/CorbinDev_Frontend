@@ -1,12 +1,14 @@
 :host {
+  display: inline-flex;
   background: var(--body);
   border: 2px solid var(--body-lowlight);
   border-radius: 5px;
-  padding: .2rem .6rem;
+  padding: 0.8rem 1rem 1rem 1rem;
 
   font-family: var(--headerFont), serif;
   font-variant: small-caps;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  line-height: 0;
   font-weight: 500;
 
   cursor: pointer;

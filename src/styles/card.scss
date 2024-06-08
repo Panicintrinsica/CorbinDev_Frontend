@@ -1,0 +1,36 @@
+.card {
+  --card-border-radius: 12px;
+  background: var(--body);
+  border-radius: var(--card-border-radius);
+
+  header {
+    background: var(--body-highlight);
+    display: flex;
+    margin: 0;
+    padding: 0 6px;
+    border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+
+    &.blog-header {
+      flex-direction: column;
+    }
+  }
+
+  section[class*="-meta"] {
+    margin: 0;
+    padding: 12px 12px 0 12px;
+  }
+
+  section[class*="-body"] {
+    padding: 0 12px;
+  }
+
+  .meta-row {
+    padding: 0 12px;
+  }
+
+  footer {
+    background: var(--body-lowlight);
+    padding: 6px;
+    border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
+  }
+}
