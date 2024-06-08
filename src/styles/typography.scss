@@ -54,6 +54,10 @@ mark {
   display: block;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
 h1, h2, h3, h4, h5, h6, .title, .menu-header {
   font-family: var(--headerFont), serif;
   font-weight: 1000;

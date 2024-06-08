@@ -10,12 +10,10 @@
   </div>
 
   @if (project){
-    <article class="segment project-segment">
-      <header class="{{project.group}}">
+    <article class="project card">
+      <header class="project-header {{project.group}}">
         <h1 class="title pusher">{{project.name}}</h1>
-
         <div class="date">
-
           @if(project.isCurrent) {
             Current
           } @else {
@@ -25,25 +23,36 @@
             }
             {{project.ended | date: 'MMM yyyy'}}
           }
-
         </div>
       </header>
 
-      <div class="content">
-        <div [innerHTML]="project.longDescription" markdown></div>
+      <section class="project-body">
+        <markdown [data]="project.longDescription"></markdown>
 
         <h4>Skills & Technology</h4>
         <div class="cutout">
           @if(skills$ | async; as skills){
             <div class="tag-container" [@FadeInList]="skills.length">
               @for (skill of skills; track skill.id) {
-                <div class="skill tag" (click)="viewSkill(skill.id)">{{skill.name}}</div>
+                <ui-tag type="skill" [text]="skill.name" (click)="viewSkill(skill.id)"></ui-tag>
               }
             </div>
           }
-
         </div>
-      </div>
+      </section>
+
+      <footer class="project-footer">
+        <div class="meta-row">
+          <div class="meta-item">
+            <div class="meta-label">Posted: </div>
+            <div class="meta-data">{{ project.xata.createdAt | date : "dd.MM.yyy"}}</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Updated: </div>
+            <div class="meta-data">{{ project.xata.updatedAt | date : "dd.MM.yyy"}}</div>
+          </div>
+        </div>
+      </footer>
 
     </article>
 

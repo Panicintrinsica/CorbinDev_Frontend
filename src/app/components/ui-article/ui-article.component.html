@@ -2,16 +2,14 @@
 
   <header class="blog-header">
     <div class="title gradient-text">{{data.title}}</div>
-
     @if (false) {
         <img class="article-image" src="assets/debug/article-header.png" alt="">
     }
-
   </header>
 
   <section class="blog-meta">
       <div class="tag-container">
-        <ui-tag [type]="data.category" [text]="data.category"></ui-tag>
+        <ui-tag [text]="data.category" [type]="data.category"></ui-tag>
         @for (tag of data.tags; track tag){
           <ui-tag type="blog" [text]="tag"></ui-tag>
         }
@@ -20,27 +18,35 @@
       <div class="time">{{ data.xata?.createdAt | date : 'shortDate' }}</div>
   </section>
 
-  <section class="blog-body" markdown [innerHTML]="fullText"></section>
+  <section class="blog-body">
+    <markdown [data]="fullText"></markdown>
+  </section>
 
-  <footer class="blog-footer" [ngClass]="isStub ? 'stub' : 'full' ">
-      @if (isStub) {
-        <div class="pusher"></div>
-        <button mat-button routerLink="/article/{{data.slug}}">Read More</button>
-      } @else {
-        <div class="timestamp">
-          @if (data.xata?.createdAt === data.xata?.updatedAt) {
-            <span class="label">Posted: </span>
-            <span class="time">{{ data.xata?.createdAt | date : 'short'  }}</span>
-          } @else {
-            <span class="label">Posted: </span>
-            <span class="time">{{ data.xata?.updatedAt | date : 'short'  }}</span>
-          }
+  <footer class="blog-footer">
+    @if (isStub) {
+      <div class="pusher"></div>
+      <button mat-button routerLink="/article/{{data.slug}}">Read More</button>
+    } @else {
+
+      <div class="meta-row">
+        @if (data.xata?.createdAt != data.xata?.updatedAt) {
+          <div class="meta-item">
+            <div class="meta-label">Update:</div>
+            <div class="meta-data">{{ data.xata?.updatedAt | date : 'short'  }}</div>
+          </div>
+        }
+
+        <div class="meta-item">
+          <div class="meta-label">Author:</div>
+          <div class="meta-data">
+            <address>
+              <a rel="author" routerLink="/bio" class="author">Emrys Corbin</a>
+            </address>
+          </div>
         </div>
-        <address>
-          <span class="label">Author: </span>
-          <a rel="author" routerLink="/bio" class="author">Emrys Corbin</a>
-        </address>
-      }
+
+      </div>
+    }
   </footer>
 
 

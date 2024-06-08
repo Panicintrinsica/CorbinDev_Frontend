@@ -1,10 +1,9 @@
-<article class="segment project-segment">
+<article class="project card">
 
-  <header class="{{project.group}}">
-    <div class="category {{ project.category }}">{{ project.category | titlecase }}</div>
-    <h4 class="title pusher">{{ project.name }}</h4>
+  <header class="project-header {{project.group}}">
+    <ui-tag [type]="project.category" [text]="project.category"></ui-tag>
+    <div class="title gradient-text">{{ project.name }}</div>
     <div class="group">{{ project.group | titlecase }}</div>
-<!--        <div class="date">{{ project.started | date:"MMM YYYY"}}</div>-->
   </header>
 
   <div class="project-card-grid">

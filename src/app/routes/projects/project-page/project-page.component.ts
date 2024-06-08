@@ -12,6 +12,7 @@ import {GoBackDirective} from "../../../directives/go-back.directive";
 import {SkillLink} from "../../../models/skill.model";
 import {SkillService} from "../../../services/skill.service";
 import {ProjectListAnim, SkillListAnim} from "../../../animations/list.anim";
+import {TagComponent} from "../../../components/tag/tag.component";
 
 @Component({
   selector: 'app-project',
@@ -25,7 +26,8 @@ import {ProjectListAnim, SkillListAnim} from "../../../animations/list.anim";
     MarkdownComponent,
     DatePipe,
     GoBackDirective,
-    AsyncPipe
+    AsyncPipe,
+    TagComponent
   ],
   templateUrl: './project-page.component.html',
   styleUrl: './project-page.component.scss'

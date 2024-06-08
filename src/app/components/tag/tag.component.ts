@@ -13,7 +13,7 @@ import {LowerCasePipe, NgClass} from "@angular/common";
 })
 export class TagComponent {
   @Input() text: string | undefined = "";
-  @Input() type: string | undefined = "";
+  @Input() type:  string | undefined = "";
 
   @HostBinding('class')
   get elementClass(): string {

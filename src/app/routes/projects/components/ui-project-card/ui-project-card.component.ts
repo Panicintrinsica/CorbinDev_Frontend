@@ -3,6 +3,7 @@ import {MatAnchor, MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 import {DatePipe, NgOptimizedImage, TitleCasePipe} from "@angular/common";
 import {Project} from "../../../../models/project.model";
+import {TagComponent} from "../../../../components/tag/tag.component";
 
 @Component({
   selector: 'ui-project-card',
@@ -13,7 +14,8 @@ import {Project} from "../../../../models/project.model";
     RouterLink,
     NgOptimizedImage,
     DatePipe,
-    TitleCasePipe
+    TitleCasePipe,
+    TagComponent
   ],
   templateUrl: './ui-project-card.component.html',
   styleUrl: './ui-project-card.component.scss'
