@@ -5,7 +5,7 @@
   max-width: 1000px;
 }
 
-main {
+main.cv {
   font-size: 10pt;
 
   --bodyFont: 'Fira Sans', sans-serif;
@@ -628,7 +628,7 @@ section.learning {
       text-align: end;
     }
 
-    .title, {
+    .title {
       color: var(--priamryColor);
     }
 

@@ -38,15 +38,21 @@
 }
 
 html, body {
-  font-family: var(--bodyFont);
+  font-family: var(--bodyFont), serif;
   color: var(--bodyFont-color);
   font-size: 18px;
   font-optical-sizing: auto;
   font-style: normal;
 }
 
-p {
-  font-family: var(--bodyFont);
+p, .text {
+  font-family: var(--bodyFont), serif;
+  color: var(--bodyFontColor);
+  line-height: 1.6;
+
+  &.small { font-size: 0.8rem }
+  &.large { font-size: 1.2rem }
+  &.bold { font-weight: bold; }
 }
 
 mark {
@@ -59,10 +65,7 @@ mark {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-}
-
-h1, h2, h3, h4, h5, h6, .title, .menu-header {
-  font-family: var(--headerFont), serif;
+  font-family: var(--headerFont), sans-serif;
   font-weight: 1000;
 }
 
@@ -71,7 +74,23 @@ h2 { font-size: 2.5rem }
 h3 { font-size: 2rem }
 h4 { font-size: 1.5rem }
 
-.gradient-text {
+.text {
+  font-family: var(--bodyFont), serif;
+  color: var(--bodyFontColor);
+  line-height: 1.6;
+
+  &.small { font-size: 0.8rem }
+  &.large { font-size: 1.2rem }
+}
+
+.title {
+  font-family: var(--headerFont), sans-serif;
+  line-height: 1.4;
+  font-size: 2rem;
+
+}
+
+.text-gradient {
   background: -webkit-linear-gradient(
       hsl(0, 0%, 100%),
       hsl(0, 0%, 66%)
@@ -104,7 +123,6 @@ h4 { font-size: 1.5rem }
     -webkit-text-fill-color: transparent;
   }
 }
-
 
 a, a:visited, a:hover, a:active {
   color: var(--linkColor);

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AsyncPipe, NgClass} from "@angular/common";
+import {AsyncPipe, NgClass, ViewportScroller} from "@angular/common";
 import {ArticleDisplayStyle, UiArticleComponent} from "../../components/ui-article/ui-article.component";
 import {ArticlePage} from "../../models/article.model";
 import {BlogService} from "../../services/blog.service";
@@ -68,9 +68,10 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   private getPage(pageNumber: number) {
-    this.bs.getArticlePage(this.currentSize, pageNumber)
+    this.bs.getArticlePage(this.currentSize, pageNumber, true)
 
     this.router.navigate([], { queryParams: { page: pageNumber, size: this.currentSize } });
+
  }
 
 

@@ -1,6 +1,6 @@
 <article class="skill-dialog card" *ngIf="skill$ | async as skill">
   <header class="skill-dialog-header">
-    <div class="title gradient-text fill">{{skill.name}}</div>
+    <h2 class="text-gradient fill">{{skill.name}}</h2>
 
     <ui-tag text="Featured Skill" type="skill highlight"  ></ui-tag>
 
@@ -37,7 +37,7 @@
       <div class="notes" [innerHTML]="skill.notes" markdown></div>
     }
 
-    <div class="title skill-dialog-subheader ">Projects</div>
+    <h3>Projects</h3>
     <div class="projects-list-box">
       @if (projects$ | async; as projects) {
         <div class="projects-list flex column gap-small" [@FadeInList]="projects.length">

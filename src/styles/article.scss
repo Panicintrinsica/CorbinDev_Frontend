@@ -28,9 +28,7 @@ article .meta-row {
 
 article.blog {
   header.blog-header {
-    .title {
-      font-size: 2.5rem;
-    }
+
   }
 
   section.blog-meta {
@@ -50,8 +48,7 @@ article.blog {
   }
 
   section.blog-body {
-    font-size: var(--sizeNormal);
-    line-height: 1.5;
+
   }
 
   footer.blog-footer {
@@ -67,13 +64,6 @@ article.project {
     align-items: center;
     padding: .33rem .5rem;
     gap: .5rem;
-
-    .title {
-      font-size: 1.75rem;
-      line-height: 1.5;
-      margin: 0;
-      flex-grow: 1;
-    }
 
     &.personal {
       background: var(--personal-gradient);
@@ -112,12 +102,8 @@ article.skills {
   header.skills-header {
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem;
-
-    .title {
-      flex-grow: 1;
-      font-size: 2rem;
-    }
+    padding: 12px 12px 0 12px;
+    gap: 0;
   }
 
   section.skills-body {
