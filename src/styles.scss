@@ -10,7 +10,6 @@
 
 @import "styles/typography";
 @import "styles/forms";
-@import "styles/cv";
 @import "styles/tags";
 @import "styles/segment";
 @import "styles/article";
@@ -39,10 +38,12 @@
   --educational-gradient: linear-gradient(315deg, rgb(69, 49, 51) 0%, rgb(30, 30, 30) 50%);
 
   --primary-light: hsl(203, 100%, 75%);
-  --primary: #009fff;
+  --primary: oklch(0.615 0.211 256.099);
   --secondary: hsl(183, 33%, 59%);
   --accent: hsl(181, 100%, 50%);
-  --linkColor: #ffffff;
+
+  --textColor-normal: #cccccc;
+  --textColor-link: #cccccc;
 
   // General
   --body-highlight: hsl(210, 5%, 20%);

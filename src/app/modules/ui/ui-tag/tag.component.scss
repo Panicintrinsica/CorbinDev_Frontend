@@ -2,16 +2,23 @@
   display: inline-flex;
   background: var(--body);
   border: 2px solid var(--body-lowlight);
-  border-radius: 5px;
-  padding: 0.8rem 1rem 1rem 1rem;
+  border-radius: 6px;
+  padding: 0.6rem 0.6rem 0.8rem 0.6rem;
+  transition: padding 0.5s;
+
+  @media only screen and (max-width: 768px)  {
+    padding: 0.8rem 1rem 1rem 1rem;
+  }
 
   font-family: var(--headerFont), serif;
   font-variant: petite-caps;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 0;
-  font-weight: 500;
+  font-weight: normal;
 
-  cursor: pointer;
+  &.skill {
+    cursor: pointer;
+  }
 
   // Project Types
   &.game {
@@ -42,12 +49,6 @@
     color: hsl(320, 100%, 75%);
     background: hsl(320, 100%, 10%);
     border-color: hsl(320, 100%, 20%);
-  }
-
-  &.server {
-    color: hsl(360, 100%, 75%);
-    background: hsl(360, 100%, 10%);
-    border-color: hsl(360, 100%, 20%);
   }
 
   // Blog Article Types
@@ -82,16 +83,6 @@
     &:hover {
       background-color: var(--tag-hover);
       border-color: var(--tag-border-hover);
-    }
-
-    &.highlight {
-      background-color: var(--tag-highlight);
-      border-color: var(--tag-highlight-border);
-
-      &:hover {
-        background-color: var(--tag-highlight-hover);
-        border-color: var(--tag-highlight-border-hover);
-      }
     }
   }
 

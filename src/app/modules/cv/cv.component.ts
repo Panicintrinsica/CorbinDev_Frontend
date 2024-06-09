@@ -5,7 +5,7 @@ import {Project} from "../../models/project.model";
 
 import {ServerService} from "../../services/server.service";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CdkDrag, CdkDragHandle, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
+import {CdkDrag, CdkDragHandle, CdkDropList} from "@angular/cdk/drag-drop";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
@@ -129,7 +129,7 @@ export class CvComponent implements OnDestroy {
 
   ngOnInit(): void {
 
-    this.configChange$ = this.configForm.valueChanges.subscribe(selectedValue => {
+    this.configChange$ = this.configForm.valueChanges.subscribe(() => {
       // Ensure it isn't triggered by programmatic changes
       if (this.configForm.dirty) {
         this.onSubmit();

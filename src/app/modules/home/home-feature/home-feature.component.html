@@ -1,12 +1,12 @@
 <div class="feature-segment">
   <div class="feature-title" [ngClass]="{'alt': isAlternate}">
-    <h1 [class]="color" class="text-gradient">{{ header }}</h1>
+    <h1 [class]="color" class="heavy text-gradient">{{ header }}</h1>
   </div>
 
   <div class="grid-container" [ngClass]="{'alt': isAlternate}">
 
 
-    <div class="normal-text content" [ngClass]="{'alt': isAlternate}">
+    <div class="text content" [ngClass]="{'alt': isAlternate}">
       <ng-content></ng-content>
 
       @if (route) {

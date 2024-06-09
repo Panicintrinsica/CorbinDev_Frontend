@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 
 @Component({
   selector: 'app-home-keyart',
@@ -21,7 +21,7 @@ export class HomeKeyartComponent implements AfterViewInit {
     const promise = video.play();
     if(promise !== undefined){
       promise.then(() => {
-      }).catch(error => {
+      }).catch(() => {
         video.muted = true;
         video.play();
       });

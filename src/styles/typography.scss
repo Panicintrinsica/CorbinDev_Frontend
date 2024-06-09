@@ -31,7 +31,6 @@
   --bodyFont: "SwedenSans";
   --headerFont: "Afacad";
   --uiFont: "Finlandica";
-  --bodyFont-color: hsl(0, 100%, 100%);
   --sizeSmall: 1rem;
   --sizeNormal: 1.2rem;
   --sizeLarge: 1.4rem;
@@ -39,20 +38,19 @@
 
 html, body {
   font-family: var(--bodyFont), serif;
-  color: var(--bodyFont-color);
-  font-size: 18px;
+  color: var(--textColor-normal);
+  font-size: 22px;
   font-optical-sizing: auto;
   font-style: normal;
 }
 
 p, .text {
   font-family: var(--bodyFont), serif;
-  color: var(--bodyFontColor);
+  color: var(--textColor-normal);
   line-height: 1.6;
 
   &.small { font-size: 0.8rem }
   &.large { font-size: 1.2rem }
-  &.bold { font-weight: bold; }
 }
 
 mark {
@@ -64,30 +62,22 @@ mark {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--headerFont), sans-serif;
+  font-weight: 400;
   margin: 0;
-  font-family: var(--headerFont), sans-serif;
-  font-weight: 1000;
 }
 
-h1 { font-size: 3rem }
-h2 { font-size: 2.5rem }
-h3 { font-size: 2rem }
+h1 { font-size: 2.5rem }
+h2 { font-size: 2rem }
+h3 { font-size: 1.75rem }
 h4 { font-size: 1.5rem }
+h5 { font-size: 1.4rem }
+h6 { font-size: 1.3rem }
 
-.text {
-  font-family: var(--bodyFont), serif;
-  color: var(--bodyFontColor);
-  line-height: 1.6;
-
-  &.small { font-size: 0.8rem }
-  &.large { font-size: 1.2rem }
-}
-
-.title {
-  font-family: var(--headerFont), sans-serif;
-  line-height: 1.4;
-  font-size: 2rem;
-
+p, .text, h1, h2, h3, h4, h5, h6 {
+  &.thin { font-weight:300; }
+  &.bold { font-weight: 700; }
+  &.heavy { font-weight: 1000; }
 }
 
 .text-gradient {
@@ -97,7 +87,6 @@ h4 { font-size: 1.5rem }
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 0.5rem;
 
   &.red {
     background: var(--red-to-pink-gradient);
@@ -125,7 +114,7 @@ h4 { font-size: 1.5rem }
 }
 
 a, a:visited, a:hover, a:active {
-  color: var(--linkColor);
+  color: var(--textColor-link);
   text-decoration-color: var(--primary);
 }
 
@@ -199,5 +188,3 @@ span.label {
 .uicon.pixelfed-footer:before { content: '\e814'; } /* '' */
 .uicon.mastodon-footer:before { content: '\e813'; } /* '' */
 .uicon.instagram-footer:before { content: '\e811'; } /* '' */
-
-

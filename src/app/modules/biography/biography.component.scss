@@ -35,6 +35,7 @@ article.biography {
 
   header.biography-header {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     align-items: baseline;
 
@@ -51,8 +52,7 @@ article.biography {
   }
 
   section.biography-body {
-    font-size: var(--sizeNormal);
-    line-height: 1.5;
+
   }
 
 }
@@ -71,14 +71,14 @@ article.biography {
     align-items: baseline;
 
     .name  {
-      font-family: var(--headerFont);
+      font-family: var(--headerFont), sans-serif;
       color: var(--secondary);
       font-size: 1.30rem;
       flex-grow: 1;
     }
 
     .gpa, .dates {
-      font-family: var(--font_ui);
+      font-family: var(--font_ui), monospace;
     }
 
 

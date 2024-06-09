@@ -25,7 +25,7 @@ main {
 
 main[data-theme="dark"] {
   --bodyColor: hsl(210, 100%, 95%);
-  --linkColor: #ffffff;
+  --textColor-link: #ffffff;
   --priamryColor: #aacef2;
   --accentColor: #8f73e6;
   --profileColor: #2a3540;
@@ -45,7 +45,7 @@ main[data-theme="dark"] {
 
 main[data-theme="angular"] {
   --bodyColor: hsl(210, 100%, 95%);
-  --linkColor: #ffffff;
+  --textColor-link: #ffffff;
   --priamryColor: #aacef2;
   --accentColor: #8f73e6;
   --profileColor: #2a3540;
@@ -65,7 +65,7 @@ main[data-theme="angular"] {
 
 main[data-theme="discord"] {
   --bodyColor: #f1f8ff;
-  --linkColor: #ffffff;
+  --textColor-link: #ffffff;
   --priamryColor: hsl(235, 50%, 80%);
   --accentColor: hsl(235, 86%, 65%);
   --profileColor: hsl(235, 83%, 59%);
@@ -93,7 +93,7 @@ main[data-theme="bland"] {
   --HeroFont: 'Fira Sans Condensed', sans-serif;
 
   --bodyColor: #000000;
-  --linkColor: hsl(200, 10%, 10%);
+  --textColor-link: hsl(200, 10%, 10%);
   --priamryColor: #000000;
   --accentColor: #8f9ccc;
 
@@ -117,7 +117,7 @@ main[data-theme="bland"] {
 
 main[data-theme="winter"] {
   --bodyColor: hsl(200, 30%, 30%);
-  --linkColor: hsl(180, 40%, 20%);
+  --textColor-link: hsl(180, 40%, 20%);
   --priamryColor: hsl(200, 75%, 40%);
   --accentColor: hsl(200, 50%, 80%);
 
@@ -141,7 +141,7 @@ main[data-theme="winter"] {
 
 main[data-theme="terminal"] {
   --bodyColor: hsl(130, 100%, 50%);
-  --linkColor: hsl(130, 100%, 80%);
+  --textColor-link: hsl(130, 100%, 80%);
   --priamryColor: hsl(130, 100%, 40%);
   --accentColor: hsl(130, 100%, 25%);
 
@@ -224,7 +224,7 @@ mat-checkbox {
   grid-template-areas:
     "sidebar content";
   box-shadow: 3px 3px 5px black;
-  font-family: var(--bodyFont);
+  font-family: var(--bodyFont), sans-serif;
   overflow: hidden;
 }
 
@@ -236,7 +236,7 @@ mat-checkbox {
   max-width: 8.5in;
   min-width: 8.5in;
   box-shadow: 3px 3px 5px black;
-  font-family: var(--bodyFont);
+  font-family: var(--bodyFont), sans-serif;
   overflow: hidden;
 
 
@@ -314,13 +314,13 @@ section.profile {
   }
 
   .name {
-    font-family: var(--HeroFont);
+    font-family: var(--HeroFont), sans-serif;
     font-size: 32pt;
     margin-top: 2mm;
   }
 
   .subline {
-    font-family: var(--bodyFont);
+    font-family: var(--bodyFont), sans-serif;
     opacity: 50%;
     font-size: 1.2em;
   }
@@ -385,7 +385,7 @@ section.contacts {
   font-weight: 100;
   gap: 1mm;
   margin: 2mm 0;
-  font-family: var(--bodyFontCond);
+  font-family: var(--bodyFontCond), sans-serif;
   font-size: 1.2em;
 
   .item {
@@ -449,7 +449,7 @@ section.learning {
       margin-bottom: 1mm;
 
       &::before, &::after {
-        font-family: var(--headerFont);
+        font-family: var(--headerFont), sans-serif;
         color: var(--bodyColor);
         opacity: 20%;
       }
@@ -656,7 +656,7 @@ section.learning {
     }
 
     .name {
-      font-family: var(--headerFont);
+      font-family: var(--headerFont), sans-serif;
       color: var(--priamryColor);
       font-size: 1.25em;
       width: 260px;
@@ -669,7 +669,7 @@ section.learning {
   }
 
   .meta {
-    font-family: var(--UiFont);
+    font-family: var(--UiFont), sans-serif;
     margin-top: 2mm;
     display: flex;
     align-items: center;
@@ -682,7 +682,7 @@ section.learning {
 }
 
 a, a:visited {
-  color: var(--linkColor);
+  color: var(--textColor-link);
   text-decoration-thickness: 1px;
   text-decoration-color: var(--accentColor);
 }

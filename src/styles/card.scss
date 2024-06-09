@@ -2,6 +2,8 @@
   --card-border-radius: 12px;
   background: var(--body);
   border-radius: var(--card-border-radius);
+  overflow: auto;
+  transition: box-shadow 500ms;
 
   header {
     background: var(--body-highlight);

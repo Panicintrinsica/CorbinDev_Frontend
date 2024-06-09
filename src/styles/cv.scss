@@ -25,7 +25,7 @@ main.cv {
 
 main[data-theme="dark"] {
   --bodyColor: hsl(210, 100%, 95%);
-  --linkColor: #ffffff;
+  --textColor-link: #ffffff;
   --priamryColor: #aacef2;
   --accentColor: #8f73e6;
   --profileColor: #2a3540;
@@ -45,7 +45,7 @@ main[data-theme="dark"] {
 
 main[data-theme="discord"] {
   --bodyColor: #f1f8ff;
-  --linkColor: #ffffff;
+  --textColor-link: #ffffff;
   --priamryColor: hsl(235, 50%, 80%);
   --accentColor: hsl(235, 86%, 65%);
   --profileColor: hsl(235, 83%, 59%);
@@ -73,7 +73,7 @@ main[data-theme="bland"] {
   --HeroFont: 'Fira Sans Condensed', sans-serif;
 
   --bodyColor: #000000;
-  --linkColor: hsl(200, 10%, 10%);
+  --textColor-link: hsl(200, 10%, 10%);
   --priamryColor: #000000;
   --accentColor: #8f9ccc;
 
@@ -97,7 +97,7 @@ main[data-theme="bland"] {
 
 main[data-theme="winter"] {
   --bodyColor: hsl(200, 30%, 30%);
-  --linkColor: hsl(180, 40%, 20%);
+  --textColor-link: hsl(180, 40%, 20%);
   --priamryColor: hsl(200, 75%, 40%);
   --accentColor: hsl(200, 50%, 80%);
 
@@ -121,7 +121,7 @@ main[data-theme="winter"] {
 
 main[data-theme="terminal"] {
   --bodyColor: hsl(130, 100%, 50%);
-  --linkColor: hsl(130, 100%, 80%);
+  --textColor-link: hsl(130, 100%, 80%);
   --priamryColor: hsl(130, 100%, 40%);
   --accentColor: hsl(130, 100%, 25%);
 
@@ -659,7 +659,7 @@ section.learning {
 }
 
 a, a:visited {
-  color: var(--linkColor);
+  color: var(--textColor-link);
   text-decoration-thickness: 1px;
   text-decoration-color: var(--accentColor);
 }

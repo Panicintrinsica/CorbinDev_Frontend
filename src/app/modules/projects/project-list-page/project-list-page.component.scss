@@ -2,14 +2,12 @@ header.professional { background: var(--professional-gradient) }
 header.personal { background: var(--personal-gradient) }
 header.open { background: var(--openSource-gradient) }
 
-h4 { margin-bottom: 0.5rem }
-
 .project-toolbar {
   background: var(--body-lowlight);
   padding: 1rem;
   border-radius: 16px;
   display: flex;
-  font-family: var(--uiFont);
+  font-family: var(--uiFont), monospace;
   flex-direction: column;
 
   .row {
@@ -61,7 +59,7 @@ h4 { margin-bottom: 0.5rem }
 .project-list {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 1rem;
   grid-area: list;
 }
 

@@ -1,7 +1,6 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {cvConfig, CvService} from "../cv.service";
-import {Profile} from "../../../models/profile.model";
 import {AsyncPipe, NgClass} from "@angular/common";
 import {MarkdownComponent} from "ngx-markdown";
 import {CoverletterPipe} from "../../../pipes/coverletter.pipe";
@@ -39,7 +38,7 @@ export class CoverletterComponent implements OnDestroy {
       next: value => {
         this.config = value
       },
-      error: err => {
+      error: () => {
         this.config = cvs.defaultConfig
       }
     });

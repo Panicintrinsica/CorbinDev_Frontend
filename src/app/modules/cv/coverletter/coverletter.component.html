@@ -6,7 +6,7 @@
     @if (config.showHeader) {
       <section class="profile simple cover" [ngClass]="{ 'banner': config.showBanner }">
         @if (config.showBanner){
-          <img class="bannerDecor" src="assets/stripesAlt.svg">
+          <img alt="decorate stripes" class="bannerDecor" src="assets/stripesAlt.svg">
         }
         <div class="name">
           {{ getDetail(details, "firstName", "content")  }}
