@@ -15,6 +15,7 @@
 @import "styles/article";
 @import "styles/card";
 @import "styles/project";
+@import "styles/cv";
 
 :root {
   //@include mat.all-component-themes($frontend-theme);
@@ -340,7 +341,6 @@ ul > li > ul > li > ul > li::before{
 }
 
 .cdk-overlay-pane {
-  box-shadow: 0 2px 8px 1px black;
   margin: 1rem;
 }
 

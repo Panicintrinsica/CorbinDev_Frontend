@@ -30,6 +30,7 @@ section.skill-dialog-body {
 
 .skill-data {
   justify-content: center;
+  flex-wrap: wrap;
 
   .label {
     font-family: var(--headerFont), sans-serif;
@@ -60,6 +61,7 @@ section.skill-dialog-body {
 .progress.row {
   margin-bottom: 0.5rem;
 }
+
 progress {
   --progressBackground: hsl(0, 0%, 5%);
   --progressBackground2: hsl(0, 0%, 15%);
@@ -102,6 +104,14 @@ progress[value]::-moz-progress-bar {
   height: var(--bar-height);
 }
 
+.skill-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.2rem;
+
+}
 
 // Project List Styles
 

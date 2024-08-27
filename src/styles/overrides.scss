@@ -45,38 +45,6 @@
   max-height: 75vh;
 }
 
-
-// Smart Modal Overrides
-.nsm-dialog, .nsm-dialog-btn-close {
-  color: var(--bodyFont-color)
-}
-
-.nsm-dialog {
-  max-width: 80vw;
-}
-
-.mdc-dialog__surface {
-  background-color: var(--body) !important;
-}
-
-.nsm-content, .mat-mdc-dialog-container .mdc-dialog__surface {
-  background-color: var(--body);
-}
-
-.cdk-overlay-pane {
-  box-shadow: none;
-}
-
-.nsm-body {
-  display: flex;
-  flex-direction: column;
-
-  textarea {
-    min-height: 100px;
-  }
-}
-
-
 // Fix first paragraph spacing on the Resume Builder
 .intro > p:nth-child(1) {
   margin-top: 0;
@@ -110,4 +78,9 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #2f697a;
+}
+
+body {
+  --mat-dialog-container-max-width: 900px;
+  --mat-dialog-container-min-width: 40vw;
 }

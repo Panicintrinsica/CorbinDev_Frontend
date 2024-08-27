@@ -10,7 +10,7 @@
         <div class="project entry" cdkDrag cdkDragPreviewContainer="parent">
           <div class="title-row draggable" cdkDragHandle>
             <div class="name">{{project.name}}</div>
-            <div class="title">{{project.name}}</div>
+            <div class="title">{{project.role}}</div>
             <div class="dates">
               @if (diffYear(project.started, project.ended)) {
                 {{project.started | date:"MMM. yyyy" }}

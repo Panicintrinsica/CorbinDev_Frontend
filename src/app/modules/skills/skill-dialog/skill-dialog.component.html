@@ -1,41 +1,50 @@
 <article class="skill-dialog card" *ngIf="skill$ | async as skill">
   <header class="skill-dialog-header">
-    <h2 class="text-gradient fill">{{skill.name}}</h2>
+    <h2 class="text-gradient fill">{{ skill.name }}</h2>
 
-    <ui-tag text="Featured Skill" type="skill highlight"  ></ui-tag>
+    @if (skill.isFeatured) {
+      <ui-tag text="Featured Skill" type="featured skill"></ui-tag>
+    }
 
-    <div *ngIf="skill.isFeatured" class="category featured"></div>
   </header>
 
   <section class="skill-dialog-body">
     <div class="flex progress row">
-      <div class="cell pusher"><progress max="100" [value]="skill.level"></progress></div>
+      <div class="cell pusher">
+        <progress max="100" [value]="skill.level"></progress>
+      </div>
     </div>
 
     <div class="skill-data flex divided">
       <div class="cell">
         <div class="label">Proficiency:</div>
-        <div class="data">{{skill.level | levelToName }}</div>
+        <div class="data">{{ skill.level | levelToName }}</div>
       </div>
 
-      @if (skill.learned){
+      @if (skill.learned) {
         <div class="cell">
           <div class="label">Acquired:</div>
-          <div class="data">{{skill.learned | date : 'yyyy' }}</div>
+          <div class="data">{{ skill.learned | date : 'yyyy' }}</div>
         </div>
       }
 
-      @if (skill.years){
+      @if (skill.years) {
         <div class="cell">
-          <div class="label">Active Experience:</div>
-          <div class="data">{{skill.years}} Years</div>
+          <span class="label">Active Experience:</span>
+          <span class="data">{{ skill.years }} Years</span>
         </div>
       }
     </div>
 
-    @if (skill.notes){
+    @if (skill.notes) {
       <div class="notes" [innerHTML]="skill.notes" markdown></div>
     }
+
+    <div class="skill-actions">
+      @if (skill.link) {
+        <a mat-raised-button color="primary" [href]="skill.link" target="_blank">Product Website</a>
+      }
+    </div>
 
     <h3>Projects</h3>
     <div class="projects-list-box">
@@ -43,7 +52,7 @@
         <div class="projects-list flex column gap-small" [@FadeInList]="projects.length">
           @for (project of projects; track project.id) {
             <div class="project flex row {{project.group}}" (click)="goToProject(project.slug)">
-              <div class="name pusher">{{project.name}}</div>
+              <div class="name pusher">{{ project.name }}</div>
               <div class="button"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
             </div>
           } @empty {
@@ -55,6 +64,7 @@
         </div>
       }
     </div>
+
 
   </section>
 

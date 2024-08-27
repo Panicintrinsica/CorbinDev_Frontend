@@ -16,10 +16,6 @@
   line-height: 0;
   font-weight: normal;
 
-  &.skill {
-    cursor: pointer;
-  }
-
   // Project Types
   &.game {
     color: hsl(160, 100%, 75%);
@@ -69,13 +65,7 @@
     background: hsl(180, 100%, 10%);
     border-color: hsl(180, 100%, 20%);
   }
-
-  &.featured {
-    color: white;
-    background: var(--tag-highlight);
-    border-color: var(--tag-highlight-border);
-  }
-
+  
   &.blog {
     background-color: var(--tag);
     border-color: var(--tag-border);
@@ -89,13 +79,14 @@
   &.skill {
     background-color: var(--tag);
     border-color: var(--tag-border);
+    cursor: pointer;
 
     &:hover {
       background-color: var(--tag-hover);
       border-color: var(--tag-border-hover);
     }
 
-    &.highlight {
+    &.featured {
       background-color: var(--tag-highlight);
       border-color: var(--tag-highlight-border);
 

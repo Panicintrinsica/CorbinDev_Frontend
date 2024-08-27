@@ -5,7 +5,7 @@
   max-width: 1000px;
 }
 
-main.cv {
+.resume {
   font-size: 10pt;
 
   --bodyFont: 'Fira Sans', sans-serif;
@@ -23,7 +23,7 @@ main.cv {
   }
 }
 
-main[data-theme="dark"] {
+.resume[data-theme="dark"] {
   --bodyColor: hsl(210, 100%, 95%);
   --textColor-link: #ffffff;
   --priamryColor: #aacef2;
@@ -43,7 +43,7 @@ main[data-theme="dark"] {
   --sidebarColor: #252525;
 }
 
-main[data-theme="discord"] {
+.resume[data-theme="discord"] {
   --bodyColor: #f1f8ff;
   --textColor-link: #ffffff;
   --priamryColor: hsl(235, 50%, 80%);
@@ -65,7 +65,7 @@ main[data-theme="discord"] {
   --sidebarColor: #2f3136;
 }
 
-main[data-theme="bland"] {
+.resume[data-theme="bland"] {
   --bodyFont: 'Fira Sans', sans-serif;
   --bodyFontCond: 'Fira Sans Condensed', sans-serif;
   --headerFont: 'Fira Sans', sans-serif;
@@ -95,7 +95,7 @@ main[data-theme="bland"] {
   --sidebarColor:hsl(0, 0%, 100%);
 }
 
-main[data-theme="winter"] {
+.resume[data-theme="winter"] {
   --bodyColor: hsl(200, 30%, 30%);
   --textColor-link: hsl(180, 40%, 20%);
   --priamryColor: hsl(200, 75%, 40%);
@@ -119,7 +119,7 @@ main[data-theme="winter"] {
   --sidebarColor: hsl(220, 40%, 90%);
 }
 
-main[data-theme="terminal"] {
+.resume[data-theme="terminal"] {
   --bodyColor: hsl(130, 100%, 50%);
   --textColor-link: hsl(130, 100%, 80%);
   --priamryColor: hsl(130, 100%, 40%);
@@ -180,27 +180,22 @@ mat-checkbox {
   }
 }
 
-.simple-pages {
-
-  .page + .page {
-    margin-top: 5mm;
-  }
-
-}
-
-.resumePage {
-  display: grid;
+.resume.page {
   background: var(--pageColor);
   color: var(--bodyColor);
   max-height: 11in;
   min-height: 11in;
   max-width: 8.5in;
   min-width: 8.5in;
-  margin: 0 auto auto auto;
+  padding: 0;
+};
+
+.fancy.resume {
+  display: grid;
   grid-auto-columns: 1fr;
   grid-template-columns: 33% auto;
   gap: 0 0;
-
+  margin: 0 auto auto auto;
   grid-template-areas:
     "sidebar content";
   box-shadow: 3px 3px 5px black;
@@ -208,13 +203,8 @@ mat-checkbox {
   overflow: hidden;
 }
 
-.resumePage-single {
-  background: var(--pageColor);
-  color: var(--bodyColor);
-  max-height: 11in;
-  min-height: 11in;
-  max-width: 8.5in;
-  min-width: 8.5in;
+.simple.resume {
+
   box-shadow: 3px 3px 5px black;
   font-family: var(--bodyFont);
   overflow: hidden;
