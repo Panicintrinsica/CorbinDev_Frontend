@@ -1,17 +1,19 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, tap} from "rxjs";
-import {Profile} from "../../models/profile.model";
-import {ServerService} from "../../services/server.service";
-import {Skill} from "../../models/skill.model";
-import {Education} from "../../models/education.model";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Profile } from '../../models/profile.model';
+import { ServerService } from '../../services/server.service';
+import { Skill } from '../../models/skill.model';
+import { Education } from '../../models/education.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CvService {
-
   public defaultConfig: cvConfig = {
+    showBluesky: false,
+    showInstagram: false,
+    showPixelfed: false,
     showAwards: false,
     showBanner: true,
     showBannerDecor: true,
@@ -36,12 +38,12 @@ export class CvService {
     showSkillDetails: true,
     showSkills: true,
     showTwitch: false,
-    showURL: true,
-    showYoutube: false,
+    ShowWebsite: true,
+    showYouTube: false,
     showSalutation: true,
     showValediction: true,
-    skillDecor: "none",
-    theme: "dark"
+    skillDecor: 'none',
+    theme: 'dark',
   };
 
   private profileSubject$ = new BehaviorSubject<Profile | null>(null);
@@ -53,38 +55,45 @@ export class CvService {
   private skillsSubject$ = new BehaviorSubject<Skill[] | null>(null);
   public skills$ = this.skillsSubject$.asObservable();
 
-  theme$: BehaviorSubject<string> = new BehaviorSubject<string>('dark')
+  theme$: BehaviorSubject<string> = new BehaviorSubject<string>('dark');
   config$ = new BehaviorSubject<cvConfig>(this.defaultConfig);
 
-  constructor(private server: ServerService, private http: HttpClient) {
+  constructor(
+    private server: ServerService,
+    private http: HttpClient,
+  ) {
     this.loadEducation();
     this.loadSkills();
   }
 
-  getConfig(){
+  getConfig() {
     return this.config$.asObservable();
   }
 
-  getTheme(){
+  getTheme() {
     return this.theme$.asObservable();
   }
 
   loadEducation() {
-    this.server.getEducation().pipe(
-      tap(result => this.educationSubject$.next(result))
-    ).subscribe();
+    this.server
+      .getEducation()
+      .pipe(tap((result) => this.educationSubject$.next(result)))
+      .subscribe();
   }
 
   loadSkills() {
-    this.server.getAllSkills().pipe(
-      tap(result => {
-        this.skillsSubject$.next(result)
-      })
-    ).subscribe();
+    this.server
+      .getAllSkills()
+      .pipe(
+        tap((result) => {
+          this.skillsSubject$.next(result);
+        }),
+      )
+      .subscribe();
   }
 
   getDefaultCover(): Observable<string> {
-    return this.http.get('assets/yourfile.md', {responseType: 'text'});
+    return this.http.get('assets/yourfile.md', { responseType: 'text' });
   }
 
   updateConfig(config: cvConfig) {
@@ -93,7 +102,7 @@ export class CvService {
 }
 
 export interface cvConfig {
-  [index: string]: any
+  [index: string]: any;
   theme: string;
   skillDecor: string;
   showBanner: boolean;
@@ -116,12 +125,15 @@ export interface cvConfig {
   showEmail: boolean;
   showPhone: boolean;
   showEvilPhone: boolean;
-  showURL: boolean;
+  ShowWebsite: boolean;
   showLinkedIn: boolean;
   showGithub: boolean;
   showMastodon: boolean;
   showTwitch: boolean;
-  showYoutube: boolean;
+  showYouTube: boolean;
   showSalutation: boolean;
   showValediction: boolean;
+  showInstagram: boolean;
+  showPixelfed: boolean;
+  showBluesky: boolean;
 }

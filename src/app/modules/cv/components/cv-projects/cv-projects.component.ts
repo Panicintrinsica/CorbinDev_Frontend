@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   CdkDrag,
   CdkDragDrop,
@@ -10,6 +10,8 @@ import { DatePipe } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { Project } from '../../../../models/project.model';
 import { ServerService } from '../../../../services/server.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CvProjectsDialogComponent } from '../cv-projects-dialog/cv-projects-dialog.component';
 
 @Component({
   selector: 'cv-projects',
@@ -20,6 +22,8 @@ import { ServerService } from '../../../../services/server.service';
 })
 export class CvProjectsComponent {
   projectList!: Project[];
+
+  readonly dialog = inject(MatDialog);
 
   constructor(private server: ServerService) {
     server.getCVProjects().subscribe({
@@ -52,5 +56,9 @@ export class CvProjectsComponent {
     const start = new Date(startDate).getFullYear();
     const end = new Date(endDate).getFullYear();
     return start != end;
+  }
+
+  editProjectList() {
+    this.dialog.open(CvProjectsDialogComponent);
   }
 }

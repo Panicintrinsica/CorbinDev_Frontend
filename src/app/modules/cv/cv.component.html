@@ -3,10 +3,8 @@
   <router-outlet></router-outlet>
 
   <aside class="controls noprint">
-
-    <form [formGroup]="configForm" >
+    <form [formGroup]="configForm" class="controls-list">
       <div class="flex segment control-panel">
-        <div class="title">Theming</div>
         <mat-form-field appearance="fill" subscriptSizing="dynamic">
           <mat-label>Theme</mat-label>
           <select matNativeControl formControlName="theme">
@@ -109,7 +107,10 @@
             @if (true) {
               <mat-checkbox color="primary" formControlName="showGithub">GitHub</mat-checkbox>
               <mat-checkbox color="primary" formControlName="showMastodon">Mastodon</mat-checkbox>
-              <mat-checkbox color="primary" formControlName="showYoutube">YouTube</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showBluesky">Bluesky</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showInstagram">Instagram</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showPixelfed">Pixelfed</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="showYouTube">YouTube</mat-checkbox>
               <mat-checkbox color="primary" formControlName="showTwitch">Twitch</mat-checkbox>
             }
 
@@ -133,7 +134,6 @@
 
       <button mat-raised-button (click)="printPage()">Print</button>
     </form>
-
 
   </aside>
 </div>

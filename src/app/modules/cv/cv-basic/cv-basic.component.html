@@ -1,4 +1,4 @@
-  <main class="resumePage-single printable" [attr.data-theme]="config.theme">
+  <main class="resume printable" [attr.data-theme]="config.theme">
 
     @if (details$ | async; as details) {
       <section class="content">
@@ -31,7 +31,7 @@
               </div>
             }
 
-            @if (config.showURL) {
+            @if (config.ShowWebsite) {
               <div class="item">
                 <div class="simple label" >Website: </div>
                 <a href="{{ getDetail(details, 'website', 'link') }}">{{ getDetail(details, 'website', 'content') }}</a>

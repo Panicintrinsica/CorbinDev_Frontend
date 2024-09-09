@@ -80,6 +80,10 @@ export class ServerService {
     return this.http.get<Project[]>(`${this.API}/projects/forCV`);
   }
 
+  getProjectStubs(): Observable<ProjectStub[]> {
+    return this.http.get<ProjectStub[]>(`${this.API}/projects/stubs`);
+  }
+
   getProjectsBySkill(skillID: string): Observable<ProjectStub[]> {
     return this.http.get<ProjectStub[]>(
       `${this.API}/projects/bySkill/${skillID}`,

@@ -2,8 +2,7 @@
   <div class="subsection">
     <div class="textBanner">Projects
       <div class="fill"></div>
-      <button mat-button color="primary">Edit</button>
-
+      <button mat-button color="primary" (click)="editProjectList()">Edit</button>
     </div>
     <div class="info-block" cdkDropList (cdkDropListDropped)="projectDrop($event)">
       @for (project of displayedProjects; track project){

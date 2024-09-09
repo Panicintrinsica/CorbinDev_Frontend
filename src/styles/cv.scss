@@ -1,12 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Fira+Sans&family=Fira+Sans+Condensed&family=Iceberg&family=Parisienne&display=swap');
 
 .page-container {
-  margin: 1rem auto;
+  margin: 1em auto;
   max-width: 1000px;
 }
 
 .resume {
-  font-size: 10pt;
+  font-size: 12pt;
+
+  background: var(--pageColor);
+  color: var(--bodyColor);
+  max-height: 11in;
+  min-height: 11in;
+  max-width: 8.5in;
+  min-width: 8.5in;
+  padding: 0;
+  overflow: hidden;
+
 
   --bodyFont: 'Fira Sans', sans-serif;
   --bodyFontCond: 'Fira Sans Condensed', sans-serif;
@@ -21,6 +31,12 @@
   * {
     transition: all 200ms, font-size 0ms;
   }
+
+}
+
+.resume p {
+  font-family: var(--bodyFont), sans-serif;
+  color: var(--bodyColor);
 }
 
 .resume[data-theme="dark"] {
@@ -151,21 +167,11 @@ span.divider {
   color: var(--shadeing_high);
 
   &.wide {
-    margin: 0 .5rem;
+    margin: 0 .5em;
   }
 }
 
-.controls {
-  display: flex;
-  flex-direction: column;
-  gap: 5mm;
-  margin-left: 1cm;
-}
 
-.control-panel {
-  display: flex;
-  gap: 2mm;
-}
 
 .clickable {
   cursor: pointer;
@@ -180,15 +186,6 @@ mat-checkbox {
   }
 }
 
-.resume.page {
-  background: var(--pageColor);
-  color: var(--bodyColor);
-  max-height: 11in;
-  min-height: 11in;
-  max-width: 8.5in;
-  min-width: 8.5in;
-  padding: 0;
-};
 
 .fancy.resume {
   display: grid;
@@ -335,7 +332,7 @@ section.profile {
 }
 
 ul {
-  font-size: 1rem;
+  font-size: 1em;
   font-weight: 0;
   color: var(--bodyColor);
 }
@@ -405,7 +402,7 @@ section.info {
 
 section.learning {
   width: 100%;
-  padding-top: 0.5rem;
+  padding-top: 0.5em;
 
   ul {
     padding: 0 0 0 3mm ;
@@ -476,7 +473,7 @@ section.learning {
 
   .mat-mdc-button {
     height: 24px;
-    font-size: .75rem;
+    font-size: .75em;
   }
 
   &::before {
@@ -680,7 +677,7 @@ a, a:visited {
 
 .fa-item {
   display: flex;
-  gap: 1rem;
+  gap: 1em;
   align-items: baseline;
 
   .fa-row-label {
@@ -726,7 +723,7 @@ main[data-theme="bland"].resumePage-single {
   }
 
   .intro {
-    margin: 1rem 0;
+    margin: 1em 0;
   }
 
   .entry,  {
@@ -775,28 +772,3 @@ main[data-theme="bland"].resumePage-single {
 }
 
 
-
-.cover-letter {
-  margin: 10mm;
-  font-size: 0.9rem;
-
-  .salutation {
-    margin-bottom: 5mm;
-  }
-
-  .body {
-    margin-top: 5mm;
-    line-height: 1.5em;
-  }
-
-  .valediction {
-    margin-top: 5mm;
-    line-height: 1.5em;
-  }
-
-  .signature {
-    margin-top: 5mm;
-    font-size: 2em;
-    font-family: 'Parisienne', cursive;
-  }
-}

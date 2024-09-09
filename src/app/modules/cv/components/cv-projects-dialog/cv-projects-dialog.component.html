@@ -1,12 +1,15 @@
 <article class="segment project-selector">
 
-  @if (projects$ | async) {
+  @if (projects$ | async; as projects) {
     <header>
-
+      Projects
     </header>
 
     <div class="content">
+      @for (project of projects; track project) {
+        {{project.name}}
 
+      }
     </div>
   } @else {
     <header>Failed to fetch projects</header>
