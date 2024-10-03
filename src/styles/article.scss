@@ -110,3 +110,46 @@ article.skills {
     padding: 12px;
   }
 }
+
+$admonition-types: (
+  note: rgb(89, 89, 255),
+  abstract:  rgb(0, 255, 255),
+  info: rgb(0, 119, 255),
+  todo:      rgba(0, 103, 255),
+  tip:       rgb(0, 233, 255),
+  success:   rgb(0, 255, 13),
+  question:  rgb(246, 176, 0),
+  warning:   rgb(255, 77, 0),
+  failure:   rgb(255, 0, 0),
+  bug:       rgb(255, 72, 0),
+  danger:    rgb(255, 0, 0),
+  example:   rgba(103, 103, 226)
+);
+
+.admonition {
+  border-left: 6px solid transparentize(map-get($admonition-types, note), 0.3); // Default to 'note' type
+  background: transparentize(map-get($admonition-types, note), 0.7); // Default to 'note' type
+
+  .admonition-title {
+    background: transparentize(map-get($admonition-types, note), 0.8); // Default to 'note' type
+    padding-left: .5rem;
+    font-variant: small-caps;
+    color: transparentize(map-get($admonition-types, note), 0.1); // Default to 'note' type
+  }
+
+  .admonition-content {
+    padding-left: .5rem;
+  }
+
+  @each $type, $color in $admonition-types {
+    &-#{$type} {
+      border-left-color: transparentize($color, 0.3);
+      background-color: transparentize($color, 0.7);
+
+      .admonition-title {
+        background-color: transparentize($color, 0.8);
+        color: transparentize($color, 0.1);
+      }
+    }
+  }
+}
