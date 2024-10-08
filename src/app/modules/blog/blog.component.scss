@@ -1,0 +1,18 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr minmax(100px, 200px);
+  grid-template-rows: min-content 1fr min-content;
+  grid-template-areas:
+    "top-nav top-nav"
+    "list sidebar"
+    "bottom-nav bottom-nav";
+}
+.top-nav { grid-area: top-nav; }
+.bottom-nav { grid-area: bottom-nav; }
+
+.sidebar {
+  grid-area: sidebar;
+  padding: 5mm 0;
+}
+
+.article-list { grid-area: list; }

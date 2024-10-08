@@ -138,7 +138,7 @@ $admonition-types: (
   }
 
   .admonition-content {
-    padding-left: .5rem;
+    padding: 0.5rem;
   }
 
   @each $type, $color in $admonition-types {
