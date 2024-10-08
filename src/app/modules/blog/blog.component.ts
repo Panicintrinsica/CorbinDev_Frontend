@@ -1,11 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AsyncPipe, NgClass} from "@angular/common";
-import {ArticleDisplayStyle, UiArticleComponent} from "./components/ui-article/ui-article.component";
-import {ArticlePage} from "../../models/article.model";
-import {BlogService} from "../../services/blog.service";
-import {Subject, Subscription} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AsyncPipe, NgClass } from '@angular/common';
+import {
+  ArticleDisplayStyle,
+  UiArticleComponent,
+} from './components/ui-article/ui-article.component';
+import { ArticlePage } from '../../models/article.model';
+import { BlogService } from '../../services/blog.service';
+import { Subject, Subscription } from 'rxjs';
+import { MatChipListbox, MatChipOption } from '@angular/material/chips';
+import { ArticleTypes } from '../../constants/project.consts';
 
 @Component({
   selector: 'app-blog',
@@ -13,42 +16,40 @@ import {ActivatedRoute, Router} from "@angular/router";
   imports: [
     AsyncPipe,
     UiArticleComponent,
-    NgClass
+    NgClass,
+    MatChipOption,
+    MatChipListbox,
   ],
   templateUrl: './blog.component.html',
-  styleUrl: './blog.component.scss'
+  styleUrl: './blog.component.scss',
 })
 export class BlogComponent implements OnInit, OnDestroy {
   articles$!: Subject<ArticlePage>;
-  currentSize: number;
-  currentPage: number;
+  currentPage = 0;
 
   _isFirstPage$: Subscription;
-  _isLastPage$ : Subscription;
+  _isLastPage$: Subscription;
 
   isFirstPage = false;
   isLastPage = false;
 
-  constructor(
-    private bs: BlogService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
-    this.articles$ = this.bs.getArticleSub()
-    this._isFirstPage$ = this.bs.isFirstPage$.subscribe(value => this.isFirstPage = value)
-    this._isLastPage$ = this.bs.isLastPage$.subscribe(value => this.isLastPage = value)
+  selectedCategories = new Set<string>();
 
-
-    this.currentSize = Number(this.route.snapshot.queryParamMap.get('size')) || 5
-    this.currentPage = Number(this.route.snapshot.queryParamMap.get('page'))
+  constructor(private bs: BlogService) {
+    this.articles$ = this.bs.getArticleSub();
+    this._isFirstPage$ = this.bs.isFirstPage$.subscribe(
+      (value) => (this.isFirstPage = value),
+    );
+    this._isLastPage$ = this.bs.isLastPage$.subscribe(
+      (value) => (this.isLastPage = value),
+    );
   }
 
   ngOnInit(): void {
-      this.getPage(this.currentPage)
+    this.getPage(this.currentPage);
   }
 
   ngOnDestroy() {
-    //this.articles$.unsubscribe();
     this._isFirstPage$.unsubscribe();
     this._isLastPage$.unsubscribe();
   }
@@ -57,23 +58,35 @@ export class BlogComponent implements OnInit, OnDestroy {
     if (this.isFirstPage) return;
 
     const newPage = --this.currentPage;
-    this.getPage(newPage)
+    this.getPage(newPage);
   }
 
   nextPage() {
     if (this.isLastPage) return;
 
     const newPage = ++this.currentPage;
-    this.getPage(newPage)
+    this.getPage(newPage);
   }
 
   private getPage(pageNumber: number) {
-    this.bs.getArticlePage(this.currentSize, pageNumber, true)
-
-    this.router.navigate([], { queryParams: { page: pageNumber, size: this.currentSize } });
-
- }
-
+    this.bs.getArticlePage(5, pageNumber, true);
+  }
 
   protected readonly ArticleDisplayStyle = ArticleDisplayStyle;
+  protected readonly categoryOptions = ArticleTypes;
+
+  selectCategories(filterKey: string) {
+    if (this.selectedCategories.has(filterKey)) {
+      this.selectedCategories.delete(filterKey);
+    } else {
+      this.selectedCategories.add(filterKey);
+    }
+
+    sessionStorage.setItem(
+      'blogFilters',
+      JSON.stringify([...this.selectedCategories]),
+    );
+
+    this.getPage(0);
+  }
 }
