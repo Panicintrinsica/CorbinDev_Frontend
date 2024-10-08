@@ -65,15 +65,17 @@
     background: hsl(180, 100%, 10%);
     border-color: hsl(180, 100%, 20%);
   }
-  
-  &.blog {
-    background-color: var(--tag);
-    border-color: var(--tag-border);
 
-    &:hover {
-      background-color: var(--tag-hover);
-      border-color: var(--tag-border-hover);
-    }
+  &.blog {
+    color: hsl(206, 26%, 84%);
+    background: hsl(200, 10%, 30%);
+    border-color: hsl(201, 10%, 60%);
+  }
+
+  &.review {
+    color: hsl(220, 100%, 50%);
+    background: hsl(220, 100%, 10%);
+    border-color: hsl(220, 50%, 50%);
   }
 
   &.skill {
