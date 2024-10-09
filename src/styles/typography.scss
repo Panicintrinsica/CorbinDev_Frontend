@@ -67,6 +67,16 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+@media (max-width: 810px) {
+  h1 { font-size: 2.0rem }
+  h2 { font-size: 1.8rem }
+  h3 { font-size: 1.7rem }
+  h4 { font-size: 1.4rem }
+  h5 { font-size: 1.3rem }
+  h6 { font-size: 1.2rem }
+  html, body { font-size: 18px }
+}
+
 h1 { font-size: 2.5rem }
 h2 { font-size: 2rem }
 h3 { font-size: 1.75rem }
@@ -139,6 +149,13 @@ span.label {
   display: inline-block;
   margin-left: 6px;
   text-align: center;
+}
+
+
+.icon-button {
+  width: 1rem;
+  height: 1rem;
+  font-size: 1.5rem;
 }
 
 // Interface Icons

@@ -9,6 +9,8 @@ import { BlogService } from '../../services/blog.service';
 import { Subject, Subscription } from 'rxjs';
 import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { ArticleTypes } from '../../constants/project.consts';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-blog',
@@ -19,6 +21,8 @@ import { ArticleTypes } from '../../constants/project.consts';
     NgClass,
     MatChipOption,
     MatChipListbox,
+    MatIconButton,
+    MatIcon,
   ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',
@@ -32,6 +36,8 @@ export class BlogComponent implements OnInit, OnDestroy {
 
   isFirstPage = false;
   isLastPage = false;
+
+  hideSidebar = true;
 
   selectedCategories = new Set<string>();
 
@@ -47,11 +53,19 @@ export class BlogComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getPage(this.currentPage);
+    this.initializeCategories();
   }
 
   ngOnDestroy() {
     this._isFirstPage$.unsubscribe();
     this._isLastPage$.unsubscribe();
+  }
+
+  initializeCategories(): void {
+    const savedCategories = sessionStorage.getItem('blogFilters');
+    if (savedCategories) {
+      this.selectedCategories = new Set<string>(JSON.parse(savedCategories));
+    }
   }
 
   lastPage() {
@@ -76,7 +90,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   protected readonly categoryOptions = ArticleTypes;
 
   selectCategories(filterKey: string) {
-    if (this.selectedCategories.has(filterKey)) {
+    if (this.selectedCategories && this.selectedCategories.has(filterKey)) {
       this.selectedCategories.delete(filterKey);
     } else {
       this.selectedCategories.add(filterKey);

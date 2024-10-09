@@ -1,10 +1,16 @@
 <div class="page container">
 
-  <div class="top-nav">
-
+  <div class="blog-nav">
+    <div class="blog-title">
+      Developer's Blog
+    </div>
+    <div class="fill"></div>
+    <button mat-icon-button aria-label="" (click)="hideSidebar = !hideSidebar">
+      <mat-icon>more_vert</mat-icon>
+    </button>
   </div>
 
-  <section class="content article-list">
+  <section class="article-list">
     @if (articles$ | async; as articles) {
       @for (article of articles.records; track article.id) {
         <ui-article [isStub]="true" [data]="article" [displayStyle]="ArticleDisplayStyle.Card"></ui-article>
@@ -19,15 +25,17 @@
     }
   </section>
 
-  <aside class="sidebar">
+
+  <aside class="sidebar" [ngClass]="{'sidebar-hidden': hideSidebar}">
     <div class="sidebar-segment">
       <div class="sidebar-segment-heading">Filter</div>
       <div class="content">
-        <mat-chip-listbox #categoryList class="mat-mdc-chip-set-stacked " multiple>
+        <mat-chip-listbox class="mat-mdc-chip-set-stacked " multiple>
           @for (option of categoryOptions; track option.id){
             <mat-chip-option
               id="{{option.id}}"
-              (selectionChange)="selectCategories(option.id)"
+              (click)="selectCategories(option.id)"
+              [selected]="selectedCategories.has(option.id)"
             >{{option.label}}
             </mat-chip-option>
           }
@@ -36,6 +44,7 @@
 
     </div>
   </aside>
+
 
   <div class="pager bottom-nav">
     <div class="pager-item" (click)="lastPage()" [ngClass]="{'disabled': isFirstPage}">Back</div>
