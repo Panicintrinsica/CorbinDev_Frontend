@@ -1,0 +1,41 @@
+.search-input {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-input > input {
+  flex: 1;
+  height: min-content;
+  border-radius: 16px;
+  background-color: rgba(0, 0, 0, 0.50);
+  width: 100px;
+  text-align: center;
+}
+
+.search-input:focus-within > input {
+  width: 300px;
+  text-align: left;
+}
+
+.search-input button {
+  color: white;
+  background: rgba(0, 166, 255, 0.49);
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  display: none;
+  height: 29px;
+  width: 32px;
+  font-size: 1rem;
+  border-radius: 0 16px 16px 0;
+}
+
+.search-input .uicon::before {
+  margin-left: 0;
+}
+
+.search-input:focus-within button {
+  display: block;
+}

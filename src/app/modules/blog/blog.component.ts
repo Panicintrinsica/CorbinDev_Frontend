@@ -4,13 +4,16 @@ import {
   ArticleDisplayStyle,
   UiArticleComponent,
 } from './components/ui-article/ui-article.component';
-import { ArticlePage } from '../../models/article.model';
+import { ArticlePage, ArticleSearchResults } from '../../models/article.model';
 import { BlogService } from '../../services/blog.service';
 import { Subject, Subscription } from 'rxjs';
 import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { ArticleTypes } from '../../constants/project.consts';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { UiSearchComponent } from '../ui/ui-search/ui-search.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog',
@@ -23,6 +26,8 @@ import { MatIcon } from '@angular/material/icon';
     MatChipListbox,
     MatIconButton,
     MatIcon,
+    FormsModule,
+    UiSearchComponent,
   ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',
@@ -41,7 +46,10 @@ export class BlogComponent implements OnInit, OnDestroy {
 
   selectedCategories = new Set<string>();
 
-  constructor(private bs: BlogService) {
+  constructor(
+    private bs: BlogService,
+    private router: Router,
+  ) {
     this.articles$ = this.bs.getArticleSub();
     this._isFirstPage$ = this.bs.isFirstPage$.subscribe(
       (value) => (this.isFirstPage = value),
@@ -102,5 +110,12 @@ export class BlogComponent implements OnInit, OnDestroy {
     );
 
     this.getPage(0);
+  }
+
+  searchBlog(query: string) {
+    this.bs.searchArticles(query).subscribe((results: ArticleSearchResults) => {
+      this.bs.setSearchResults(results);
+      this.router.navigate(['blog/search']);
+    });
   }
 }

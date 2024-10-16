@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { Article, ArticlePage } from '../models/article.model';
+import {
+  Article,
+  ArticlePage,
+  ArticleSearchResults,
+} from '../models/article.model';
 import { HttpClient } from '@angular/common/http';
 import { ViewportScroller } from '@angular/common';
 
@@ -12,6 +16,10 @@ export class BlogService {
   private API = environment.API;
 
   private articleSubject: Subject<ArticlePage> = new Subject<ArticlePage>();
+  private searchResultsSubject = new BehaviorSubject<ArticleSearchResults>({
+    records: [],
+    totalCount: 0,
+  });
 
   private _isLastPage: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false,
@@ -36,6 +44,10 @@ export class BlogService {
 
   getArticleSub(): Subject<ArticlePage> {
     return this.articleSubject;
+  }
+
+  getSearchResultSub(): BehaviorSubject<ArticleSearchResults> {
+    return this.searchResultsSubject;
   }
 
   getArticlePage(size: number, offset: number, scroll: boolean = false) {
@@ -67,6 +79,17 @@ export class BlogService {
           console.error(error);
         },
       });
+  }
+
+  searchArticles(query: string): Observable<ArticleSearchResults> {
+    console.log(query);
+    return this.http.post<ArticleSearchResults>(`${this.API}/articles/search`, {
+      searchString: query,
+    });
+  }
+
+  setSearchResults(results: ArticleSearchResults) {
+    this.searchResultsSubject.next(results);
   }
 
   isLastPage() {

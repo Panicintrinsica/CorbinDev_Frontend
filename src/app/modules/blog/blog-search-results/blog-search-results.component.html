@@ -1,0 +1,37 @@
+<div class="page container">
+
+  <div class="blog-nav">
+    <div class="blog-title">
+      Developer's Blog
+    </div>
+  </div>
+
+  <section class="article-list">
+    @if (articles$ | async; as articles) {
+      @for (article of articles.records; track article.id) {
+        <ui-article [isStub]="true" [data]="article" [displayStyle]="ArticleDisplayStyle.Card"></ui-article>
+      } @empty {
+        <div class="callout">
+          <div class="admonition admonition-info">
+            <div class="admonition-title">Info</div>
+            <div class="admonition-content">No articles found</div>
+          </div>
+        </div>
+      }
+    } @else {
+      <div class="callout">
+        <div class="admonition admonition-info">
+          <div class="admonition-title">Info</div>
+          <div class="admonition-content">Please make your query</div>
+        </div>
+      </div>
+    }
+  </section>
+
+
+<!--  <div class="pager bottom-nav">-->
+<!--    <div class="pager-item" (click)="lastPage()" [ngClass]="{'disabled': isFirstPage}">Back</div>-->
+<!--    <div class="pager-item" (click)="nextPage()" [ngClass]="{'disabled': isLastPage}">Next</div>-->
+<!--  </div>-->
+
+</div>

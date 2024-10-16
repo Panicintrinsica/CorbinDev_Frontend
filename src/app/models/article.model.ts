@@ -10,7 +10,7 @@ export interface Article {
     createdAt: string;
     updatedAt: string;
     version: number;
-  }
+  };
 }
 
 export interface ArticlePage {
@@ -19,7 +19,12 @@ export interface ArticlePage {
       cursor: string;
       more: boolean;
       size: number;
-    }
-  }
+    };
+  };
+  records: Partial<Article>[];
+}
+
+export interface ArticleSearchResults {
+  totalCount: number;
   records: Partial<Article>[];
 }

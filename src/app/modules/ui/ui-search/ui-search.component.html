@@ -1,0 +1,9 @@
+<div class="search-input">
+  <input
+    class="search"
+    type="search"
+    placeholder="Search"
+    (keyup.enter)="onSubmit()"
+    [(ngModel)]="searchTerm">
+  <button class="uicon right-arrow" (click)="onSubmit()"></button>
+</div>

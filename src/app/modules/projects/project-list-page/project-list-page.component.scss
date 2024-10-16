@@ -46,14 +46,6 @@ header.open { background: var(--openSource-gradient) }
   grid-area: toolbar;
   align-content: stretch;
   align-items: last baseline;
-
-
-  input {
-    height: min-content;
-    width: 200px;
-    border-radius: 16px;
-    background-color: rgba(0, 0, 0, 0.50);
-  }
 }
 
 .project-list {
