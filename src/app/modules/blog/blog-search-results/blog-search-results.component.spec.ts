@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BlogSearchResultsComponent } from './blog-search-results.component';
+import { provideHttpClient } from '@angular/common/http';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 
 describe('BlogSearchResultsComponent', () => {
   let component: BlogSearchResultsComponent;
@@ -8,10 +13,11 @@ describe('BlogSearchResultsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BlogSearchResultsComponent]
-    })
-    .compileComponents();
-    
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    }).compileComponents();
+
+    const httpTesting = TestBed.inject(HttpTestingController);
+
     fixture = TestBed.createComponent(BlogSearchResultsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

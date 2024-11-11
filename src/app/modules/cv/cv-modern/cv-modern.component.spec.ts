@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CvModernComponent } from './cv-modern.component';
+import { provideHttpClient } from '@angular/common/http';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 
 describe('CvModernComponent', () => {
   let component: CvModernComponent;
@@ -8,10 +13,11 @@ describe('CvModernComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CvModernComponent]
-    })
-    .compileComponents();
-    
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    }).compileComponents();
+
+    const httpTesting = TestBed.inject(HttpTestingController);
+
     fixture = TestBed.createComponent(CvModernComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

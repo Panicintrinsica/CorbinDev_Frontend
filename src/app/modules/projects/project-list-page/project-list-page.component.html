@@ -5,7 +5,7 @@
       <h2 class="fill">Project Gallery</h2>
 
 
-      <input class="search" type="search" placeholder="Search" [(ngModel)]="searchString" (input)="updateList()">
+      <ui-search (searchSubmitted)="updateTerm($event)"></ui-search>
     </div>
     <div class="sidebar">
       <div class="sidebar-segment">

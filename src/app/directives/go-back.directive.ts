@@ -3,11 +3,10 @@ import { Location } from '@angular/common';
 
 @Directive({
   selector: '[uiGoBack]',
-  standalone: true
+  standalone: true,
 })
 export class GoBackDirective {
-
-  constructor(private location: Location) { }
+  constructor(private location: Location) {}
 
   @HostListener('click')
   onClick(): void {

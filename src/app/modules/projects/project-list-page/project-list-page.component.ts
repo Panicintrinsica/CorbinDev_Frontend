@@ -60,7 +60,8 @@ export class ProjectListPageComponent {
 
   selectedCategories = new Set<string>();
   selectedGroups = new Set<string>();
-  searchString: string = '';
+
+  searchTerm: string = '';
 
   constructor(
     public dialog: MatDialog,
@@ -109,8 +110,8 @@ export class ProjectListPageComponent {
       );
     }
 
-    if (this.searchString.length > 3) {
-      newResults = this.filterByName(newResults, this.searchString);
+    if (this.searchTerm && this.searchTerm.length > 3) {
+      newResults = this.filterByName(newResults, this.searchTerm);
     }
 
     this.filteredProjects = newResults;
@@ -142,7 +143,12 @@ export class ProjectListPageComponent {
     this.groupList._chips.forEach((chip) => {
       chip.deselect();
     });
-    this.searchString = '';
+    this.searchTerm = '';
+    this.updateList();
+  }
+
+  updateTerm($event: string) {
+    this.searchTerm = $event;
     this.updateList();
   }
 }

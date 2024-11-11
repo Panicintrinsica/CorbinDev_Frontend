@@ -1,18 +1,33 @@
-<article class="segment project-selector">
+<article class="project card project-selector">
+
+  <header class="project-header">
+    <h3 class="fill text-gradient">Projects</h3>
+  </header>
 
   @if (projects$ | async; as projects) {
-    <header>
-      Projects
-    </header>
+    <form class="content" [formGroup]="form" (ngSubmit)="submitSelectedProjects()">
 
-    <div class="content">
-      @for (project of projects; track project) {
-        {{project.name}}
-
+      @for (project of projects; track project; let i = $index) {
+        <div class="project-section-row">
+          <div class="checkbox">
+            <input [id]="'c' + i" class="checkbox__input" type="checkbox"
+                   [formControlName]="project.id.toString()"
+                   (change)="onCheckboxChange($event, project.id)">
+            <label [for]="'c' + i" class="checkbox__label">
+              <span class="checkbox__custom"></span>
+              {{ project.name }}
+            </label>
+          </div>
+        </div>
       }
-    </div>
+
+      <div class="action-line">
+        <button mat-raised-button color="primary" type="submit">Filter</button>
+      </div>
+
+    </form>
   } @else {
-    <header>Failed to fetch projects</header>
+    Failed to load projects.
   }
 
 </article>

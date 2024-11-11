@@ -9,17 +9,6 @@ import { CoverletterComponent } from './modules/cv/coverletter/coverletter.compo
 import { CvModernComponent } from './modules/cv/cv-modern/cv-modern.component';
 import { CvBasicComponent } from './modules/cv/cv-basic/cv-basic.component';
 import { BlogComponent } from './modules/blog/blog.component';
-import { AdminDashboardComponent } from './modules/admin/admin-dashboard/admin-dashboard.component';
-import { AdminRootComponent } from './modules/admin/admin-root/admin-root.component';
-import { AdminProfileComponent } from './modules/admin/admin-profile/admin-profile.component';
-import { AdminArticleEditorComponent } from './modules/admin/admin-article-editor/admin-article-editor.component';
-import { AdminProjectsEditorComponent } from './modules/admin/admin-projects-editor/admin-projects-editor.component';
-import { AdminProjectsIndexComponent } from './modules/admin/admin-projects-index/admin-projects-index.component';
-import { AdminSkillsIndexComponent } from './modules/admin/admin-skills-index/admin-skills-index.component';
-import { AdminSkillsEditorComponent } from './modules/admin/admin-skills-editor/admin-skills-editor.component';
-import { LoginComponent } from './modules/admin/login/login.component';
-import { AuthGuard } from './guards/auth-guard.guard';
-import { AdminArticleIndexComponent } from './modules/admin/admin-article-index/admin-article-index.component';
 import { BlogSearchResultsComponent } from './modules/blog/blog-search-results/blog-search-results.component';
 
 export const routes: Routes = [
@@ -56,29 +45,5 @@ export const routes: Routes = [
     path: 'project/:slug',
     component: ProjectPageComponent,
     data: { animation: 'Project' },
-  },
-
-  { path: 'login', component: LoginComponent },
-
-  {
-    path: 'admin',
-    component: AdminRootComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: AdminDashboardComponent },
-      { path: 'profile', component: AdminProfileComponent },
-
-      { path: 'articles', component: AdminArticleIndexComponent },
-      { path: 'articles/new', component: AdminArticleEditorComponent },
-      { path: 'articles/edit/:id', component: AdminArticleEditorComponent },
-
-      { path: 'projects', component: AdminProjectsIndexComponent },
-      { path: 'projects/new', component: AdminProjectsEditorComponent },
-      { path: 'projects/edit/:id', component: AdminProjectsEditorComponent },
-
-      { path: 'skills', component: AdminSkillsIndexComponent },
-      { path: 'skills/new', component: AdminSkillsEditorComponent },
-      { path: 'skills/edit/:id', component: AdminSkillsEditorComponent },
-    ],
   },
 ];

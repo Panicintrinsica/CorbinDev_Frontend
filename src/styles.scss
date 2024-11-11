@@ -3,7 +3,6 @@
 
 @include mat.core();
 
-
 @import "@ng-select/ng-select/themes/material.theme.css";
 @import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Finlandica:ital,wght@0,400..700;1,400..700&display=swap');
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons+Sharp';
@@ -74,7 +73,6 @@
       var(--corbin-blue) 100%
   );
 
-
   --red-to-pink-gradient: linear-gradient(
       66deg,
       var(--applesin) 0%,
@@ -106,7 +104,6 @@
       var(--blood-red) 100%
   );
 }
-
 
 hr.lighter {
   border-color: var(--lighter-10);

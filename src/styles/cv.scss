@@ -17,7 +17,6 @@
   padding: 0;
   overflow: hidden;
 
-
   --bodyFont: 'Fira Sans', sans-serif;
   --bodyFontCond: 'Fira Sans Condensed', sans-serif;
   --headerFont: 'Fira Code', monospace;
@@ -31,7 +30,6 @@
   * {
     transition: all 200ms, font-size 0ms;
   }
-
 }
 
 .resume p {
@@ -171,12 +169,9 @@ span.divider {
   }
 }
 
-
-
 .clickable {
   cursor: pointer;
 }
-
 
 mat-checkbox {
   display: block;
@@ -186,26 +181,23 @@ mat-checkbox {
   }
 }
 
-
 .fancy.resume {
   display: grid;
   grid-auto-columns: 1fr;
   grid-template-columns: 33% auto;
-  gap: 0 0;
-  margin: 0 auto auto auto;
   grid-template-areas:
     "sidebar content";
+  gap: 0 0;
+  margin: 0 auto auto auto;
   box-shadow: 3px 3px 5px black;
-  font-family: var(--bodyFont);
+  font-family: var(--bodyFont), serif;
   overflow: hidden;
 }
 
 .simple.resume {
-
   box-shadow: 3px 3px 5px black;
-  font-family: var(--bodyFont);
+  font-family: var(--bodyFont), serif;
   overflow: hidden;
-
 
   .simple.label {
     font-weight: bold;
@@ -593,14 +585,14 @@ section.learning {
   }
 }
 
-.info-block > .entry, .cdk-drag-preview {
+.cv-project {
   margin: 4mm 0 4mm 4mm;
 
   + .entry {
     margin-top: 6mm;
   }
 
-  .title-row {
+  .cv-project-title-row {
     display: flex;
     border-bottom: 2px solid var(--shadeing_high);
     align-items: baseline;
@@ -615,12 +607,12 @@ section.learning {
       text-align: end;
     }
 
-    .title {
+    .cv-project-title {
       color: var(--priamryColor);
     }
 
-    .name {
-      font-family: var(--headerFont);
+    .cv-project-name {
+      font-family: var(--headerFont), sans-serif;
       color: var(--priamryColor);
       font-size: 1.25em;
       width: 260px;
@@ -632,8 +624,8 @@ section.learning {
     content: ', ';
   }
 
-  .meta {
-    font-family: var(--UiFont);
+  .cv-project-meta {
+    font-family: var(--UiFont), sans-serif;
     margin-top: 2mm;
     display: flex;
     align-items: center;
@@ -650,7 +642,6 @@ a, a:visited {
   text-decoration-thickness: 1px;
   text-decoration-color: var(--accentColor);
 }
-
 
 @media print {
   html, body {

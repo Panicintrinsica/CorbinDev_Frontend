@@ -2,8 +2,10 @@
 
   <div class="blog-nav">
     <div class="blog-title">
-      Developer's Blog
+      Search Results
     </div>
+    <div class="fill"></div>
+    <ui-search (searchSubmitted)="searchBlog($event)"></ui-search>
   </div>
 
   <section class="article-list">
@@ -18,13 +20,6 @@
           </div>
         </div>
       }
-    } @else {
-      <div class="callout">
-        <div class="admonition admonition-info">
-          <div class="admonition-title">Info</div>
-          <div class="admonition-content">Please make your query</div>
-        </div>
-      </div>
     }
   </section>
 

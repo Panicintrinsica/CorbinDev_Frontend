@@ -1,6 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UiNavComponent } from './ui-nav.component';
+import { provideHttpClient } from '@angular/common/http';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
+import { routes } from '../../../app.routes';
 
 describe('UiNavComponent', () => {
   let component: UiNavComponent;
@@ -8,10 +15,15 @@ describe('UiNavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UiNavComponent]
-    })
-    .compileComponents();
-    
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideRouter(routes),
+      ],
+    }).compileComponents();
+
+    const httpTesting = TestBed.inject(HttpTestingController);
+
     fixture = TestBed.createComponent(UiNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

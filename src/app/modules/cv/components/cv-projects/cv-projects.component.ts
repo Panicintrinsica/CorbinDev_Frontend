@@ -9,9 +9,9 @@ import {
 import { DatePipe } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { Project } from '../../../../models/project.model';
-import { ServerService } from '../../../../services/server.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CvProjectsDialogComponent } from '../cv-projects-dialog/cv-projects-dialog.component';
+import { ProjectService } from '../../../../services/project.service';
 
 @Component({
   selector: 'cv-projects',
@@ -25,10 +25,9 @@ export class CvProjectsComponent {
 
   readonly dialog = inject(MatDialog);
 
-  constructor(private server: ServerService) {
-    server.getCVProjects().subscribe({
+  constructor(private ps: ProjectService) {
+    ps.getSelectedProjects().subscribe({
       next: (value) => {
-        this.projectList = value;
         this.displayedProjects = value;
       },
     });
@@ -41,14 +40,6 @@ export class CvProjectsComponent {
       this.displayedProjects,
       event.previousIndex,
       event.currentIndex,
-    );
-    this.saveProjectList();
-  }
-
-  saveProjectList() {
-    localStorage.setItem(
-      'CurrentProjectList',
-      JSON.stringify(this.displayedProjects),
     );
   }
 

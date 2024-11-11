@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectListPageComponent } from './project-list-page.component';
+import { provideHttpClient } from '@angular/common/http';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 
 describe('ProjectListComponent', () => {
   let component: ProjectListPageComponent;
@@ -8,9 +13,10 @@ describe('ProjectListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProjectListPageComponent]
-    })
-    .compileComponents();
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    }).compileComponents();
+
+    const httpTesting = TestBed.inject(HttpTestingController);
 
     fixture = TestBed.createComponent(ProjectListPageComponent);
     component = fixture.componentInstance;
