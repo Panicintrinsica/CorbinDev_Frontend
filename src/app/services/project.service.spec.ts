@@ -208,7 +208,7 @@ describe('ProjectService', () => {
   });
 
   it('should retrieve projects by IDs', () => {
-    service.getProjectsByIDs(['1', '2']).subscribe((projects: Project[]) => {
+    service.getCvProjects(['1', '2']).subscribe((projects: Project[]) => {
       expect(projects.length).toBe(2);
       expect(projects).toEqual(dummyProjects);
     });

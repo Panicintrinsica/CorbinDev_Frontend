@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Project, ProjectLink } from '../models/project.model';
+import {
+  CvProject,
+  Project,
+  ProjectIndexItem,
+  ProjectLink,
+} from '../models/project.model';
 import { map, Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -11,7 +16,7 @@ export class ProjectService {
   private API = environment.API;
 
   projects: Subject<Project[]> = new Subject();
-  selectedProjects: Subject<Project[]> = new Subject();
+  cvProjects: Subject<CvProject[]> = new Subject();
 
   constructor(private http: HttpClient) {}
 
@@ -36,18 +41,35 @@ export class ProjectService {
    * Returns a list of projects with minimal details. Used mainly for the CV Builder.
    * @param projectIDs
    */
-  getProjectsByIDs(projectIDs: string[]): Observable<Project[]> {
+  getCvProjects(projectIDs: string[]): Observable<CvProject[]> {
     this.http
-      .post<Project[]>(`${this.API}/projects/forCV`, {
+      .post<CvProject[]>(`${this.API}/projects/forCV`, {
         ids: projectIDs,
       })
-      .subscribe((response: Project[]) => {
-        this.selectedProjects.next(response);
+      .subscribe((response: CvProject[]) => {
+        this.cvProjects.next(response);
       });
-    return this.selectedProjects;
+    return this.cvProjects;
   }
 
-  getSelectedProjects(): Observable<Project[]> {
-    return this.selectedProjects;
+  /**
+   * Fetches the full index of projects from the API.
+   *
+   * @return {Observable<ProjectIndexItem[]>} An observable emitting an array of ProjectIndexItem objects.
+   */
+  getProjectIndex(): Observable<ProjectIndexItem[]> {
+    return this.http.get<ProjectIndexItem[]>(`${this.API}/projects/fullIndex`);
+  }
+
+  getAllProjects(): Observable<Project[]> {
+    return this.http.get<Project[]>(`${this.API}/projects`);
+  }
+
+  getProjectBySlug(slug: string): Observable<Project> {
+    return this.http.get<Project>(`${this.API}/projects/bySlug/${slug}`);
+  }
+
+  getCvProjectSubject(): Observable<CvProject[]> {
+    return this.cvProjects;
   }
 }

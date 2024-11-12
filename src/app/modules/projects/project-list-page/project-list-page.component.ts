@@ -1,45 +1,27 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatAnchor, MatButton } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
-import {
-  AsyncPipe,
-  DatePipe,
-  NgClass,
-  NgForOf,
-  NgIf,
-  TitleCasePipe,
-} from '@angular/common';
-import { MarkdownComponent } from 'ngx-markdown';
+import { MatButton } from '@angular/material/button';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Observable, tap } from 'rxjs';
 import { Project } from '../../../models/project.model';
 import { ServerService } from '../../../services/server.service';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTab, MatTabGroup } from '@angular/material/tabs';
 import { ProjectCardComponent } from '../components/ui-project-card/project-card.component';
 import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
 import { ProjectGroups, ProjectTypes } from '../../../constants/project.consts';
 import { UiSearchComponent } from '../../ui/ui-search/ui-search.component';
+import { ProjectService } from '../../../services/project.service';
 
 @Component({
   selector: 'app-project-list',
   standalone: true,
   imports: [
     MatButton,
-    RouterLink,
-    MatAnchor,
-    DatePipe,
-    MarkdownComponent,
-    NgClass,
     AsyncPipe,
-    MatTabGroup,
-    MatTab,
     ProjectCardComponent,
-    NgForOf,
     NgIf,
     MatChipListbox,
     MatChipOption,
-    TitleCasePipe,
     FormsModule,
     UiSearchComponent,
   ],
@@ -66,8 +48,9 @@ export class ProjectListPageComponent {
   constructor(
     public dialog: MatDialog,
     private server: ServerService,
+    private projectService: ProjectService,
   ) {
-    this.project$ = this.server.getProjects().pipe(
+    this.project$ = this.projectService.getAllProjects().pipe(
       tap((result) => {
         this.resultSet = result;
         this.filteredProjects = result;

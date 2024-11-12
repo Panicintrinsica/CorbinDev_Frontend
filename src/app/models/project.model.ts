@@ -34,6 +34,11 @@ export interface Project {
   };
 }
 
+export interface ProjectIndexItem {
+  name: string;
+  id: string;
+}
+
 export interface ProjectStub {
   id: string;
   name: string;
@@ -48,4 +53,14 @@ export interface ProjectLink {
   name: string;
   group: string;
   slug: string;
+}
+
+export interface CvProject {
+  id: string;
+  name: string;
+  cvDescription: string;
+  client: string;
+  role: string;
+  started: number;
+  ended: number;
 }
