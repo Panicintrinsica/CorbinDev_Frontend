@@ -90,6 +90,7 @@
   --textColor-link: hsl(200, 10%, 10%);
   --priamryColor: #000000;
   --accentColor: #8f9ccc;
+  --highlightColor: var(--corbin-blue);
 
   --shadeing_low: rgba(0, 0, 0, 0.1);
   --shadeing_high: rgba(0, 0, 0, 0.2);
@@ -327,6 +328,10 @@ ul {
   font-size: 1em;
   font-weight: 0;
   color: var(--bodyColor);
+}
+
+strong {
+  color: var(--highlightColor);
 }
 
 .project-form-label {
@@ -763,3 +768,9 @@ main[data-theme="bland"].resumePage-single {
 }
 
 
+.cv-project-content {
+
+  ul {
+    font-weight: normal;
+  }
+}

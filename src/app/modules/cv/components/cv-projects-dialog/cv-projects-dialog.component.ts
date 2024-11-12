@@ -1,8 +1,7 @@
 import { Component, inject, Inject, OnDestroy } from '@angular/core';
-import { AsyncPipe, NgIf, TitleCasePipe } from '@angular/common';
-import { MarkdownComponent } from 'ngx-markdown';
+import { AsyncPipe } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
-import { ProjectStub } from '../../../../models/project.model';
+import { ProjectIndexItem } from '../../../../models/project.model';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -10,29 +9,18 @@ import {
 } from '@angular/material/dialog';
 import { ServerService } from '../../../../services/server.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TagComponent } from '../../../ui/ui-tag/tag.component';
 import { MatButton } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
 import { ProjectService } from '../../../../services/project.service';
 
 @Component({
   selector: 'app-cv-projects-dialog',
   standalone: true,
-  imports: [
-    AsyncPipe,
-    MarkdownComponent,
-    NgIf,
-    ReactiveFormsModule,
-    TagComponent,
-    TitleCasePipe,
-    MatButton,
-    RouterLink,
-  ],
+  imports: [AsyncPipe, ReactiveFormsModule, MatButton],
   templateUrl: './cv-projects-dialog.component.html',
   styleUrl: './cv-projects-dialog.component.scss',
 })
 export class CvProjectsDialogComponent implements OnDestroy {
-  projects$: Observable<ProjectStub[]> | undefined;
+  projects$: Observable<ProjectIndexItem[]> | undefined;
   selectedProjects: string[] = [];
   form: FormGroup;
   private subscription: Subscription | undefined;
@@ -51,7 +39,7 @@ export class CvProjectsDialogComponent implements OnDestroy {
   }
 
   private loadProjects() {
-    this.projects$ = this.server.getProjectStubs();
+    this.projects$ = this.projectService.getProjectIndex();
     this.subscription = this.projects$.subscribe((projects) => {
       this.form = this.fb.group({});
       projects.forEach((project) => {
@@ -85,7 +73,7 @@ export class CvProjectsDialogComponent implements OnDestroy {
   }
 
   submitSelectedProjects() {
-    this.projectService.getProjectsByIDs(this.selectedProjects);
+    this.projectService.getCvProjects(this.selectedProjects);
     this.dialogRef.close();
   }
 }

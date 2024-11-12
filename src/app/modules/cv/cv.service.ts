@@ -30,7 +30,7 @@ export class CvService {
     showLearning: false,
     showLinkedIn: true,
     showMastodon: false,
-    showObjective: true,
+    showObjective: false,
     showPhone: true,
     showPhoto: false,
     showProgress: true,

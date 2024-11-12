@@ -8,15 +8,23 @@ import {
 } from '@angular/cdk/drag-drop';
 import { DatePipe } from '@angular/common';
 import { MatButton } from '@angular/material/button';
-import { Project } from '../../../../models/project.model';
+import { CvProject, Project } from '../../../../models/project.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CvProjectsDialogComponent } from '../cv-projects-dialog/cv-projects-dialog.component';
 import { ProjectService } from '../../../../services/project.service';
+import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
   selector: 'cv-projects',
   standalone: true,
-  imports: [CdkDrag, CdkDragHandle, CdkDropList, DatePipe, MatButton],
+  imports: [
+    CdkDrag,
+    CdkDragHandle,
+    CdkDropList,
+    DatePipe,
+    MatButton,
+    MarkdownComponent,
+  ],
   templateUrl: './cv-projects.component.html',
   styleUrl: './cv-projects.component.scss',
 })
@@ -26,14 +34,14 @@ export class CvProjectsComponent {
   readonly dialog = inject(MatDialog);
 
   constructor(private ps: ProjectService) {
-    ps.getSelectedProjects().subscribe({
+    ps.getCvProjectSubject().subscribe({
       next: (value) => {
         this.displayedProjects = value;
       },
     });
   }
 
-  displayedProjects: Project[] = [];
+  displayedProjects: CvProject[] = [];
 
   projectDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(

@@ -28,21 +28,8 @@
             </div>
           </div>
 
-          <div class="cv-project-content" [innerHTML]="project.shortDescription"></div>
+          <markdown class="cv-project-content" [innerHTML]="project.cvDescription"></markdown>
 
-          <div class="cv-project-meta">
-            <div class="item stack">
-              @if (project.showLink) {
-                <span class="label">Link: </span>
-                <a [href]="project.link">{{project.link}}</a>
-                <span class="wide divider">|</span>
-              }
-              <span class="label">Skills: </span>
-              @for (usedSkill of project.skills; track usedSkill) {
-                <span class="line-item" >{{usedSkill}}</span>
-              }
-            </div>
-          </div>
         </div>
       }
     </div>
