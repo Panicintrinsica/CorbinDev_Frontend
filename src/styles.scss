@@ -143,6 +143,13 @@ html, body {
 
   &.column {
     flex-direction: column;
+
+    &.center { align-items: center }
+  }
+
+  &.center {
+    justify-content: center;
+    align-items: center;
   }
 
   &.gap-small { gap: 0.5rem }
@@ -157,6 +164,13 @@ html, body {
   }
 }
 
+.no-matches {
+  display: flex;
+  align-self: center;
+  padding: 1rem;
+  flex-direction: column;
+  opacity: 0.5;
+}
 
 gui-project-card {
   overflow: hidden;
@@ -168,6 +182,22 @@ app-projects, app-root, app-cv {
   height: 100%;
 }
 
+
+.selectable-button-row {
+  flex-wrap: wrap;
+
+}
+
+
+.selectable-button {
+  filter: drop-shadow(0 0 0.0rem var(--primary)) saturate(0.5);
+  transition: filter 400ms;
+
+  &.selected {
+    filter: drop-shadow(0 0 0.75rem var(--primary)) saturate(2);
+    transition: filter 400ms;
+  }
+}
 
 .no-pad {
   padding: 0;

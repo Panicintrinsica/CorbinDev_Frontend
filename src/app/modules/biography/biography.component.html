@@ -1,7 +1,6 @@
 <div class="page">
 
   <main class="flex column gap-small">
-
     @if (details$ | async; as details) {
 
       <article class="biography">
@@ -22,39 +21,27 @@
         </section>
 
       </article>
-
-
-
-
     }
 
-    <ui-skill-list></ui-skill-list>
+    <div class="flex gap-small center selectable-button-row">
+      @for (section of sections; track section.id) {
+        <button mat-flat-button class="selectable-button" [ngClass]="{'selected' : section.id === selection}" (click)="makeSelection(section.id)">{{ section.title }}</button>
+      }
+    </div>
 
-<!--    @if (education$ | async; as education) {-->
-<!--      <div class="segment">-->
-<!--        <header>-->
-<!--          <h2 class="title">Education</h2>-->
-<!--        </header>-->
-<!--        <div class="content">-->
-
-<!--          @for(institute of education; track institute) {-->
-<!--            <div class="education-entry">-->
-<!--              <div class="title-line">-->
-<!--                <div class="name">{{ institute.name }}</div>-->
-<!--                <div class="gpa">GPA: {{ institute.gpa }}/{{ institute.gpaMax }}</div>-->
-<!--                <div class="pusher"></div>-->
-<!--                <div class="dates">{{ institute.isCurrent ? 'Est. Grad: ' : institute.startMonth + '.' + institute.startYear + ' - ' }}{{ institute.endMonth + '.' + institute.endYear }}</div>-->
-<!--              </div>-->
-<!--              <div class="content">-->
-<!--                {{institute.degree | titlecase}}, {{institute.major}}-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          }-->
-
-
-<!--        </div>-->
-<!--      </div>-->
-<!--    }-->
-
+    @switch (selection) {
+      @case ('books') { <app-bio-books/> }
+      @case ('drinks') { <app-bio-drinks/> }
+      @case ('engineer') { <app-bio-engineer/> }
+      @case ('fashion') { <app-bio-fashion/> }
+      @case ('food') { <app-bio-food/> }
+      @case ('games') { <app-bio-games/> }
+      @case ('music') { <app-bio-music/> }
+      @default {
+        <div class="no-matches">
+          Click a Button!
+        </div>
+      }
+    }
   </main>
 </div>
