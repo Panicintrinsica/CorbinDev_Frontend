@@ -1,27 +1,21 @@
 <div class="page">
 
   <main class="flex column gap-small">
-    @if (details$ | async; as details) {
 
-      <article class="biography">
-        <header class="biography-header">
-          <div class="primary text-gradient bio-name">
-            {{ getDetail(details, "firstName", "content") }}
-            {{ getDetail(details, "lastName", "content") }}
-          </div>
-          <div class="bio-pronouns">
-              ({{getDetail(details, "pronouns", "content")}})
-          </div>
-        </header>
+    <article class="biography">
+      <header class="biography-header">
+        <div class="primary text-gradient bio-name">Emrys Corbin</div>
+        <div class="bio-pronouns">(He/They)</div>
+      </header>
 
-        <section class="biography-body">
-          @if (content$ | async; as content) {
-            <markdown [data]="getContentBody(content, 'bioMain')" markdown></markdown>
-          }
-        </section>
+      <section class="biography-body">
+        @if (content$ | async; as content) {
+          <markdown [data]="getContentBody(content, 'bioMain')" markdown></markdown>
+        }
+      </section>
 
-      </article>
-    }
+    </article>
+
 
     <div class="flex gap-small center selectable-button-row">
       @for (section of sections; track section.id) {
