@@ -12,32 +12,28 @@
   }
 </app-home-feature>
 
-@defer (on immediate)  {
-  <app-home-feature
-    header="Back-End Development"
-    content=""
-    color="blue"
-    image=""
-    [isAlternate]="true"
-    [stack]="backendFeatures"
-  >
-    @if (content()) {
-      {{ getContentBody(content(), 'landingTwo') }}
-    }
-  </app-home-feature>
+<app-home-feature
+  header="Back-End Development"
+  content=""
+  color="blue"
+  image=""
+  [isAlternate]="true"
+  [stack]="backendFeatures"
+>
+  @if (content()) {
+    {{ getContentBody(content(), 'landingTwo') }}
+  }
+</app-home-feature>
 
-}
-@defer (on immediate) {
-  <app-home-feature
-    header="Everything Development"
-    content=""
-    color="pink"
-    image=""
-    [isAlternate]="false"
-    [stack]="otherFeatures"
-  >
-    @if (content()) {
-      {{ getContentBody(content(), 'landingThree') }}
-    }
-  </app-home-feature>
-}
+<app-home-feature
+  header="Everything Development"
+  content=""
+  color="pink"
+  image=""
+  [isAlternate]="false"
+  [stack]="otherFeatures"
+>
+  @if (content()) {
+    {{ getContentBody(content(), 'landingThree') }}
+  }
+</app-home-feature>
