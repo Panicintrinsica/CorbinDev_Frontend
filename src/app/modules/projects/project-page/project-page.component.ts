@@ -15,19 +15,20 @@ import { TagComponent } from '../../ui/ui-tag/tag.component';
 import { ProjectService } from '../../../services/project.service';
 
 @Component({
-    selector: 'app-project',
-    animations: [SkillListAnim],
-    imports: [
-        MatButton,
-        MatAnchor,
-        MarkdownComponent,
-        DatePipe,
-        GoBackDirective,
-        AsyncPipe,
-        TagComponent,
-    ],
-    templateUrl: './project-page.component.html',
-    styleUrl: './project-page.component.scss'
+  selector: 'app-project',
+  animations: [SkillListAnim],
+  imports: [
+    MatButton,
+    MatAnchor,
+    MarkdownComponent,
+    DatePipe,
+    GoBackDirective,
+    AsyncPipe,
+    TagComponent,
+  ],
+  templateUrl: './project-page.component.html',
+  styleUrl: './project-page.component.scss',
+  standalone: true,
 })
 export class ProjectPageComponent implements OnDestroy {
   project: Project | undefined;

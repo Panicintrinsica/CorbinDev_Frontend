@@ -10,10 +10,11 @@ import { BehaviorSubject } from 'rxjs';
 import { ArticleSearchResults } from '../../../models/article.model';
 
 @Component({
-    selector: 'app-articles-search-results',
-    imports: [AsyncPipe, UiArticleComponent, UiSearchComponent],
-    templateUrl: './blog-search-results.component.html',
-    styleUrl: './blog-search-results.component.scss'
+  selector: 'app-articles-search-results',
+  imports: [AsyncPipe, UiArticleComponent, UiSearchComponent],
+  templateUrl: './blog-search-results.component.html',
+  styleUrl: './blog-search-results.component.scss',
+  standalone: true,
 })
 export class BlogSearchResultsComponent {
   protected readonly ArticleDisplayStyle = ArticleDisplayStyle;

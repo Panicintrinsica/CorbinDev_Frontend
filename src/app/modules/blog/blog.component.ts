@@ -16,20 +16,21 @@ import { UiSearchComponent } from '../ui/ui-search/ui-search.component';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-articles',
-    imports: [
-        AsyncPipe,
-        UiArticleComponent,
-        NgClass,
-        MatChipOption,
-        MatChipListbox,
-        MatIconButton,
-        MatIcon,
-        FormsModule,
-        UiSearchComponent,
-    ],
-    templateUrl: './blog.component.html',
-    styleUrl: './blog.component.scss'
+  selector: 'app-articles',
+  imports: [
+    AsyncPipe,
+    UiArticleComponent,
+    NgClass,
+    MatChipOption,
+    MatChipListbox,
+    MatIconButton,
+    MatIcon,
+    FormsModule,
+    UiSearchComponent,
+  ],
+  templateUrl: './blog.component.html',
+  styleUrl: './blog.component.scss',
+  standalone: true,
 })
 export class BlogComponent implements OnInit, OnDestroy {
   articles$!: Subject<ArticlePage>;

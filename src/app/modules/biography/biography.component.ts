@@ -16,23 +16,24 @@ import { BioGamesComponent } from './sections/bio-games/bio-games.component';
 import { BioMusicComponent } from './sections/bio-music/bio-music.component';
 
 @Component({
-    selector: 'app-biography',
-    imports: [
-        MarkdownComponent,
-        AsyncPipe,
-        FormsModule,
-        MatButton,
-        BioBooksComponent,
-        BioDrinksComponent,
-        BioEngineerComponent,
-        BioFashionComponent,
-        BioFoodComponent,
-        BioGamesComponent,
-        BioMusicComponent,
-        NgClass,
-    ],
-    templateUrl: './biography.component.html',
-    styleUrl: './biography.component.scss'
+  selector: 'app-biography',
+  imports: [
+    MarkdownComponent,
+    AsyncPipe,
+    FormsModule,
+    MatButton,
+    BioBooksComponent,
+    BioDrinksComponent,
+    BioEngineerComponent,
+    BioFashionComponent,
+    BioFoodComponent,
+    BioGamesComponent,
+    BioMusicComponent,
+    NgClass,
+  ],
+  templateUrl: './biography.component.html',
+  styleUrl: './biography.component.scss',
+  standalone: true,
 })
 export class BiographyComponent {
   content$: Observable<ContentBlock[]>;
