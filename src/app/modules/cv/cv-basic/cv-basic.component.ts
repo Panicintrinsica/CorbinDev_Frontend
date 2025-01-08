@@ -14,20 +14,19 @@ import { CvProjectsComponent } from '../components/cv-projects/cv-projects.compo
 import { CvSkillBlockComponent } from '../components/cv-skill-block/cv-skill-block.component';
 
 @Component({
-  selector: 'app-cv-basic',
-  standalone: true,
-  imports: [
-    NgClass,
-    AsyncPipe,
-    MarkdownComponent,
-    MatButton,
-    CvProjectsComponent,
-    DatePipe,
-    TitleCasePipe,
-    CvSkillBlockComponent,
-  ],
-  templateUrl: './cv-basic.component.html',
-  styleUrl: './cv-basic.component.scss',
+    selector: 'app-cv-basic',
+    imports: [
+        NgClass,
+        AsyncPipe,
+        MarkdownComponent,
+        MatButton,
+        CvProjectsComponent,
+        DatePipe,
+        TitleCasePipe,
+        CvSkillBlockComponent,
+    ],
+    templateUrl: './cv-basic.component.html',
+    styleUrl: './cv-basic.component.scss'
 })
 export class CvBasicComponent {
   config$: Subscription;

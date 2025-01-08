@@ -13,20 +13,19 @@ import { UiSearchComponent } from '../../ui/ui-search/ui-search.component';
 import { ProjectService } from '../../../services/project.service';
 
 @Component({
-  selector: 'app-project-list',
-  standalone: true,
-  imports: [
-    MatButton,
-    AsyncPipe,
-    ProjectCardComponent,
-    NgIf,
-    MatChipListbox,
-    MatChipOption,
-    FormsModule,
-    UiSearchComponent,
-  ],
-  templateUrl: './project-list-page.component.html',
-  styleUrl: './project-list-page.component.scss',
+    selector: 'app-project-list',
+    imports: [
+        MatButton,
+        AsyncPipe,
+        ProjectCardComponent,
+        NgIf,
+        MatChipListbox,
+        MatChipOption,
+        FormsModule,
+        UiSearchComponent,
+    ],
+    templateUrl: './project-list-page.component.html',
+    styleUrl: './project-list-page.component.scss'
 })
 export class ProjectListPageComponent {
   @ViewChild('categoryList') categoryList!: MatChipListbox;

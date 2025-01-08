@@ -12,20 +12,19 @@ import {TagComponent} from "../../ui/ui-tag/tag.component";
 
 
 @Component({
-  selector: 'ui-skill-list',
-  standalone: true,
-  imports: [
-    NgClass,
-    MatSlideToggle,
-    FormsModule,
-    MatInput,
-    MatLabel,
-    MatFormField,
-    SkillSearchPipe,
-    TagComponent
-  ],
-  templateUrl: './skill-list.component.html',
-  styleUrl: './skill-list.component.scss'
+    selector: 'ui-skill-list',
+    imports: [
+        NgClass,
+        MatSlideToggle,
+        FormsModule,
+        MatInput,
+        MatLabel,
+        MatFormField,
+        SkillSearchPipe,
+        TagComponent
+    ],
+    templateUrl: './skill-list.component.html',
+    styleUrl: './skill-list.component.scss'
 })
 export class SkillListComponent {
 

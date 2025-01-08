@@ -1,11 +1,10 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'ui-spinner',
-  standalone: true,
-  imports: [],
-  templateUrl: './ui-spinner.component.html',
-  styleUrl: './ui-spinner.component.scss'
+    selector: 'ui-spinner',
+    imports: [],
+    templateUrl: './ui-spinner.component.html',
+    styleUrl: './ui-spinner.component.scss'
 })
 export class UiSpinnerComponent {
   @Input() timeout: number | null = null

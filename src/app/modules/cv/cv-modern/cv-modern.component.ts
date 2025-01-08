@@ -18,23 +18,22 @@ import { getContentBody, getDetail } from '../../../utilities';
 import { CONTACTS } from '../../../constants/contacts.consts';
 
 @Component({
-  selector: 'app-cv-modern',
-  standalone: true,
-  imports: [
-    MatIcon,
-    MatButton,
-    MarkdownComponent,
-    CdkDropList,
-    CdkDrag,
-    CdkDragHandle,
-    DatePipe,
-    TitleCasePipe,
-    CvProjectsComponent,
-    NamedSkillLevel,
-    AsyncPipe,
-  ],
-  templateUrl: './cv-modern.component.html',
-  styleUrl: './cv-modern.component.scss',
+    selector: 'app-cv-modern',
+    imports: [
+        MatIcon,
+        MatButton,
+        MarkdownComponent,
+        CdkDropList,
+        CdkDrag,
+        CdkDragHandle,
+        DatePipe,
+        TitleCasePipe,
+        CvProjectsComponent,
+        NamedSkillLevel,
+        AsyncPipe,
+    ],
+    templateUrl: './cv-modern.component.html',
+    styleUrl: './cv-modern.component.scss'
 })
 export class CvModernComponent implements OnDestroy {
   config$: Subscription;

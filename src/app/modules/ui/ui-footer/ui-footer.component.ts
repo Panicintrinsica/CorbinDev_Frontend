@@ -4,13 +4,12 @@ import {Subscription} from "rxjs";
 import {NgClass} from "@angular/common";
 
 @Component({
-  selector: 'ui-footer',
-  standalone: true,
-  imports: [
-    NgClass
-  ],
-  templateUrl: './ui-footer.component.html',
-  styleUrl: './ui-footer.component.scss'
+    selector: 'ui-footer',
+    imports: [
+        NgClass
+    ],
+    templateUrl: './ui-footer.component.html',
+    styleUrl: './ui-footer.component.scss'
 })
 export class UiFooterComponent implements OnInit, OnDestroy {
   year: any = new Date().getFullYear();

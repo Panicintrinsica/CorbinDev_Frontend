@@ -3,15 +3,14 @@ import {NgClass, NgOptimizedImage} from "@angular/common";
 import {RouterLink} from "@angular/router";
 
 @Component({
-  selector: 'app-home-feature',
-  standalone: true,
-  imports: [
-    NgOptimizedImage,
-    NgClass,
-    RouterLink
-  ],
-  templateUrl: './home-feature.component.html',
-  styleUrl: './home-feature.component.scss'
+    selector: 'app-home-feature',
+    imports: [
+        NgOptimizedImage,
+        NgClass,
+        RouterLink
+    ],
+    templateUrl: './home-feature.component.html',
+    styleUrl: './home-feature.component.scss'
 })
 export class HomeFeatureComponent {
   @Input() header = "";

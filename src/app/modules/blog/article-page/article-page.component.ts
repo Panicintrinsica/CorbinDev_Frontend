@@ -10,18 +10,17 @@ import { GoBackDirective } from '../../../directives/go-back.directive';
 import { BlogPipe } from '../../../pipes/blog.pipe';
 
 @Component({
-  selector: 'app-article',
-  standalone: true,
-  imports: [
-    MatButton,
-    RouterLink,
-    UiArticleComponent,
-    AsyncPipe,
-    GoBackDirective,
-    BlogPipe,
-  ],
-  templateUrl: './article-page.component.html',
-  styleUrl: './article-page.component.scss',
+    selector: 'app-article',
+    imports: [
+        MatButton,
+        RouterLink,
+        UiArticleComponent,
+        AsyncPipe,
+        GoBackDirective,
+        BlogPipe,
+    ],
+    templateUrl: './article-page.component.html',
+    styleUrl: './article-page.component.scss'
 })
 export class ArticlePageComponent {
   article$: Observable<Article> | undefined;

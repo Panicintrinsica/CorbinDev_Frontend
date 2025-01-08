@@ -6,12 +6,11 @@ import {UiFooterComponent} from "./modules/ui/ui-footer/ui-footer.component";
 import {slideInAnimation} from "./animations/route.anim";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, UiNavComponent, UiFooterComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  animations: [ slideInAnimation ]
+    selector: 'app-root',
+    imports: [CommonModule, RouterOutlet, UiNavComponent, UiFooterComponent],
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    animations: [slideInAnimation]
 })
 export class AppComponent implements OnInit {
   title = 'corbin.dev';

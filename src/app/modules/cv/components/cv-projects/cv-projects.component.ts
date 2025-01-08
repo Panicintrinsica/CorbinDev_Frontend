@@ -15,18 +15,17 @@ import { ProjectService } from '../../../../services/project.service';
 import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
-  selector: 'cv-projects',
-  standalone: true,
-  imports: [
-    CdkDrag,
-    CdkDragHandle,
-    CdkDropList,
-    DatePipe,
-    MatButton,
-    MarkdownComponent,
-  ],
-  templateUrl: './cv-projects.component.html',
-  styleUrl: './cv-projects.component.scss',
+    selector: 'cv-projects',
+    imports: [
+        CdkDrag,
+        CdkDragHandle,
+        CdkDropList,
+        DatePipe,
+        MatButton,
+        MarkdownComponent,
+    ],
+    templateUrl: './cv-projects.component.html',
+    styleUrl: './cv-projects.component.scss'
 })
 export class CvProjectsComponent {
   projectList!: Project[];

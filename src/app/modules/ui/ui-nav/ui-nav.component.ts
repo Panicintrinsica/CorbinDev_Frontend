@@ -6,20 +6,19 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {MatIcon} from "@angular/material/icon";
 
 @Component({
-  selector: 'ui-nav',
-  standalone: true,
-  imports: [
-    MatToolbar,
-    RouterLink,
-    MatButton,
-    MatMenuTrigger,
-    MatMenu,
-    MatMenuItem,
-    MatIconButton,
-    MatIcon
-  ],
-  templateUrl: './ui-nav.component.html',
-  styleUrl: './ui-nav.component.scss'
+    selector: 'ui-nav',
+    imports: [
+        MatToolbar,
+        RouterLink,
+        MatButton,
+        MatMenuTrigger,
+        MatMenu,
+        MatMenuItem,
+        MatIconButton,
+        MatIcon
+    ],
+    templateUrl: './ui-nav.component.html',
+    styleUrl: './ui-nav.component.scss'
 })
 export class UiNavComponent {
 

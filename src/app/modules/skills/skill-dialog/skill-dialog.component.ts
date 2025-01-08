@@ -25,25 +25,24 @@ import { TagComponent } from '../../ui/ui-tag/tag.component';
 import { MatAnchor, MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'ui-skill-dialog',
-  standalone: true,
-  animations: [ProjectListAnim],
-  imports: [
-    AsyncPipe,
-    NgIf,
-    MarkdownComponent,
-    NgForOf,
-    NgOptimizedImage,
-    DatePipe,
-    NamedSkillLevel,
-    UiSpinnerComponent,
-    NgClass,
-    TagComponent,
-    MatButton,
-    MatAnchor,
-  ],
-  templateUrl: './skill-dialog.component.html',
-  styleUrl: './skill-dialog.component.scss',
+    selector: 'ui-skill-dialog',
+    animations: [ProjectListAnim],
+    imports: [
+        AsyncPipe,
+        NgIf,
+        MarkdownComponent,
+        NgForOf,
+        NgOptimizedImage,
+        DatePipe,
+        NamedSkillLevel,
+        UiSpinnerComponent,
+        NgClass,
+        TagComponent,
+        MatButton,
+        MatAnchor,
+    ],
+    templateUrl: './skill-dialog.component.html',
+    styleUrl: './skill-dialog.component.scss'
 })
 export class SkillDialogComponent {
   skill$: Observable<Skill> | undefined;

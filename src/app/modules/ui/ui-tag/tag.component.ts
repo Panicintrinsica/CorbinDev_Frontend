@@ -2,14 +2,13 @@ import {Component, HostBinding, Input} from '@angular/core';
 import {LowerCasePipe, NgClass} from "@angular/common";
 
 @Component({
-  selector: 'ui-tag',
-  standalone: true,
-  imports: [
-    LowerCasePipe,
-    NgClass
-  ],
-  templateUrl: './tag.component.html',
-  styleUrl: './tag.component.scss'
+    selector: 'ui-tag',
+    imports: [
+        LowerCasePipe,
+        NgClass
+    ],
+    templateUrl: './tag.component.html',
+    styleUrl: './tag.component.scss'
 })
 export class TagComponent {
   @Input() text: string | undefined = "";

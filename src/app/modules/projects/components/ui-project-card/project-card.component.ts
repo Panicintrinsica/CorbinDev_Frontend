@@ -6,19 +6,18 @@ import {Project} from "../../../../models/project.model";
 import {TagComponent} from "../../../ui/ui-tag/tag.component";
 
 @Component({
-  selector: 'app-project-card',
-  standalone: true,
-  imports: [
-    MatAnchor,
-    MatButton,
-    RouterLink,
-    NgOptimizedImage,
-    DatePipe,
-    TitleCasePipe,
-    TagComponent
-  ],
-  templateUrl: './project-card.component.html',
-  styleUrl: './project-card.component.scss'
+    selector: 'app-project-card',
+    imports: [
+        MatAnchor,
+        MatButton,
+        RouterLink,
+        NgOptimizedImage,
+        DatePipe,
+        TitleCasePipe,
+        TagComponent
+    ],
+    templateUrl: './project-card.component.html',
+    styleUrl: './project-card.component.scss'
 })
 export class ProjectCardComponent {
   @Input() project: Project = {

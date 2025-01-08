@@ -13,11 +13,10 @@ import { MatButton } from '@angular/material/button';
 import { ProjectService } from '../../../../services/project.service';
 
 @Component({
-  selector: 'app-cv-projects-dialog',
-  standalone: true,
-  imports: [AsyncPipe, ReactiveFormsModule, MatButton],
-  templateUrl: './cv-projects-dialog.component.html',
-  styleUrl: './cv-projects-dialog.component.scss',
+    selector: 'app-cv-projects-dialog',
+    imports: [AsyncPipe, ReactiveFormsModule, MatButton],
+    templateUrl: './cv-projects-dialog.component.html',
+    styleUrl: './cv-projects-dialog.component.scss'
 })
 export class CvProjectsDialogComponent implements OnDestroy {
   projects$: Observable<ProjectIndexItem[]> | undefined;

@@ -10,16 +10,15 @@ import {ContentBlock} from "../../../models/content.model";
 import {Detail} from "../../../models/detail.model";
 
 @Component({
-  selector: 'app-coverletter',
-  standalone: true,
-  imports: [
-    NgClass,
-    MarkdownComponent,
-    CoverletterPipe,
-    AsyncPipe
-  ],
-  templateUrl: './coverletter.component.html',
-  styleUrl: './coverletter.component.scss',
+    selector: 'app-coverletter',
+    imports: [
+        NgClass,
+        MarkdownComponent,
+        CoverletterPipe,
+        AsyncPipe
+    ],
+    templateUrl: './coverletter.component.html',
+    styleUrl: './coverletter.component.scss'
 })
 export class CoverletterComponent implements OnDestroy {
 
