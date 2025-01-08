@@ -16,7 +16,7 @@ import { UiSearchComponent } from '../ui/ui-search/ui-search.component';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-blog',
+  selector: 'app-articles',
   standalone: true,
   imports: [
     AsyncPipe,

@@ -7,8 +7,8 @@
   [isAlternate]="false"
   [stack]="frontendFeatures"
 >
-  @if (content$ | async; as content) {
-    {{ getContentBody(content, 'landingOne') }}
+  @if (content()) {
+    {{ getContentBody(content(), 'landingOne') }}
   }
 </app-home-feature>
 
@@ -21,13 +21,11 @@
     [isAlternate]="true"
     [stack]="backendFeatures"
   >
-    @if (content$ | async; as content) {
-      {{ getContentBody(content, 'landingTwo') }}
+    @if (content()) {
+      {{ getContentBody(content(), 'landingTwo') }}
     }
   </app-home-feature>
 
-} @placeholder {
-  <ui-spinner />
 }
 @defer (on immediate) {
   <app-home-feature
@@ -38,10 +36,8 @@
     [isAlternate]="false"
     [stack]="otherFeatures"
   >
-    @if (content$ | async; as content) {
-      {{ getContentBody(content, 'landingThree') }}
+    @if (content()) {
+      {{ getContentBody(content(), 'landingThree') }}
     }
   </app-home-feature>
-} @placeholder {
-  <div class="placeholder"></div>
 }

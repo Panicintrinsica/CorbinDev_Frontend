@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { MatChipListbox, MatChipOption } from '@angular/material/chips';
-import { MatIcon } from '@angular/material/icon';
-import { MatIconButton } from '@angular/material/button';
 import {
   ArticleDisplayStyle,
   UiArticleComponent,
@@ -13,17 +10,9 @@ import { BehaviorSubject } from 'rxjs';
 import { ArticleSearchResults } from '../../../models/article.model';
 
 @Component({
-  selector: 'app-blog-search-results',
+  selector: 'app-articles-search-results',
   standalone: true,
-  imports: [
-    AsyncPipe,
-    MatChipListbox,
-    MatChipOption,
-    MatIcon,
-    MatIconButton,
-    UiArticleComponent,
-    UiSearchComponent,
-  ],
+  imports: [AsyncPipe, UiArticleComponent, UiSearchComponent],
   templateUrl: './blog-search-results.component.html',
   styleUrl: './blog-search-results.component.scss',
 })

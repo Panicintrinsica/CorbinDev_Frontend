@@ -43,13 +43,13 @@ export class BiographyComponent {
   details$: Observable<Detail[]>;
 
   sections: { id: string; title: string }[] = [
-    { id: 'books', title: 'Books' },
-    { id: 'drinks', title: 'Drinks' },
-    { id: 'engineer', title: 'Engineering' },
-    { id: 'fashion', title: 'Fashion' },
-    { id: 'food', title: 'Food' },
-    { id: 'games', title: 'Games' },
-    { id: 'music', title: 'Music' },
+    // { id: 'books', title: 'Books' },
+    // { id: 'drinks', title: 'Drinks' },
+    // { id: 'engineer', title: 'Engineering' },
+    // { id: 'fashion', title: 'Fashion' },
+    // { id: 'food', title: 'Food' },
+    // { id: 'games', title: 'Games' },
+    // { id: 'music', title: 'Music' },
   ];
 
   selection: string = '';

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Skill } from '../models/skill.model';
@@ -13,13 +13,25 @@ import { ContentBlock } from '../models/content.model';
 export class ServerService {
   private API = environment.API;
 
+  private _content = signal<ContentBlock[]>([]);
+
+  get content() {
+    return this._content;
+  }
+
   constructor(private http: HttpClient) {}
+
+  fetchContent(selector: string) {
+    return this.http
+      .get<ContentBlock[]>(`${this.API}/content/group/${selector}`)
+      .subscribe((content) => this._content.set(content));
+  }
 
   getAllDetails(): Observable<Detail[]> {
     return this.http.get<Detail[]>(`${this.API}/details`);
   }
 
-  getContentGroup(selector: string): Observable<ContentBlock[]> {
+  getContentGroup(selector: string) {
     return this.http.get<ContentBlock[]>(
       `${this.API}/content/group/${selector}`,
     );

@@ -1,54 +1,59 @@
-import { Component } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Component, inject, OnInit } from '@angular/core';
 import { ServerService } from '../../services/server.service';
 import { HomeKeyartComponent } from './home-keyart/home-keyart.component';
 import {
   featuredStackItem,
   HomeFeatureComponent,
 } from './home-feature/home-feature.component';
-
-import { ContentBlock } from '../../models/content.model';
 import { getContentBody } from '../../utilities';
-import { UiSpinnerComponent } from '../ui/ui-spinner/ui-spinner.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    AsyncPipe,
-    HomeKeyartComponent,
-    HomeFeatureComponent,
-    UiSpinnerComponent,
-  ],
+  imports: [HomeKeyartComponent, HomeFeatureComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
-  content$: Observable<ContentBlock[]>;
+export class HomeComponent implements OnInit {
+  protected readonly getContentBody = getContentBody;
+
+  server = inject(ServerService);
+
+  content = this.server.content;
 
   frontendFeatures: featuredStackItem[] = [
-    {
-      img: 'html',
-      alt: 'HTML',
-      link: 'https://www.w3.org/TR/2011/WD-html5-20110405/',
-    },
-    {
-      img: 'css',
-      alt: 'css',
-      link: 'https://www.w3.org/Style/CSS/specs.en.html',
-    },
+    // {
+    //   img: 'html',
+    //   alt: 'HTML',
+    //   link: 'https://www.w3.org/TR/2011/WD-html5-20110405/',
+    // },
+    // {
+    //   img: 'css',
+    //   alt: 'css',
+    //   link: 'https://www.w3.org/Style/CSS/specs.en.html',
+    // },
     {
       img: 'js',
       alt: 'JavaScript',
       link: 'https://ecma-international.org/publications-and-standards/standards/ecma-262/',
     },
+    {
+      img: 'typescript',
+      alt: 'TypeScript',
+      link: 'https://www.typescriptlang.org/',
+    },
     { img: 'angular', alt: 'Angular', link: 'https://angular.dev' },
+    {
+      img: 'react',
+      alt: 'react.js',
+      link: 'https://www.react.dev/',
+    },
     {
       img: 'electron',
       alt: 'Electron.js',
       link: 'https://www.electronjs.org/',
     },
+    { img: 'tauri', alt: 'Tauri', link: 'https://v2.tauri.app/' },
   ];
   backendFeatures: featuredStackItem[] = [
     { img: 'node-js', alt: 'Node.js', link: 'https://nodejs.org/en' },
@@ -59,20 +64,11 @@ export class HomeComponent {
       alt: 'PostgreSQL',
       link: 'https://www.postgresql.org/',
     },
-    { img: 'xata', alt: 'Xata.io', link: 'https://xata.io/' },
+    { img: 'bun', alt: 'bun', link: 'https://bun.sh/' },
+    // { img: 'xata', alt: 'Xata.io', link: 'https://xata.io/' },
     { img: 'redis', alt: 'Redis', link: 'https://redis.io/' },
-    {
-      img: 'dragonfly',
-      alt: 'DragonflyDB',
-      link: 'https://www.dragonflydb.io/',
-    },
   ];
   otherFeatures: featuredStackItem[] = [
-    {
-      img: 'typescript',
-      alt: 'TypeScript',
-      link: 'https://www.typescriptlang.org/',
-    },
     { img: 'java', alt: 'jana', link: 'https://www.oracle.com/java/' },
     { img: 'kotlin', alt: 'Kotlin', link: 'https://kotlinlang.org/' },
     { img: 'rust', alt: 'Rust', link: 'https://www.rust-lang.org/' },
@@ -88,11 +84,10 @@ export class HomeComponent {
       link: 'https://www.unrealengine.com',
     },
   ];
-  protected readonly getContentBody = getContentBody;
 
-  constructor(server: ServerService) {
-    this.content$ = server.getContentGroup('landing');
+  constructor() {}
+
+  ngOnInit(): void {
+    this.server.fetchContent('landing');
   }
-
-  ngOnInit(): void {}
 }

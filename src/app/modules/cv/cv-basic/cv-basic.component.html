@@ -16,32 +16,32 @@
         }
 
         @if (config.showContacts) {
-          <section class="contacts simple">
+          <section class="cv-contact-section simple">
             @if (config.showEmail) {
-              <div class="item">
+              <div class="cv-contact-item">
                 <div class="simple label" >Email: </div>
                 <a href="{{getDetail(details, 'email', 'link') }}">{{ getDetail(details, 'email', 'content') }}</a>
               </div>
             }
 
             @if (config.showPhone) {
-              <div class="item">
+              <div class="cv-contact-item">
                 <div class="simple label" >Phone: </div>
                 <a href="{{ getDetail(details, 'phone', 'link') }}">{{ config.showEvilPhone ? '(360) 499-EVIL' : getDetail(details, 'phone', 'content') }}</a>
               </div>
             }
 
             @if (config.ShowWebsite) {
-              <div class="item">
+              <div class="cv-contact-item">
                 <div class="simple label" >Website: </div>
                 <a href="{{ getDetail(details, 'website', 'link') }}">{{ getDetail(details, 'website', 'content') }}</a>
               </div>
             }
 
             @if (config.showLinkedIn) {
-              <div class="item">
+              <div class="cv-contact-item">
                 <div class="simple label" >LinkedIn: </div>
-                <a href="{{ getDetail(details, 'LinkedIn', 'link') }}">{{ getDetail(details, 'LinkedIn', 'content') }}</a>
+                <a href="{{ getDetail(details, 'linkedin', 'link') }}">{{ getDetail(details, 'linkedin', 'content') }}</a>
               </div>
             }
           </section>
@@ -49,30 +49,14 @@
 
         @if (content$ | async; as content) {
           @if (config.showIntro){
-            <section class="intro simple">
-              <markdown class="intro" [innerHTML]="getContentBody(content, 'cvIntro')"></markdown>
+            <section class="cv-object cv-intro">
+              <markdown class="cv-content"  [innerHTML]="getContentBody(content, 'cvIntro')"></markdown>
             </section>
           }
         }
 
         @if (config.showSkills){
-          <section class="skills">
-            <div class="textBanner">
-              Skills
-              <div class="pusher"></div>
-              <button mat-button color="primary">Edit</button>
-            </div>
-            <div class="skill-list simple">
-              @for (skill of skills.slice(0,15); track skill.id) {
-                <div class="skill">
-                  <div class="name fill">{{skill.name}}</div>
-                  <div class="skillLevel">
-                    {{skill.level | levelToName }}
-                  </div>
-                </div>
-              }
-            </div>
-          </section>
+          <app-cv-skill-block/>
         }
 
         @if (config.showObjective){
@@ -85,7 +69,7 @@
               </div>
               <div class="info-block">
                 <div class="entry">
-                  <!--TODO: Fix Objective Block-->
+                  <!--TODO: Add Objective Block-->
                 </div>
               </div>
             </div>
@@ -98,31 +82,22 @@
 
         @if (config.showEducation){
           <div class="section-wrapper">
-
             <div class="subsection">
               <div class="textBanner">Education</div>
 
               @for (institute of education; track institute){
-                <div class="info-block">
-                  <div class="entry">
-                    <div class="title-row">
-                      <div class="name">{{ institute.name }}</div>
-                      @if(config.showGPA){
-                        <div class="gpa">GPA: {{ institute.gpa }} / {{ institute.gpaMax }}</div>
-                      }
-                      <div class="dates">{{ institute.start | date : 'MMM yy'  }} - {{ institute.end | date : 'MMM yy'  }}</div>
-                    </div>
-                    <div class="edu-fields">
-                      <span class="text">Springfield, MO</span>
+                  <div class="cv-education-entry cv-object">
+                    <div class="cv-title-row">
+                      <div class="cv-entry-name">{{ institute.name }}</div>
                       <span class="divider"> | </span>
-                      <span class="text">{{ institute.degree | titlecase }}</span>
+                      <span class="cv-title-text">{{ institute.degree | titlecase }}</span>
                       <span class="divider"> | </span>
-                      <span class="text">{{ institute.major | titlecase }}</span>
+                      <span class="cv-title-text">{{ institute.major | titlecase }}</span>
+                      <span class="divider"> | </span>
+                      <div class="cv-title-text">{{ institute.end | date : 'MMM yyyy'  }}</div>
                     </div>
-
-                    <!--                            <div class="content" [innerHTML]="institute.notes"></div>-->
+                    <markdown class="cv-content" [innerHTML]="institute.notes"></markdown>
                   </div>
-                </div>
               }
 
             </div>
@@ -136,8 +111,6 @@
         @if (config.showAwards){
 
         }
-
-
 
       </section>
     }

@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path: '', component: HomeComponent, data: { animation: 'Home' } },
   { path: 'blog', component: BlogComponent, data: { animation: 'Blog' } },
   {
-    path: 'blog/search',
+    path: 'articles/search',
     component: BlogSearchResultsComponent,
     data: { animation: 'Article' },
   },

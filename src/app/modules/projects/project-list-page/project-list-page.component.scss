@@ -55,12 +55,6 @@ header.open { background: var(--openSource-gradient) }
   grid-area: list;
 }
 
-.no-matches {
-  display: flex;
-  align-self: center;
-  padding: 1rem;
-  flex-direction: column;
-}
 
 .sidebar {
   display: flex;

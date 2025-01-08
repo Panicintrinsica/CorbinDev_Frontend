@@ -8,8 +8,8 @@
 .resume {
   font-size: 12pt;
 
-  background: var(--pageColor);
-  color: var(--bodyColor);
+  background: var(--cv_color_body);
+  color: var(--cv_color_text);
   max-height: 11in;
   min-height: 11in;
   max-width: 8.5in;
@@ -17,11 +17,11 @@
   padding: 0;
   overflow: hidden;
 
-  --bodyFont: 'Fira Sans', sans-serif;
-  --bodyFontCond: 'Fira Sans Condensed', sans-serif;
-  --headerFont: 'Fira Code', monospace;
-  --UiFont: 'Fira Sans Condensed', sans-serif;
-  --HeroFont: 'Iceberg', cursive;
+  --cv_font_body: 'Fira Sans', sans-serif;
+  --cv_bodyFontCond: 'Fira Sans Condensed', sans-serif;
+  --cv_font_header: 'Fira Code', monospace;
+  --cv_font_ui: 'Fira Sans Condensed', sans-serif;
+  --cv_font_hero: 'Iceberg', cursive;
 
   --progressBackground: hsl(0, 0%, 5%);
   --progressBackground2: hsl(0, 0%, 15%);
@@ -33,67 +33,68 @@
 }
 
 .resume p {
-  font-family: var(--bodyFont), sans-serif;
-  color: var(--bodyColor);
+  font-family: var(--cv_font_body), sans-serif;
+  color: var(--cv_color_text);
 }
 
 .resume[data-theme="dark"] {
-  --bodyColor: hsl(210, 100%, 95%);
-  --textColor-link: #ffffff;
-  --priamryColor: #aacef2;
-  --accentColor: #8f73e6;
-  --profileColor: #2a3540;
-  --onProfileColor: hsl(210, 100%, 95%);
-  --photoFrame: #2a3540;
+  --cv_color_text: hsl(210, 100%, 95%);
+  --cv_color_link: hsl(0, 0%, 100%);
+  --cv_color_primary: hsl(210, 70%, 80%);
+  --cv_color_accent: hsl(255, 50%, 50%);
+  --cv_color_highlight: hsl(210, 50%, 50%);
+  --cv_color_strong: hsl(210, 50%, 75%);
+  --cv_color_profile: hsl(210, 20%, 20%);
+  --cv_color_onProfile: hsl(210, 100%, 95%);
+  --cv_color_photoFrame: hsl(210, 20%, 20%);
 
-  --shadeing_low: rgba(0, 0, 0, 0.20);
-  --shadeing_high: rgba(255, 255, 255, 0.20);
+  --cv_shading_low: rgba(0, 0, 0, 0.20);
+  --cv_shading_high: rgba(255, 255, 255, 0.20);
 
   --progressLeft: #0058ff;
   --progressRight: #00c4ff;
   --progressGlow: hsla(210, 100%, 50%, 33%);
 
-  --pageColor: #292933;
-  --sidebarColor: #252525;
+  --cv_color_body: #292933;
+  --cv_color_sidebar: #252525;
 }
 
 .resume[data-theme="discord"] {
-  --bodyColor: #f1f8ff;
-  --textColor-link: #ffffff;
-  --priamryColor: hsl(235, 50%, 80%);
-  --accentColor: hsl(235, 86%, 65%);
-  --profileColor: hsl(235, 83%, 59%);
-  --onProfileColor: #f1f8ff;
-  --photoFrame: hsl(235, 86%, 65%);
+  --cv_color_text: #f1f8ff;
+  --cv_color_link: #ffffff;
+  --cv_color_primary: hsl(235, 50%, 80%);
+  --cv_color_accent: hsl(235, 86%, 65%);
+  --cv_color_profile: hsl(235, 83%, 59%);
+  --cv_color_onProfile: #f1f8ff;
+  --cv_color_photoFrame: hsl(235, 86%, 65%);
+  --cv_color_body: #37393f;
+  --cv_color_sidebar: #2f3136;
 
-  --shadeing_low: rgba(0, 0, 0, 0.20);
-  --shadeing_high: rgba(255, 255, 255, 0.20);
+  --cv_shading_low: rgba(0, 0, 0, 0.20);
+  --cv_shading_high: rgba(255, 255, 255, 0.20);
 
   --progressLeft: hsl(235, 46%, 75%);
   --progressRight: hsl(235, 86%, 65%);
   --progressGlow: hsla(235, 100%, 50%, 0.8);
 
-  --headerFont: "gg sans semibold", 'Fira Code', monospace;
-
-  --pageColor: #37393f;
-  --sidebarColor: #2f3136;
+  --cv_font_header: "gg sans semibold", 'Fira Code', monospace;
 }
 
 .resume[data-theme="bland"] {
-  --bodyFont: 'Fira Sans', sans-serif;
-  --bodyFontCond: 'Fira Sans Condensed', sans-serif;
-  --headerFont: 'Fira Sans', sans-serif;
-  --UiFont: 'Fira Sans Condensed', sans-serif;
-  --HeroFont: 'Fira Sans Condensed', sans-serif;
+  --cv_font_body: 'Fira Sans', sans-serif;
+  --cv_bodyFontCond: 'Fira Sans Condensed', sans-serif;
+  --cv_font_header: 'Fira Sans', sans-serif;
+  --cv_font_ui: 'Fira Sans Condensed', sans-serif;
+  --cv_font_hero: 'Fira Sans Condensed', sans-serif;
 
-  --bodyColor: #000000;
-  --textColor-link: hsl(200, 10%, 10%);
-  --priamryColor: #000000;
-  --accentColor: #8f9ccc;
-  --highlightColor: var(--corbin-blue);
+  --cv_color_text: #000000;
+  --cv_color_link: hsl(200, 10%, 10%);
+  --cv_color_primary: #000000;
+  --cv_color_accent: #8f9ccc;
+  --cv_color_highlight: var(--corbin-blue);
 
-  --shadeing_low: rgba(0, 0, 0, 0.1);
-  --shadeing_high: rgba(0, 0, 0, 0.2);
+  --cv_shading_low: rgba(0, 0, 0, 0.1);
+  --cv_shading_high: rgba(0, 0, 0, 0.2);
 
   --progressLeft: #6a3d8f;
   --progressRight: #274b70;
@@ -102,22 +103,22 @@
   --progressBackground2: hsl(0, 0%, 80%);
   --progressBorderColor: hsl(0, 0%, 90%);
 
-  --profileColor: hsl(203, 100%, 50%);
-  --onProfileColor: hsl(0, 0%, 100%);
+  --cv_color_profile: hsl(203, 100%, 50%);
+  --cv_color_onProfile: hsl(0, 0%, 100%);
 
-  --photoFrame: hsl(0, 0%, 100%);
-  --pageColor: hsl(0, 0%, 100%);
-  --sidebarColor:hsl(0, 0%, 100%);
+  --cv_color_photoFrame: hsl(0, 0%, 100%);
+  --cv_color_body: hsl(0, 0%, 100%);
+  --cv_color_sidebar:hsl(0, 0%, 100%);
 }
 
 .resume[data-theme="winter"] {
-  --bodyColor: hsl(200, 30%, 30%);
-  --textColor-link: hsl(180, 40%, 20%);
-  --priamryColor: hsl(200, 75%, 40%);
-  --accentColor: hsl(200, 50%, 80%);
+  --cv_color_text: hsl(200, 30%, 30%);
+  --cv_color_link: hsl(180, 40%, 20%);
+  --cv_color_primary: hsl(200, 75%, 40%);
+  --cv_color_accent: hsl(200, 50%, 80%);
 
-  --shadeing_low: rgba(0, 0, 0, 0.20);
-  --shadeing_high: rgba(0, 0, 0, 0.10);
+  --cv_shading_low: rgba(0, 0, 0, 0.20);
+  --cv_shading_high: rgba(0, 0, 0, 0.10);
 
   --progressLeft: hsl(180, 100%, 20%);
   --progressRight: hsl(190, 100%, 95%);
@@ -126,32 +127,32 @@
   --progressBorderColor: hsl(0, 0%, 90%);
   --progressGlow: hsla(180, 100%, 80%, 0.7);
 
-  --pageColor:    hsl(220, 100%, 95%);
-  --profileColor: hsl(220, 80%, 90%);
-  --onProfileColor: hsl(200, 30%, 30%);
+  --cv_color_body:    hsl(220, 100%, 95%);
+  --cv_color_profile: hsl(220, 80%, 90%);
+  --cv_color_onProfile: hsl(200, 30%, 30%);
 
-  --photoFrame: hsl(180, 40%, 80%);
-  --sidebarColor: hsl(220, 40%, 90%);
+  --cv_color_photoFrame: hsl(180, 40%, 80%);
+  --cv_color_sidebar: hsl(220, 40%, 90%);
 }
 
 .resume[data-theme="terminal"] {
-  --bodyColor: hsl(130, 100%, 50%);
-  --textColor-link: hsl(130, 100%, 80%);
-  --priamryColor: hsl(130, 100%, 40%);
-  --accentColor: hsl(130, 100%, 25%);
+  --cv_color_text: hsl(130, 100%, 50%);
+  --cv_color_link: hsl(130, 100%, 80%);
+  --cv_color_primary: hsl(130, 100%, 40%);
+  --cv_color_accent: hsl(130, 100%, 25%);
 
-  --shadeing_low: hsl(130, 100%, 0%);
-  --shadeing_high: hsl(130, 100%, 20%);
+  --cv_shading_low: hsl(130, 100%, 0%);
+  --cv_shading_high: hsl(130, 100%, 20%);
 
-  --pageColor: hsl(0, 0%, 0%);
-  --profileColor: hsl(130, 100%, 10%);
-  --onProfileColor: hsl(130, 100%, 50%);
-  --photoFrame: hsl(130, 100%, 20%);
-  --sidebarColor: hsl(130, 100%, 0%);
+  --cv_color_body: hsl(0, 0%, 0%);
+  --cv_color_profile: hsl(130, 100%, 10%);
+  --cv_color_onProfile: hsl(130, 100%, 50%);
+  --cv_color_photoFrame: hsl(130, 100%, 20%);
+  --cv_color_sidebar: hsl(130, 100%, 0%);
 
-  --bodyFont: "Fira Code";
-  --headerFont: "Fira Code Medium";
-  --UiFont: "Fira Code";
+  --cv_font_body: "Fira Code";
+  --cv_font_header: "Fira Code Medium";
+  --cv_font_ui: "Fira Code";
 
   --progressLeft: hsl(130, 100%, 20%);
   --progressRight: hsl(130, 100%, 50%);
@@ -163,7 +164,7 @@
 }
 
 span.divider {
-  color: var(--shadeing_high);
+  color: var(--cv_shading_high);
 
   &.wide {
     margin: 0 .5em;
@@ -191,13 +192,13 @@ mat-checkbox {
   gap: 0 0;
   margin: 0 auto auto auto;
   box-shadow: 3px 3px 5px black;
-  font-family: var(--bodyFont), serif;
+  font-family: var(--cv_font_body), serif;
   overflow: hidden;
 }
 
 .simple.resume {
   box-shadow: 3px 3px 5px black;
-  font-family: var(--bodyFont), serif;
+  font-family: var(--cv_font_body), serif;
   overflow: hidden;
 
   .simple.label {
@@ -215,6 +216,8 @@ mat-checkbox {
 
 }
 
+
+
 section.content {
   grid-area: content;
   padding: 5mm;
@@ -225,7 +228,7 @@ section.sidebar {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--sidebarColor);
+  background-color: var(--cv_color_sidebar);
   box-shadow: 4px 0 3px rgba(0, 0, 0, 0.25);
   z-index: 100;
   overflow: hidden;
@@ -242,9 +245,9 @@ section.profile {
   width: 100%;
   padding: 2mm;
   box-sizing: border-box;
-  background-color: var(--profileColor);
+  background-color: var(--cv_color_profile);
   position: relative;
-  color: var(--onProfileColor);
+  color: var(--cv_color_onProfile);
 
   .profile-photo{
     width: 100%;
@@ -261,7 +264,7 @@ section.profile {
     &::after {
       box-shadow: inset 3px 3px 5px 2px #000000;
       border: 4px solid;
-      border-color: var(--photoFrame);
+      border-color: var(--cv_color_photoFrame);
       content: "";
       width: 195px;
       height: 195px;
@@ -274,13 +277,13 @@ section.profile {
   }
 
   .name {
-    font-family: var(--HeroFont);
+    font-family: var(--cv_font_hero);
     font-size: 32pt;
     margin-top: 2mm;
   }
 
   .subline {
-    font-family: var(--bodyFont);
+    font-family: var(--cv_font_body);
     opacity: 50%;
     font-size: 1.2em;
   }
@@ -289,11 +292,11 @@ section.profile {
     padding-top: 0;
     background-color: unset;
     justify-content: center;
-    color: var(--bodyColor);
+    color: var(--cv_color_text);
 
     &.banner:not(.cover) {
-      background-color: var(--profileColor);
-      color: var(--onProfileColor);
+      background-color: var(--cv_color_profile);
+      color: var(--cv_color_onProfile);
       margin: -5mm -5mm 0 -5mm;
       width: 8.5in;
       padding: 3mm 0 3mm 0;
@@ -304,8 +307,8 @@ section.profile {
     }
 
     &.cover.banner {
-      background-color: var(--profileColor);
-      color: var(--onProfileColor);
+      background-color: var(--cv_color_profile);
+      color: var(--cv_color_onProfile);
     }
 
     .bannerDecor {
@@ -327,11 +330,11 @@ section.profile {
 ul {
   font-size: 1em;
   font-weight: 0;
-  color: var(--bodyColor);
+  color: var(--cv_color_text);
 }
 
 strong {
-  color: var(--highlightColor);
+  color: var(--cv_color_strong);
 }
 
 .project-form-label {
@@ -340,7 +343,7 @@ strong {
   margin-bottom: 2mm;
 }
 
-section.contacts {
+.cv-contact-section {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -349,10 +352,10 @@ section.contacts {
   font-weight: 100;
   gap: 1mm;
   margin: 2mm 0;
-  font-family: var(--bodyFontCond);
+  font-family: var(--cv_bodyFontCond);
   font-size: 1.2em;
 
-  .item {
+  .cv-contact-item {
     display: flex;
     gap: 2mm;
     align-items: center;
@@ -412,8 +415,8 @@ section.learning {
       margin-bottom: 1mm;
 
       &::before, &::after {
-        font-family: var(--headerFont);
-        color: var(--bodyColor);
+        font-family: var(--cv_font_header);
+        color: var(--cv_color_text);
         opacity: 20%;
       }
 
@@ -448,25 +451,14 @@ section.learning {
   }
 }
 
-.intro {
-
-  &.simple {
-    font-size: 1.1em;
-  }
-
-  p {
-    font-size: 12pt;
-  }
-}
-
 .textBanner {
   display: flex;
   align-items: center;
-  font-family: var(--headerFont);
-  background-color: var(--shadeing_low);
+  font-family: var(--cv_font_header), sans-serif;
+  background-color: var(--cv_shading_low);
   font-size: 1.25em;
   padding: 2mm;
-  margin-top: 4mm;
+  margin: 2mm 0;
 
   .mat-mdc-button {
     height: 24px;
@@ -493,8 +485,8 @@ section.learning {
 
     &.simple {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
       grid-auto-flow: column;
       overflow: hidden;
       font-size: 12pt;
@@ -506,24 +498,15 @@ section.learning {
         flex-grow: 1;
       }
 
+      .bulleted {
+        &::before { opacity: 0.33; }
+        &.bullet-chevron::before  { content: "› " }
+        &.bullet-triangle::before { content: "▷ " }
+        &.bullet-dot::before      { content: "• " }
+      }
+
       .skill {
         box-sizing: border-box;
-
-        &::before {
-          opacity: 0.33;
-        }
-
-        &.none {
-          &::before { content: "› " }
-        }
-
-        &.triangles {
-          &::before { content: "▷ " }
-        }
-
-        &.bullets {
-          &::before { content: " • " }
-        }
       }
 
       .skillLevel {
@@ -542,7 +525,7 @@ section.learning {
 
   .name {
     flex-grow: 1;
-    font-family: var(--UiFont);
+    font-family: var(--cv_font_ui), sans-serif;
   }
 
   --bar-height: 5px;
@@ -571,7 +554,6 @@ section.learning {
     height: var(--bar-height);
   }
 
-
   progress[value]::-moz-progress-bar {
     background-image: -webkit-linear-gradient(left, var(--progressLeft), var(--progressRight));
     background-size: 100% 100%, 100% 100%;
@@ -579,7 +561,6 @@ section.learning {
     border-radius: 10px 0 0 10px;
     height: var(--bar-height);
   }
-
 }
 
 .sidebar-group {
@@ -599,7 +580,7 @@ section.learning {
 
   .cv-project-title-row {
     display: flex;
-    border-bottom: 2px solid var(--shadeing_high);
+    border-bottom: 2px solid var(--cv_shading_high);
     align-items: baseline;
     gap: 4mm;
     margin-bottom: 2mm;
@@ -613,12 +594,12 @@ section.learning {
     }
 
     .cv-project-title {
-      color: var(--priamryColor);
+      color: var(--cv_color_primary);
     }
 
     .cv-project-name {
-      font-family: var(--headerFont), sans-serif;
-      color: var(--priamryColor);
+      font-family: var(--cv_font_header), sans-serif;
+      color: var(--cv_color_primary);
       font-size: 1.25em;
       width: 260px;
       flex-grow: 0;
@@ -630,7 +611,7 @@ section.learning {
   }
 
   .cv-project-meta {
-    font-family: var(--UiFont), sans-serif;
+    font-family: var(--cv_font_ui), sans-serif;
     margin-top: 2mm;
     display: flex;
     align-items: center;
@@ -639,14 +620,10 @@ section.learning {
 
 .label {
   font-weight: 400;
-  color: var(--priamryColor);
+  color: var(--cv_color_primary);
 }
 
-a, a:visited {
-  color: var(--textColor-link);
-  text-decoration-thickness: 1px;
-  text-decoration-color: var(--accentColor);
-}
+
 
 @media print {
   html, body {
@@ -693,18 +670,18 @@ a, a:visited {
 }
 
 .cdk-drag-preview {
-  background: var(--pageColor);
+  background: var(--cv_color_body);
   transition: none;
-  border: 1px solid var(--shadeing_high);
+  border: 1px solid var(--cv_shading_high);
   box-shadow: 2mm 2mm 4mm black;
 }
 
 main[data-theme="bland"].resumePage-single {
-  --bodyFont: 'Red Hat Display', sans-serif;
-  --bodyFontCond: 'Red Hat Display', sans-serif;
-  --headerFont: 'Questrial', sans-serif;
-  --UiFont: 'Red Hat Display', sans-serif;
-  --HeroFont: 'Questrial', sans-serif;
+  --cv_font_body: 'Red Hat Display', sans-serif;
+  --cv_bodyFontCond: 'Red Hat Display', sans-serif;
+  --cv_font_header: 'Questrial', sans-serif;
+  --cv_font_ui: 'Red Hat Display', sans-serif;
+  --cv_font_hero: 'Questrial', sans-serif;
 
   .content {
     font-weight: 500;
@@ -750,7 +727,7 @@ main[data-theme="bland"].resumePage-single {
     :not(:first-child)::before {
       content: "|";
       margin-right: 2mm;
-      color: var(--shadeing_high);
+      color: var(--cv_shading_high);
     }
   }
 
@@ -767,10 +744,56 @@ main[data-theme="bland"].resumePage-single {
   }
 }
 
-
 .cv-project-content {
 
   ul {
     font-weight: normal;
   }
+}
+
+
+.cv-title-row {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+  align-items: flex-end;
+
+  .cv-entry-name {
+    font-size: 18px;
+    max-width: 50%;
+    color: var(--cv_color_primary);
+  }
+
+  .cv-title-text {
+    opacity: 0.75;
+  }
+}
+
+.cv-education-entry {
+
+}
+
+
+
+a, a:visited {
+  color: var(--cv_color_link);
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--cv_color_accent);
+}
+
+a:hover {
+  color: var(--cv_color_link);
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--cv_color_accent);
+}
+
+.cv-object {
+  margin: 0 4px;
+
+  .cv-content{
+    p:first-of-type {
+      margin-top: 3px;
+    }
+  }
+
 }
