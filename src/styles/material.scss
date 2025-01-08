@@ -1,7 +1,8 @@
 @use '@angular/material' as mat;
 @use 'm3-theme';
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 //$corbin-blue: (
 //  50 : #e0f3ff,
