@@ -4,10 +4,6 @@ import { ArticlePageComponent } from './modules/blog/article-page/article-page.c
 import { BiographyComponent } from './modules/biography/biography.component';
 import { ProjectListPageComponent } from './modules/projects/project-list-page/project-list-page.component';
 import { ProjectPageComponent } from './modules/projects/project-page/project-page.component';
-import { CvComponent } from './modules/cv/cv.component';
-import { CoverletterComponent } from './modules/cv/coverletter/coverletter.component';
-import { CvModernComponent } from './modules/cv/cv-modern/cv-modern.component';
-import { CvBasicComponent } from './modules/cv/cv-basic/cv-basic.component';
 import { BlogComponent } from './modules/blog/blog.component';
 import { BlogSearchResultsComponent } from './modules/blog/blog-search-results/blog-search-results.component';
 
@@ -26,16 +22,6 @@ export const routes: Routes = [
     data: { animation: 'Article' },
   },
   { path: 'bio', component: BiographyComponent, data: { animation: 'Bio' } },
-  {
-    path: 'cv',
-    component: CvComponent,
-    data: { animation: 'cv' },
-    children: [
-      { path: '', component: CoverletterComponent },
-      { path: 'modern', component: CvModernComponent },
-      { path: 'basic', component: CvBasicComponent },
-    ],
-  },
   {
     path: 'projects',
     component: ProjectListPageComponent,

@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "sass:map";
+
 .article-list {
   display: flex;
   flex-direction: column;
@@ -127,14 +130,14 @@ $admonition-types: (
 );
 
 .admonition {
-  border-left: 6px solid transparentize(map-get($admonition-types, note), 0.3); // Default to 'note' type
-  background: transparentize(map-get($admonition-types, note), 0.7); // Default to 'note' type
+  border-left: 6px solid color.scale(map.get($admonition-types, note), $alpha: -30%); // Default to 'note' type
+  background: color.scale(map.get($admonition-types, note), $alpha: -70%); // Default to 'note' type
 
   .admonition-title {
-    background: transparentize(map-get($admonition-types, note), 0.8); // Default to 'note' type
+    background: color.scale(map.get($admonition-types, note), $alpha: -80%); // Default to 'note' type
     padding-left: .5rem;
     font-variant: small-caps;
-    color: transparentize(map-get($admonition-types, note), 0.1); // Default to 'note' type
+    color: color.scale(map.get($admonition-types, note), $alpha: -10%); // Default to 'note' type
   }
 
   .admonition-content {
@@ -143,12 +146,12 @@ $admonition-types: (
 
   @each $type, $color in $admonition-types {
     &-#{$type} {
-      border-left-color: transparentize($color, 0.3);
-      background-color: transparentize($color, 0.7);
+      border-left-color: color.scale($color, $alpha: -30%);
+      background-color: color.scale($color, $alpha: -70%);
 
       .admonition-title {
-        background-color: transparentize($color, 0.8);
-        color: transparentize($color, 0.1);
+        background-color: color.scale($color, $alpha: -80%);
+        color: color.scale($color, $alpha: -10%);
       }
     }
   }
