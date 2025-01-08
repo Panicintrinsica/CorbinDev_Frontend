@@ -5,11 +5,6 @@
   border-radius: 6px;
   padding: 0.6rem 0.6rem 0.8rem 0.6rem;
   transition: padding 0.5s;
-
-  @media only screen and (max-width: 768px)  {
-    padding: 0.8rem 1rem 1rem 1rem;
-  }
-
   font-family: var(--headerFont), serif;
   font-variant: petite-caps;
   font-size: 1rem;
@@ -99,4 +94,7 @@
     }
   }
 
+  @media only screen and (max-width: 768px) {
+    padding: 0.8rem 1rem 1rem 1rem;
+  }
 }

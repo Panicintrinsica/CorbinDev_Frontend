@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButton } from '@angular/material/button';
-import { DatePipe, JsonPipe, LowerCasePipe, NgClass } from '@angular/common';
-import { MarkdownComponent, MarkdownPipe } from 'ngx-markdown';
+import { DatePipe } from '@angular/common';
+import { MarkdownComponent } from 'ngx-markdown';
 import { Article } from '../../../../models/article.model';
 import { TagComponent } from '../../../ui/ui-tag/tag.component';
 import { BlogPipe } from '../../../../pipes/blog.pipe';
@@ -10,21 +10,18 @@ import { BlogPipe } from '../../../../pipes/blog.pipe';
 interface onInit {}
 
 @Component({
-    selector: 'ui-article',
-    imports: [
-        RouterLink,
-        MatButton,
-        LowerCasePipe,
-        DatePipe,
-        MarkdownPipe,
-        NgClass,
-        JsonPipe,
-        MarkdownComponent,
-        TagComponent,
-        BlogPipe,
-    ],
-    templateUrl: './ui-article.component.html',
-    styleUrl: './ui-article.component.scss'
+  selector: 'ui-article',
+  imports: [
+    RouterLink,
+    MatButton,
+    DatePipe,
+    MarkdownComponent,
+    TagComponent,
+    BlogPipe,
+  ],
+  templateUrl: './ui-article.component.html',
+  standalone: true,
+  styleUrl: './ui-article.component.scss',
 })
 export class UiArticleComponent implements onInit {
   @Input() data: Partial<Article> = {

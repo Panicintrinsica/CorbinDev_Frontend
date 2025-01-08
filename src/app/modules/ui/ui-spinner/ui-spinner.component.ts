@@ -1,25 +1,25 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'ui-spinner',
-    imports: [],
-    templateUrl: './ui-spinner.component.html',
-    styleUrl: './ui-spinner.component.scss'
+  selector: 'ui-spinner',
+  imports: [],
+  templateUrl: './ui-spinner.component.html',
+  standalone: true,
+  styleUrl: './ui-spinner.component.scss',
 })
 export class UiSpinnerComponent {
-  @Input() timeout: number | null = null
-  @Input() message: string = ""
+  @Input() timeout: number | null = null;
+  @Input() message: string = '';
 
-  showSpinner: boolean = true
-  showText: boolean = false
+  showSpinner: boolean = true;
+  showText: boolean = false;
 
   ngOnInit() {
     if (this.timeout) {
       setTimeout(() => {
-        this.showSpinner = false
-        this.showText = true
-      }, this.timeout)
+        this.showSpinner = false;
+        this.showText = true;
+      }, this.timeout);
     }
   }
-
 }
