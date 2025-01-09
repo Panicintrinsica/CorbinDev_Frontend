@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { afterNextRender, AfterViewInit, Component } from '@angular/core';
 
 @Component({
   selector: 'app-home-keyart',
@@ -8,9 +8,11 @@ import { AfterViewInit, Component } from '@angular/core';
   standalone: true,
 })
 export class HomeKeyartComponent implements AfterViewInit {
-  ngAfterViewInit() {
-    this.ensureVideoPlays();
+  constructor() {
+    afterNextRender(() => this.ensureVideoPlays());
   }
+
+  ngAfterViewInit() {}
 
   private ensureVideoPlays(): void {
     const video = document.querySelector('video');
