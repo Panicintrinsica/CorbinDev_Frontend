@@ -64,8 +64,6 @@ export class BlogService {
       tags: filters,
     };
 
-    console.log(storedFilters);
-
     this.http
       .post<ArticlePage>(`${this.API}/articles/getWithFilters`, BlogQuery)
       .subscribe({
@@ -82,7 +80,6 @@ export class BlogService {
   }
 
   searchArticles(query: string): Observable<ArticleSearchResults> {
-    console.log(query);
     return this.http.post<ArticleSearchResults>(`${this.API}/articles/search`, {
       searchString: query,
     });
