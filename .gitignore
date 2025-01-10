@@ -6,7 +6,6 @@
 /out-tsc
 /bazel-out
 
-package-lock.json
 
 # Node
 /node_modules
