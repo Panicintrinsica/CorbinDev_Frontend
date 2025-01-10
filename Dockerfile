@@ -1,17 +1,15 @@
-FROM oven/bun:1.1.42-alpine AS base
+FROM node:20.13.1-alpine3.19 AS base
 WORKDIR /app/src
 
-FROM base AS install
+FROM base AS build
 COPY package*.json ./
-RUN bun install --frozen-lockfile
+RUN npm ci
 COPY . ./
+RUN npm run build
 
-FROM install AS build
-RUN bun run build
+FROM node:20.13.1-alpine3.19 AS release
+
 WORKDIR /usr/app
-COPY --from=base /app/src/dist/frontend ./
-
-FROM install AS execute
-
+COPY --from=build /app/src/dist/frontend/ ./
+CMD ["node", "server/server.mjs"]
 EXPOSE 4000
-ENTRYPOINT [ "bun", "server/server.mjs" ]
