@@ -5,7 +5,7 @@ import {
   UiArticleComponent,
 } from '../components/ui-article/ui-article.component';
 import { UiSearchComponent } from '../../ui/ui-search/ui-search.component';
-import { BlogService } from '../../../services/blog.service';
+import { BlogService } from '../blog.service';
 import { BehaviorSubject } from 'rxjs';
 import { ArticleSearchResults } from '../../../models/article.model';
 import { Meta, Title } from '@angular/platform-browser';

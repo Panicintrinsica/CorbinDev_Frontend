@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { Injectable, signal } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import {
   Article,
   ArticlePage,
   ArticleSearchResults,
-} from '../models/article.model';
+} from '../../models/article.model';
 import { HttpClient } from '@angular/common/http';
 import { ViewportScroller } from '@angular/common';
 
@@ -14,6 +14,27 @@ import { ViewportScroller } from '@angular/common';
 })
 export class BlogService {
   private API = environment.API;
+
+  private _article = signal<Article>({
+    aboveFold: '',
+    category: '',
+    content: '',
+    id: '',
+    slug: '',
+    tags: [],
+    title: '',
+    xata: { createdAt: '', updatedAt: '', version: 0 },
+  });
+
+  get article() {
+    return this._article;
+  }
+
+  fetchArticle(selector: string) {
+    return this.http
+      .get<Article>(`${this.API}/articles/single/${selector}`)
+      .subscribe((article) => this._article.set(article));
+  }
 
   private articleSubject: Subject<ArticlePage> = new Subject<ArticlePage>();
   private searchResultsSubject = new BehaviorSubject<ArticleSearchResults>({

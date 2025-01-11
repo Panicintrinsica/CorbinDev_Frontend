@@ -5,7 +5,7 @@ import {
   UiArticleComponent,
 } from './components/ui-article/ui-article.component';
 import { ArticlePage, ArticleSearchResults } from '../../models/article.model';
-import { BlogService } from '../../services/blog.service';
+import { BlogService } from './blog.service';
 import { Subject, Subscription } from 'rxjs';
 import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { ArticleTypes } from '../../constants/project.consts';
