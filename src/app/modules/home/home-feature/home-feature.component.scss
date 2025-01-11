@@ -74,11 +74,9 @@
   padding: 20px;
   max-width: 1000px;
   flex-direction: column;
-  animation: feature-in-right 0.8s ease-out 0.2s forwards;
-  opacity: 0;
 
   &.alt {
-    animation: feature-in-left 0.8s ease-out 0.2s forwards;
+
   }
 }
 
@@ -128,7 +126,6 @@
     }
   }
 }
-
 
 
 @media only screen and (max-width: 820px) {
@@ -185,33 +182,5 @@
   .image {
     min-width: 288px;
     min-height: 144px;
-  }
-}
-
-
-@keyframes feature-in-right {
-  0% {
-    opacity: 0;
-    filter: blur(10px);
-    transform: translateX(-100px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translateX(0px);
-  }
-}
-
-@keyframes feature-in-left {
-  0% {
-    opacity: 0;
-    filter: blur(10px);
-    transform: translateX(100px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translateX(0px);
-  ;
   }
 }

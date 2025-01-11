@@ -8,10 +8,10 @@ import {
 import { getContentBody } from '../../utilities';
 
 @Component({
-    selector: 'app-home',
-    imports: [HomeKeyartComponent, HomeFeatureComponent],
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.scss'
+  selector: 'app-home',
+  imports: [HomeKeyartComponent, HomeFeatureComponent],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
   protected readonly getContentBody = getContentBody;
