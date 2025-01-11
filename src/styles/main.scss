@@ -254,7 +254,7 @@ input {
   background-color: #2d2d2d;
   font-size: 14px;
   transition: 0.2s;
-  font-family: var(--bodyFont);
+  font-family: var(--bodyFont), sans-serif;
 }
 
 /* On mouse-over, add a deeper shadow */
