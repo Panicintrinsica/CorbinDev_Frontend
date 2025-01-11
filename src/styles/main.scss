@@ -419,3 +419,26 @@ ul > li > ul > li > ul > li::before{
 
   }
 }
+
+
+.anim-wrapper {
+
+  &.onDisplay {
+    opacity: 0;
+    animation: fadeInUp 1.5s ease forwards;
+    transition-duration: 1.5s;
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 100px, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+  }
+
+}

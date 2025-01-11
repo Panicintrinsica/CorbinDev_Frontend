@@ -12,20 +12,20 @@
   </div>
 
   <section class="article-list">
-    @if (articles$ | async; as articles) {
-      @for (article of articles.records; track article.id) {
+
+      @for (article of articlePage().records; track article.id) {
         <div class="anim-wrapper" data-aos="zoom-in-up">
           <ui-article [isStub]="true" [data]="article" [displayStyle]="ArticleDisplayStyle.Card"></ui-article>
         </div>
       } @empty {
-        <div class="callout">
+        <div class="callout" data-aos="fade-in" data-aos-delay="500">
           <div class="admonition admonition-info">
             <div class="admonition-title">Info</div>
             <div class="admonition-content">No Articles match these specific filters</div>
           </div>
         </div>
       }
-    }
+
   </section>
 
   <aside class="sidebar" [ngClass]="{'sidebar-hidden': hideSidebar}">
@@ -48,8 +48,8 @@
   </aside>
 
   <div class="pager bottom-nav" data-aos="fade-up">
-    <div class="pager-item" (click)="lastPage()" [ngClass]="{'disabled': isFirstPage}">Back</div>
-    <div class="pager-item" (click)="nextPage()" [ngClass]="{'disabled': isLastPage}">Next</div>
+    <div class="pager-item" (click)="goToPreviousPage()" [ngClass]="{'disabled': isFirstPage()}">Back</div>
+    <div class="pager-item" (click)="goToNextPage()" [ngClass]="{'disabled': isLastPage()}">Next</div>
   </div>
 
 </div>

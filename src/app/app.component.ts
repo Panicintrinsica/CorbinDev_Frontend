@@ -14,7 +14,7 @@ import AOS from 'aos';
   animations: [slideInAnimation],
 })
 export class AppComponent implements OnInit {
-  title = 'corbin.dev';
+  title = 'Corbin.dev';
 
   constructor(private contexts: ChildrenOutletContexts) {
     afterNextRender(() => AOS.init());

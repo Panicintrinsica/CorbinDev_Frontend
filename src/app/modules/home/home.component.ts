@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { afterNextRender, Component, inject, OnInit } from '@angular/core';
 import { ServerService } from '../../services/server.service';
 import { HomeKeyartComponent } from './home-keyart/home-keyart.component';
 import {
@@ -7,6 +7,7 @@ import {
 } from './home-feature/home-feature.component';
 import { getContentBody } from '../../utilities';
 import { Meta, Title } from '@angular/platform-browser';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-home',
@@ -90,6 +91,8 @@ export class HomeComponent implements OnInit {
     private meta: Meta,
     private title: Title,
   ) {
+    afterNextRender(() => AOS.init());
+
     this.title.setTitle('Corbin.dev');
 
     this.meta.addTags([

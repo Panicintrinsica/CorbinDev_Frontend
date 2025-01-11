@@ -1,12 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AsyncPipe, NgClass } from '@angular/common';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { NgClass } from '@angular/common';
 import {
   ArticleDisplayStyle,
   UiArticleComponent,
 } from './components/ui-article/ui-article.component';
-import { ArticlePage, ArticleSearchResults } from '../../models/article.model';
 import { BlogService } from './blog.service';
-import { Subject, Subscription } from 'rxjs';
 import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { ArticleTypes } from '../../constants/project.consts';
 import { MatIconButton } from '@angular/material/button';
@@ -19,7 +17,6 @@ import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-articles',
   imports: [
-    AsyncPipe,
     UiArticleComponent,
     NgClass,
     MatChipOption,
@@ -33,15 +30,16 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrl: './blog.component.scss',
   standalone: true,
 })
-export class BlogComponent implements OnInit, OnDestroy {
-  articles$!: Subject<ArticlePage>;
+export class BlogComponent implements OnInit {
+  blogService = inject(BlogService);
+
+  articlePage = this.blogService.articlePage;
+  isFirstPage = this.blogService.isFirstPage;
+  isLastPage = this.blogService.isLastPage;
+
+  loadStarted = signal(false);
+
   currentPage = 0;
-
-  _isFirstPage$: Subscription;
-  _isLastPage$: Subscription;
-
-  isFirstPage = false;
-  isLastPage = false;
 
   hideSidebar = true;
 
@@ -54,32 +52,18 @@ export class BlogComponent implements OnInit, OnDestroy {
     private title: Title,
   ) {
     this.title.setTitle('Corbin.dev | Blog');
-
     this.meta.addTags([
-      { name: 'description', content: "Emrys Corbin's DevBlog" },
       {
-        name: 'keywords',
-        content: 'emrys, corbin, corbin.dev, blog',
+        name: 'description',
+        content:
+          'News and articles on software engineering, gaming, technologies, cats, coffee, and more.',
       },
     ]);
-
-    this.articles$ = this.bs.getArticleSub();
-    this._isFirstPage$ = this.bs.isFirstPage$.subscribe(
-      (value) => (this.isFirstPage = value),
-    );
-    this._isLastPage$ = this.bs.isLastPage$.subscribe(
-      (value) => (this.isLastPage = value),
-    );
   }
 
   ngOnInit(): void {
-    this.getPage(this.currentPage);
+    this.getSpecificPage(this.currentPage);
     this.initializeCategories();
-  }
-
-  ngOnDestroy() {
-    this._isFirstPage$.unsubscribe();
-    this._isLastPage$.unsubscribe();
   }
 
   initializeCategories(): void {
@@ -89,22 +73,20 @@ export class BlogComponent implements OnInit, OnDestroy {
     }
   }
 
-  lastPage() {
-    if (this.isFirstPage) return;
-
+  goToPreviousPage() {
+    if (this.isFirstPage()) return;
     const newPage = --this.currentPage;
-    this.getPage(newPage);
+    this.getSpecificPage(newPage);
   }
 
-  nextPage() {
-    if (this.isLastPage) return;
-
+  goToNextPage() {
+    if (this.isLastPage()) return;
     const newPage = ++this.currentPage;
-    this.getPage(newPage);
+    this.getSpecificPage(newPage);
   }
 
-  private getPage(pageNumber: number) {
-    this.bs.getArticlePage(5, pageNumber, true);
+  private getSpecificPage(pageNumber: number) {
+    this.bs.fetchPage(5, pageNumber, true);
   }
 
   protected readonly ArticleDisplayStyle = ArticleDisplayStyle;
@@ -122,13 +104,10 @@ export class BlogComponent implements OnInit, OnDestroy {
       JSON.stringify([...this.selectedCategories]),
     );
 
-    this.getPage(0);
+    this.getSpecificPage(0);
   }
 
   searchBlog(query: string) {
-    this.bs.searchArticles(query).subscribe((results: ArticleSearchResults) => {
-      this.bs.setSearchResults(results);
-      this.router.navigate(['blog/search']);
-    });
+    this.bs.searchArticles(query);
   }
 }

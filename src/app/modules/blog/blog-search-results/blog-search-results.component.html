@@ -9,8 +9,8 @@
   </div>
 
   <section class="article-list">
-    @if (articles$ | async; as articles) {
-      @for (article of articles.records; track article.id) {
+
+      @for (article of articles().records; track article.id) {
         <ui-article [isStub]="true" [data]="article" [displayStyle]="ArticleDisplayStyle.Card"></ui-article>
       } @empty {
         <div class="callout">
@@ -20,7 +20,7 @@
           </div>
         </div>
       }
-    }
+
   </section>
 
 <!--  <div class="pager bottom-nav">-->
