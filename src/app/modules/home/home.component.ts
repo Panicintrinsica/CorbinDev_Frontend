@@ -52,18 +52,19 @@ export class HomeComponent implements OnInit {
       alt: 'Electron.js',
       link: 'https://www.electronjs.org/',
     },
-    { img: 'tauri', alt: 'Tauri', link: 'https://v2.tauri.app/' },
+    // { img: 'tauri', alt: 'Tauri', link: 'https://v2.tauri.app/' },
   ];
   backendFeatures: featuredStackItem[] = [
+    { img: 'gcloud', alt: 'Google Cloud', link: 'https://cloud.google.com/' },
     { img: 'node-js', alt: 'Node.js', link: 'https://nodejs.org/en' },
     { img: 'mongodb', alt: 'MongoDB', link: 'https://www.mongodb.com/' },
     { img: 'mysql', alt: 'MySQL', link: 'https://www.mysql.com/' },
-    {
-      img: 'PostgreSQL',
-      alt: 'PostgreSQL',
-      link: 'https://www.postgresql.org/',
-    },
-    { img: 'bun', alt: 'bun', link: 'https://bun.sh/' },
+    // {
+    //   img: 'PostgreSQL',
+    //   alt: 'PostgreSQL',
+    //   link: 'https://www.postgresql.org/',
+    // },
+    // { img: 'bun', alt: 'bun', link: 'https://bun.sh/' },
     // { img: 'xata', alt: 'Xata.io', link: 'https://xata.io/' },
     { img: 'redis', alt: 'Redis', link: 'https://redis.io/' },
   ];
@@ -77,11 +78,11 @@ export class HomeComponent implements OnInit {
       alt: 'Android',
       link: 'https://developer.android.com/studio',
     },
-    {
-      img: 'unreal',
-      alt: 'Unreal Engine',
-      link: 'https://www.unrealengine.com',
-    },
+    // {
+    //   img: 'unreal',
+    //   alt: 'Unreal Engine',
+    //   link: 'https://www.unrealengine.com',
+    // },
   ];
 
   constructor() {}
