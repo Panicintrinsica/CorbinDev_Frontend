@@ -11,7 +11,7 @@
       <div class="tag-container">
         <ui-tag [text]="data.category" [type]="data.category"></ui-tag>
         @for (tag of data.tags; track tag){
-          <ui-tag type="blog" [text]="tag"></ui-tag>
+          <ui-tag type="article-tag" [text]="tag"></ui-tag>
         }
       </div>
   </section>

@@ -61,10 +61,16 @@
     border-color: hsl(180, 100%, 20%);
   }
 
-  &.blog {
+  &.article-tag {
     color: hsl(206, 26%, 84%);
     background: hsl(200, 10%, 30%);
     border-color: hsl(201, 10%, 60%);
+  }
+
+  &.blog {
+    color: hsl(300, 100%, 60%);
+    background: hsl(280, 70%, 15%);
+    border-color: hsl(300, 50%, 50%);
   }
 
   &.review {
