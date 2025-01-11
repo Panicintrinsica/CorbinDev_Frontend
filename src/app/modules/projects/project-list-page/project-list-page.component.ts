@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ProjectGroups, ProjectTypes } from '../../../constants/project.consts';
 import { UiSearchComponent } from '../../ui/ui-search/ui-search.component';
 import { ProjectService } from '../../../services/project.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-project-list',
@@ -49,7 +50,19 @@ export class ProjectListPageComponent {
     public dialog: MatDialog,
     private server: ServerService,
     private projectService: ProjectService,
+    private meta: Meta,
+    private title: Title,
   ) {
+    this.title.setTitle('Corbin.dev | Projects');
+    this.meta.addTags([
+      { name: 'description', content: "Emrys Corbin's DevBlog" },
+      {
+        name: 'keywords',
+        content:
+          'emrys corbin, corbin.dev, projects, portfolio, software engineer, web developer, web design, web development',
+      },
+    ]);
+
     this.project$ = this.projectService.getAllProjects().pipe(
       tap((result) => {
         this.resultSet = result;

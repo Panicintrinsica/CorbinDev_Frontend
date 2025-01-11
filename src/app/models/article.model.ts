@@ -21,10 +21,10 @@ export interface ArticlePage {
       size: number;
     };
   };
-  records: Partial<Article>[];
+  records: Article[];
 }
 
 export interface ArticleSearchResults {
   totalCount: number;
-  records: Partial<Article>[];
+  records: Article[];
 }

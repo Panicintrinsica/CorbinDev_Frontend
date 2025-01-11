@@ -31,7 +31,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/prism-themes/themes/prism-night-owl.css"
+              "node_modules/prism-themes/themes/prism-night-owl.css",
+              "node_modules/aos/dist/aos.css"
             ],
             "scripts": [
               "node_modules/prismjs/prism.js",

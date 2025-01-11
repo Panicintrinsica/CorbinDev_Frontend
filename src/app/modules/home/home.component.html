@@ -1,21 +1,23 @@
 <app-home-keyart />
 
-<app-home-feature
-  header="Front-End Development"
-  color="red"
-  image=""
-  [isAlternate]="false"
-  [stack]="frontendFeatures"
->
-  @if (content()) {
-    {{ getContentBody(content(), 'landingOne') }}
-  }
 
-
-</app-home-feature>
-
-@defer (on viewport) {
+<div class="anim-wrapper" data-aos="fade-up" data-aos-duration="1500">
   <app-home-feature
+    header="Front-End Development"
+    color="red"
+    image=""
+    [isAlternate]="false"
+    [stack]="frontendFeatures"
+  >
+    @if (content()) {
+      {{ getContentBody(content(), 'landingOne') }}
+    }
+  </app-home-feature>
+</div>
+
+<div class="anim-wrapper" data-aos="fade-up" data-aos-duration="1500">
+  <app-home-feature
+    data-aos-anchor-placement="bottom-bottom"
     header="Back-End Development"
     content=""
     color="blue"
@@ -27,11 +29,9 @@
       {{ getContentBody(content(), 'landingTwo') }}
     }
   </app-home-feature>
-} @placeholder () {
-  <div class="deferment-block"></div>
-}
+</div>
 
-@defer (on viewport) {
+<div class="anim-wrapper" data-aos="fade-up" data-aos-duration="1500">
   <app-home-feature
     header="Everything Development"
     content=""
@@ -44,6 +44,8 @@
       {{ getContentBody(content(), 'landingThree') }}
     }
   </app-home-feature>
-} @placeholder () {
-  <div class="deferment-block"></div>
-}
+</div>
+
+
+
+

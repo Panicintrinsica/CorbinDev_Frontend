@@ -6,12 +6,13 @@ import {
   HomeFeatureComponent,
 } from './home-feature/home-feature.component';
 import { getContentBody } from '../../utilities';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
-    selector: 'app-home',
-    imports: [HomeKeyartComponent, HomeFeatureComponent],
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.scss'
+  selector: 'app-home',
+  imports: [HomeKeyartComponent, HomeFeatureComponent],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
   protected readonly getContentBody = getContentBody;
@@ -52,18 +53,19 @@ export class HomeComponent implements OnInit {
       alt: 'Electron.js',
       link: 'https://www.electronjs.org/',
     },
-    { img: 'tauri', alt: 'Tauri', link: 'https://v2.tauri.app/' },
+    // { img: 'tauri', alt: 'Tauri', link: 'https://v2.tauri.app/' },
   ];
   backendFeatures: featuredStackItem[] = [
+    { img: 'gcloud', alt: 'Google Cloud', link: 'https://cloud.google.com/' },
     { img: 'node-js', alt: 'Node.js', link: 'https://nodejs.org/en' },
     { img: 'mongodb', alt: 'MongoDB', link: 'https://www.mongodb.com/' },
     { img: 'mysql', alt: 'MySQL', link: 'https://www.mysql.com/' },
-    {
-      img: 'PostgreSQL',
-      alt: 'PostgreSQL',
-      link: 'https://www.postgresql.org/',
-    },
-    { img: 'bun', alt: 'bun', link: 'https://bun.sh/' },
+    // {
+    //   img: 'PostgreSQL',
+    //   alt: 'PostgreSQL',
+    //   link: 'https://www.postgresql.org/',
+    // },
+    // { img: 'bun', alt: 'bun', link: 'https://bun.sh/' },
     // { img: 'xata', alt: 'Xata.io', link: 'https://xata.io/' },
     { img: 'redis', alt: 'Redis', link: 'https://redis.io/' },
   ];
@@ -77,14 +79,30 @@ export class HomeComponent implements OnInit {
       alt: 'Android',
       link: 'https://developer.android.com/studio',
     },
-    {
-      img: 'unreal',
-      alt: 'Unreal Engine',
-      link: 'https://www.unrealengine.com',
-    },
+    // {
+    //   img: 'unreal',
+    //   alt: 'Unreal Engine',
+    //   link: 'https://www.unrealengine.com',
+    // },
   ];
 
-  constructor() {}
+  constructor(
+    private meta: Meta,
+    private title: Title,
+  ) {
+    this.title.setTitle('Corbin.dev');
+
+    this.meta.addTags([
+      {
+        name: 'description',
+        content: 'Portfolio & Website of Emrys Corbin, Software Engineer.',
+      },
+      {
+        name: 'keywords',
+        content: 'emrys, corbin, corbin.dev, software engineer',
+      },
+    ]);
+  }
 
   ngOnInit(): void {
     this.server.fetchContent('landing');

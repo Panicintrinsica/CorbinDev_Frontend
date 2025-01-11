@@ -1,42 +1,46 @@
-<article class="blog {{displayStyle}}">
+<article class="blog {{displayStyle()}}">
 
   <header class="blog-header">
-    <h1 class="bold text-gradient">{{data.title}}</h1>
+    <h1 class="bold text-gradient">{{data().title}}</h1>
     @if (false) {
-        <img class="article-image" src="../../../../../assets/debug/article-header.png" alt="">
+        <img class="article-image" ngSrc="../../../../../assets/debug/article-header.png" alt="" height="562"
+             width="1000">
     }
   </header>
 
   <section class="blog-meta">
       <div class="tag-container">
-        <ui-tag [text]="data.category" [type]="data.category"></ui-tag>
-        @for (tag of data.tags; track tag){
-          <ui-tag type="blog" [text]="tag"></ui-tag>
+        <ui-tag [text]="data().category" [type]="data().category"></ui-tag>
+        @for (tag of data().tags; track tag){
+          <ui-tag type="article-tag" [text]="tag"></ui-tag>
         }
       </div>
   </section>
 
   <section class="blog-body">
-    <markdown [data]="fullText | blog" class="blog-article text"></markdown>
+      <markdown [data]="data().aboveFold | blog" class="blog-article text"></markdown>
+    @if (!isStub()) {
+      <markdown [data]="data().content | blog" class="blog-article text"></markdown>
+    }
   </section>
 
   <footer class="blog-footer">
-    @if (isStub) {
-      <div class="time">{{ data.xata?.createdAt | date : 'shortDate' }}</div>
+    @if (isStub()) {
+      <div class="time">{{ data().xata?.createdAt | date : 'shortDate' }}</div>
       <div class="pusher"></div>
-      <button mat-button routerLink="/article/{{data.slug}}">Read More</button>
+      <button mat-button routerLink="/article/{{data().slug}}">Read More</button>
     } @else {
 
       <div class="meta-row">
         <div class="meta-item">
           <div class="meta-label">Posted:</div>
-          <div class="meta-data">{{ data.xata?.createdAt | date : 'short'  }}</div>
+          <div class="meta-data">{{ data().xata?.createdAt | date : 'short'  }}</div>
         </div>
 
-        @if (data.xata?.createdAt != data.xata?.updatedAt) {
+        @if (data().xata?.createdAt != data().xata?.updatedAt) {
           <div class="meta-item">
             <div class="meta-label">Update:</div>
-            <div class="meta-data">{{ data.xata?.updatedAt | date : 'short'  }}</div>
+            <div class="meta-data">{{ data().xata?.updatedAt | date : 'short'  }}</div>
           </div>
         }
 

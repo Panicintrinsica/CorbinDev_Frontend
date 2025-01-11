@@ -14,6 +14,7 @@ import { BioFashionComponent } from './sections/bio-fashion/bio-fashion.componen
 import { BioFoodComponent } from './sections/bio-food/bio-food.component';
 import { BioGamesComponent } from './sections/bio-games/bio-games.component';
 import { BioMusicComponent } from './sections/bio-music/bio-music.component';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-biography',
@@ -52,8 +53,25 @@ export class BiographyComponent {
 
   selection: string = '';
 
-  constructor(private server: ServerService) {
+  constructor(
+    private server: ServerService,
+    private meta: Meta,
+    private title: Title,
+  ) {
     this.content$ = server.getContentGroup('bio');
+
+    this.title.setTitle('Corbin.dev | Biography');
+
+    this.meta.addTags([
+      {
+        name: 'description',
+        content: 'A short personal biography of Emrys Corbin',
+      },
+      {
+        name: 'keywords',
+        content: 'emrys corbin, corbin.dev, biography, personal, about',
+      },
+    ]);
   }
 
   protected readonly getContentBody = getContentBody;
