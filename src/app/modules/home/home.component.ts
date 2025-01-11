@@ -6,6 +6,7 @@ import {
   HomeFeatureComponent,
 } from './home-feature/home-feature.component';
 import { getContentBody } from '../../utilities';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -85,7 +86,23 @@ export class HomeComponent implements OnInit {
     // },
   ];
 
-  constructor() {}
+  constructor(
+    private meta: Meta,
+    private title: Title,
+  ) {
+    this.title.setTitle('Corbin.dev');
+
+    this.meta.addTags([
+      {
+        name: 'description',
+        content: 'Portfolio & Website of Emrys Corbin, Software Engineer.',
+      },
+      {
+        name: 'keywords',
+        content: 'emrys, corbin, corbin.dev, software engineer',
+      },
+    ]);
+  }
 
   ngOnInit(): void {
     this.server.fetchContent('landing');

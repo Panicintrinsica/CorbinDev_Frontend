@@ -8,6 +8,7 @@ import { UiSearchComponent } from '../../ui/ui-search/ui-search.component';
 import { BlogService } from '../../../services/blog.service';
 import { BehaviorSubject } from 'rxjs';
 import { ArticleSearchResults } from '../../../models/article.model';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-articles-search-results',
@@ -21,8 +22,25 @@ export class BlogSearchResultsComponent {
 
   articles$!: BehaviorSubject<ArticleSearchResults>;
 
-  constructor(private bs: BlogService) {
+  constructor(
+    private bs: BlogService,
+    private meta: Meta,
+    private title: Title,
+  ) {
     this.articles$ = this.bs.getSearchResultSub();
+
+    this.title.setTitle('Corbin.dev | Blog Search Results');
+
+    this.meta.addTags([
+      {
+        name: 'description',
+        content: 'Search Results for the Corbin.dev Blog',
+      },
+      {
+        name: 'keywords',
+        content: 'emrys, corbin, corbin.dev, blog',
+      },
+    ]);
   }
 
   searchBlog(query: string) {

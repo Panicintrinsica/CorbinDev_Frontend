@@ -13,6 +13,7 @@ import { SkillService } from '../../../services/skill.service';
 import { SkillListAnim } from '../../../animations/list.anim';
 import { TagComponent } from '../../ui/ui-tag/tag.component';
 import { ProjectService } from '../../../services/project.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-project',
@@ -41,6 +42,8 @@ export class ProjectPageComponent implements OnDestroy {
     skillService: SkillService,
     route: ActivatedRoute,
     public dialog: MatDialog,
+    private meta: Meta,
+    private title: Title,
   ) {
     route.paramMap.subscribe((params) => {
       const slug = params.get('slug');
@@ -49,6 +52,19 @@ export class ProjectPageComponent implements OnDestroy {
           next: (projectData) => {
             this.project = projectData;
             this.skills$ = skillService.getSkillsByProject(projectData.id);
+
+            this.title.setTitle(`Corbin.dev - ${slug}`);
+            this.meta.addTags([
+              {
+                name: 'description',
+                content:
+                  'Portfolio & Website of Emrys Corbin, Software Engineer.',
+              },
+              {
+                name: 'keywords',
+                content: 'emrys, corbin, corbin.dev, software engineer',
+              },
+            ]);
           },
           error: (err) => console.error(err),
         });

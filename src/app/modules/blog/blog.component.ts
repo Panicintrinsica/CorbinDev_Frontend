@@ -14,6 +14,7 @@ import { MatIcon } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { UiSearchComponent } from '../ui/ui-search/ui-search.component';
 import { Router } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-articles',
@@ -49,7 +50,19 @@ export class BlogComponent implements OnInit, OnDestroy {
   constructor(
     private bs: BlogService,
     private router: Router,
+    private meta: Meta,
+    private title: Title,
   ) {
+    this.title.setTitle('Corbin.dev | Blog');
+
+    this.meta.addTags([
+      { name: 'description', content: "Emrys Corbin's DevBlog" },
+      {
+        name: 'keywords',
+        content: 'emrys, corbin, corbin.dev, blog',
+      },
+    ]);
+
     this.articles$ = this.bs.getArticleSub();
     this._isFirstPage$ = this.bs.isFirstPage$.subscribe(
       (value) => (this.isFirstPage = value),
