@@ -1,27 +1,25 @@
 export interface Article {
-  id: string;
-  slug: string;
   title: string;
+  date: string;
+  uri: string;
   aboveFold: string;
-  content: string;
-  tags: string[];
+  belowFold?: string;
   category: string;
-  xata: {
-    createdAt: string;
-    updatedAt: string;
-    version: number;
-  };
+  tags: string[];
+  author: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ArticlePage {
+  data: Article[];
   meta: {
-    page: {
-      cursor: string;
-      more: boolean;
-      size: number;
-    };
+    size: number;
+    page: number;
+    totalPages: number;
+    isFirstPage: boolean;
+    isLastPage: boolean;
   };
-  records: Article[];
 }
 
 export interface ArticleSearchResults {

@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
-import { ServerService } from '../../services/server.service';
+import { Component, inject, signal } from '@angular/core';
+import { ContentService } from '../../services/content.service';
 import { MarkdownComponent } from 'ngx-markdown';
-import { AsyncPipe, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { ContentBlock } from '../../models/content.model';
 import { getContentBody } from '../../utilities';
 import { MatButton } from '@angular/material/button';
 import { BioBooksComponent } from './sections/bio-books/bio-books.component';
@@ -20,7 +18,6 @@ import { Meta, Title } from '@angular/platform-browser';
   selector: 'app-biography',
   imports: [
     MarkdownComponent,
-    AsyncPipe,
     FormsModule,
     MatButton,
     BioBooksComponent,
@@ -37,9 +34,8 @@ import { Meta, Title } from '@angular/platform-browser';
   standalone: true,
 })
 export class BiographyComponent {
-  content$: Observable<ContentBlock[]>;
-
-  details: any = {};
+  contentService = inject(ContentService);
+  content = this.contentService.content;
 
   sections: { id: string; title: string }[] = [
     // { id: 'books', title: 'Books' },
@@ -51,32 +47,26 @@ export class BiographyComponent {
     // { id: 'music', title: 'Music' },
   ];
 
-  selection: string = '';
+  selection = signal('');
 
   constructor(
-    private server: ServerService,
     private meta: Meta,
     private title: Title,
   ) {
-    this.content$ = server.getContentGroup('bio');
-
     this.title.setTitle('Corbin.dev | Biography');
-
     this.meta.addTags([
       {
         name: 'description',
         content: 'A short personal biography of Emrys Corbin',
       },
-      {
-        name: 'keywords',
-        content: 'emrys corbin, corbin.dev, biography, personal, about',
-      },
     ]);
+
+    this.contentService.fetchContent('biography');
   }
 
   protected readonly getContentBody = getContentBody;
 
   makeSelection(id: string) {
-    this.selection = id;
+    this.selection.set(id);
   }
 }

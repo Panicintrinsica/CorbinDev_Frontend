@@ -10,8 +10,7 @@ import { ArticleTypes } from '../../constants/project.consts';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import { UiSearchComponent } from '../ui/ui-search/ui-search.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
@@ -24,7 +23,6 @@ import { Meta, Title } from '@angular/platform-browser';
     MatIconButton,
     MatIcon,
     FormsModule,
-    UiSearchComponent,
   ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',
@@ -36,18 +34,17 @@ export class BlogComponent implements OnInit {
   articlePage = this.blogService.articlePage;
   isFirstPage = this.blogService.isFirstPage;
   isLastPage = this.blogService.isLastPage;
+  totalPages = this.blogService.totalPages;
 
   loadStarted = signal(false);
-
-  currentPage = 0;
 
   hideSidebar = true;
 
   selectedCategories = new Set<string>();
 
   constructor(
-    private bs: BlogService,
     private router: Router,
+    private route: ActivatedRoute,
     private meta: Meta,
     private title: Title,
   ) {
@@ -59,11 +56,12 @@ export class BlogComponent implements OnInit {
           'News and articles on software engineering, gaming, technologies, cats, coffee, and more.',
       },
     ]);
+    this.blogService.fetchPage(5);
   }
 
   ngOnInit(): void {
-    this.getSpecificPage(this.currentPage);
     this.initializeCategories();
+    this.initializePageFromUrl();
   }
 
   initializeCategories(): void {
@@ -73,20 +71,38 @@ export class BlogComponent implements OnInit {
     }
   }
 
+  initializePageFromUrl(): void {
+    // Read the page query parameter from the URL
+    const pageParam = this.route.snapshot.queryParamMap.get('page');
+    const page = pageParam ? Number(pageParam) : 1; // Default to page 1 if no param
+    this.blogService.fetchPage(5, page); // Fetch articles for the specified page
+  }
+
   goToPreviousPage() {
-    if (this.isFirstPage()) return;
-    const newPage = --this.currentPage;
-    this.getSpecificPage(newPage);
+    if (!this.isFirstPage()) {
+      const currentPage = this.blogService.currentPage(); // Get the current page
+      const prevPage = currentPage - 1;
+      this.blogService.fetchPage(5, prevPage);
+      this.updateUrlWithPage(prevPage); // Update the URL
+    }
   }
 
   goToNextPage() {
-    if (this.isLastPage()) return;
-    const newPage = ++this.currentPage;
-    this.getSpecificPage(newPage);
+    if (!this.isLastPage()) {
+      const currentPage = this.blogService.currentPage(); // Get the current page
+      const nextPage = currentPage + 1;
+      this.blogService.fetchPage(5, nextPage);
+      this.updateUrlWithPage(nextPage); // Update the URL
+    }
   }
 
-  private getSpecificPage(pageNumber: number) {
-    this.bs.fetchPage(5, pageNumber, true);
+  updateUrlWithPage(page: number) {
+    // Update the URL with the current page
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page },
+      queryParamsHandling: 'merge', // Retain other query params (e.g., tags)
+    });
   }
 
   protected readonly ArticleDisplayStyle = ArticleDisplayStyle;
@@ -104,10 +120,6 @@ export class BlogComponent implements OnInit {
       JSON.stringify([...this.selectedCategories]),
     );
 
-    this.getSpecificPage(0);
-  }
-
-  searchBlog(query: string) {
-    this.bs.searchArticles(query);
+    this.blogService.fetchPage(5);
   }
 }

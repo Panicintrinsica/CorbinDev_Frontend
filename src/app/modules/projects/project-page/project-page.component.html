@@ -4,54 +4,52 @@
   <div class="flex-row bottom-padded">
     <button mat-stroked-button uiGoBack>Back</button>
     <div class="fill"></div>
-    @if (project?.showLink) {
-      <a mat-stroked-button color="warn" [href]="project?.link" target="_blank">Visit</a>
+    @if (project().link) {
+      <a mat-stroked-button color="warn" [href]="project().link" target="_blank">Visit</a>
     }
   </div>
 
-  @if (project){
+  @if (project().name != ""){
     <article class="project card">
-      <header class="project-header {{project.group}}">
-        <h1 class="title pusher">{{project.name}}</h1>
+      <header class="project-header {{project().category}}">
+        <h1 class="title pusher">{{project().name}}</h1>
         <div class="date">
-          @if(project.isCurrent) {
+          @if(project().isCurrent) {
             Current
           } @else {
-            {{project.started | date: 'MMM yyyy'}}
-            @if (project.started && project.ended) {
+            {{project().startDate | date: 'MMM yyyy'}}
+            @if (project().startDate && project().endDate) {
               <span> - </span>
             }
-            {{project.ended | date: 'MMM yyyy'}}
+            {{project().endDate | date: 'MMM yyyy'}}
           }
         </div>
       </header>
 
       <section class="project-body">
-        <markdown [data]="project.longDescription"></markdown>
+        <markdown [data]="project().details"></markdown>
 
         <h2>Skills & Technology</h2>
         <div class="cutout">
-          @if(skills$ | async; as skills){
-            <div class="tag-container" [@FadeInList]="skills.length">
-              @for (skill of skills; track skill.id) {
-                <ui-tag type="skill" [text]="skill.name" (click)="viewSkill(skill.id)"></ui-tag>
-              }
-            </div>
-          }
+          <div class="tag-container" [@FadeInList]="skills().length">
+            @for (skill of skills(); track skill._id) {
+              <ui-tag type="skill" [text]="skill.name" (click)="viewSkill(skill._id)"></ui-tag>
+            }
+          </div>
         </div>
       </section>
 
       <footer class="project-footer">
-        <div class="meta-row">
-          <div class="meta-item">
-            <div class="meta-label">Posted: </div>
-            <div class="meta-data">{{ project.xata.createdAt | date : "dd.MM.yyy"}}</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Updated: </div>
-            <div class="meta-data">{{ project.xata.updatedAt | date : "dd.MM.yyy"}}</div>
-          </div>
-        </div>
+<!--        <div class="meta-row">-->
+<!--          <div class="meta-item">-->
+<!--            <div class="meta-label">Posted: </div>-->
+<!--            <div class="meta-data">{{ project.xata.createdAt | date : "dd.MM.yyy"}}</div>-->
+<!--          </div>-->
+<!--          <div class="meta-item">-->
+<!--            <div class="meta-label">Updated: </div>-->
+<!--            <div class="meta-data">{{ project.xata.updatedAt | date : "dd.MM.yyy"}}</div>-->
+<!--          </div>-->
+<!--        </div>-->
       </footer>
 
     </article>

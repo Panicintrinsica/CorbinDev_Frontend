@@ -10,7 +10,7 @@
 
   <section class="article-list">
 
-      @for (article of articles().records; track article.id) {
+      @for (article of articles().records; track article.uri) {
         <ui-article [isStub]="true" [data]="article" [displayStyle]="ArticleDisplayStyle.Card"></ui-article>
       } @empty {
         <div class="callout">
@@ -23,9 +23,5 @@
 
   </section>
 
-<!--  <div class="pager bottom-nav">-->
-<!--    <div class="pager-item" (click)="lastPage()" [ngClass]="{'disabled': isFirstPage}">Back</div>-->
-<!--    <div class="pager-item" (click)="nextPage()" [ngClass]="{'disabled': isLastPage}">Next</div>-->
-<!--  </div>-->
 
 </div>

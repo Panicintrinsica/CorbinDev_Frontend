@@ -1,8 +1,8 @@
-export const ProjectTypes = [
+export const ProjectPlatforms = [
   { id: 'web', label: 'Web' },
   { id: 'desktop', label: 'Desktop' },
   { id: 'mobile', label: 'Mobile' },
-  { id: 'game', label: 'Game' },
+
   { id: 'multi', label: 'Multi' },
 ];
 
@@ -14,9 +14,9 @@ export const ArticleTypes = [
   { id: 'review', label: 'Reviews' },
 ];
 
-export const ProjectGroups = [
+export const ProjectCategories = [
   { id: 'personal', label: 'Personal' },
   { id: 'professional', label: 'Professional' },
-  { id: 'educational', label: 'Educational' },
+  { id: 'academic', label: 'Academic' },
   { id: 'open source', label: 'Open Source' },
 ];

@@ -9,9 +9,7 @@
       </header>
 
       <section class="biography-body">
-        @if (content$ | async; as content) {
-          <markdown [data]="getContentBody(content, 'bioMain')" markdown></markdown>
-        }
+        <markdown [data]="getContentBody(content(), 'main')" markdown></markdown>
       </section>
 
     </article>
@@ -19,11 +17,11 @@
 
     <div class="flex gap-small center selectable-button-row">
       @for (section of sections; track section.id) {
-        <button mat-flat-button class="selectable-button" [ngClass]="{'selected' : section.id === selection}" (click)="makeSelection(section.id)">{{ section.title }}</button>
+        <button mat-flat-button class="selectable-button" [ngClass]="{'selected' : section.id === selection()}" (click)="makeSelection(section.id)">{{ section.title }}</button>
       }
     </div>
 
-    @switch (selection) {
+    @switch (selection()) {
       @case ('books') { <app-bio-books/> }
       @case ('drinks') { <app-bio-drinks/> }
       @case ('engineer') { <app-bio-engineer/> }

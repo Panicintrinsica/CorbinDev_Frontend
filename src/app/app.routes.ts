@@ -17,10 +17,11 @@ export const routes: Routes = [
   },
 
   {
-    path: 'article/:slug',
+    path: 'blog/a/:date/:uri',
     component: ArticlePageComponent,
     data: { animation: 'Article' },
   },
+
   { path: 'bio', component: BiographyComponent, data: { animation: 'Bio' } },
   {
     path: 'projects',

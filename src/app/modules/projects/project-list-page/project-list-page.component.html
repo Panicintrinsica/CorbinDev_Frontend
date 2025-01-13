@@ -3,21 +3,19 @@
   <div class="project-container">
     <div class="toolbar">
       <h2 class="fill">Project Gallery</h2>
-
-
-      <ui-search (searchSubmitted)="updateTerm($event)"></ui-search>
+<!--      <ui-search (searchSubmitted)="updateTerm($event)"></ui-search>-->
     </div>
     <div class="sidebar">
       <div class="sidebar-segment">
         <div class="sidebar-segment-heading">
-          <span class="heading">Categories</span>
+          <span class="heading">Platform</span>
         </div>
         <div class="content">
-          <mat-chip-listbox #categoryList class="mat-mdc-chip-set-stacked" multiple>
-            @for (option of categoryOptions; track option.id){
+          <mat-chip-listbox #platformList class="mat-mdc-chip-set-stacked" multiple>
+            @for (option of platformOptions; track option.id){
               <mat-chip-option
                 id="{{option.id}}"
-                (selectionChange)="selectCategories(option.id)"
+                (selectionChange)="selectPlatforms(option.id)"
               >{{option.label}}
               </mat-chip-option>
             }
@@ -26,14 +24,14 @@
       </div>
       <div class="sidebar-segment">
         <div class="sidebar-segment-heading">
-          <span class="heading">Group</span>
+          <span class="heading">Category</span>
         </div>
         <div class="content">
           <mat-chip-listbox #groupList class="mat-mdc-chip-set-stacked" multiple>
-            @for (option of groupOptions; track option.id){
+            @for (option of categoryOptions; track option.id){
               <mat-chip-option
                 id="{{option.id}}"
-                (selectionChange)="selectGroups(option.id)"
+                (selectionChange)="selectCategories(option.id)"
               >{{option.label}}
               </mat-chip-option>
             }

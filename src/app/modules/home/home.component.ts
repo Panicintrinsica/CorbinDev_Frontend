@@ -1,5 +1,5 @@
 import { afterNextRender, Component, inject, OnInit } from '@angular/core';
-import { ServerService } from '../../services/server.service';
+import { ContentService } from '../../services/content.service';
 import { HomeKeyartComponent } from './home-keyart/home-keyart.component';
 import {
   featuredStackItem,
@@ -18,7 +18,7 @@ import AOS from 'aos';
 export class HomeComponent implements OnInit {
   protected readonly getContentBody = getContentBody;
 
-  server = inject(ServerService);
+  server = inject(ContentService);
 
   content = this.server.content;
 
@@ -108,6 +108,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.server.fetchContent('landing');
+    this.server.fetchContent('home');
   }
 }

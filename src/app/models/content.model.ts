@@ -1,12 +1,6 @@
 export interface ContentBlock {
-  id: string;
-  slug: string;
+  page: string;
+  uri: string;
+  title: string;
   body: string;
-  group: string;
-  isPublic: boolean;
-  xata: {
-    createdAt: string;
-    updatedAt: string;
-    version: number;
-  }
 }

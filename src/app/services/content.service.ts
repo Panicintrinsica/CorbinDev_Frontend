@@ -10,7 +10,7 @@ import { ContentBlock } from '../models/content.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ServerService {
+export class ContentService {
   private API = environment.API;
 
   private _content = signal<ContentBlock[]>([]);
@@ -23,7 +23,7 @@ export class ServerService {
 
   fetchContent(selector: string) {
     return this.http
-      .get<ContentBlock[]>(`${this.API}/content/group/${selector}`)
+      .get<ContentBlock[]>(`${this.API}/content/${selector}`)
       .subscribe((content) => this._content.set(content));
   }
 

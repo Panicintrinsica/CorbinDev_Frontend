@@ -17,24 +17,34 @@ export class BlogService {
 
   private _article = signal<Article>({
     aboveFold: '',
+    author: '',
+    belowFold: '',
     category: '',
-    content: '',
-    id: '',
-    slug: '',
+    createdAt: '',
+    date: '',
     tags: [],
     title: '',
-    xata: { createdAt: '', updatedAt: '', version: 0 },
+    updatedAt: '',
+    uri: '',
   });
-  private _articlePage = signal<ArticlePage>({
-    meta: { page: { cursor: '', more: false, size: 0 } },
-    records: [],
-  });
+  private _articlePage = signal<Article[]>([]);
   private _searchResults = signal<ArticleSearchResults>({
     totalCount: 0,
     records: [],
   });
   private _isLastPage = signal(false);
   private _isFirstPage = signal(true);
+  private _nextCursor = signal<string | null>(null);
+  private _prevCursor = signal<string | null>(null);
+  private _currentPage = signal(1);
+  private _totalPages = signal(1);
+
+  get currentPage() {
+    return this._currentPage;
+  }
+  get totalPages() {
+    return this._totalPages;
+  }
 
   get article() {
     return this._article;
@@ -48,6 +58,15 @@ export class BlogService {
   get isFirstPage() {
     return this._isFirstPage;
   }
+
+  get nextCursor() {
+    return this._nextCursor;
+  }
+
+  get prevCursor() {
+    return this._prevCursor;
+  }
+
   get searchResults() {
     return this._searchResults;
   }
@@ -58,13 +77,15 @@ export class BlogService {
     private router: Router,
   ) {}
 
-  fetchArticle(selector: string) {
+  fetchArticle(date: string, selector: string) {
     return this.http
-      .get<Article>(`${this.API}/articles/single/${selector}`)
+      .get<Article>(`${this.API}/articles`, {
+        params: { date: date, uri: selector },
+      })
       .subscribe((article) => this._article.set(article));
   }
 
-  fetchPage(size: number, offset: number, scroll: boolean = false) {
+  fetchPage(size: number, page: number = 1, scroll: boolean = false) {
     const storedFilters = sessionStorage.getItem('blogFilters');
     let filters;
 
@@ -72,19 +93,28 @@ export class BlogService {
       filters = JSON.parse(storedFilters);
     }
 
-    let BlogQuery = {
+    // Prepare the query object for the backend
+    const params: any = {
       size: size || 5,
-      offset: offset || 0,
-      tags: filters,
+      categories: filters || [],
+      page: page || 1,
     };
 
+    // Make the request to the backend
     this.http
-      .post<ArticlePage>(`${this.API}/articles/getWithFilters`, BlogQuery)
+      .get<ArticlePage>(`${this.API}/articles/page`, { params })
       .subscribe({
         next: (result) => {
-          this._articlePage.set(result);
-          this._isFirstPage.set(offset === 0);
-          this._isLastPage.set(!result.meta.page.more);
+          this._articlePage.set(result.data);
+          this._isFirstPage.set(result.meta.isFirstPage);
+          this._isLastPage.set(result.meta.isLastPage);
+
+          // Store current page and total pages to manage pagination state
+          this._currentPage.set(result.meta.page);
+          this._totalPages.set(result.meta.totalPages);
+
+          console.log(result);
+
           if (scroll) this.viewportScroller.scrollToPosition([0, 0]);
         },
         error: (error) => {
@@ -94,14 +124,6 @@ export class BlogService {
   }
 
   searchArticles(query: string, navigate: boolean = true) {
-    this.http
-      .post<ArticleSearchResults>(`${this.API}/articles/search`, {
-        searchString: query,
-      })
-      .subscribe((results) => {
-        this._searchResults.set(results);
-        console.log(results);
-        if (navigate) this.router.navigateByUrl('/blog/search');
-      });
+    //
   }
 }

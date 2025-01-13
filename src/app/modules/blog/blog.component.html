@@ -5,15 +5,14 @@
       Developer's Blog
     </div>
     <div class="fill"></div>
-    <ui-search (searchSubmitted)="searchBlog($event)"></ui-search>
+<!--    <ui-search (searchSubmitted)="searchBlog($event)"></ui-search>-->
     <button mat-icon-button aria-label="" (click)="hideSidebar = !hideSidebar">
       <mat-icon>more_vert</mat-icon>
     </button>
   </div>
 
   <section class="article-list">
-
-      @for (article of articlePage().records; track article.id) {
+      @for (article of articlePage(); track article.title) {
         <div class="anim-wrapper" data-aos="zoom-in-up">
           <ui-article [isStub]="true" [data]="article" [displayStyle]="ArticleDisplayStyle.Card"></ui-article>
         </div>
@@ -25,7 +24,6 @@
           </div>
         </div>
       }
-
   </section>
 
   <aside class="sidebar" [ngClass]="{'sidebar-hidden': hideSidebar}">
@@ -47,9 +45,11 @@
     </div>
   </aside>
 
-  <div class="pager bottom-nav" data-aos="fade-up">
-    <div class="pager-item" (click)="goToPreviousPage()" [ngClass]="{'disabled': isFirstPage()}">Back</div>
-    <div class="pager-item" (click)="goToNextPage()" [ngClass]="{'disabled': isLastPage()}">Next</div>
-  </div>
+  @if (totalPages() > 1 ) {
+    <div class="pager bottom-nav" data-aos="fade-up">
+      <div class="pager-item" (click)="goToPreviousPage()" [ngClass]="{'disabled': isFirstPage()}">Back</div>
+      <div class="pager-item" (click)="goToNextPage()" [ngClass]="{'disabled': isLastPage()}">Next</div>
+    </div>
+  }
 
 </div>

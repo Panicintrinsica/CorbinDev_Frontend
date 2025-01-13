@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { map, Observable, Subject } from 'rxjs';
-import { Skill, SkillLink } from '../models/skill.model';
+import { Subject } from 'rxjs';
+import { Skill } from '../models/skill.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -10,36 +10,34 @@ import { HttpClient } from '@angular/common/http';
 export class SkillService {
   private API = environment.API;
 
+  _skillDetails = signal<Skill>({
+    _id: '',
+    acquired: '',
+    group: '',
+    isFeatured: false,
+    isPublished: false,
+    level: 0,
+    link: '',
+    logo: '',
+    name: '',
+    notes: '',
+    proficiency: '',
+  });
+
+  get skillDetails() {
+    return this._skillDetails;
+  }
+
   skills: Subject<Skill[]> = new Subject();
   selectedSkills: Subject<Skill[]> = new Subject();
 
   constructor(private http: HttpClient) {}
 
-  getSkillList(): Observable<Skill[]> {
-    return this.http.get<Skill[]>(`${this.API}/skills/list`);
-  }
-
-  getSkillsByProject(projectID: string): Observable<SkillLink[]> {
+  fetchSkillDetails(id: string) {
     return this.http
-      .get<Skill[]>(`${this.API}/skills/byProject/${projectID}`)
-      .pipe(
-        map((ProjectSkillResponse: any[]) =>
-          ProjectSkillResponse.map((item) => {
-            return {
-              id: item.skill.id,
-              name: item.skill.name,
-              isFeatured: item.skill.isFeatured,
-            };
-          }),
-        ),
-      );
-  }
-
-  getSkillById(id: string) {
-    return this.http.get<Skill>(`${this.API}/skills/byID/${id}`);
-  }
-
-  getSelectedSkills(): Observable<Skill[]> {
-    return this.selectedSkills;
+      .get<Skill>(`${this.API}/skills/${id}`)
+      .subscribe((skill) => {
+        this._skillDetails.set(skill);
+      });
   }
 }

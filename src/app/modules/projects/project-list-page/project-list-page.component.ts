@@ -3,14 +3,16 @@ import { MatButton } from '@angular/material/button';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Observable, tap } from 'rxjs';
 import { Project } from '../../../models/project.model';
-import { ServerService } from '../../../services/server.service';
+import { ContentService } from '../../../services/content.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProjectCardComponent } from '../components/ui-project-card/project-card.component';
 import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
-import { ProjectGroups, ProjectTypes } from '../../../constants/project.consts';
-import { UiSearchComponent } from '../../ui/ui-search/ui-search.component';
-import { ProjectService } from '../../../services/project.service';
+import {
+  ProjectCategories,
+  ProjectPlatforms,
+} from '../../../constants/project.consts';
+import { ProjectService } from '../project.service';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
@@ -23,14 +25,13 @@ import { Meta, Title } from '@angular/platform-browser';
     MatChipListbox,
     MatChipOption,
     FormsModule,
-    UiSearchComponent,
   ],
   templateUrl: './project-list-page.component.html',
   styleUrl: './project-list-page.component.scss',
   standalone: true,
 })
 export class ProjectListPageComponent {
-  @ViewChild('categoryList') categoryList!: MatChipListbox;
+  @ViewChild('platformList') categoryList!: MatChipListbox;
   @ViewChild('groupList') groupList!: MatChipListbox;
 
   project$: Observable<Project[]>;
@@ -38,37 +39,44 @@ export class ProjectListPageComponent {
   resultSet: Project[] = [];
   filteredProjects: Project[] = [];
 
-  categoryOptions = ProjectTypes;
-  groupOptions = ProjectGroups;
+  platformOptions = ProjectPlatforms;
+  categoryOptions = ProjectCategories;
 
+  selectedPlatforms = new Set<string>();
   selectedCategories = new Set<string>();
-  selectedGroups = new Set<string>();
 
   searchTerm: string = '';
 
   constructor(
     public dialog: MatDialog,
-    private server: ServerService,
+    private server: ContentService,
     private projectService: ProjectService,
     private meta: Meta,
     private title: Title,
   ) {
     this.title.setTitle('Corbin.dev | Projects');
     this.meta.addTags([
-      { name: 'description', content: "Emrys Corbin's DevBlog" },
       {
-        name: 'keywords',
-        content:
-          'emrys corbin, corbin.dev, projects, portfolio, software engineer, web developer, web design, web development',
+        name: 'description',
+        content: 'Full project portfolio for Emrys Corbin',
       },
     ]);
 
-    this.project$ = this.projectService.getAllProjects().pipe(
+    this.project$ = this.projectService.fetchPublicProjects().pipe(
       tap((result) => {
         this.resultSet = result;
         this.filteredProjects = result;
       }),
     );
+  }
+
+  selectPlatforms(filterKey: string) {
+    if (this.selectedPlatforms.has(filterKey)) {
+      this.selectedPlatforms.delete(filterKey);
+    } else {
+      this.selectedPlatforms.add(filterKey);
+    }
+    this.updateList();
   }
 
   selectCategories(filterKey: string) {
@@ -80,29 +88,20 @@ export class ProjectListPageComponent {
     this.updateList();
   }
 
-  selectGroups(filterKey: string) {
-    if (this.selectedGroups.has(filterKey)) {
-      this.selectedGroups.delete(filterKey);
-    } else {
-      this.selectedGroups.add(filterKey);
-    }
-    this.updateList();
-  }
-
   updateList() {
     let newResults: Project[] = this.resultSet;
+
+    if (this.selectedPlatforms.size != 0) {
+      newResults = this.filterByPlatform(
+        newResults,
+        Array.from(this.selectedPlatforms.keys()),
+      );
+    }
 
     if (this.selectedCategories.size != 0) {
       newResults = this.filterByCategory(
         newResults,
         Array.from(this.selectedCategories.keys()),
-      );
-    }
-
-    if (this.selectedGroups.size != 0) {
-      newResults = this.filterByGroup(
-        newResults,
-        Array.from(this.selectedGroups.keys()),
       );
     }
 
@@ -118,7 +117,7 @@ export class ProjectListPageComponent {
     return array.filter(
       (project) =>
         project.name.toLowerCase().includes(searchString) ||
-        project.shortDescription.toLowerCase().includes(searchString),
+        project.blurb.toLowerCase().includes(searchString),
     );
   }
 
@@ -128,8 +127,10 @@ export class ProjectListPageComponent {
     );
   }
 
-  filterByGroup(array: Project[], selectedFilters: string[]) {
-    return array.filter((project) => selectedFilters.includes(project.group));
+  filterByPlatform(array: Project[], selectedFilters: string[]) {
+    return array.filter((project) =>
+      selectedFilters.includes(project.platform),
+    );
   }
 
   resetFilters() {

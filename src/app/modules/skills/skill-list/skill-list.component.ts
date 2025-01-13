@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Skill } from '../../../models/skill.model';
-import { ServerService } from '../../../services/server.service';
+import { ContentService } from '../../../services/content.service';
 import { SkillDialogComponent } from '../skill-dialog/skill-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
@@ -27,7 +27,7 @@ export class SkillListComponent {
   searchInput: string = '';
 
   constructor(
-    private server: ServerService,
+    private server: ContentService,
     public dialog: MatDialog,
   ) {
     this.server.getDisplayedSkills().subscribe((skills) => {

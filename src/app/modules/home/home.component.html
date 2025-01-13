@@ -10,7 +10,7 @@
     [stack]="frontendFeatures"
   >
     @if (content()) {
-      {{ getContentBody(content(), 'landingOne') }}
+      {{ getContentBody(content(), 'frontend') }}
     }
   </app-home-feature>
 </div>
@@ -26,7 +26,7 @@
     [stack]="backendFeatures"
   >
     @if (content()) {
-      {{ getContentBody(content(), 'landingTwo') }}
+      {{ getContentBody(content(), 'backend') }}
     }
   </app-home-feature>
 </div>
@@ -41,7 +41,7 @@
     [stack]="otherFeatures"
   >
     @if (content()) {
-      {{ getContentBody(content(), 'landingThree') }}
+      {{ getContentBody(content(), 'general') }}
     }
   </app-home-feature>
 </div>

@@ -1,19 +1,16 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Project } from '../../../models/project.model';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, Subscription } from 'rxjs';
 import { SkillDialogComponent } from '../../skills/skill-dialog/skill-dialog.component';
 import { MatAnchor, MatButton } from '@angular/material/button';
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { MarkdownComponent } from 'ngx-markdown';
 import { GoBackDirective } from '../../../directives/go-back.directive';
-import { SkillLink } from '../../../models/skill.model';
-import { SkillService } from '../../../services/skill.service';
 import { SkillListAnim } from '../../../animations/list.anim';
 import { TagComponent } from '../../ui/ui-tag/tag.component';
-import { ProjectService } from '../../../services/project.service';
+import { ProjectService } from '../project.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { SkillTag } from '../../../models/skill.model';
 
 @Component({
   selector: 'app-project',
@@ -24,22 +21,19 @@ import { Meta, Title } from '@angular/platform-browser';
     MarkdownComponent,
     DatePipe,
     GoBackDirective,
-    AsyncPipe,
     TagComponent,
   ],
   templateUrl: './project-page.component.html',
   styleUrl: './project-page.component.scss',
   standalone: true,
 })
-export class ProjectPageComponent implements OnDestroy {
-  project: Project | undefined;
-  private projectSub!: Subscription;
+export class ProjectPageComponent {
+  projectService = inject(ProjectService);
 
-  skills$: Observable<SkillLink[]> | undefined;
+  project = this.projectService.projectDetails;
+  skills = signal<SkillTag[]>([]);
 
   constructor(
-    projectService: ProjectService,
-    skillService: SkillService,
     route: ActivatedRoute,
     public dialog: MatDialog,
     private meta: Meta,
@@ -48,32 +42,20 @@ export class ProjectPageComponent implements OnDestroy {
     route.paramMap.subscribe((params) => {
       const slug = params.get('slug');
       if (slug) {
-        this.projectSub = projectService.getProjectBySlug(slug).subscribe({
-          next: (projectData) => {
-            this.project = projectData;
-            this.skills$ = skillService.getSkillsByProject(projectData.id);
-
-            this.title.setTitle(`Corbin.dev - ${slug}`);
-            this.meta.addTags([
-              {
-                name: 'description',
-                content:
-                  'Portfolio & Website of Emrys Corbin, Software Engineer.',
-              },
-              {
-                name: 'keywords',
-                content: 'emrys, corbin, corbin.dev, software engineer',
-              },
-            ]);
-          },
-          error: (err) => console.error(err),
+        this.projectService.fetchProjectByURI(slug).add(() => {
+          this.title.setTitle(`Corbin.dev - ${this.project().name}`);
+          this.meta.addTags([
+            {
+              name: 'description',
+              content: this.project().blurb,
+            },
+          ]);
+          this.skills.set(this.project().skills);
         });
+      } else {
+        console.log('no slug');
       }
     });
-  }
-
-  ngOnDestroy() {
-    this.projectSub.unsubscribe();
   }
 
   viewSkill(id: string) {

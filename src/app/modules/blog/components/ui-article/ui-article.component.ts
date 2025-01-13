@@ -27,13 +27,14 @@ interface onInit {}
 export class UiArticleComponent implements onInit {
   data = input<Article>({
     aboveFold: '',
+    author: '',
     category: '',
-    content: '',
-    id: '',
-    slug: '',
+    createdAt: '',
+    date: '',
     tags: [],
     title: '',
-    xata: { createdAt: '', updatedAt: '', version: 0 },
+    updatedAt: '',
+    uri: '',
   });
   isStub = input<boolean>(false);
   displayStyle = input<ArticleDisplayStyle>(ArticleDisplayStyle.Simple);
