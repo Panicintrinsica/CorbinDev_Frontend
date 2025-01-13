@@ -24,18 +24,7 @@ export interface Project extends ProjectCard {
 }
 
 export interface ProjectLink {
-  id: string;
+  uri: string;
   name: string;
   category: string;
-  slug: string;
-}
-
-export interface CvProject {
-  id: string;
-  name: string;
-  cvDescription: string;
-  client: string;
-  role: string;
-  started: number;
-  ended: number;
 }
