@@ -7,14 +7,12 @@ import {
 } from '../../models/article.model';
 import { HttpClient } from '@angular/common/http';
 import { ViewportScroller } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
   private API = environment.API;
-
   private _article = signal<Article>({
     aboveFold: '',
     author: '',
@@ -34,8 +32,6 @@ export class BlogService {
   });
   private _isLastPage = signal(false);
   private _isFirstPage = signal(true);
-  private _nextCursor = signal<string | null>(null);
-  private _prevCursor = signal<string | null>(null);
   private _currentPage = signal(1);
   private _totalPages = signal(1);
 
@@ -59,14 +55,6 @@ export class BlogService {
     return this._isFirstPage;
   }
 
-  get nextCursor() {
-    return this._nextCursor;
-  }
-
-  get prevCursor() {
-    return this._prevCursor;
-  }
-
   get searchResults() {
     return this._searchResults;
   }
@@ -74,7 +62,6 @@ export class BlogService {
   constructor(
     private http: HttpClient,
     private viewportScroller: ViewportScroller,
-    private router: Router,
   ) {}
 
   fetchArticle(date: string, selector: string) {
@@ -119,9 +106,5 @@ export class BlogService {
           console.error(error);
         },
       });
-  }
-
-  searchArticles(query: string, navigate: boolean = true) {
-    //
   }
 }
