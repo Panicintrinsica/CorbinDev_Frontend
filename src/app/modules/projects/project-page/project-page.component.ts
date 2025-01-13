@@ -53,7 +53,6 @@ export class ProjectPageComponent {
           this.skills.set(this.project().skills);
         });
       } else {
-        console.log('no slug');
       }
     });
   }
