@@ -50,8 +50,8 @@
     <div class="projects-list-box">
 
         <div class="projects-list flex column gap-small" [@FadeInList]="projects().length">
-          @for (project of projects(); track project.id) {
-            <div class="project flex row {{project.category}}" (click)="goToProject(project.slug)">
+          @for (project of projects(); track project.uri) {
+            <div class="project flex row {{project.category}}" (click)="goToProject(project.uri)">
               <div class="name pusher">{{ project.name }}</div>
               <div class="button"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
             </div>
