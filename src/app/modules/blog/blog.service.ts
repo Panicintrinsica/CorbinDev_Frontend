@@ -107,4 +107,8 @@ export class BlogService {
         },
       });
   }
+
+  searchArticles(query: string, navigate: boolean = true) {
+    //TODO: Repalce with MongoDB searching logic.
+  }
 }
