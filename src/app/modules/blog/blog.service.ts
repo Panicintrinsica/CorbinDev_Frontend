@@ -113,8 +113,6 @@ export class BlogService {
           this._currentPage.set(result.meta.page);
           this._totalPages.set(result.meta.totalPages);
 
-          console.log(result);
-
           if (scroll) this.viewportScroller.scrollToPosition([0, 0]);
         },
         error: (error) => {
