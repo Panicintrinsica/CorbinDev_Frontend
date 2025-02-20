@@ -9,6 +9,7 @@ export interface Article {
   author: string;
   createdAt: string;
   updatedAt: string;
+  score?: number;
 }
 
 export interface ArticlePage {

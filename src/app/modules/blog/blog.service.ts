@@ -1,12 +1,9 @@
 import { Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import {
-  Article,
-  ArticlePage,
-  ArticleSearchResults,
-} from '../../models/article.model';
+import { Article, ArticlePage } from '../../models/article.model';
 import { HttpClient } from '@angular/common/http';
 import { ViewportScroller } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -26,10 +23,7 @@ export class BlogService {
     uri: '',
   });
   private _articlePage = signal<Article[]>([]);
-  private _searchResults = signal<ArticleSearchResults>({
-    totalCount: 0,
-    records: [],
-  });
+  private _searchResults = signal<Article[]>([]);
   private _isLastPage = signal(false);
   private _isFirstPage = signal(true);
   private _currentPage = signal(1);
@@ -62,6 +56,7 @@ export class BlogService {
   constructor(
     private http: HttpClient,
     private viewportScroller: ViewportScroller,
+    private router: Router,
   ) {}
 
   fetchArticle(date: string, selector: string) {
@@ -109,6 +104,20 @@ export class BlogService {
   }
 
   searchArticles(query: string, navigate: boolean = true) {
-    //TODO: Repalce with MongoDB searching logic.
+    this.http
+      .post<ArticlePage>(`${this.API}/articles/search`, { query })
+      .subscribe({
+        next: (result) => {
+          this._searchResults.set(result.data);
+          console.log(result);
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
+
+    if (navigate) {
+      this.router.navigateByUrl('blog/search');
+    }
   }
 }

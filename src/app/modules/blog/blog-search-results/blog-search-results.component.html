@@ -10,7 +10,7 @@
 
   <section class="article-list">
 
-      @for (article of articles().records; track article.uri) {
+      @for (article of articles(); track article.uri) {
         <ui-article [isStub]="true" [data]="article" [displayStyle]="ArticleDisplayStyle.Card"></ui-article>
       } @empty {
         <div class="callout">

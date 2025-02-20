@@ -29,7 +29,7 @@
       @if (isStub()) {
         <div class="time">{{ data().createdAt | date : 'shortDate' }}</div>
         <div class="pusher"></div>
-        <button mat-button routerLink="a/{{data().date}}/{{data().uri}}">Read More</button>
+        <button mat-button routerLink="/blog/a/{{data().date}}/{{data().uri}}">Read More</button>
       } @else {
 
         <div class="meta-row">

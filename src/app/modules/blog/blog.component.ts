@@ -12,6 +12,7 @@ import { MatIcon } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { UiSearchComponent } from '../ui/ui-search/ui-search.component';
 
 @Component({
   selector: 'app-articles',
@@ -23,6 +24,7 @@ import { Meta, Title } from '@angular/platform-browser';
     MatIconButton,
     MatIcon,
     FormsModule,
+    UiSearchComponent,
   ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',
@@ -121,5 +123,9 @@ export class BlogComponent implements OnInit {
     );
 
     this.blogService.fetchPage(5);
+  }
+
+  searchBlog(query: string) {
+    this.blogService.searchArticles(query, true);
   }
 }
