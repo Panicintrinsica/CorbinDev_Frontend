@@ -53,6 +53,12 @@ export class LoginComponent {
         return;
       }
 
+      if (!this.auth.identity()) {
+        this.error.set('Could not load user session from the API.');
+        await this.auth.logout();
+        return;
+      }
+
       // Authenticating is not the same as being allowed to author: any account in
       // the realm can sign in, and only some hold articles:write.
       if (!this.auth.can('articles:write')) {

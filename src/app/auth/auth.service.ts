@@ -160,7 +160,8 @@ export class AuthService {
       );
       this._identity.set(identity);
       return identity;
-    } catch {
+    } catch (error) {
+      console.error('Failed to load identity from /auth/me:', error);
       this.clear();
       return null;
     } finally {

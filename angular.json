@@ -24,6 +24,9 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "allowedCommonJsDependencies": ["aos"],
+            "externalDependencies": [
+              "marked-katex-extension"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
