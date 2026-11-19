@@ -243,7 +243,7 @@ address {
   flex-grow: 1;
 }
 
-input {
+input.search  {
   width: 100%;
   padding: 6px 10px;
   margin: 8px 0;
@@ -258,12 +258,12 @@ input {
 }
 
 /* On mouse-over, add a deeper shadow */
-input:hover {
+input.search:hover {
   box-shadow: 0 0 10px 0 rgba(0, 208, 255, 0.2);
 }
 
 /* When the input receives focus, change border color, add a blue box shadow */
-input:focus {
+input.search:focus {
   border: 2px solid #007BFF;
   box-shadow: 0 0 8px 0 #007BFF;
   outline: none;

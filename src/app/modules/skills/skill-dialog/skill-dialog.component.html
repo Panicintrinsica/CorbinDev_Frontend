@@ -9,16 +9,10 @@
   </header>
 
   <section class="skill-dialog-body">
-    <div class="flex progress row">
-      <div class="cell pusher">
-        <progress max="100" [value]="skill().level"></progress>
-      </div>
-    </div>
-
     <div class="skill-data flex divided">
       <div class="cell">
         <div class="label">Proficiency:</div>
-        <div class="data">{{ skill().level | levelToName }}</div>
+        <div class="data">{{ skill().proficiency || (skill().level | levelToName) }}</div>
       </div>
 
       @if (skill().acquired) {

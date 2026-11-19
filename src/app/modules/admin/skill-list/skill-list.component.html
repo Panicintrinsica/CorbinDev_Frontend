@@ -118,7 +118,7 @@
             <span class="row-status" [class.published]="skill.isPublished">
               {{ skill.isPublished ? 'published' : 'draft' }}
             </span>
-            <span class="row-level">{{ skill.level }}% ({{ skill.level | levelToName }})</span>
+            <span class="row-level">{{ skill.proficiency || (skill.level | levelToName) }}</span>
             @if (skill.isFeatured) {
               <span class="row-featured">★ Featured</span>
             }

@@ -58,12 +58,15 @@
 
       <mat-form-field appearance="outline" class="field-platform">
         <mat-label>Platform</mat-label>
-        <input
-          matInput
+        <mat-select
           name="platform"
           [ngModel]="platform()"
           (ngModelChange)="platform.set($event); touch()"
-        />
+        >
+          @for (plat of platforms; track plat.id) {
+            <mat-option [value]="plat.id">{{ plat.label }}</mat-option>
+          }
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="field-role">

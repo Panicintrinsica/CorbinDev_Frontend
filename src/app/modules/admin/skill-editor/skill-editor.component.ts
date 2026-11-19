@@ -12,7 +12,6 @@ import { AdminSkillService } from '../admin-skill.service';
 import { EditorComponent } from '../components/editor/editor.component';
 import { UiBlocksComponent } from '../../blog/components/ui-blocks/ui-blocks.component';
 import { TagComponent } from '../../ui/ui-tag/tag.component';
-import { NamedSkillLevel } from '../../../pipes/skill-named-level.pipe';
 
 @Component({
   selector: 'app-admin-skill-editor',
@@ -31,7 +30,6 @@ import { NamedSkillLevel } from '../../../pipes/skill-named-level.pipe';
     EditorComponent,
     UiBlocksComponent,
     TagComponent,
-    NamedSkillLevel,
   ],
   templateUrl: './skill-editor.component.html',
   styleUrl: './skill-editor.component.scss',
@@ -48,7 +46,6 @@ export class AdminSkillEditorComponent implements OnInit {
   readonly group = signal('General');
   readonly acquired = signal('');
   readonly proficiency = signal('Intermediate');
-  readonly level = signal(50);
   readonly link = signal('');
   readonly logo = signal('');
   readonly isFeatured = signal(false);
@@ -75,7 +72,7 @@ export class AdminSkillEditorComponent implements OnInit {
     'Other',
   ];
 
-  readonly proficiencies = ['General', 'Intermediate', 'Advanced', 'Expert'];
+  readonly proficiencies = ['General', 'Moderate', 'Intermediate', 'Advanced', 'Expert', 'Master'];
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -102,7 +99,6 @@ export class AdminSkillEditorComponent implements OnInit {
     this.group.set(skill.group ?? 'General');
     this.acquired.set(skill.acquired ?? '');
     this.proficiency.set(skill.proficiency ?? 'Intermediate');
-    this.level.set(skill.level ?? 0);
     this.link.set(skill.link ?? '');
     this.logo.set(skill.logo ?? '');
     this.isFeatured.set(skill.isFeatured ?? false);
@@ -149,7 +145,8 @@ export class AdminSkillEditorComponent implements OnInit {
       group: this.group(),
       acquired: this.acquired() || undefined,
       proficiency: this.proficiency() || undefined,
-      level: Number(this.level()) || 0,
+      // Legacy numeric field kept for API compatibility; derived from proficiency.
+      level: Math.max(0, this.proficiencies.indexOf(this.proficiency())) * 20,
       link: (this.link() ?? '').trim() || undefined,
       logo: (this.logo() ?? '').trim() || undefined,
       content: body ?? undefined,

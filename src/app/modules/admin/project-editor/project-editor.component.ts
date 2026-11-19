@@ -15,6 +15,7 @@ import { AdminSkillService } from '../admin-skill.service';
 import { EditorComponent } from '../components/editor/editor.component';
 import { UiBlocksComponent } from '../../blog/components/ui-blocks/ui-blocks.component';
 import { TagComponent } from '../../ui/ui-tag/tag.component';
+import { ProjectPlatforms } from '../../../constants/project.consts';
 
 @Component({
   selector: 'app-admin-project-editor',
@@ -49,7 +50,7 @@ export class ProjectEditorComponent implements OnInit {
   readonly id = signal<string | null>(null);
   readonly name = signal('');
   readonly category = signal('personal');
-  readonly platform = signal('Web');
+  readonly platform = signal('web');
   readonly role = signal('');
   readonly client = signal('');
   readonly startDate = signal('');
@@ -82,7 +83,7 @@ export class ProjectEditorComponent implements OnInit {
     { value: 'academic', label: 'Academic' },
   ];
 
-  readonly platforms = ['Web', 'Mobile', 'Desktop', 'CLI', 'Backend', 'API', 'Other'];
+  readonly platforms = ProjectPlatforms;
 
   readonly previewSkills = computed(() => {
     const idSet = new Set(this.selectedSkillIds());
@@ -124,7 +125,7 @@ export class ProjectEditorComponent implements OnInit {
     this.id.set(project._id ?? null);
     this.name.set(project.name ?? '');
     this.category.set(project.category ?? 'personal');
-    this.platform.set(project.platform ?? 'Web');
+    this.platform.set((project.platform ?? 'web').trim().toLowerCase());
     this.role.set(project.role ?? '');
     this.client.set(project.client ?? '');
     this.startDate.set(project.startDate ?? '');

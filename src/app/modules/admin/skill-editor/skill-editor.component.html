@@ -64,20 +64,6 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="field-level">
-        <mat-label>Level (0 - 100)</mat-label>
-        <input
-          matInput
-          type="number"
-          min="0"
-          max="100"
-          name="level"
-          [ngModel]="level()"
-          (ngModelChange)="level.set($event); touch()"
-        />
-        <mat-hint>{{ level() | levelToName }}</mat-hint>
-      </mat-form-field>
-
       <mat-form-field appearance="outline" class="field-acquired">
         <mat-label>Acquired (e.g. 2021)</mat-label>
         <input
@@ -142,16 +128,10 @@
           </header>
 
           <section class="skill-dialog-body">
-            <div class="flex progress row">
-              <div class="cell pusher">
-                <progress max="100" [value]="level()"></progress>
-              </div>
-            </div>
-
             <div class="skill-data flex divided">
               <div class="cell">
                 <div class="label">Proficiency:</div>
-                <div class="data">{{ level() | levelToName }}</div>
+                <div class="data">{{ proficiency() }}</div>
               </div>
 
               @if (acquired()) {
