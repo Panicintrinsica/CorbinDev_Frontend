@@ -1,7 +1,7 @@
 <app-home-keyart />
 
 
-<div class="anim-wrapper" data-aos="fade-up" data-aos-duration="1500">
+<div class="anim-wrapper" appReveal="fade-up" [revealDuration]="1500">
   <app-home-feature
     header="Front-End Development"
     color="red"
@@ -15,9 +15,8 @@
   </app-home-feature>
 </div>
 
-<div class="anim-wrapper" data-aos="fade-up" data-aos-duration="1500">
+<div class="anim-wrapper" appReveal="fade-up" [revealDuration]="1500">
   <app-home-feature
-    data-aos-anchor-placement="bottom-bottom"
     header="Back-End Development"
     content=""
     color="blue"
@@ -31,7 +30,7 @@
   </app-home-feature>
 </div>
 
-<div class="anim-wrapper" data-aos="fade-up" data-aos-duration="1500">
+<div class="anim-wrapper" appReveal="fade-up" [revealDuration]="1500">
   <app-home-feature
     header="Everything Development"
     content=""

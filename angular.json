@@ -23,7 +23,6 @@
             "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "allowedCommonJsDependencies": ["aos"],
             "externalDependencies": [
               "marked-katex-extension"
             ],
@@ -33,8 +32,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/prism-themes/themes/prism-night-owl.css",
-              "node_modules/aos/dist/aos.css"
+              "node_modules/prism-themes/themes/prism-night-owl.css"
             ],
             "scripts": [
               "node_modules/prismjs/prism.js",

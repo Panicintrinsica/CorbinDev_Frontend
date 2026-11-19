@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { UiSearchComponent } from '../ui/ui-search/ui-search.component';
+import { RevealDirective } from '../../directives/reveal.directive';
 
 @Component({
   selector: 'app-articles',
@@ -25,6 +26,7 @@ import { UiSearchComponent } from '../ui/ui-search/ui-search.component';
     MatIcon,
     FormsModule,
     UiSearchComponent,
+    RevealDirective,
   ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',

@@ -13,11 +13,11 @@
 
   <section class="article-list">
       @for (article of articlePage(); track article.title) {
-        <div class="anim-wrapper" data-aos="zoom-in-up">
+        <div class="anim-wrapper" appReveal="zoom-in-up">
           <ui-article [isStub]="true" [data]="article" [displayStyle]="ArticleDisplayStyle.Card"></ui-article>
         </div>
       } @empty {
-        <div class="callout" data-aos="fade-in" data-aos-delay="500">
+        <div class="callout" appReveal="fade-in" [revealDelay]="500">
           <div class="admonition admonition-info">
             <div class="admonition-title">Info</div>
             <div class="admonition-content">No Articles match these specific filters</div>
@@ -46,7 +46,7 @@
   </aside>
 
   @if (totalPages() > 1 ) {
-    <div class="pager bottom-nav" data-aos="fade-up">
+    <div class="pager bottom-nav" appReveal="fade-up">
       <div class="pager-item" (click)="goToPreviousPage()" [ngClass]="{'disabled': isFirstPage()}">Back</div>
       <div class="pager-item" (click)="goToNextPage()" [ngClass]="{'disabled': isLastPage()}">Next</div>
     </div>
