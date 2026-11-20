@@ -2,6 +2,8 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { MatButton } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { AvatarCropperComponent } from '../components/avatar-cropper/avatar-cropper.component';
 import { catchError, firstValueFrom, of } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { MediaService, resolveMediaUrl } from '../../../services/media.service';
@@ -42,6 +44,7 @@ export class AdminProfileComponent implements OnInit {
   private profile = inject(ProfileService);
   private media = inject(MediaService);
   private http = inject(HttpClient);
+  private dialog = inject(MatDialog);
 
   protected min = MIN_AVATAR_SIDE;
   protected loading = signal(true);
@@ -115,8 +118,18 @@ export class AdminProfileComponent implements OnInit {
 
   protected async uploadAvatar(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
+    const picked = input.files?.[0];
     input.value = '';
+    if (!picked) return;
+
+    // Crop to a square here, so only the chosen part is ever uploaded.
+    const file = await firstValueFrom(
+      this.dialog
+        .open<AvatarCropperComponent, { file: File; minSide: number }, File>(AvatarCropperComponent, {
+          data: { file: picked, minSide: this.min },
+        })
+        .afterClosed(),
+    );
     if (!file) return;
 
     this.avatarBusy.set(true);
