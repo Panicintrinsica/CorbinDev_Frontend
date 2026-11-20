@@ -80,8 +80,8 @@ export const slideInAnimation =
 
     transition('Blog => *', SlideRight),
 
-    transition('Bio => *', SlideLeft),
-    transition('* => Bio', SlideRight),
+    transition('Profile => *', SlideLeft),
+    transition('* => Profile', SlideRight),
 
   ]);
 

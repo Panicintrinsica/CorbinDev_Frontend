@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/home.component';
 import { ArticlePageComponent } from './modules/blog/article-page/article-page.component';
-import { BiographyComponent } from './modules/biography/biography.component';
+import { ProfileComponent } from './modules/profile/profile.component';
 import { ProjectListPageComponent } from './modules/projects/project-list-page/project-list-page.component';
 import { ProjectPageComponent } from './modules/projects/project-page/project-page.component';
 import { BlogComponent } from './modules/blog/blog.component';
@@ -23,7 +23,9 @@ export const routes: Routes = [
     data: { animation: 'Article' },
   },
 
-  { path: 'bio', component: BiographyComponent, data: { animation: 'Bio' } },
+  { path: 'profile', component: ProfileComponent, data: { animation: 'Profile' } },
+  // The page used to be called Bio; keep old links and bookmarks working.
+  { path: 'bio', redirectTo: 'profile', pathMatch: 'full' },
   {
     path: 'projects',
     component: ProjectListPageComponent,
@@ -96,6 +98,12 @@ export const routes: Routes = [
       import('./modules/admin/project-editor/project-editor.component').then(
         (m) => m.ProjectEditorComponent,
       ),
+  },
+  {
+    path: 'admin/profile',
+    canActivate: [requirePermission('content:write')],
+    loadComponent: () =>
+      import('./modules/admin/profile/profile.component').then((m) => m.AdminProfileComponent),
   },
   {
     path: 'admin/skills',

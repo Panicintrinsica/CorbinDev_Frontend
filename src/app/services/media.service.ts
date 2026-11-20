@@ -27,7 +27,7 @@ export interface UploadClaim {
 }
 
 /** Selects how the API processes the image; icons are produced at one small fixed size. */
-export type UploadPurpose = 'skill/logo' | 'project/gallery' | 'article/banner';
+export type UploadPurpose = 'skill/logo' | 'project/gallery' | 'article/banner' | 'account/avatar';
 
 @Injectable({
   providedIn: 'root',

@@ -1,0 +1,116 @@
+<section class="page admin-profile">
+  <header class="admin-header">
+    <div class="admin-nav-links">
+      <a mat-button routerLink="/admin/articles">Articles</a>
+      <a mat-button routerLink="/admin/projects">Projects</a>
+      <a mat-button routerLink="/admin/skills">Skills</a>
+      <a mat-button routerLink="/admin/profile" class="active">Profile</a>
+    </div>
+    <div class="pusher"></div>
+    @if (dirty()) {
+      <span class="save-state unsaved">Unsaved changes</span>
+    } @else if (savedAt()) {
+      <span class="save-state">Saved</span>
+    }
+    <button mat-flat-button [disabled]="saving() || loading()" (click)="save()">
+      {{ saving() ? 'Saving…' : 'Save' }}
+    </button>
+    <a mat-button routerLink="/profile" target="_blank">View page</a>
+  </header>
+
+  @if (error(); as message) {
+    <div class="admin-error" role="alert">{{ message }}</div>
+  }
+
+  @if (loading()) {
+    <p class="note">Loading…</p>
+  } @else {
+    <!-- Picture: saves immediately, separately from the rest. -->
+    <h2>Picture</h2>
+    <p class="note">
+      Cropped square from the centre. It must be at least {{ min }}px on its shorter side.
+    </p>
+    <div class="previews">
+      @if (avatar(); as current) {
+        <figure>
+          <img [src]="full(current)" width="256" height="256" alt="Your profile picture, full size" />
+          <figcaption>256px</figcaption>
+        </figure>
+        <figure>
+          <img class="small" [src]="small(current)" width="48" height="48" alt="Your profile picture, avatar size" />
+          <figcaption>48px avatar</figcaption>
+        </figure>
+      } @else {
+        <p class="note">No picture set; the page shows its built-in photo.</p>
+      }
+    </div>
+    <div class="actions">
+      <input #file type="file" hidden accept="image/png,image/jpeg,image/webp,image/avif" (change)="uploadAvatar($event)" />
+      <button type="button" mat-stroked-button (click)="file.click()" [disabled]="avatarBusy()">
+        {{ avatarBusy() ? 'Working…' : avatar() ? 'Replace picture' : 'Add picture' }}
+      </button>
+      @if (avatar()) {
+        <button type="button" mat-button (click)="removeAvatar()" [disabled]="avatarBusy()">Remove</button>
+      }
+    </div>
+    @if (avatarMessage(); as text) {
+      <p class="problem" role="alert">{{ text }}</p>
+    }
+
+    <h2>Heading</h2>
+    <div class="row">
+      <label>
+        Name
+        <input type="text" maxlength="80" [value]="displayName()" (input)="set(displayName, $any($event.target).value)" />
+      </label>
+      <label>
+        Pronouns
+        <input type="text" maxlength="40" [value]="pronouns()" (input)="set(pronouns, $any($event.target).value)" />
+      </label>
+      <label>
+        Birth date (for the live age counter)
+        <input type="text" maxlength="40" placeholder="1990-10-18T12:00:00Z" [value]="birthDate()" (input)="set(birthDate, $any($event.target).value)" />
+      </label>
+    </div>
+
+    <h2>Introduction</h2>
+    <p class="note">Markdown. Shown beside your picture at the top of the page.</p>
+    <textarea rows="12" [value]="intro()" (input)="set(intro, $any($event.target).value)" aria-label="Introduction"></textarea>
+
+    <h2>Facts</h2>
+    <p class="note">The table under your picture. Use <code>{{ '{age}' }}</code> in a value for the live age counter.</p>
+    <ol class="list">
+      @for (fact of facts(); track $index; let i = $index; let last = $last) {
+        <li class="fact">
+          <input type="text" placeholder="Label" maxlength="40" [value]="fact.title" (input)="setFact(i, 'title', $any($event.target).value)" [attr.aria-label]="'Fact ' + (i + 1) + ' label'" />
+          <input type="text" placeholder="Value" maxlength="160" [value]="fact.value" (input)="setFact(i, 'value', $any($event.target).value)" [attr.aria-label]="'Fact ' + (i + 1) + ' value'" />
+          <span class="actions">
+            <button type="button" mat-button (click)="move(facts, i, -1)" [disabled]="i === 0" aria-label="Move up">↑</button>
+            <button type="button" mat-button (click)="move(facts, i, 1)" [disabled]="last" aria-label="Move down">↓</button>
+            <button type="button" mat-button (click)="remove(facts, i)" aria-label="Remove fact">Remove</button>
+          </span>
+        </li>
+      }
+    </ol>
+    <button type="button" mat-stroked-button (click)="addFact()">Add fact</button>
+
+    <h2>Sections</h2>
+    <p class="note">The topic buttons under the page (Books, Games…). Each is markdown.</p>
+    <ol class="list">
+      @for (section of sections(); track $index; let i = $index; let last = $last) {
+        <li class="section">
+          <div class="section-head">
+            <input type="text" placeholder="Section title" maxlength="40" [value]="section.title" (input)="setSection(i, 'title', $any($event.target).value)" [attr.aria-label]="'Section ' + (i + 1) + ' title'" />
+            <span class="actions">
+              <button type="button" mat-button (click)="move(sections, i, -1)" [disabled]="i === 0" aria-label="Move up">↑</button>
+              <button type="button" mat-button (click)="move(sections, i, 1)" [disabled]="last" aria-label="Move down">↓</button>
+              <button type="button" mat-button (click)="remove(sections, i)" aria-label="Remove section">Remove</button>
+            </span>
+          </div>
+          <textarea rows="10" [value]="section.body" (input)="setSection(i, 'body', $any($event.target).value)" [attr.aria-label]="'Section ' + (i + 1) + ' text'"></textarea>
+        </li>
+      }
+    </ol>
+    <button type="button" mat-stroked-button (click)="addSection()">Add section</button>
+  }
+</section>

@@ -1,0 +1,70 @@
+<div class="page">
+
+  <article class="biography">
+    <header class="biography-header">
+      <div class="primary text-gradient bio-name">{{ name() }}</div>
+      @if (pronouns()) {
+        <div class="bio-pronouns">({{ pronouns() }})</div>
+      }
+    </header>
+
+    <section class="biography-body">
+      <markdown [data]="intro()"></markdown>
+    </section>
+  </article>
+
+  <aside class="profile-aside">
+
+    <div class="card profile-card">
+      <div class="photo-container">
+        <div class="profile-photo">
+          @if (avatarUrl(); as url) {
+            <img [src]="url" [alt]="name()" width="256" height="256" fetchpriority="high">
+          } @else {
+            <img ngSrc="../assets/profile/tech.png" [alt]="name()" width="256" height="256" priority>
+          }
+        </div>
+      </div>
+
+      <div class="profile-card-header">
+        <span>METRICS</span>
+      </div>
+
+      <div class="info-container">
+        <table class="info-table">
+          @for (fact of facts(); track fact.title) {
+            <tr>
+              <th>{{fact.title}}</th>
+              <td>{{fact.value}}</td>
+            </tr>
+          }
+        </table>
+      </div>
+
+    </div>
+
+  </aside>
+
+  @if (sections().length > 0) {
+    <div class="flex gap-small center selectable-button-row">
+      @for (section of sections(); track section.id) {
+        <button mat-flat-button class="selectable-button" [ngClass]="{'selected' : section.id === selection()}"
+                (click)="makeSelection(section.id)">{{ section.title }}
+        </button>
+      }
+    </div>
+  }
+
+  <div class="selection-output">
+    @for (section of sections(); track section.id) {
+      @if (section.id === selection()) {
+        @if (section.asset) {
+          <markdown [src]="section.asset"></markdown>
+        } @else {
+          <markdown [data]="section.body ?? ''"></markdown>
+        }
+      }
+    }
+  </div>
+
+</div>

@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BiographyComponent } from './biography.component';
+import { ProfileComponent } from './profile.component';
 import { provideHttpClient } from '@angular/common/http';
 import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 
-describe('BiographyComponent', () => {
-  let component: BiographyComponent;
-  let fixture: ComponentFixture<BiographyComponent>;
+describe('ProfileComponent', () => {
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,7 +18,7 @@ describe('BiographyComponent', () => {
 
     const httpTesting = TestBed.inject(HttpTestingController);
 
-    fixture = TestBed.createComponent(BiographyComponent);
+    fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

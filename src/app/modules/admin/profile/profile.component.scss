@@ -1,0 +1,138 @@
+.admin-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+
+  .pusher {
+    flex: 1;
+  }
+}
+
+.save-state {
+  font-size: 0.75rem;
+  opacity: 0.5;
+
+  &.unsaved {
+    color: var(--secondary);
+    opacity: 0.9;
+  }
+}
+
+.admin-error,
+.problem {
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: hsl(10, 90%, 80%);
+  background: hsla(10, 80%, 40%, 0.2);
+  border: 1px solid hsla(10, 80%, 60%, 0.4);
+}
+
+h2 {
+  margin: 2rem 0 0.25rem;
+  font-size: 1.2rem;
+}
+
+.note {
+  margin: 0 0 0.75rem;
+  max-width: 40rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.previews {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin: 0.75rem 0;
+
+  figure {
+    margin: 0;
+    text-align: center;
+  }
+  figcaption {
+    margin-top: 0.35rem;
+    font-size: 0.75rem;
+    opacity: 0.6;
+  }
+  img {
+    display: block;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.75rem;
+
+  label {
+    display: grid;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    opacity: 0.9;
+  }
+}
+
+input[type='text'],
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+textarea {
+  display: block;
+  resize: vertical;
+  font-family: var(--monoFont, monospace), monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.section {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+}
+
+.section-head {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+@media (max-width: 700px) {
+  .fact {
+    grid-template-columns: 1fr;
+  }
+}
