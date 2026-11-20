@@ -198,6 +198,13 @@
       <app-editor [content]="content()" placeholder="Tell the story of the project…" (changed)="onContentChange($event)" />
     </div>
 
+    <app-gallery-editor
+      [hidden]="previewing()"
+      [items]="gallery()"
+      [projectId]="id()"
+      (changed)="onGalleryChange($event)"
+    />
+
     @if (previewing()) {
       <div class="project-preview-wrapper">
         <article class="project card">
@@ -218,6 +225,11 @@
 
           <section class="project-body">
             <ui-blocks [content]="content()" />
+
+            @if (gallery().length > 0) {
+              <h2>Gallery</h2>
+              <app-project-gallery [items]="gallery()" />
+            }
 
             @if (previewSkills().length > 0) {
               <h2>Skills & Technology</h2>

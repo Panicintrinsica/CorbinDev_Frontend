@@ -1,5 +1,6 @@
 import type { OutputData } from '@editorjs/editorjs';
 import { SkillTag } from './skill.model';
+import type { GalleryItem } from './gallery.model';
 
 export interface ProjectCard {
   _id?: string;
@@ -20,6 +21,7 @@ export interface ProjectCard {
 
 export interface Project extends ProjectCard {
   content?: OutputData;
+  gallery?: GalleryItem[];
   details?: string;
   client?: string;
   role?: string;
@@ -37,6 +39,7 @@ export interface ProjectDraft {
   linkType?: string;
   blurb?: string;
   content?: OutputData;
+  gallery?: GalleryItem[];
   details?: string;
   client?: string;
   role?: string;

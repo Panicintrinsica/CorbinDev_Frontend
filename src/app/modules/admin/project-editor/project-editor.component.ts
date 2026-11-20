@@ -12,6 +12,9 @@ import { Project, ProjectDraft } from '../../../models/project.model';
 import { SkillTag } from '../../../models/skill.model';
 import { AdminProjectService } from '../admin-project.service';
 import { AdminSkillService } from '../admin-skill.service';
+import { ProjectGalleryComponent } from '../../projects/components/project-gallery/project-gallery.component';
+import { GalleryEditorComponent } from '../components/gallery-editor/gallery-editor.component';
+import type { GalleryItem } from '../../../models/gallery.model';
 import { EditorComponent } from '../components/editor/editor.component';
 import { UiBlocksComponent } from '../../blog/components/ui-blocks/ui-blocks.component';
 import { TagComponent } from '../../ui/ui-tag/tag.component';
@@ -33,6 +36,8 @@ import { ProjectPlatforms } from '../../../constants/project.consts';
     MatSlideToggle,
     NgSelectComponent,
     EditorComponent,
+    GalleryEditorComponent,
+    ProjectGalleryComponent,
     UiBlocksComponent,
     TagComponent,
   ],
@@ -65,6 +70,7 @@ export class ProjectEditorComponent implements OnInit {
   readonly selectedSkillIds = signal<string[]>([]);
   readonly availableSkills = signal<SkillTag[]>([]);
   readonly content = signal<OutputData | undefined>(undefined);
+  readonly gallery = signal<GalleryItem[]>([]);
 
   readonly loading = signal(false);
   readonly saving = signal(false);
@@ -138,6 +144,7 @@ export class ProjectEditorComponent implements OnInit {
     this.isFeatured.set(project.isFeatured ?? false);
     this.isPublished.set(project.isPublished ?? false);
     this.content.set(project.content);
+    this.gallery.set(project.gallery ?? []);
 
     const skillIds: string[] = [];
     if (Array.isArray(project.skills)) {
@@ -198,6 +205,11 @@ export class ProjectEditorComponent implements OnInit {
     this.dirty.set(true);
   }
 
+  onGalleryChange(items: GalleryItem[]): void {
+    this.gallery.set(items);
+    this.dirty.set(true);
+  }
+
   touch(): void {
     this.dirty.set(true);
   }
@@ -213,6 +225,11 @@ export class ProjectEditorComponent implements OnInit {
     const name = (this.name() ?? '').trim();
     if (!name) {
       this.error.set('A project needs a name.');
+      return;
+    }
+
+    if (this.gallery().some((item) => !item.caption.trim())) {
+      this.error.set('Every gallery item needs a caption.');
       return;
     }
 
@@ -234,6 +251,7 @@ export class ProjectEditorComponent implements OnInit {
       blurb: (this.blurb() ?? '').trim() || undefined,
       skills: this.selectedSkillIds(),
       content: body ?? undefined,
+      gallery: this.gallery(),
       isFeatured: this.isFeatured(),
       isPublished: publish ?? this.isPublished(),
     };

@@ -1,4 +1,14 @@
 import type { OutputData } from '@editorjs/editorjs';
+import type { ImageVariant } from './media.model';
+
+/** An article's optional headline image: 400px and 800px renditions, at least 800px wide. */
+export interface ArticleBanner {
+  url: string;
+  width?: number;
+  height?: number;
+  variants?: ImageVariant[];
+  alt: string;
+}
 
 /**
  * An article body is an Editor.js block document, not markdown.
@@ -14,6 +24,7 @@ export interface Article {
   date: string;
   uri: string;
   excerpt: string;
+  banner?: ArticleBanner;
   content?: OutputData;
   category: string;
   tags: string[];
@@ -29,6 +40,8 @@ export interface ArticleDraft {
   title: string;
   content: OutputData;
   excerpt?: string;
+  /** `null` removes the banner; omitted leaves it as it is. */
+  banner?: ArticleBanner | null;
   category: string;
   tags: string[];
   isPublished: boolean;

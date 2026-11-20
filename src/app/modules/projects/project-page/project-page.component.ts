@@ -12,6 +12,7 @@ import { ProjectService } from '../project.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { SkillTag } from '../../../models/skill.model';
 
+import { ProjectGalleryComponent } from '../components/project-gallery/project-gallery.component';
 import { UiBlocksComponent } from '../../blog/components/ui-blocks/ui-blocks.component';
 
 @Component({
@@ -25,6 +26,7 @@ import { UiBlocksComponent } from '../../blog/components/ui-blocks/ui-blocks.com
     GoBackDirective,
     TagComponent,
     UiBlocksComponent,
+    ProjectGalleryComponent,
   ],
   templateUrl: './project-page.component.html',
   styleUrl: './project-page.component.scss',

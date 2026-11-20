@@ -9,6 +9,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import type { OutputData } from '@editorjs/editorjs';
 import { Skill, SkillDraft } from '../../../models/skill.model';
 import { AdminSkillService } from '../admin-skill.service';
+import { MediaService, resolveMediaUrl } from '../../../services/media.service';
 import { EditorComponent } from '../components/editor/editor.component';
 import { UiBlocksComponent } from '../../blog/components/ui-blocks/ui-blocks.component';
 import { TagComponent } from '../../ui/ui-tag/tag.component';
@@ -38,6 +39,7 @@ export class AdminSkillEditorComponent implements OnInit {
   private skillsService = inject(AdminSkillService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private media = inject(MediaService);
 
   private editor = viewChild(EditorComponent);
 
@@ -48,6 +50,12 @@ export class AdminSkillEditorComponent implements OnInit {
   readonly proficiency = signal('Intermediate');
   readonly link = signal('');
   readonly logo = signal('');
+  readonly uploadingLogo = signal(false);
+  /** The logo as an <img> src, or null while it is just a static asset name. */
+  readonly logoPreview = computed(() => {
+    const value = this.logo().trim();
+    return value.includes('/') ? resolveMediaUrl(value) : null;
+  });
   readonly isFeatured = signal(false);
   readonly isPublished = signal(true);
   readonly content = signal<OutputData | undefined>(undefined);
@@ -91,6 +99,38 @@ export class AdminSkillEditorComponent implements OnInit {
         this.loading.set(false);
       },
     });
+  }
+
+  /**
+   * Uploads a logo and points the skill at it.
+   *
+   * The upload is tagged as this skill's logo, so choosing a different file later
+   * replaces it instead of accumulating; saving then deletes the one it replaced.
+   * A skill that has not been saved yet has no id to tag, so its uploads are
+   * cleaned up by the API's orphan sweep if abandoned.
+   */
+  async uploadLogo(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = ''; // so picking the same file again still fires `change`
+    if (!file) return;
+
+    this.uploadingLogo.set(true);
+    this.error.set(null);
+    try {
+      const id = this.id();
+      const uploaded = await this.media.upload(
+        file,
+        id ? { ownerKind: 'skill', ownerId: id, slot: 'logo' } : undefined,
+        'skill/logo',
+      );
+      this.logo.set(uploaded.url);
+      this.touch();
+    } catch (error: unknown) {
+      this.error.set((error as { error?: { error?: string } })?.error?.error ?? 'Logo upload failed');
+    } finally {
+      this.uploadingLogo.set(false);
+    }
   }
 
   private apply(skill: Skill): void {

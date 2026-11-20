@@ -19,6 +19,16 @@ export function resolveMediaUrl(url: string | undefined | null): string {
   return `${environment.API}${url.startsWith('/') ? '' : '/'}${url}`;
 }
 
+/** What an upload is for. `slot` must be one the API recognises for that owner kind. */
+export interface UploadClaim {
+  ownerKind: 'article' | 'skill' | 'project';
+  ownerId: string;
+  slot: 'logo' | 'thumbnail' | 'body' | 'gallery' | 'banner';
+}
+
+/** Selects how the API processes the image; icons are produced at one small fixed size. */
+export type UploadPurpose = 'skill/logo' | 'project/gallery' | 'article/banner';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -32,9 +42,23 @@ export class MediaService {
    * Promise-based rather than an Observable because Editor.js' image tool expects
    * a promise from its uploader, and this is the only caller that matters.
    */
-  async upload(file: File): Promise<NonNullable<UploadResponse['file']>> {
+  async upload(
+    file: File,
+    claim?: UploadClaim,
+    purpose?: UploadPurpose,
+  ): Promise<NonNullable<UploadResponse['file']>> {
     const form = new FormData();
     form.append('image', file);
+    // Says what the image is for. The API uses it to replace a single-image slot
+    // (a skill's logo) rather than pile up one file per attempt, and to clean up if
+    // the owner is deleted. Optional: an article body image has no id until saved.
+    if (claim) {
+      form.append('ownerKind', claim.ownerKind);
+      form.append('ownerId', claim.ownerId);
+      form.append('slot', claim.slot);
+    }
+
+    if (purpose) form.append('purpose', purpose);
 
     const response = await firstValueFrom(
       this.http.post<UploadResponse>(`${this.API}/media/admin`, form),

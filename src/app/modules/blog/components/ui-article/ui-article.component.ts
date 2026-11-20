@@ -5,15 +5,21 @@ import { DatePipe } from '@angular/common';
 import { Article, emptyArticle } from '../../../../models/article.model';
 import { TagComponent } from '../../../ui/ui-tag/tag.component';
 import { UiBlocksComponent } from '../ui-blocks/ui-blocks.component';
+import {
+  READING_COLUMN_SIZES,
+  ResponsiveImageComponent,
+} from '../responsive-image/responsive-image.component';
 
 @Component({
   selector: 'ui-article',
-  imports: [RouterLink, MatButton, DatePipe, TagComponent, UiBlocksComponent],
+  imports: [RouterLink, MatButton, DatePipe, TagComponent, UiBlocksComponent, ResponsiveImageComponent],
   templateUrl: './ui-article.component.html',
   standalone: true,
   styleUrl: './ui-article.component.scss',
 })
 export class UiArticleComponent {
+  protected readonly readingColumnSizes = READING_COLUMN_SIZES;
+
   data = input<Article>(emptyArticle());
 
   /**

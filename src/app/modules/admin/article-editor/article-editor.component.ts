@@ -6,8 +6,10 @@ import { MatFormField, MatLabel, MatHint } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import type { OutputData } from '@editorjs/editorjs';
-import { Article, ArticleDraft } from '../../../models/article.model';
+import { Article, ArticleBanner, ArticleDraft } from '../../../models/article.model';
 import { AdminArticleService } from '../admin-article.service';
+import { ResponsiveImageComponent } from '../../blog/components/responsive-image/responsive-image.component';
+import { BannerFieldComponent } from '../components/banner-field/banner-field.component';
 import { EditorComponent } from '../components/editor/editor.component';
 import { UiBlocksComponent } from '../../blog/components/ui-blocks/ui-blocks.component';
 
@@ -27,6 +29,8 @@ import { UiBlocksComponent } from '../../blog/components/ui-blocks/ui-blocks.com
   selector: 'app-admin-article-editor',
   standalone: true,
   imports: [
+    BannerFieldComponent,
+    ResponsiveImageComponent,
     FormsModule,
     RouterLink,
     MatButton,
@@ -55,6 +59,7 @@ export class ArticleEditorComponent {
   readonly excerpt = signal('');
   readonly isPublished = signal(false);
   readonly content = signal<OutputData | undefined>(undefined);
+  readonly banner = signal<ArticleBanner | null>(null);
 
   readonly loading = signal(false);
   readonly saving = signal(false);
@@ -94,12 +99,18 @@ export class ArticleEditorComponent {
     this.excerpt.set(article.excerpt ?? '');
     this.isPublished.set(article.isPublished ?? false);
     this.content.set(article.content);
+    this.banner.set(article.banner ?? null);
     this.permalink.set(`/blog/a/${article.date}/${article.uri}`);
     this.dirty.set(false);
   }
 
   onContentChange(data: OutputData): void {
     this.content.set(data);
+    this.dirty.set(true);
+  }
+
+  onBannerChange(banner: ArticleBanner | null): void {
+    this.banner.set(banner);
     this.dirty.set(true);
   }
 
@@ -148,6 +159,7 @@ export class ArticleEditorComponent {
       // Sent empty when the author has not written one, which tells the API to
       // derive it from the leading prose instead.
       excerpt: excerpt || undefined,
+      banner: this.banner(),
       category,
       tags,
       isPublished: publish ?? this.isPublished(),

@@ -10,3 +10,23 @@
 @use "styles/overrides";
 //@use "ngx-smart-modal/ngx-smart-modal";
 
+
+
+/* Project gallery lightbox: a dimmed page with the picture floating on it. */
+.gallery-lightbox-backdrop {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(2px);
+}
+.gallery-lightbox-panel {
+  --mat-dialog-container-color: transparent;
+  --mdc-dialog-container-color: transparent;
+  --mat-dialog-container-max-width: 100vw;
+  --mat-dialog-container-min-width: 0;
+  --mdc-dialog-container-shape: 0;
+
+  .mat-mdc-dialog-surface {
+    box-shadow: none;
+    background: transparent;
+    overflow: visible;
+  }
+}

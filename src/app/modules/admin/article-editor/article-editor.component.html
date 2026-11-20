@@ -85,6 +85,13 @@
       >
     </div>
 
+    <app-banner-field
+      [hidden]="previewing()"
+      [banner]="banner()"
+      [articleId]="id()"
+      (changed)="onBannerChange($event)"
+    />
+
     <!-- The editor is kept alive behind the preview rather than destroyed and
          rebuilt, so toggling back does not cost a reload or lose scroll position. -->
     <div class="editor-body" [hidden]="previewing()">
@@ -96,6 +103,9 @@
         <header class="blog-header">
           <h1 class="bold text-gradient">{{ title() }}</h1>
         </header>
+        @if (banner(); as hero) {
+          <app-responsive-image [src]="hero.url" [variants]="hero.variants" [width]="hero.width" [height]="hero.height" [alt]="hero.alt" />
+        }
         <ui-blocks [content]="content()" />
       </article>
     }

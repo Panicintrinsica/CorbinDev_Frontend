@@ -12,11 +12,22 @@ export interface MediaItem {
   bytes: number;
   width?: number;
   height?: number;
+  /** The responsive set generated at upload. Absent on images uploaded before processing existed. */
+  variants?: ImageVariant[];
+  animated?: boolean;
   originalName: string;
   alt: string;
   uploadedBy: string;
   createdAt: string;
   updatedAt: string;
+}
+
+/** One re-encoded rendition of an image, as referenced from `srcset`. */
+export interface ImageVariant {
+  format: 'avif' | 'webp';
+  /** Intrinsic width in pixels — the `w` descriptor. */
+  width: number;
+  url: string;
 }
 
 export interface MediaPage {
@@ -38,6 +49,7 @@ export interface UploadResponse {
     path: string;
     width?: number;
     height?: number;
+    variants?: ImageVariant[];
     size: number;
     mimeType: string;
     id?: string;

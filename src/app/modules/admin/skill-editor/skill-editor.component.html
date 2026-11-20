@@ -94,6 +94,27 @@
         />
       </mat-form-field>
 
+      <div class="logo-upload full-width">
+        @if (logoPreview(); as preview) {
+          <img class="logo-preview" [src]="preview" alt="Current logo" width="48" height="48" />
+        }
+        <input
+          #logoFile
+          type="file"
+          hidden
+          accept="image/png,image/jpeg,image/gif,image/webp,image/avif,image/svg+xml"
+          (change)="uploadLogo($event)"
+        />
+        <button
+          mat-stroked-button
+          type="button"
+          [disabled]="uploadingLogo()"
+          (click)="logoFile.click()"
+        >
+          {{ uploadingLogo() ? 'Uploading…' : 'Upload logo' }}
+        </button>
+      </div>
+
       <div class="toggles-row full-width">
         <mat-slide-toggle
           class="field-toggle"

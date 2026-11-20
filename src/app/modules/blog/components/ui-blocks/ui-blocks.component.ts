@@ -8,7 +8,10 @@ import {
 } from '@angular/core';
 import type { OutputBlockData, OutputData } from '@editorjs/editorjs';
 import { BlockListComponent } from './block-list.component';
-import { resolveMediaUrl } from '../../../../services/media.service';
+import {
+  READING_COLUMN_SIZES,
+  ResponsiveImageComponent,
+} from '../responsive-image/responsive-image.component';
 
 /**
  * Renders an Editor.js document.
@@ -24,7 +27,7 @@ import { resolveMediaUrl } from '../../../../services/media.service';
 @Component({
   selector: 'ui-blocks',
   standalone: true,
-  imports: [BlockListComponent],
+  imports: [BlockListComponent, ResponsiveImageComponent],
   templateUrl: './ui-blocks.component.html',
 })
 export class UiBlocksComponent {
@@ -46,10 +49,7 @@ export class UiBlocksComponent {
     });
   }
 
-  /** Resolves a stored image URL against the API origin when it is relative. */
-  mediaUrl(url: string): string {
-    return resolveMediaUrl(url);
-  }
+  protected readonly readingColumnSizes = READING_COLUMN_SIZES;
 
   /**
    * Alt text for an image block.

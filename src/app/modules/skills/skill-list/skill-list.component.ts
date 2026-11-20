@@ -32,7 +32,7 @@ export class SkillListComponent {
   );
   other = computed(() =>
     this.skills().filter(
-      (skill) => !['frontend', 'backend', 'general'].includes(skill.group),
+      (skill) => !['frontend', 'backend', 'general'].includes(skill.group ?? ''),
     ),
   );
 

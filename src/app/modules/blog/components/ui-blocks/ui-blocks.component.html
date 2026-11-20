@@ -41,15 +41,16 @@
         [class.bordered]="block.data.withBorder"
         [class.backdrop]="block.data.withBackground"
       >
-        <!-- width/height come from the header the API read at upload time, so the
-             browser reserves the right box before the bytes arrive. -->
-        <img
-          [src]="mediaUrl(block.data.file?.url)"
-          [attr.width]="block.data.file?.width ?? null"
-          [attr.height]="block.data.file?.height ?? null"
+        <!-- width/height are the intrinsic size recorded at upload, so the browser
+             reserves the right box before the bytes arrive; the variants are the
+             AVIF/WebP renditions the API generated for srcset. -->
+        <app-responsive-image
+          [src]="block.data.file?.url"
+          [variants]="block.data.file?.variants"
+          [width]="block.data.file?.width"
+          [height]="block.data.file?.height"
           [alt]="altText(block.data.caption)"
-          loading="lazy"
-          decoding="async"
+          [sizes]="block.data.stretched ? '100vw' : readingColumnSizes"
         />
         @if (block.data.caption) {
           <figcaption [innerHTML]="block.data.caption"></figcaption>

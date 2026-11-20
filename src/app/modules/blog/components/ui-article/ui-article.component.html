@@ -4,6 +4,19 @@
       <h1 class="bold text-gradient">{{ data().title }}</h1>
     </header>
 
+    @if (data().banner; as hero) {
+      <div class="blog-banner">
+        <app-responsive-image
+          [src]="hero.url"
+          [variants]="hero.variants"
+          [width]="hero.width"
+          [height]="hero.height"
+          [alt]="hero.alt"
+          [sizes]="isStub() ? 'min(100vw, 25rem)' : readingColumnSizes"
+        />
+      </div>
+    }
+
     <section class="blog-meta">
       <div class="tag-container">
         <ui-tag [text]="data().category" [type]="data().category"></ui-tag>

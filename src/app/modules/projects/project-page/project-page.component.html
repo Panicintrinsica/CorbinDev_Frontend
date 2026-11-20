@@ -33,6 +33,11 @@
           <markdown [data]="project().details"></markdown>
         }
 
+        @if (project().gallery?.length) {
+          <h2>Gallery</h2>
+          <app-project-gallery [items]="project().gallery ?? []" />
+        }
+
         <h2>Skills & Technology</h2>
         <div class="cutout">
           <div class="tag-container" [@FadeInList]="skills().length">

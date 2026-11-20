@@ -22,3 +22,15 @@ footer.stub > .time {
   line-height: 1.7;
   padding: 0 2rem;
 }
+
+.blog-banner {
+  margin: 0 0 1rem;
+
+  // The component wrapper is `display: contents`, so style the image itself.
+  img {
+    display: block;
+    width: 100%;
+    height: auto; // the width/height attributes still reserve the right box
+    border-radius: 6px;
+  }
+}

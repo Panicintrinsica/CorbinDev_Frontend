@@ -208,6 +208,10 @@ export class EditorComponent {
           // space for the image before it loads.
           width: uploaded.width,
           height: uploaded.height,
+          // The AVIF/WebP renditions. The image tool keeps whatever the uploader
+          // returns on `file`, so this is what reaches the saved block and, from
+          // there, the article's `srcset`.
+          variants: uploaded.variants,
         },
       };
     } catch (error: unknown) {
