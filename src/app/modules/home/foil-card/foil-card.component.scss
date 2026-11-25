@@ -1,0 +1,59 @@
+:host {
+  display: block;
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+// Shown for server rendering and until the SVG has been measured.
+:host(:not(.drawn)) {
+  background: #0c0c0e;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.foil-content {
+  position: relative;
+  padding: 1.5rem 1.75rem;
+}
+
+.tint {
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+:host(.tinted) .tint {
+  opacity: 1;
+}
+
+.body-shine {
+  opacity: 0.05;
+}
+
+.hairline {
+  opacity: 0.35;
+}
+
+@media (max-width: 420px) {
+  .foil-content {
+    padding: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tint {
+    transition: none;
+  }
+}
+
+@media print {
+  svg {
+    display: none;
+  }
+}

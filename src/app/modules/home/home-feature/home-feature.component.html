@@ -1,40 +1,27 @@
-<div class="feature-segment" [ngClass]="{'alt': isAlternate}">
-  <div class="feature-title" [ngClass]="{'alt': isAlternate}">
-    <h1 [class]="color" class="heavy text-gradient">{{ header }}</h1>
-  </div>
+<div class="feature-segment" [class.alt]="isAlternate" [class.has-media]="images.length">
+  <div class="card-slot" [class.offstage]="card.armed() && !card.entered()">
+    <app-foil-card #card="foilCard" [theme]="theme ?? themes[color]">
+      <h1 [class]="color" class="heavy text-gradient">{{ header }}</h1>
 
-  <div class="grid-container" [ngClass]="{'alt': isAlternate}">
-
-
-    <div class="text content" [ngClass]="{'alt': isAlternate}">
-      <ng-content></ng-content>
+      <div class="text">
+        <ng-content></ng-content>
+      </div>
 
       @if (route) {
-        <div class="featured-button {{color}}" [routerLink]="route">
-          More
-        </div>
+        <a class="featured-button {{ color }}" [routerLink]="route">More</a>
       }
-    </div>
 
-    @if (image) {
-      <div class="image">
-        <img [ngSrc]="image" alt="" fill priority>
+      <div class="stack" [class.dissolved]="card.armed() && !card.revealed()">
+        @for (item of stack; track item.img) {
+          <a [href]="item.link" target="_blank" rel="noopener" [style.--order]="$index">
+            <img class="skillLogo" ngSrc="assets/brands/{{ item.img }}.svg" height="48" width="48" alt="{{ item.alt }}">
+          </a>
+        }
       </div>
-    }
-
-    <div class="stack">
-      @for (item of stack; track item) {
-        <a [href]="item.link" target="_blank">
-          <img class="skillLogo" ngSrc="../assets/brands/{{item.img}}.svg" height="48" width="48" alt="{{item.alt}}">
-        </a>
-      }
-    </div>
-
-
-
-
+    </app-foil-card>
   </div>
 
-
+  @if (images.length) {
+    <app-feature-gallery class="media" [images]="images" />
+  }
 </div>
-

@@ -7,11 +7,11 @@ import {
 } from './home-feature/home-feature.component';
 import { getContentBody } from '../../utilities';
 import { Meta, Title } from '@angular/platform-browser';
-import { RevealDirective } from '../../directives/reveal.directive';
+import { FeatureImage } from './feature-gallery/feature-gallery.component';
 
 @Component({
   selector: 'app-home',
-  imports: [HomeKeyartComponent, HomeFeatureComponent, RevealDirective],
+  imports: [HomeKeyartComponent, HomeFeatureComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -21,6 +21,12 @@ export class HomeComponent implements OnInit {
   server = inject(ContentService);
 
   content = this.server.content;
+
+  // Optional. Two or more images rotate, e.g.
+  // { src: 'assets/projects/example.png', alt: 'What the picture shows' }
+  frontendImages: FeatureImage[] = [];
+  backendImages: FeatureImage[] = [];
+  otherImages: FeatureImage[] = [];
 
   frontendFeatures: featuredStackItem[] = [
     // {

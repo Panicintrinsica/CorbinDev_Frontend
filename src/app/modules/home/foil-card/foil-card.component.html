@@ -1,0 +1,101 @@
+@if (width() > 0) {
+  <svg [attr.width]="width()" [attr.height]="height()" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient [attr.id]="id + '-satin'" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#18181b" />
+        <stop offset="0.35" stop-color="#0b0b0d" />
+        <stop offset="0.6" stop-color="#141417" />
+        <stop offset="1" stop-color="#070708" />
+      </linearGradient>
+
+      <!-- Hard, uneven bands are what make a gradient read as metal. -->
+      <linearGradient [attr.id]="id + '-foil'" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" [style.stop-color]="theme().foil[2]" />
+        <stop offset="0.12" [style.stop-color]="theme().foil[0]" />
+        <stop offset="0.3" [style.stop-color]="theme().foil[1]" />
+        <stop offset="0.38" [style.stop-color]="theme().foil[2]" />
+        <stop offset="0.44" [style.stop-color]="theme().foil[0]" />
+        <stop offset="0.67" [style.stop-color]="theme().foil[1]" />
+        <stop offset="0.74" [style.stop-color]="theme().foil[0]" />
+        <stop offset="0.9" [style.stop-color]="theme().foil[2]" />
+        <stop offset="1" [style.stop-color]="theme().foil[0]" />
+      </linearGradient>
+
+      <linearGradient [attr.id]="id + '-tint'" x1="0" y1="0" x2="0.6" y2="1">
+        <stop offset="0" [style.stop-color]="theme().tint" stop-opacity="0.16" />
+        <stop offset="0.55" [style.stop-color]="theme().tint" stop-opacity="0.06" />
+        <stop offset="1" [style.stop-color]="theme().tint" stop-opacity="0.11" />
+      </linearGradient>
+
+      <linearGradient [attr.id]="id + '-shine'">
+        <stop offset="0" [style.stop-color]="theme().shine" stop-opacity="0" />
+        <stop offset="0.5" [style.stop-color]="theme().shine" stop-opacity="1" />
+        <stop offset="1" [style.stop-color]="theme().shine" stop-opacity="0" />
+      </linearGradient>
+
+      <!-- Same highlight in card coordinates, so it can travel along the edge stroke. -->
+      <linearGradient
+        [attr.id]="id + '-glint'"
+        gradientUnits="userSpaceOnUse"
+        [attr.x1]="shineX() - band() / 2"
+        [attr.x2]="shineX() + band() / 2"
+        y1="0"
+        y2="0"
+      >
+        <stop offset="0" [style.stop-color]="theme().shine" stop-opacity="0" />
+        <stop offset="0.5" [style.stop-color]="theme().shine" stop-opacity="1" />
+        <stop offset="1" [style.stop-color]="theme().shine" stop-opacity="0" />
+      </linearGradient>
+
+      <clipPath [attr.id]="id + '-clip'">
+        <rect [attr.width]="width()" [attr.height]="height()" [attr.rx]="radius() + 1.5" />
+      </clipPath>
+    </defs>
+
+    <g [attr.clip-path]="'url(#' + id + '-clip)'">
+      <rect width="100%" height="100%" [attr.fill]="'url(#' + id + '-satin)'" />
+      <rect class="tint" width="100%" height="100%" [attr.fill]="'url(#' + id + '-tint)'" />
+      <g [attr.transform]="'translate(' + shineX() + ' 0) skewX(-18)'">
+        <rect
+          class="body-shine"
+          [attr.x]="-band() / 2"
+          [attr.width]="band()"
+          height="100%"
+          [attr.fill]="'url(#' + id + '-shine)'"
+        />
+      </g>
+    </g>
+
+    <rect
+      x="1.5"
+      y="1.5"
+      fill="none"
+      stroke-width="2.5"
+      [attr.width]="width() - 3"
+      [attr.height]="height() - 3"
+      [attr.rx]="radius()"
+      [attr.stroke]="'url(#' + id + '-foil)'"
+    />
+    <rect
+      class="hairline"
+      x="6.5"
+      y="6.5"
+      fill="none"
+      stroke-width="0.75"
+      [attr.width]="width() - 13"
+      [attr.height]="height() - 13"
+      [attr.rx]="radius() - 5"
+      [attr.stroke]="'url(#' + id + '-foil)'"
+    />
+    <path
+      fill="none"
+      stroke-width="2.5"
+      [attr.d]="topEdge()"
+      [attr.stroke]="'url(#' + id + '-glint)'"
+    />
+  </svg>
+}
+
+<div class="foil-content">
+  <ng-content />
+</div>

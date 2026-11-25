@@ -1,11 +1,10 @@
 <app-home-keyart />
 
-
-<div class="anim-wrapper" appReveal="fade-up" [revealDuration]="1500">
+<div class="feature-stack">
   <app-home-feature
     header="Front-End Development"
     color="red"
-    image=""
+    [images]="frontendImages"
     [isAlternate]="false"
     [stack]="frontendFeatures"
   >
@@ -13,14 +12,10 @@
       {{ getContentBody(content(), 'frontend') }}
     }
   </app-home-feature>
-</div>
-
-<div class="anim-wrapper" appReveal="fade-up" [revealDuration]="1500">
   <app-home-feature
     header="Back-End Development"
-    content=""
     color="blue"
-    image=""
+    [images]="backendImages"
     [isAlternate]="true"
     [stack]="backendFeatures"
   >
@@ -28,14 +23,10 @@
       {{ getContentBody(content(), 'backend') }}
     }
   </app-home-feature>
-</div>
-
-<div class="anim-wrapper" appReveal="fade-up" [revealDuration]="1500">
   <app-home-feature
     header="Everything Development"
-    content=""
     color="pink"
-    image=""
+    [images]="otherImages"
     [isAlternate]="false"
     [stack]="otherFeatures"
   >
@@ -44,7 +35,3 @@
     }
   </app-home-feature>
 </div>
-
-
-
-
