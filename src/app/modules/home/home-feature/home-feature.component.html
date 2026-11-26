@@ -1,27 +1,48 @@
-<div class="feature-segment" [class.alt]="isAlternate" [class.has-media]="images.length">
-  <div class="card-slot" [class.offstage]="card.armed() && !card.entered()">
-    <app-foil-card #card="foilCard" [theme]="theme ?? themes[color]">
-      <h1 [class]="color" class="heavy text-gradient">{{ header }}</h1>
+<div class="feature-segment" [class.alt]="card().isAlternate" [class.has-media]="card().images.length">
+  <div class="card-slot" [class.offstage]="foil.armed() && !foil.entered()">
+    <app-foil-card #foil="foilCard" [theme]="theme()">
+      <h1
+        [class]="card().color"
+        class="heavy text-gradient"
+        [style.background-image]="
+          card().color === 'custom'
+            ? 'linear-gradient(66deg, ' + theme().foil[1] + ', ' + theme().foil[2] + ')'
+            : null
+        "
+      >{{ card().title }}</h1>
 
-      <div class="text">
-        <ng-content></ng-content>
-      </div>
+      <div class="text body">{{ card().body }}</div>
 
-      @if (route) {
-        <a class="featured-button {{ color }}" [routerLink]="route">More</a>
+      @if (card().route) {
+        <a
+          class="featured-button {{ card().color }}"
+          [routerLink]="card().route"
+          [style.color]="card().color === 'custom' ? theme().foil[2] : null"
+          [style.border-color]="card().color === 'custom' ? theme().foil[1] : null"
+        >More</a>
       }
 
-      <div class="stack" [class.dissolved]="card.armed() && !card.revealed()">
-        @for (item of stack; track item.img) {
-          <a [href]="item.link" target="_blank" rel="noopener" [style.--order]="$index">
-            <img class="skillLogo" ngSrc="assets/brands/{{ item.img }}.svg" height="48" width="48" alt="{{ item.alt }}">
-          </a>
+      <div #logos class="stack" [class.dissolved]="dissolved()">
+        @for (item of card().logos; track item.skillId) {
+          <button
+            type="button"
+            class="logo"
+            aria-haspopup="dialog"
+            [style.--order]="$index"
+            (click)="viewSkill(item.skillId)"
+          >
+            @if (item.src) {
+              <img [src]="item.src" height="48" width="48" [alt]="item.name">
+            } @else {
+              <span class="name">{{ item.name }}</span>
+            }
+          </button>
         }
       </div>
     </app-foil-card>
   </div>
 
-  @if (images.length) {
-    <app-feature-gallery class="media" [images]="images" />
+  @if (card().images.length) {
+    <app-feature-gallery class="media" [images]="card().images" />
   }
 </div>

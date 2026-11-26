@@ -31,6 +31,10 @@ export class ContentService {
     return this.http.get<Detail[]>(`${this.API}/details`);
   }
 
+  getContentGroupByPage(page: string) {
+    return this.http.get<ContentBlock[]>(`${this.API}/content/${page}`);
+  }
+
   getContentGroup(selector: string) {
     return this.http.get<ContentBlock[]>(
       `${this.API}/content/group/${selector}`,

@@ -100,6 +100,12 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'admin/home',
+    canActivate: [requirePermission('content:write')],
+    loadComponent: () =>
+      import('./modules/admin/home/home.component').then((m) => m.AdminHomeComponent),
+  },
+  {
     path: 'admin/profile',
     canActivate: [requirePermission('content:write')],
     loadComponent: () =>

@@ -7,13 +7,12 @@ import {
 import { BlogService } from './blog.service';
 import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { ArticleTypes } from '../../constants/project.consts';
-import { MatIconButton } from '@angular/material/button';
+import { MatIconAnchor, MatIconButton }from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { UiSearchComponent } from '../ui/ui-search/ui-search.component';
-import { RevealDirective } from '../../directives/reveal.directive';
 
 @Component({
   selector: 'app-articles',
@@ -23,10 +22,10 @@ import { RevealDirective } from '../../directives/reveal.directive';
     MatChipOption,
     MatChipListbox,
     MatIconButton,
+    MatIconAnchor,
     MatIcon,
     FormsModule,
     UiSearchComponent,
-    RevealDirective,
   ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',

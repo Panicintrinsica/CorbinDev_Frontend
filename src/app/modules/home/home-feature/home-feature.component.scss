@@ -58,6 +58,11 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
+// Keeps the line breaks typed in the admin editor.
+.body {
+  white-space: pre-line;
+}
+
 .alt .featured-button {
   margin-left: auto;
 }
@@ -68,31 +73,46 @@ h1 {
   justify-content: center;
   margin-top: 1.25rem;
 
-  a {
+  .logo {
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
     display: flex;
-    width: 64px;
+    min-width: 64px;
     height: 64px;
     align-items: center;
     justify-content: center;
     filter: blur(0);
-    transition: opacity 900ms ease, filter 1100ms ease;
-    transition-delay: calc(var(--order) * 130ms);
+    transition: opacity 450ms ease, filter 900ms ease;
+    // The pause lets the card finish sliding in first.
+    transition-delay: calc(350ms + var(--order) * 80ms);
   }
 
   // Logos resolve out of a heavy blur, one after another.
-  &.dissolved a:not(:focus-visible) {
+  &.dissolved .logo:not(:focus-visible) {
     opacity: 0;
     filter: blur(18px);
+    transition: none;
+  }
+
+  // For a skill with no logo.
+  .name {
+    padding: 0 0.5rem;
+    font-family: var(--uiFont), sans-serif;
+    font-size: 0.8rem;
+    color: var(--textColor-normal);
   }
 
   img {
     width: 48px;
     height: 48px;
+    object-fit: contain;
     transition: transform 200ms;
   }
 
-  a:hover img,
-  a:focus-visible img {
+  .logo:hover img,
+  .logo:focus-visible img {
     transform: scale(1.3);
   }
 }
@@ -187,7 +207,7 @@ h1 {
 
 @media (prefers-reduced-motion: reduce) {
   .card-slot,
-  .stack a,
+  .stack .logo,
   .stack img {
     transition: none;
   }

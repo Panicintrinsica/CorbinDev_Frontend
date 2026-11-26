@@ -25,9 +25,6 @@ export const SILVER_FOIL: FoilTheme = {
   shine: '#ffffff',
 };
 
-/** Share of the scroll-in after which `revealed` latches. */
-const REVEAL_AT = 0.55;
-
 /**
  * A satin black card with a foil edge, drawn in SVG behind its projected content.
  * Scroll position rolls a shine across it; fully in view, it takes on its tint.
@@ -52,10 +49,8 @@ export class FoilCardComponent {
   readonly progress = signal(0);
   /** True only in a browser that allows motion, so content is never hidden without it. */
   readonly armed = signal(false);
-  /** Latches as soon as the card starts to show. */
+  /** True once the card starts to show; resets only when it is back below the screen. */
   readonly entered = signal(false);
-  /** Latches once the card is far enough in; for one-time content entrances. */
-  readonly revealed = signal(false);
 
   protected readonly width = signal(0);
   protected readonly height = signal(0);
@@ -79,7 +74,7 @@ export class FoilCardComponent {
         const next = Math.min(1, Math.max(0, (viewport - rect.top) / distance));
         this.progress.set(still ? 1 : next);
         if (next > 0.08) this.entered.set(true);
-        if (next >= REVEAL_AT) this.revealed.set(true);
+        else if (rect.top >= viewport) this.entered.set(false);
       };
       const schedule = () => {
         frame ||= requestAnimationFrame(measure);

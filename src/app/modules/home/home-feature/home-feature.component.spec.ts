@@ -14,6 +14,9 @@ describe('HomeFeatureComponent', () => {
     
     fixture = TestBed.createComponent(HomeFeatureComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('card', {
+      title: 'Card', body: '', color: 'blue', isAlternate: false, route: '', images: [], logos: [],
+    });
     fixture.detectChanges();
   });
 

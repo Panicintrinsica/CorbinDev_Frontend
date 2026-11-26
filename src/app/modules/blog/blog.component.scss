@@ -68,3 +68,25 @@
     flex: 1 20%;
   }
 }
+
+// A quiet entrance: opacity only, no movement or scaling.
+.soft-fade {
+  animation: soft-fade 600ms ease-out both;
+
+  // Holds the empty notice back so it does not flash while articles load.
+  &.late {
+    animation-delay: 500ms;
+  }
+}
+
+@keyframes soft-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .soft-fade {
+    animation: none;
+  }
+}

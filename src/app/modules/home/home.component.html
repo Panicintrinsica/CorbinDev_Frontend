@@ -1,37 +1,7 @@
 <app-home-keyart />
 
 <div class="feature-stack">
-  <app-home-feature
-    header="Front-End Development"
-    color="red"
-    [images]="frontendImages"
-    [isAlternate]="false"
-    [stack]="frontendFeatures"
-  >
-    @if (content()) {
-      {{ getContentBody(content(), 'frontend') }}
-    }
-  </app-home-feature>
-  <app-home-feature
-    header="Back-End Development"
-    color="blue"
-    [images]="backendImages"
-    [isAlternate]="true"
-    [stack]="backendFeatures"
-  >
-    @if (content()) {
-      {{ getContentBody(content(), 'backend') }}
-    }
-  </app-home-feature>
-  <app-home-feature
-    header="Everything Development"
-    color="pink"
-    [images]="otherImages"
-    [isAlternate]="false"
-    [stack]="otherFeatures"
-  >
-    @if (content()) {
-      {{ getContentBody(content(), 'general') }}
-    }
-  </app-home-feature>
+  @for (card of cards(); track $index) {
+    <app-home-feature [card]="card" />
+  }
 </div>

@@ -1,16 +1,44 @@
-import { Component, Input } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import {
+  afterNextRender,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  input,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FoilCardComponent, FoilTheme } from '../foil-card/foil-card.component';
 import {
   FeatureGalleryComponent,
   FeatureImage,
 } from '../feature-gallery/feature-gallery.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SkillDialogComponent } from '../../skills/skill-dialog/skill-dialog.component';
+import type { HomeColor, HomeTheme } from '../../../models/home.model';
 
-export type FeatureColor = 'red' | 'blue' | 'pink';
+export interface FeatureLogo {
+  skillId: string;
+  name: string;
+  /** Null shows the name instead of a picture. */
+  src: string | null;
+}
 
-/** Default card colors per section; override one card with the `theme` input. */
-export const FEATURE_THEMES: Record<FeatureColor, FoilTheme> = {
+export interface FeatureCard {
+  title: string;
+  body: string;
+  color: HomeColor;
+  /** Used when `color` is `custom`. */
+  theme?: HomeTheme;
+  isAlternate: boolean;
+  route: string;
+  images: FeatureImage[];
+  logos: FeatureLogo[];
+}
+
+/** The named card colors; `custom` cards bring their own. */
+export const FEATURE_THEMES: Record<Exclude<HomeColor, 'custom'>, FoilTheme> = {
   red: {
     foil: ['#5c2a1c', '#c8704a', '#ffd9c2'],
     tint: 'var(--violent-red)',
@@ -31,7 +59,6 @@ export const FEATURE_THEMES: Record<FeatureColor, FoilTheme> = {
 @Component({
   selector: 'app-home-feature',
   imports: [
-    NgOptimizedImage,
     RouterLink,
     FoilCardComponent,
     FeatureGalleryComponent,
@@ -41,19 +68,43 @@ export const FEATURE_THEMES: Record<FeatureColor, FoilTheme> = {
   styleUrl: './home-feature.component.scss',
 })
 export class HomeFeatureComponent {
-  @Input() header = '';
-  @Input() images: FeatureImage[] = [];
-  @Input() color: FeatureColor = 'blue';
-  @Input() theme?: FoilTheme;
-  @Input() isAlternate = false;
-  @Input() route = '';
-  @Input() stack: featuredStackItem[] = [];
+  card = input.required<FeatureCard>();
 
-  protected readonly themes = FEATURE_THEMES;
-}
+  private dialog = inject(MatDialog);
 
-export interface featuredStackItem {
-  img: string;
-  alt: string;
-  link?: string;
+  protected theme(): FoilTheme {
+    const { color, theme } = this.card();
+    return color === 'custom' ? (theme ?? FEATURE_THEMES.blue) : FEATURE_THEMES[color];
+  }
+
+  /** Logos stay blurred until their own row is on screen, not just the card. */
+  protected readonly dissolved = signal(false);
+  private logos = viewChild.required<ElementRef<HTMLElement>>('logos');
+
+  protected viewSkill(id: string) {
+    this.dialog.open(SkillDialogComponent, {
+      data: id,
+      autoFocus: false,
+      width: '100%',
+      maxWidth: '600px',
+    });
+  }
+
+  constructor() {
+    const destroyRef = inject(DestroyRef);
+
+    afterNextRender(() => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.intersectionRatio >= 0.6) this.dissolved.set(false);
+          // Re-arm below the screen: late-loading text can push a seen row back down.
+          else if (entry.boundingClientRect.top >= window.innerHeight) this.dissolved.set(true);
+        },
+        { threshold: [0, 0.6] },
+      );
+      observer.observe(this.logos().nativeElement);
+      destroyRef.onDestroy(() => observer.disconnect());
+    });
+  }
 }

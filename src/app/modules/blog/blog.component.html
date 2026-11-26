@@ -6,18 +6,21 @@
     </div>
     <div class="fill"></div>
     <ui-search (searchSubmitted)="searchBlog($event)"></ui-search>
-    <button mat-icon-button aria-label="" (click)="hideSidebar = !hideSidebar">
+    <a mat-icon-button href="/rss.xml" target="_blank" aria-label="RSS feed" title="RSS feed">
+      <mat-icon>rss_feed</mat-icon>
+    </a>
+    <button mat-icon-button aria-label=""(click)="hideSidebar = !hideSidebar">
       <mat-icon>more_vert</mat-icon>
     </button>
   </div>
 
   <section class="article-list">
       @for (article of articlePage(); track article.title) {
-        <div class="anim-wrapper" appReveal="zoom-in-up">
+        <div class="anim-wrapper soft-fade">
           <ui-article [isStub]="true" [data]="article" [displayStyle]="ArticleDisplayStyle.Card"></ui-article>
         </div>
       } @empty {
-        <div class="callout" appReveal="fade-in" [revealDelay]="500">
+        <div class="callout soft-fade late">
           <div class="admonition admonition-info">
             <div class="admonition-title">Info</div>
             <div class="admonition-content">No Articles match these specific filters</div>
@@ -46,7 +49,7 @@
   </aside>
 
   @if (totalPages() > 1 ) {
-    <div class="pager bottom-nav" appReveal="fade-up">
+    <div class="pager bottom-nav soft-fade">
       <div class="pager-item" (click)="goToPreviousPage()" [ngClass]="{'disabled': isFirstPage()}">Back</div>
       <div class="pager-item" (click)="goToNextPage()" [ngClass]="{'disabled': isLastPage()}">Next</div>
     </div>

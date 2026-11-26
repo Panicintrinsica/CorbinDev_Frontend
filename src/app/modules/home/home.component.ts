@@ -1,13 +1,24 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Meta, Title } from '@angular/platform-browser';
+import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
 import { ContentService } from '../../services/content.service';
+import { HomeService } from '../../services/home.service';
+import { resolveMediaUrl } from '../../services/media.service';
+import {
+  brandLogo,
+  DEFAULT_HOME_CARDS,
+  HomeSkill,
+  PublicHomeCard,
+} from '../../models/home.model';
+import type { ContentBlock } from '../../models/content.model';
+import { getContentBody } from '../../utilities';
 import { HomeKeyartComponent } from './home-keyart/home-keyart.component';
 import {
-  featuredStackItem,
+  FeatureCard,
+  FeatureLogo,
   HomeFeatureComponent,
 } from './home-feature/home-feature.component';
-import { getContentBody } from '../../utilities';
-import { Meta, Title } from '@angular/platform-browser';
-import { FeatureImage } from './feature-gallery/feature-gallery.component';
 
 @Component({
   selector: 'app-home',
@@ -15,91 +26,28 @@ import { FeatureImage } from './feature-gallery/feature-gallery.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
-  protected readonly getContentBody = getContentBody;
+export class HomeComponent {
+  private home = inject(HomeService);
+  private content = inject(ContentService);
 
-  server = inject(ContentService);
+  /**
+   * The saved configuration, or the built-in cards when there is none (or the API
+   * cannot give one). Empty while loading, so defaults never flash before it.
+   */
+  cards = toSignal(
+    this.home.cards().pipe(
+      catchError(() => of(null)),
+      switchMap((saved) =>
+        saved ? of(saved.map((card, index) => this.fromConfig(card, index))) : this.defaults(),
+      ),
+    ),
+    { initialValue: [] as FeatureCard[] },
+  );
 
-  content = this.server.content;
+  constructor(meta: Meta, title: Title) {
+    title.setTitle('Corbin.dev');
 
-  // Optional. Two or more images rotate, e.g.
-  // { src: 'assets/projects/example.png', alt: 'What the picture shows' }
-  frontendImages: FeatureImage[] = [];
-  backendImages: FeatureImage[] = [];
-  otherImages: FeatureImage[] = [];
-
-  frontendFeatures: featuredStackItem[] = [
-    // {
-    //   img: 'html',
-    //   alt: 'HTML',
-    //   link: 'https://www.w3.org/TR/2011/WD-html5-20110405/',
-    // },
-    // {
-    //   img: 'css',
-    //   alt: 'css',
-    //   link: 'https://www.w3.org/Style/CSS/specs.en.html',
-    // },
-    {
-      img: 'js',
-      alt: 'JavaScript',
-      link: 'https://ecma-international.org/publications-and-standards/standards/ecma-262/',
-    },
-    {
-      img: 'typescript',
-      alt: 'TypeScript',
-      link: 'https://www.typescriptlang.org/',
-    },
-    { img: 'angular', alt: 'Angular', link: 'https://angular.dev' },
-    {
-      img: 'react',
-      alt: 'react.js',
-      link: 'https://www.react.dev/',
-    },
-    {
-      img: 'electron',
-      alt: 'Electron.js',
-      link: 'https://www.electronjs.org/',
-    },
-    // { img: 'tauri', alt: 'Tauri', link: 'https://v2.tauri.app/' },
-  ];
-  backendFeatures: featuredStackItem[] = [
-    { img: 'gcloud', alt: 'Google Cloud', link: 'https://cloud.google.com/' },
-    { img: 'node-js', alt: 'Node.js', link: 'https://nodejs.org/en' },
-    { img: 'mongodb', alt: 'MongoDB', link: 'https://www.mongodb.com/' },
-    { img: 'mysql', alt: 'MySQL', link: 'https://www.mysql.com/' },
-    // {
-    //   img: 'PostgreSQL',
-    //   alt: 'PostgreSQL',
-    //   link: 'https://www.postgresql.org/',
-    // },
-    // { img: 'bun', alt: 'bun', link: 'https://bun.sh/' },
-    // { img: 'xata', alt: 'Xata.io', link: 'https://xata.io/' },
-    { img: 'redis', alt: 'Redis', link: 'https://redis.io/' },
-  ];
-  otherFeatures: featuredStackItem[] = [
-    { img: 'java', alt: 'jana', link: 'https://www.oracle.com/java/' },
-    { img: 'kotlin', alt: 'Kotlin', link: 'https://kotlinlang.org/' },
-    { img: 'rust', alt: 'Rust', link: 'https://www.rust-lang.org/' },
-    { img: 'cpp', alt: 'C++', link: 'https://isocpp.org/' },
-    {
-      img: 'android',
-      alt: 'Android',
-      link: 'https://developer.android.com/studio',
-    },
-    // {
-    //   img: 'unreal',
-    //   alt: 'Unreal Engine',
-    //   link: 'https://www.unrealengine.com',
-    // },
-  ];
-
-  constructor(
-    private meta: Meta,
-    private title: Title,
-  ) {
-    this.title.setTitle('Corbin.dev');
-
-    this.meta.addTags([
+    meta.addTags([
       {
         name: 'description',
         content: 'Portfolio & Website of Emrys Corbin, Software Engineer.',
@@ -111,7 +59,50 @@ export class HomeComponent implements OnInit {
     ]);
   }
 
-  ngOnInit(): void {
-    this.server.fetchContent('home');
+  private fromConfig(card: PublicHomeCard, index: number): FeatureCard {
+    return {
+      title: card.title,
+      body: card.body,
+      color: card.color,
+      theme: card.theme,
+      // `auto` zigzags: left, right, left.
+      isAlternate: card.side === 'auto' ? index % 2 === 1 : card.side === 'right',
+      route: card.route,
+      images: card.images.map((image) => ({ src: resolveMediaUrl(image.url), alt: image.alt })),
+      logos: card.skills.map((skill) => this.logo(skill)),
+    };
+  }
+
+  private logo({ _id, name, logo }: HomeSkill): FeatureLogo {
+    const src = brandLogo(logo);
+    return {
+      skillId: _id,
+      name,
+      src: !src || src.startsWith('assets/') ? src : resolveMediaUrl(src),
+    };
+  }
+
+  private defaults() {
+    return forkJoin({
+      blocks: this.content
+        .getContentGroupByPage('home')
+        .pipe(catchError(() => of([] as ContentBlock[]))),
+      skills: this.home.skills().pipe(catchError(() => of([] as HomeSkill[]))),
+    }).pipe(
+      map(({ blocks, skills }) =>
+        DEFAULT_HOME_CARDS.map((card, index): FeatureCard => ({
+          title: card.title,
+          body: getContentBody(blocks, card.content),
+          color: card.color,
+          isAlternate: index % 2 === 1,
+          route: '',
+          images: [],
+          logos: card.skills.flatMap((logo) => {
+            const skill = skills.find((candidate) => candidate.logo === logo);
+            return skill ? [this.logo(skill)] : [];
+          }),
+        })),
+      ),
+    );
   }
 }

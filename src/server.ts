@@ -7,6 +7,7 @@ import {
 import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { environment } from './environments/environment';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -25,6 +26,28 @@ const angularApp = new AngularNodeAppEngine();
  * });
  * ```
  */
+
+/**
+ * The blog's RSS feed. The API builds it; it is served from here so that
+ * subscribers hold an address on the site's own domain.
+ */
+app.get('/rss.xml', async (_req, res) => {
+  try {
+    const feed = await fetch(`${environment.API}/rss.xml`, {
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!feed.ok) throw new Error(`API answered ${feed.status}`);
+    const body = await feed.text();
+
+    res
+      .set('Cache-Control', 'public, max-age=900')
+      .type('application/rss+xml; charset=utf-8')
+      .send(body);
+  } catch (error) {
+    console.error('RSS feed unavailable', error);
+    res.sendStatus(502);
+  }
+});
 
 /**
  * Serve static files from /browser
