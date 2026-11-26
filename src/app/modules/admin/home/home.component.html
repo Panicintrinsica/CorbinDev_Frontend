@@ -1,0 +1,125 @@
+<section class="page admin-home">
+  <header class="admin-header">
+    <div class="admin-nav-links">
+      <a mat-button routerLink="/admin/home" class="active">Home</a>
+      <a mat-button routerLink="/admin/articles">Articles</a>
+      <a mat-button routerLink="/admin/projects">Projects</a>
+      <a mat-button routerLink="/admin/skills">Skills</a>
+      <a mat-button routerLink="/admin/profile">Profile</a>
+    </div>
+    <div class="pusher"></div>
+    @if (dirty()) {
+      <span class="save-state unsaved">Unsaved changes</span>
+    } @else if (savedAt()) {
+      <span class="save-state">Saved</span>
+    }
+    <button mat-flat-button [disabled]="saving() || uploading() || loading() || loadFailed()" (click)="save()">
+      {{ saving() ? 'Saving…' : 'Save' }}
+    </button>
+    <a mat-button routerLink="/" target="_blank">View page</a>
+  </header>
+
+  @if (error(); as message) {
+    <div class="admin-error" role="alert">{{ message }}</div>
+  }
+
+  @if (loading()) {
+    <p class="note">Loading…</p>
+  } @else if (!loadFailed()) {
+    <ol class="cards">
+      @for (card of cards(); track card.key; let i = $index; let last = $last) {
+        <li class="card-editor">
+          <div class="card-head">
+            <h2>{{ card.title || 'New card' }}</h2>
+            <button type="button" mat-button (click)="moveCard(i, -1)" [disabled]="i === 0" aria-label="Move card up">↑</button>
+            <button type="button" mat-button (click)="moveCard(i, 1)" [disabled]="last" aria-label="Move card down">↓</button>
+            <button type="button" mat-button (click)="removeCard(card.key)">Remove card</button>
+          </div>
+
+          <label>
+            Title
+            <input type="text" maxlength="80" [value]="card.title" (input)="set(card.key, 'title', $any($event.target).value)" />
+          </label>
+          <label>
+            Text
+            <textarea rows="5" maxlength="2000" [value]="card.body" (input)="set(card.key, 'body', $any($event.target).value)"></textarea>
+          </label>
+
+          <div class="row">
+            <label>
+              Color
+              <select #color (change)="setColor(card.key, color.value)">
+                <option value="red" [selected]="card.color === 'red'">Red</option>
+                <option value="blue" [selected]="card.color === 'blue'">Blue</option>
+                <option value="pink" [selected]="card.color === 'pink'">Pink</option>
+                <option value="custom" [selected]="card.color === 'custom'">Custom</option>
+              </select>
+            </label>
+            <label>
+              Side
+              <select #side (change)="setSide(card.key, side.value)">
+                <option value="auto" [selected]="card.side === 'auto'">Alternate automatically</option>
+                <option value="left" [selected]="card.side === 'left'">Left</option>
+                <option value="right" [selected]="card.side === 'right'">Right</option>
+              </select>
+            </label>
+            <label>
+              "More" button path (blank hides it)
+              <input type="text" maxlength="200" placeholder="/projects" [value]="card.route" (input)="set(card.key, 'route', $any($event.target).value)" />
+            </label>
+          </div>
+
+          @if (card.color === 'custom' && card.theme; as theme) {
+            <div class="swatches">
+              <label>Foil dark <input type="color" [value]="theme.foil[0]" (input)="setFoil(card.key, 0, $any($event.target).value)" /></label>
+              <label>Foil mid <input type="color" [value]="theme.foil[1]" (input)="setFoil(card.key, 1, $any($event.target).value)" /></label>
+              <label>Foil light <input type="color" [value]="theme.foil[2]" (input)="setFoil(card.key, 2, $any($event.target).value)" /></label>
+              <label>Tint <input type="color" [value]="theme.tint" (input)="setThemeColor(card.key, 'tint', $any($event.target).value)" /></label>
+              <label>Shine <input type="color" [value]="theme.shine" (input)="setThemeColor(card.key, 'shine', $any($event.target).value)" /></label>
+            </div>
+          }
+
+          <h3>Skills</h3>
+          <ol class="chips">
+            @for (id of card.skills; track id; let s = $index; let lastSkill = $last) {
+              <li>
+                <span>{{ skillName(id) }}</span>
+                <button type="button" (click)="moveSkill(card.key, s, -1)" [disabled]="s === 0" [attr.aria-label]="'Move ' + skillName(id) + ' earlier'">←</button>
+                <button type="button" (click)="moveSkill(card.key, s, 1)" [disabled]="lastSkill" [attr.aria-label]="'Move ' + skillName(id) + ' later'">→</button>
+                <button type="button" (click)="removeSkill(card.key, id)" [attr.aria-label]="'Remove ' + skillName(id)">×</button>
+              </li>
+            }
+          </ol>
+          <select #add (change)="addSkill(card.key, add)" [disabled]="card.skills.length >= maxSkills" aria-label="Add a skill">
+            <option value="">Add a skill…</option>
+            @for (skill of skills(); track skill._id) {
+              @if (!card.skills.includes(skill._id)) {
+                <option [value]="skill._id">{{ skill.name }}</option>
+              }
+            }
+          </select>
+
+          <h3>Pictures</h3>
+          <p class="note">Optional. Two or more rotate. Each needs a description.</p>
+          <ol class="pictures">
+            @for (image of card.images; track image.url + $index; let p = $index; let lastImage = $last) {
+              <li>
+                <img [src]="resolve(image.url)" alt="" />
+                <input type="text" maxlength="300" placeholder="Describe the picture" [value]="image.alt" (input)="setAlt(card.key, p, $any($event.target).value)" [attr.aria-label]="'Picture ' + (p + 1) + ' description'" />
+                <button type="button" mat-button (click)="moveImage(card.key, p, -1)" [disabled]="p === 0" aria-label="Move picture up">↑</button>
+                <button type="button" mat-button (click)="moveImage(card.key, p, 1)" [disabled]="lastImage" aria-label="Move picture down">↓</button>
+                <button type="button" mat-button (click)="removeImage(card.key, p)">Remove</button>
+              </li>
+            }
+          </ol>
+          <input #file type="file" hidden multiple accept="image/png,image/jpeg,image/gif,image/webp,image/avif,image/svg+xml" (change)="upload(card.key, $event)" />
+          <button type="button" mat-stroked-button (click)="file.click()" [disabled]="uploading() || card.images.length >= maxImages">
+            {{ uploading() ? 'Uploading…' : 'Add pictures' }}
+          </button>
+        </li>
+      }
+    </ol>
+
+    <button type="button" mat-stroked-button (click)="addCard()" [disabled]="cards().length >= 12">Add card</button>
+  }
+</section>
